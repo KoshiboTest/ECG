@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmergenceApp", "EmergenceApp\EmergenceApp.csproj", "{F5363600-95E8-4C79-B1AA-2BEA48E1ACCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emergence.Model", "Emergence.Model\Emergence.Model.csproj", "{D909B697-2696-4D8F-8614-D4F784C6CB9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emergence.ViewModel", "Emergence.ViewModel\Emergence.ViewModel.csproj", "{83C755FA-ECA4-4A79-A13E-7FF3FDCCE583}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F5363600-95E8-4C79-B1AA-2BEA48E1ACCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5363600-95E8-4C79-B1AA-2BEA48E1ACCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5363600-95E8-4C79-B1AA-2BEA48E1ACCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5363600-95E8-4C79-B1AA-2BEA48E1ACCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D909B697-2696-4D8F-8614-D4F784C6CB9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D909B697-2696-4D8F-8614-D4F784C6CB9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D909B697-2696-4D8F-8614-D4F784C6CB9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D909B697-2696-4D8F-8614-D4F784C6CB9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83C755FA-ECA4-4A79-A13E-7FF3FDCCE583}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83C755FA-ECA4-4A79-A13E-7FF3FDCCE583}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83C755FA-ECA4-4A79-A13E-7FF3FDCCE583}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83C755FA-ECA4-4A79-A13E-7FF3FDCCE583}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
