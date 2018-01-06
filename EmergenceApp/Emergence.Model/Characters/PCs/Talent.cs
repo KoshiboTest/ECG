@@ -17,6 +17,7 @@ namespace Emergence.Model
         public int Tier;
         public int? StaminaCost;
         public int? UpkeepCost;
+        public int? FatigueCost;
         public bool IsSpell;
         public WeaponSkill? LinkedSkill;
         public string LinkedAttribute;
