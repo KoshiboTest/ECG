@@ -14,7 +14,15 @@ namespace Emergence.Model
         {
             get
             {
-                KeyValuePair<WeaponSkill, int> OwnersSkill = AttackOwner.CombatSkills.FirstOrDefault(cs => cs.Key == Weapon.Skill);
+                KeyValuePair<WeaponSkill, int> OwnersSkill;
+                if (AttackOwner == null)
+                {
+                    OwnersSkill = new KeyValuePair<WeaponSkill, int>();
+                }
+                else
+                {
+                    OwnersSkill = AttackOwner.CombatSkills.FirstOrDefault(cs => cs.Key == Weapon.Skill);
+                }
                 if (OwnersSkill.Value == 0) // NPCs are assumed to have the skill they use with any weapons
                 {
                     int skillValue = 0;

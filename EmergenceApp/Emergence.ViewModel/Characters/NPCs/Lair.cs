@@ -13,13 +13,7 @@ using System.Xml.Serialization;
 
 namespace Emergence.ViewModel
 {
-    //TODO: Replace these text values everywhere at the end
     //TODO: Fix the fact that natual weapons are not saved to disk
-    // Th = " "
-    // th = " "
-    // ff = " "
-    // fi = " "
-    // ft = " "
 
     /// <summary>
     /// NPC spawn
@@ -82,7 +76,7 @@ namespace Emergence.ViewModel
                 grantedAttack.RadiusInFeet = r.Next(10, 51);
                 grantedAttack.Shape = (AreaShape)r.Next(0, 2);
                 grantedAttack.Name = "Natural Area Attack Ability";
-                areaAttack.GrantedAttack = grantedAttack;
+                areaAttack.GrantedWeapon = grantedAttack.Weapon;
             }
             else
             {
@@ -93,7 +87,7 @@ namespace Emergence.ViewModel
                 grantedAttack.RadiusInFeet = r.Next(10, 31);
                 grantedAttack.RangeType = (Range)rangeType;
                 grantedAttack.Name = "Natural Area Attack Ability";
-                areaAttack.GrantedAttack = grantedAttack;
+                areaAttack.GrantedWeapon = grantedAttack.Weapon;
             }
             areaAttack.Description = "Creature gains an Area attack that has the listed area and damage type.";
             areaAttack.StaminaCost = 5; //should be level + 2
@@ -162,7 +156,7 @@ namespace Emergence.ViewModel
             grantedAttack2.Weapon.Type = (DamageType)Math.Pow(2, r.Next(0, 9));
             grantedAttack2.RangeType = (Range)r.Next(0, 8);
             grantedAttack2.Name = "Natural Ranged Attack Ability";
-            rangedAttack.GrantedAttack = grantedAttack2;
+            rangedAttack.GrantedWeapon = grantedAttack2.Weapon;
             rangedAttack.Description = "Creature gains a Ranged attack that has the listed range and damage type.";
             rangedAttack.StaminaCost = 3; //should be level
             rangedAttack.Tier = 1;
@@ -4660,7 +4654,7 @@ namespace Emergence.ViewModel
             incantation2c.Name = "Trinket Maker";
             incantation2c.Type = TalentType.Benefit;
             incantation2c.Action = ActionType.None;
-            incantation2c.DescriptionFluff = "You experiment o en with expendable forms of magical enchanting.";
+            incantation2c.DescriptionFluff = "You experiment often with expendable forms of magical enchanting.";
             incantation2c.Description = "Reduce the cost to craft Elixirs, Reagents, and Potions by 10%.";
             incantation2c.ClarifyingText = "";
             incantation2c.StaminaCost = null;
@@ -4710,7 +4704,7 @@ namespace Emergence.ViewModel
             incantation3c.Type = TalentType.Benefit;
             incantation3c.Action = ActionType.None;
             incantation3c.DescriptionFluff = "You are practiced in creating permanent magical items.";
-            incantation3c.Description = "Reduce the cost of Magic Items that you cra by 10%.";
+            incantation3c.Description = "Reduce the cost of Magic Items that you craftby 10%.";
             incantation3c.ClarifyingText = "";
             incantation3c.StaminaCost = null;
             incantation3c.UpkeepCost = null;
@@ -4743,7 +4737,7 @@ namespace Emergence.ViewModel
             incantation4b.Type = TalentType.Ritual;
             incantation4b.Action = ActionType.None;
             incantation4b.DescriptionFluff = "You secure an area with a magical field.";
-            incantation4b.Description = "You seal an area against entry. When you perform this Ritual, make an Alteration Check. To pass through the seal, a creature must pass a Presence +Willpower Check or a Strength +Fortitude vs an MCR equal to the result of the Alteration Check.Teleportation into the area of the ward is impossible.  e seal can be damaged; it has armor equal to the original Alteration Check and the same amount of HP.It regenerates HP equal to your Presence at the beginning of each of your turns. You can spend a Combat Action to regenerate the ward faster [1 Stamina per point of regeneration]. You and anyone you designate can enter the ward without restriction. This ward is visible and obvious. [6 Fatigue as long as the ward exists]";
+            incantation4b.Description = "You seal an area against entry. When you perform this Ritual, make an Alteration Check. To pass through the seal, a creature must pass a Presence +Willpower Check or a Strength +Fortitude vs an MCR equal to the result of the Alteration Check.Teleportation into the area of the ward is impossible. The seal can be damaged; it has armor equal to the original Alteration Check and the same amount of HP.It regenerates HP equal to your Presence at the beginning of each of your turns. You can spend a Combat Action to regenerate the ward faster [1 Stamina per point of regeneration]. You and anyone you designate can enter the ward without restriction. This ward is visible and obvious. [6 Fatigue as long as the ward exists]";
             incantation4b.ClarifyingText = "Ritual: 10-minute cast, target area with 20’ radius centered on you";
             incantation4b.StaminaCost = null;
             incantation4b.UpkeepCost = null;
@@ -4809,7 +4803,7 @@ namespace Emergence.ViewModel
             incantation5c.Type = TalentType.Benefit;
             incantation5c.Action = ActionType.None;
             incantation5c.DescriptionFluff = "";
-            incantation5c.Description = "You have learned to extract the pure magical essence of enchanted items. With 1 hour work, you can extract ½ the value of any item or Mod that was made using the Enchantment Skill as “raw materials.”  ese materials have little weight and take up little space (size 1 and 2 pounds per 10, 000U in value). Raw materials obtained in this way can only be used to cra or Mod items while using the Enchantment Skill.";
+            incantation5c.Description = "You have learned to extract the pure magical essence of enchanted items. With 1 hour work, you can extract ½ the value of any item or Mod that was made using the Enchantment Skill as “raw materials.” These materials have little weight and take up little space (size 1 and 2 pounds per 10, 000U in value). Raw materials obtained in this way can only be used to craftor Mod items while using the Enchantment Skill.";
             incantation5c.ClarifyingText = "";
             incantation5c.StaminaCost = null;
             incantation5c.UpkeepCost = null;
@@ -4860,8 +4854,8 @@ namespace Emergence.ViewModel
             infernalism1c.Type = TalentType.Ritual;
             infernalism1c.Action = ActionType.None;
             infernalism1c.DescriptionFluff = "You are gifted the power to summon servants by your master.";
-            infernalism1c.Description = "You summon a size 2 Natural Companion of your level -2 with the Infernal quality.  e use of this Ritual requires the sacri ce of a living creature of your level -2.  ere are 3 di erent Companions to choose from each with their own set of abilities: • Imps gain Flight(2), Skilled(2), and Camou age(Light). • Hellcats gain Animalistic(Medium), Feral(1), and Energy Infused(Fire). • Hellions gain Venomous, Honed(1), and Ranged attack(Pistol / Fire and Poison).";
-            infernalism1c.ClarifyingText = "Ritual: 1 hour cast, target adjacent space. [2 Fatigue for as long as the Familiar exists and for 8 hours a er]";
+            infernalism1c.Description = "You summon a size 2 Natural Companion of your level -2 with the Infernal quality. The use of this Ritual requires the sacrifice of a living creature of your level -2. There are 3 di erent Companions to choose from each with their own set of abilities: • Imps gain Flight(2), Skilled(2), and Camouftage(Light). • Hellcats gain Animalistic(Medium), Feral(1), and Energy Infused(Fire). • Hellions gain Venomous, Honed(1), and Ranged attack(Pistol / Fire and Poison).";
+            infernalism1c.ClarifyingText = "Ritual: 1 hour cast, target adjacent space. [2 Fatigue for as long as the Familiar exists and for 8 hours after]";
             infernalism1c.StaminaCost = null;
             infernalism1c.UpkeepCost = null;
             infernalism1c.FatigueCost = 2;
@@ -4878,7 +4872,7 @@ namespace Emergence.ViewModel
             infernalism2a.Type = TalentType.Benefit;
             infernalism2a.Action = ActionType.None;
             infernalism2a.DescriptionFluff = "";
-            infernalism2a.Description = "Choose 1 of the following warps: Horns (+1 Unarmed CM); Claws (+1 Unarmed damage); Satyr Legs(+1 Speed); or Jaws (+2 Wrestling damage).  is Talent can be selected multiple times, each time a di erent warp must be selected.";
+            infernalism2a.Description = "Choose 1 of the following warps: Horns (+1 Unarmed CM); Claws (+1 Unarmed damage); Satyr Legs(+1 Speed); or Jaws (+2 Wrestling damage). This Talent can be selected multiple times, each time a di erent warp must be selected.";
             infernalism2a.ClarifyingText = "";
             infernalism2a.StaminaCost = null;
             infernalism2a.UpkeepCost = null;
@@ -4943,7 +4937,7 @@ namespace Emergence.ViewModel
             infernalism3b.Type = TalentType.Enhancement;
             infernalism3b.Action = ActionType.Quick;
             infernalism3b.DescriptionFluff = "";
-            infernalism3b.Description = "Your Unarmed attacks gain +2 Unholy damage and you gain Light Forti cation vs. all Resolve and Body attacks. Holy attackers using Close Combat or Unarmed attacks against you su er an Unholy damage roll with a modi er equal to your Presence Attribute.";
+            infernalism3b.Description = "Your Unarmed attacks gain +2 Unholy damage and you gain Light Fortification vs. all Resolve and Body attacks. Holy attackers using Close Combat or Unarmed attacks against you su er an Unholy damage roll with a modifier equal to your Presence Attribute.";
             infernalism3b.ClarifyingText = "Enhancement: target self [8/2 Stamina]";
             infernalism3b.StaminaCost = null;
             infernalism3b.UpkeepCost = null;
@@ -4959,7 +4953,7 @@ namespace Emergence.ViewModel
             infernalism3c.Type = TalentType.Benefit;
             infernalism3c.Action = ActionType.None;
             infernalism3c.DescriptionFluff = "";
-            infernalism3c.Description = "When you cast Infernal Familiar, you can choose to empower the familiar. If you do, the casting time is doubled and the sacri ce must be two levels higher. Empowered familiars are of the same level as you and gain the following abilities.  is bene t can be taken multiple times. You can only have one Empowered Familiar for each time you have taken this bene t. • Imps gain Flight(1), Skilled(3), Shapechanger, Natural Weapons(Light) and Camou age(Light). • Hellcats Become Size 3 and Gain Animalistic(Medium), Feral(1), Energy Infused(Fire), Area attack(20’ cone / Fire) and Tough(2). • Hellions Gain Venomous, Natural Weapons(Light), Honed(2) Ranged attack(Pistol / Fire and Poison) and Area attack(10’radius at Pistol range / Fire and Poison).";
+            infernalism3c.Description = "When you cast Infernal Familiar, you can choose to empower the familiar. If you do, the casting time is doubled and the sacrifice must be two levels higher. Empowered familiars are of the same level as you and gain the following abilities. This benefit can be taken multiple times. You can only have one Empowered Familiar for each time you have taken this benefit. • Imps gain Flight(1), Skilled(3), Shapechanger, Natural Weapons(Light) and Camouflage(Light). • Hellcats Become Size 3 and Gain Animalistic(Medium), Feral(1), Energy Infused(Fire), Area attack(20’ cone / Fire) and Tough(2). • Hellions Gain Venomous, Natural Weapons(Light), Honed(2) Ranged attack(Pistol / Fire and Poison) and Area attack(10’radius at Pistol range / Fire and Poison).";
             infernalism3c.ClarifyingText = "";
             infernalism3c.StaminaCost = null;
             infernalism3c.UpkeepCost = null;
@@ -4976,7 +4970,7 @@ namespace Emergence.ViewModel
             infernalism4a.Type = TalentType.Ritual;
             infernalism4a.Action = ActionType.None;
             infernalism4a.DescriptionFluff = "";
-            infernalism4a.Description = "You summon a Size 3 or 4 (your choice) Natural Companion of your level with the Infernal quality.  e demon gains 4 of the following possible abilities.Where applicable, an ability can be taken multiple times. Animalistic(Light, Medium or Heavy), Feral(2), Brawny, Slight, Honed(2), any non - Smiting, non - Prayer Talent Ability of Tier 3 or lower, Area attack(30’ cone or 15’ radius at     Pistol range / any combination of Fire, Poison, or Unholy), Ranged attack (Pistol, SMG or Shotgun/       any combination of Fire, Poison, or Unholy), Energy Infused (Fire, Poison or Unholy), Flight(1 if      Size 3, 2 if Size 4), Tough(2), Venomous, Natural Weapons (any), Natural Armor(any).";
+            infernalism4a.Description = "You summon a Size 3 or 4 (your choice) Natural Companion of your level with the Infernal quality. The demon gains 4 of the following possible abilities.Where applicable, an ability can be taken multiple times. Animalistic(Light, Medium or Heavy), Feral(2), Brawny, Slight, Honed(2), any non - Smiting, non - Prayer Talent Ability of Tier 3 or lower, Area attack(30’ cone or 15’ radius at     Pistol range / any combination of Fire, Poison, or Unholy), Ranged attack (Pistol, SMG or Shotgun/       any combination of Fire, Poison, or Unholy), Energy Infused (Fire, Poison or Unholy), Flight(1 if      Size 3, 2 if Size 4), Tough(2), Venomous, Natural Weapons (any), Natural Armor(any).";
             infernalism4a.ClarifyingText = "Ritual: 24-hour cast, target adjacent space [5 Stamina for as long as the deamon exists and for 8 hours after]";
             infernalism4a.StaminaCost = null;
             infernalism4a.UpkeepCost = null;
@@ -5026,7 +5020,7 @@ namespace Emergence.ViewModel
             infernalism5a.Action = ActionType.Combat;
             infernalism5a.DescriptionFluff = "";
             infernalism5a.Description = "Spell {Area (15’ radius within Rifle range) +0/+6 Poison and Fire) [12 Stamina]";
-            infernalism5a.ClarifyingText = " e area becomes a Hazard that causes 1/2 the original damage modi er of Poison and  re damage for the rest of the encounter.";
+            infernalism5a.ClarifyingText = "The area becomes a Hazard that causes 1/2 the original damage modifier of Poison and fire damage for the rest of the encounter.";
             infernalism5a.StaminaCost = 12;
             infernalism5a.UpkeepCost = null;
             infernalism5a.Tier = 5;
@@ -5041,7 +5035,7 @@ namespace Emergence.ViewModel
             infernalism5b.Type = TalentType.Enhancement;
             infernalism5b.Action = ActionType.Quick;
             infernalism5b.DescriptionFluff = "";
-            infernalism5b.Description = "Add your Presence Attribute to the damage of all Fire, Unholy, or Poison attacks that you make. You become immune to Fire and Poison damage. Your Fire, Unholy, and Poison attacks gain CM +1 and Lethal +1.At the beginning of each turn that this power is in e ect you regain 1 HP in your 1st or 2nd Track. Every round that this Enhancement is in e ect you must use your Combat Action to make an attack against an enemy. If you do not, the GM selects that Combat Action for you, using any powers and as much Stamina as possible to create as much destruction as possible to friends and foes alike.A er that action is resolved, you can choose to end this enchantment.";
+            infernalism5b.Description = "Add your Presence Attribute to the damage of all Fire, Unholy, or Poison attacks that you make. You become immune to Fire and Poison damage. Your Fire, Unholy, and Poison attacks gain CM +1 and Lethal +1.At the beginning of each turn that this power is in e ect you regain 1 HP in your 1st or 2nd Track. Every round that this Enhancement is in e ect you must use your Combat Action to make an attack against an enemy. If you do not, the GM selects that Combat Action for you, using any powers and as much Stamina as possible to create as much destruction as possible to friends and foes alike.After that action is resolved, you can choose to end this enchantment.";
             infernalism5b.ClarifyingText = "Enhancement: target self [12/3 Stamina]";
             infernalism5b.StaminaCost = 12;
             infernalism5b.UpkeepCost = 3;
@@ -5108,7 +5102,7 @@ namespace Emergence.ViewModel
             kinesis1c.Type = TalentType.Maneuver;
             kinesis1c.Action = ActionType.Combat;
             kinesis1c.DescriptionFluff = "";
-            kinesis1c.Description = "Choose 1 of the e ects below. • (Trick)[1 Stamina per 10’ between you and the object] Retrieve an unattended object of size 6 or smaller within 30’. You must have a free hand. You become armed with the item. • (Spell)[4 / 1 Stamina] Perform acts of manually dexterity at Pistol range. Appropriate Skill Checks are still required (Smithing, Repair, etc.). • (Trick)[1 / 1 Stamina per e ect] You can make candle light, or can manipulate  re to make it dance. (No combat e ect.)";
+            kinesis1c.Description = "Choose 1 of the e ects below. • (Trick)[1 Stamina per 10’ between you and the object] Retrieve an unattended object of size 6 or smaller within 30’. You must have a free hand. You become armed with the item. • (Spell)[4 / 1 Stamina] Perform acts of manually dexterity at Pistol range. Appropriate Skill Checks are still required (Smithing, Repair, etc.). • (Trick)[1 / 1 Stamina per e ect] You can make candle light, or can manipulate fire to make it dance. (No combat e ect.)";
             kinesis1c.ClarifyingText = "";
             kinesis1c.StaminaCost = 0;
             kinesis1c.UpkeepCost = null;
@@ -5157,7 +5151,7 @@ namespace Emergence.ViewModel
             kinesis2c.Type = TalentType.Maneuver;
             kinesis2c.Action = ActionType.Combat;
             kinesis2c.DescriptionFluff = "";
-            kinesis2c.Description = "Choose 1 of the e ects below. • Move Objects: Spell{ no attack}             When manipulating unattended objects use Presence in place of Strength for max li ing capacity.If you spend additional Stamina, you can treat your e ective Strength as 1 point higher per 4 points of Stamina you spend(to a maximum e ective Strength increase of your Presence).  is e ect lasts for one round. You spend your MI from your Speed to move items that you can li . If you are spending additional Stamina to increase your li ing capacity each MI costs one additional Stamina. • Perform Wrestling Maneuvers: Spell { Melee(within 50’) / }             When making checks, roll your alteration skill for the Overpower checks.Attempts to break from your Wrestle target your Area / Resolve Defense. • Hurl: Spell { Ranged(Pistol) / (type depends on object hurled)}             Use this attack to hurl an unattended item within 10’ of you with a size up to your Presence Attribute at the target.If using an Improvised weapon, use the Improvised Attacks guidelines to determine the Accuracy and damage of the item. If using a standard weapon, use its Accuracy and Damage.When determining the total attack and damage of this attack, the Accuracy and Damage of the item Hurled is added directly to the normal Accuracy and Damage modi ers of this Kinesis spell. Use of this option causes a maintained Telekinesis to end.To use it again in a future round, the initial cost must be spent again.If no Telekinesis is currently maintained when used, spend initial cost only.";
+            kinesis2c.Description = "Choose 1 of the e ects below. • Move Objects: Spell{ no attack}             When manipulating unattended objects use Presence in place of Strength for max lifting capacity.If you spend additional Stamina, you can treat your e ective Strength as 1 point higher per 4 points of Stamina you spend(to a maximum e ective Strength increase of your Presence). This e ect lasts for one round. You spend your MI from your Speed to move items that you can lift. If you are spending additional Stamina to increase your lifting capacity each MI costs one additional Stamina. • Perform Wrestling Maneuvers: Spell { Melee(within 50’) / }             When making checks, roll your alteration skill for the Overpower checks.Attempts to break from your Wrestle target your Area / Resolve Defense. • Hurl: Spell { Ranged(Pistol) / (type depends on object hurled)}             Use this attack to hurl an unattended item within 10’ of you with a size up to your Presence Attribute at the target.If using an Improvised weapon, use the Improvised Attacks guidelines to determine the Accuracy and damage of the item. If using a standard weapon, use its Accuracy and Damage.When determining the total attack and damage of this attack, the Accuracy and Damage of the item Hurled is added directly to the normal Accuracy and Damage modifiers of this Kinesis spell. Use of this option causes a maintained Telekinesis to end.To use it again in a future round, the initial cost must be spent again.If no Telekinesis is currently maintained when used, spend initial cost only.";
             kinesis2c.ClarifyingText = "[6 Stamina on initial use / 2 Stamina on subsequent rounds when continuing Wrestling]";
             kinesis2c.StaminaCost = 6;
             kinesis2c.UpkeepCost = 2;
@@ -5190,7 +5184,7 @@ namespace Emergence.ViewModel
             kinesis3b.Type = TalentType.Maneuver;
             kinesis3b.Action = ActionType.Combat;
             kinesis3b.DescriptionFluff = "";
-            kinesis3b.Description = "Gain a max  y Speed of your total Alteration skill x your Presence Attribute in MPH. While  ying you cannot take Combat Actions.  e Pilot (Air)Skill is used if Piloting Checks need to be made.  is Ritual ends if you make an attack of take damage.";
+            kinesis3b.Description = "Gain a max fly Speed of your total Alteration skill x your Presence Attribute in MPH. While flying you cannot take Combat Actions. The Pilot (Air)Skill is used if Piloting Checks need to be made. This Ritual ends if you make an attack of take damage.";
             kinesis3b.ClarifyingText = "Ritual: Target self, 1-minute cast time [2 Fatigue +1 per hour of flight]";
             kinesis3b.StaminaCost = null;
             kinesis3b.UpkeepCost = null;
@@ -5207,7 +5201,7 @@ namespace Emergence.ViewModel
             kinesis3c.Type = TalentType.Enhancement;
             kinesis3c.Action = ActionType.Quick;
             kinesis3c.DescriptionFluff = "";
-            kinesis3c.Description = "You can  oat up or down at a rate of 20’ per round. When moving along the ground, you can ignore the penalty for moving over rough terrain. You can walk on water as if it were solid ground.";
+            kinesis3c.Description = "You can float up or down at a rate of 20’ per round. When moving along the ground, you can ignore the penalty for moving over rough terrain. You can walk on water as if it were solid ground.";
             kinesis3c.ClarifyingText = "Enhancement: target self only [6/2 Stamina]";
             kinesis3c.StaminaCost = 6;
             kinesis3c.UpkeepCost = 2;
@@ -5240,7 +5234,7 @@ namespace Emergence.ViewModel
             kinesis4b.Type = TalentType.Benefit;
             kinesis4b.Action = ActionType.None;
             kinesis4b.DescriptionFluff = "";
-            kinesis4b.Description = "When using Telekinesis you treat your Presence as 2 points higher when determining maximum Li ing power, you gain + 2 to all attacks and overpower checks. You also gain a +2 to damage and you can choose to make the Hurl option an Area attack with a 10’ radius within the same range.";
+            kinesis4b.Description = "When using Telekinesis you treat your Presence as 2 points higher when determining maximum Lifting power, you gain + 2 to all attacks and overpower checks. You also gain a +2 to damage and you can choose to make the Hurl option an Area attack with a 10’ radius within the same range.";
             kinesis4b.ClarifyingText = "";
             kinesis4b.StaminaCost = null;
             kinesis4b.UpkeepCost = null;
@@ -5274,7 +5268,7 @@ namespace Emergence.ViewModel
             kinesis5a.Action = ActionType.Combat;
             kinesis5a.DescriptionFluff = "";
             kinesis5a.Description = "Spell {Area (20’ radius)/ +6 Force}[12 Stamina]";
-            kinesis5a.ClarifyingText = " is attack gain Knockback and only targets enemies. Objects hit by this attack su er double damage over Durability.";
+            kinesis5a.ClarifyingText = "This attack gain Knockback and only targets enemies. Objects hit by this attack su er double damage over Durability.";
             kinesis5a.StaminaCost = 12;
             kinesis5a.UpkeepCost = null;
             kinesis5a.Tier = 5;
@@ -5289,7 +5283,7 @@ namespace Emergence.ViewModel
             kinesis5b.Type = TalentType.Enhancement;
             kinesis5b.Action = ActionType.Quick;
             kinesis5b.DescriptionFluff = "";
-            kinesis5b.Description = "Create a wall of force up to 10  . x 100  . x 1 . It is visible but transparent.  e barrier blocks movement and provides Cover with a Toughness of 20.";
+            kinesis5b.Description = "Create a wall of force up to 10 ft. x 100 ft. x 1ft. It is visible but transparent. The barrier blocks movement and provides Cover with a Toughness of 20.";
             kinesis5b.ClarifyingText = "Enhancement: Target area up to 50’ away";
             kinesis5b.StaminaCost = 12;
             kinesis5b.UpkeepCost = 3;
@@ -5305,7 +5299,7 @@ namespace Emergence.ViewModel
             kinesis5c.Type = TalentType.Maneuver;
             kinesis5c.Action = ActionType.Combat;
             kinesis5c.DescriptionFluff = "";
-            kinesis5c.Description = "Spell {Area (Shotgun) +0/+4 Slashing} is attack is Full-Auto(25).";
+            kinesis5c.Description = "Spell {Area (Shotgun) +0/+4 Slashing}This attack is Full-Auto(25).";
             kinesis5c.ClarifyingText = "";
             kinesis5c.StaminaCost = 12;
             kinesis5c.UpkeepCost = null;
@@ -5391,7 +5385,7 @@ namespace Emergence.ViewModel
             nature2b.Action = ActionType.Combat;
             nature2b.DescriptionFluff = "";
             nature2b.Description = "Spell {Area (30’ radius) +0/-2 Bludgeoning)} [6 Stamina]";
-            nature2b.ClarifyingText = "On a hit, the targets become Slowed. On a Stage 2 or higher Crit the target cannot spend MI to move for as long as the secondary e ect lasts.  e area of the spell becomes rough terrain for all enemies until the end of the encounter.";
+            nature2b.ClarifyingText = "On a hit, the targets become Slowed. On a Stage 2 or higher Crit the target cannot spend MI to move for as long as the secondary e ect lasts. The area of the spell becomes rough terrain for all enemies until the end of the encounter.";
             nature2b.StaminaCost = 6;
             nature2b.UpkeepCost = null;
             nature2b.Tier = 2;
@@ -5406,7 +5400,7 @@ namespace Emergence.ViewModel
             nature2c.Type = TalentType.Enhancement;
             nature2c.Action = ActionType.Quick;
             nature2c.DescriptionFluff = "";
-            nature2c.Description = "You gain Light Forti cation versus Slashing, Piercing, and Bludgeoning.";
+            nature2c.Description = "You gain Light Fortification versus Slashing, Piercing, and Bludgeoning.";
             nature2c.ClarifyingText = "Enhancement: target self [6/2 Stamina]";
             nature2c.StaminaCost = 6;
             nature2c.UpkeepCost = 2;
@@ -5423,7 +5417,7 @@ namespace Emergence.ViewModel
             nature3a.Type = TalentType.Ritual;
             nature3a.Action = ActionType.Combat;
             nature3a.DescriptionFluff = "";
-            nature3a.Description = "Target creature regains your Willpower + Presence in HP. HP regained in the 3rd Track costs double. Remove the Poisoned state (but not damage already caused by it).  is spell will automatically stabilize targets in the Bleed Out Track and Healing spent in that Track heals normally.";
+            nature3a.Description = "Target creature regains your Willpower + Presence in HP. HP regained in the 3rd Track costs double. Remove the Poisoned state (but not damage already caused by it). This spell will automatically stabilize targets in the Bleed Out Track and Healing spent in that Track heals normally.";
             nature3a.ClarifyingText = "Ritual: Combat Action cast, target adjacent creature [5 Fatigue]";
             nature3a.StaminaCost = null;
             nature3a.UpkeepCost = null;
@@ -5440,7 +5434,7 @@ namespace Emergence.ViewModel
             nature3b.Type = TalentType.Ritual;
             nature3b.Action = ActionType.None;
             nature3b.DescriptionFluff = "";
-            nature3b.Description = "You reshape existing material to create new shapes or objects. When you use this Ritual, make a Conjuration Check.  e result x 100U is the maximum value of the new item(maximum UEU worth of materials that can be shaped; materials discounted for any reason do not count against this). One half the result cubed is the maximum volume in cubic feet worth of material that can be shaped(GM discretion).You can create any item that you gain a 15 % or better cost reduction from having the appropriate Trade Skill(Smithing for weapons, Construction for walls), failure to have the appropriate skill results in a product that is non - functional and unstable. All necessary materials  must be present to create the item (GM discretion). Items created through Shape are real and permanent.  is Ritual can only be used to shape living plant materials.";
+            nature3b.Description = "You reshape existing material to create new shapes or objects. When you use this Ritual, make a Conjuration Check. The result x 100U is the maximum value of the new item(maximum UEU worth of materials that can be shaped; materials discounted for any reason do not count against this). One half the result cubed is the maximum volume in cubic feet worth of material that can be shaped(GM discretion).You can create any item that you gain a 15 % or better cost reduction from having the appropriate Trade Skill(Smithing for weapons, Construction for walls), failure to have the appropriate skill results in a product that is non - functional and unstable. All necessary materials  must be present to create the item (GM discretion). Items created through Shape are real and permanent. This Ritual can only be used to shape living plant materials.";
             nature3b.ClarifyingText = "Ritual: 1 hour cast, target item [3 Fatigue]";
             nature3b.StaminaCost = null;
             nature3b.UpkeepCost = null;
@@ -5456,7 +5450,7 @@ namespace Emergence.ViewModel
             nature3c.Type = TalentType.Benefit;
             nature3c.Action = ActionType.None;
             nature3c.DescriptionFluff = "";
-            nature3c.Description = "You gain a Size 2 Natural Companion of your level minus 1. Use the rules for commanding companions in combat; it takes 30 days to replace a dead Animal Companion.  is Talent can be selected multiple times.  e Animal Companion gains the Animalistic (any)property as well as one of the following sets: •  e Hunter gains Camou aged(light), Graceful(3), and Skilled(2). •  e Bird of Prey gains Flight(1), Slight, and Nightsight. •  e Beast gains Brawny, Tough(2), and Powerful(2 / any 1 Melee).";
+            nature3c.Description = "You gain a Size 2 Natural Companion of your level minus 1. Use the rules for commanding companions in combat; it takes 30 days to replace a dead Animal Companion. This Talent can be selected multiple times. The Animal Companion gains the Animalistic (any)property as well as one of the following sets: • The Hunter gains Camouflaged(light), Graceful(3), and Skilled(2). • The Bird of Prey gains Flight(1), Slight, and Nightsight. • The Beast gains Brawny, Tough(2), and Powerful(2 / any 1 Melee).";
             nature3c.ClarifyingText = "";
             nature3c.StaminaCost = null;
             nature3c.UpkeepCost = null;
@@ -5474,7 +5468,7 @@ namespace Emergence.ViewModel
             nature4a.Action = ActionType.Combat;
             nature4a.DescriptionFluff = "";
             nature4a.Description = "Spell {Ranged (Pistol) +0/+4 Psychic} [10 Stamina]";
-            nature4a.ClarifyingText = "Attack a Natural target. If damaged, the target becomes Controlled. Controlled creatures are commanded like companions and cannot pick any of their own actions.Any available action not commanded by you is lost with no bene t to the Controlled creatures.  e target becomes Dazed and Exhausted (until Resisted).  e target is Controlled until it is no longer su ering from Conditions caused by this attack.";
+            nature4a.ClarifyingText = "Attack a Natural target. If damaged, the target becomes Controlled. Controlled creatures are commanded like companions and cannot pick any of their own actions.Any available action not commanded by you is lost with no benefit to the Controlled creatures. The target becomes Dazed and Exhausted (until Resisted). The target is Controlled until it is no longer su ering from Conditions caused by this attack.";
             nature4a.StaminaCost = 10;
             nature4a.UpkeepCost = null;
             nature4a.Tier = 4;
@@ -5489,8 +5483,8 @@ namespace Emergence.ViewModel
             nature4b.Type = TalentType.Ritual;
             nature4b.Action = ActionType.None;
             nature4b.DescriptionFluff = "";
-            nature4b.Description = "You form materials from nothing to create shapes or objects. When you use this Ritual make a Conjuration Check.  e result x 100U is the maximum value of the new item(maximum UEU worth of materials that can be shaped, materials discounted for any reason do not count against this). One half the result cubed is the maximum volume of material that can be shaped (GM discretion). You can create any item that you would gain a 20 % or better cost reduction from having the appropriate Trade Skill(Smithing for weapons, Construction for walls), failure to have the appropriate skill results in a product that is non - functional and unstable. No materials must be present to create the item.Items created through the Create Ritual have a subtle but obvious magical sheen to them.  is sheen identi es them as being essentially worthless in the eyes of anyone considering purchasing the item.  is version of the Create spell can only be used to make items made of living plant material (usually structures).";
-            nature4b.ClarifyingText = "Ritual: 1 hour cast, target item [5 Fatigue for as long as the item exists and for 8 hours a er]";
+            nature4b.Description = "You form materials from nothing to create shapes or objects. When you use this Ritual make a Conjuration Check. The result x 100U is the maximum value of the new item(maximum UEU worth of materials that can be shaped, materials discounted for any reason do not count against this). One half the result cubed is the maximum volume of material that can be shaped (GM discretion). You can create any item that you would gain a 20 % or better cost reduction from having the appropriate Trade Skill(Smithing for weapons, Construction for walls), failure to have the appropriate skill results in a product that is non - functional and unstable. No materials must be present to create the item.Items created through the Create Ritual have a subtle but obvious magical sheen to them. This sheen identifies them as being essentially worthless in the eyes of anyone considering purchasing the item. This version of the Create spell can only be used to make items made of living plant material (usually structures).";
+            nature4b.ClarifyingText = "Ritual: 1 hour cast, target item [5 Fatigue for as long as the item exists and for 8 hours after]";
             nature4b.StaminaCost = null;
             nature4b.UpkeepCost = null;
             nature4b.FatigueCost = 5;
@@ -5506,7 +5500,7 @@ namespace Emergence.ViewModel
             nature4c.Type = TalentType.Benefit;
             nature4c.Action = ActionType.None;
             nature4c.DescriptionFluff = "";
-            nature4c.Description = " e size and level of your Companion increase by 1.  is Talent can be selected multiple times, each time it must be applied to a di erent animal Companion.You may select an additional ability from the following list: Feral(2), Speedy(2), Quick(4), Powerful(2 / any 1 attack), Unerring(1 / any 1 attack), Mount, or Tough (2, 4 if selected for a Beast Companion.) ";
+            nature4c.Description = "The size and level of your Companion increase by 1. This Talent can be selected multiple times, each time it must be applied to a di erent animal Companion.You may select an additional ability from the following list: Feral(2), Speedy(2), Quick(4), Powerful(2 / any 1 attack), Unerring(1 / any 1 attack), Mount, or Tough (2, 4 if selected for a Beast Companion.) ";
             nature4c.ClarifyingText = "";
             nature4c.StaminaCost = null;
             nature4c.UpkeepCost = null;
@@ -5523,7 +5517,7 @@ namespace Emergence.ViewModel
             nature5a.Type = TalentType.Ritual;
             nature5a.Action = ActionType.None;
             nature5a.DescriptionFluff = "";
-            nature5a.Description = "Create a Size 5 Plant Companion of your level to serve you.  is Companion follows the normal rules for commanding companions in combat.  e avatar knows all Nature Enhancements and Spells of Tier 3 or lower that you know.  e Avatar gains  reatening(15’) and Animalistic (Medium).You can use a Combat Action to Heal the Companion[3 Stamina per point of Healing required].";
+            nature5a.Description = "Create a Size 5 Plant Companion of your level to serve you. This Companion follows the normal rules for commanding companions in combat. The avatar knows all Nature Enhancements and Spells of Tier 3 or lower that you know. The Avatar gains Threatening(15’) and Animalistic (Medium).You can use a Combat Action to Heal the Companion[3 Stamina per point of Healing required].";
             nature5a.ClarifyingText = "Ritual: 10-minute cast, target adjacent space [7 Fatigue for as long as the avatar exists and for 8 hours after]";
             nature5a.StaminaCost = null;
             nature5a.UpkeepCost = null;
@@ -5540,7 +5534,7 @@ namespace Emergence.ViewModel
             nature5b.Type = TalentType.Benefit;
             nature5b.Action = ActionType.None;
             nature5b.DescriptionFluff = "";
-            nature5b.Description = " e size and level of your Companion a ected by Hunting Partner increase by 1. You may select an additional ability from the following list: Feral(2), Speedy(2), Quick(4), Powerful(2 / any 1 attack), Unerring(1 / any 1 attack), Mount, or Tough (2, 4 if selected for a Beast Companion.)  is Talent can be selected multiple times; each time it must be applied to a di erent Animal Companion that already has the bene t of Hunting Partner.";
+            nature5b.Description = "The size and level of your Companion a ected by Hunting Partner increase by 1. You may select an additional ability from the following list: Feral(2), Speedy(2), Quick(4), Powerful(2 / any 1 attack), Unerring(1 / any 1 attack), Mount, or Tough (2, 4 if selected for a Beast Companion.) This Talent can be selected multiple times; each time it must be applied to a di erent Animal Companion that already has the benefit of Hunting Partner.";
             nature5b.ClarifyingText = "";
             nature5b.StaminaCost = null;
             nature5b.UpkeepCost = null;
@@ -5658,7 +5652,7 @@ namespace Emergence.ViewModel
             necromancy2c.Action = ActionType.Combat;
             necromancy2c.DescriptionFluff = "";
             necromancy2c.Description = "Spell {Area (20’ radius) +0/+2 Necrotic} [6 Stamina]";
-            necromancy2c.ClarifyingText = " is spell only targets enemies within the area.";
+            necromancy2c.ClarifyingText = "This spell only targets enemies within the area.";
             necromancy2c.StaminaCost = 6;
             necromancy2c.UpkeepCost = null;
             necromancy2c.Tier = 2;
@@ -5706,7 +5700,7 @@ namespace Emergence.ViewModel
             necromancy3c.Type = TalentType.Maneuver;
             necromancy3c.Action = ActionType.Combat;
             necromancy3c.DescriptionFluff = "";
-            necromancy3c.Description = "Use a corpse to create either a skeleton or zombie depending on the nature of the corpse used.  e  rall is a Companion of the same level of the corpse used - 1(max of your level - 1) and gains the  Undead Quality.If the corpse has Animalistic, Multi - Legged, Flight, Natural weapons or Natural Armor the  rall also gains those Qualities.Skeletons are Solid and gain Speedy (2), Evasive (Physical / 2).Zombies are Flesh and gain Natural Weapons(light)(if the corpse did not already have a heavier Natural Weapon) and Feral (1)  is Ritual costs UEU equal to the size of the  rall x100.";
+            necromancy3c.Description = "Use a corpse to create either a skeleton or zombie depending on the nature of the corpse used. The Thrall is a Companion of the same level of the corpse used - 1(max of your level - 1) and gains the  Undead Quality.If the corpse has Animalistic, Multi - Legged, Flight, Natural weapons or Natural Armor the Thrall also gains those Qualities.Skeletons are Solid and gain Speedy (2), Evasive (Physical / 2).Zombies are Flesh and gain Natural Weapons(light)(if the corpse did not already have a heavier Natural Weapon) and Feral (1) This Ritual costs UEU equal to the size of the Thrall x100.";
             necromancy3c.ClarifyingText = "Ritual: 10-minute cast, target adjacent corpse [(Size of Thrall) Fatigue for as long as the Thrall exists and for 8 hours after]";
             necromancy3c.StaminaCost = null;
             necromancy3c.UpkeepCost = null;
@@ -5775,7 +5769,7 @@ namespace Emergence.ViewModel
             necromancy5a.Action = ActionType.Combat;
             necromancy5a.DescriptionFluff = "";
             necromancy5a.Description = "Spell {Melee +0/+8 Necrotic} [12 Stamina plus 1 Fatigue for every 3 HP healed in the 2nd Track]";
-            necromancy5a.ClarifyingText = "You gain ¼ the damage caused as Healing.  ese points can be spent point for point to Heal damage in the 1st or 2nd Track.";
+            necromancy5a.ClarifyingText = "You gain ¼ the damage caused as Healing. These points can be spent point for point to Heal damage in the 1st or 2nd Track.";
             necromancy5a.StaminaCost = 12;
             necromancy5a.UpkeepCost = null;
             necromancy5a.Tier = 5;
@@ -5790,8 +5784,8 @@ namespace Emergence.ViewModel
             necromancy5b.Type = TalentType.Ritual;
             necromancy5b.Action = ActionType.None;
             necromancy5b.DescriptionFluff = "";
-            necromancy5b.Description = "Turn a thrall into an Undead Champion.  e Champions level increases to your level and it gains Natural Armor (any), Natural Weapons(any), Hardened(1), Tough(2), Evasive(Resolve / 2), Quick (2), and Resistant(2).  is Ritual costs UEU equal to the size of the Undead Champion x 250.";
-            necromancy5b.ClarifyingText = "Ritual: 1-hour cast, target adjacent  rall [Double the Thrall Fatigue]";
+            necromancy5b.Description = "Turn a thrall into an Undead Champion. The Champions level increases to your level and it gains Natural Armor (any), Natural Weapons(any), Hardened(1), Tough(2), Evasive(Resolve / 2), Quick (2), and Resistant(2). This Ritual costs UEU equal to the size of the Undead Champion x 250.";
+            necromancy5b.ClarifyingText = "Ritual: 1-hour cast, target adjacent Thrall [Double the Thrall Fatigue]";
             necromancy5b.StaminaCost = null;
             necromancy5b.UpkeepCost = null;
             necromancy5b.Tier = 5;
@@ -5807,7 +5801,7 @@ namespace Emergence.ViewModel
             necromancy5c.Action = ActionType.Combat;
             necromancy5c.DescriptionFluff = "";
             necromancy5c.Description = "Spell {Ranged (Pistol) +0/+6 Necrotic} [12/5 Stamina]";
-            necromancy5c.ClarifyingText = " is attack ignores Armor. If a Natural target is incapacitated by the attack, the target is instantly killed and a Blood  rall is spawned adjacent to the body.  e Blood  rall is a Liquid Companion of the same Size and Level as the target.  e Blood  rall gains Slight, { Ranged(Pistol) / Necrotic}             attack, and Energy Infused(Necrotic).  e Blood  rall is under your control and can be controlled as per the usual rules for controlling Companions.";
+            necromancy5c.ClarifyingText = "This attack ignores Armor. If a Natural target is incapacitated by the attack, the target is instantly killed and a Blood Thrall is spawned adjacent to the body. The Blood Thrall is a Liquid Companion of the same Size and Level as the target. The Blood Thrall gains Slight, { Ranged(Pistol) / Necrotic}             attack, and Energy Infused(Necrotic). The Blood Thrall is under your control and can be controlled as per the usual rules for controlling Companions.";
             necromancy5c.StaminaCost = 12;
             necromancy5c.UpkeepCost = 5;
             necromancy5c.Tier = 5;
@@ -5858,7 +5852,7 @@ namespace Emergence.ViewModel
             prayer1c.Type = TalentType.Maneuver;
             prayer1c.Action = ActionType.Combat;
             prayer1c.DescriptionFluff = "";
-            prayer1c.Description = "All allies within 10’ of you gains Light Forti cation against all damage.  is Enhancement does not a ect you.";
+            prayer1c.Description = "All allies within 10’ of you gains Light Fortification against all damage. This Enhancement does not a ect you.";
             prayer1c.ClarifyingText = "Enhancement: target self [4/1 Stamina]";
             prayer1c.StaminaCost = 4;
             prayer1c.UpkeepCost = 1;
@@ -5892,7 +5886,7 @@ namespace Emergence.ViewModel
             prayer2b.Type = TalentType.Enhancement;
             prayer2b.Action = ActionType.Quick;
             prayer2b.DescriptionFluff = "";
-            prayer2b.Description = "All allies within 20’ of you gain a +1 to attacks and a +2 to damage rolls.  is Enhancement does not a ect you.";
+            prayer2b.Description = "All allies within 20’ of you gain a +1 to attacks and a +2 to damage rolls. This Enhancement does not a ect you.";
             prayer2b.ClarifyingText = "";
             prayer2b.StaminaCost = 6;
             prayer2b.UpkeepCost = 2;
@@ -5908,7 +5902,7 @@ namespace Emergence.ViewModel
             prayer2c.Type = TalentType.Ritual;
             prayer2c.Action = ActionType.None;
             prayer2c.DescriptionFluff = "";
-            prayer2c.Description = " e target gains a +1 to Initiative, Perception, and all Defenses for 24 hours.  is e ect ends if the target enters the Bleed Out Track.";
+            prayer2c.Description = "The target gains a +1 to Initiative, Perception, and all Defenses for 24 hours. This e ect ends if the target enters the Bleed Out Track.";
             prayer2c.ClarifyingText = "Ritual: 10-minute cast; target adjacent creature [3 Fatigue]";
             prayer2c.StaminaCost = null;
             prayer2c.UpkeepCost = null;
@@ -5926,7 +5920,7 @@ namespace Emergence.ViewModel
             prayer3a.Type = TalentType.Enhancement;
             prayer3a.Action = ActionType.Quick;
             prayer3a.DescriptionFluff = "";
-            prayer3a.Description = " e target increases its current and max HP in its 1st Damage Track by your Presence Attribute.";
+            prayer3a.Description = "The target increases its current and max HP in its 1st Damage Track by your Presence Attribute.";
             prayer3a.ClarifyingText = "Enhancement, target ally within 30 feet [8/2 Stamina]";
             prayer3a.StaminaCost = 8;
             prayer3a.UpkeepCost = 2;
@@ -5942,7 +5936,7 @@ namespace Emergence.ViewModel
             prayer3b.Type = TalentType.Ritual;
             prayer3b.Action = ActionType.None;
             prayer3b.DescriptionFluff = "";
-            prayer3b.Description = "Make an Invocation Check. Targets gain a bonus equal to ¼ of the result to their next Long-Term Recovery, and for 24 hours the 20’ radius area is Sancti ed.While in a Sancti ed space, Holy creatures become Focused and Empowered, and Unholy creatures are Weakened.";
+            prayer3b.Description = "Make an Invocation Check. Targets gain a bonus equal to ¼ of the result to their next Long-Term Recovery, and for 24 hours the 20’ radius area is Sanctified.While in a Sanctified space, Holy creatures become Focused and Empowered, and Unholy creatures are Weakened.";
             prayer3b.ClarifyingText = "Ritual: 1 hour cast, targets allies within a 20-foot radius [4 Fatigue]";
             prayer3b.StaminaCost = null;
             prayer3b.UpkeepCost = null;
@@ -5976,7 +5970,7 @@ namespace Emergence.ViewModel
             prayer4a.Type = TalentType.Ritual;
             prayer4a.Action = ActionType.Combat;
             prayer4a.DescriptionFluff = "";
-            prayer4a.Description = "Target creature regains your Willpower + Presence in HP. HP regained in the 3rd Track costs double. Remove the Poisoned state (but not damage already caused by it).  is spell will automatically stabilize targets in the Bleed Out Track and Healing spent in that track heals normally.";
+            prayer4a.Description = "Target creature regains your Willpower + Presence in HP. HP regained in the 3rd Track costs double. Remove the Poisoned state (but not damage already caused by it). This spell will automatically stabilize targets in the Bleed Out Track and Healing spent in that track heals normally.";
             prayer4a.ClarifyingText = "Ritual: Combat Action cast. Target adjacent creature [5 Fatigue]";
             prayer4a.StaminaCost = null;
             prayer4a.UpkeepCost = null;
@@ -5993,7 +5987,7 @@ namespace Emergence.ViewModel
             prayer4b.Type = TalentType.Enhancement;
             prayer4b.Action = ActionType.Quick;
             prayer4b.DescriptionFluff = "";
-            prayer4b.Description = "While within 30’ of you all allies can re-roll Skill Checks, attacks and damage rolls.  e new result must be taken, and the entire roll must be re - rolled(all dice).Re - rolls from this spell must be done before any other re-rolls the character can take (i.e.Vicious or Spirit).  is Enhancement does not a ect you.";
+            prayer4b.Description = "While within 30’ of you all allies can re-roll Skill Checks, attacks and damage rolls. The new result must be taken, and the entire roll must be re - rolled(all dice).Re - rolls from this spell must be done before any other re-rolls the character can take (i.e.Vicious or Spirit). This Enhancement does not a ect you.";
             prayer4b.ClarifyingText = "Enhancement: target self [10/3 Stamina]";
             prayer4b.StaminaCost = 10;
             prayer4b.UpkeepCost = 3;
@@ -6009,7 +6003,7 @@ namespace Emergence.ViewModel
             prayer4c.Type = TalentType.TriggeredAction;
             prayer4c.Action = ActionType.Reaction;
             prayer4c.DescriptionFluff = "";
-            prayer4c.Description = "You are treated as the target of the attack. You are automatically hit (su ering the same stage of Crit as the Triggering attack).  e damage of the attack is rolled again.";
+            prayer4c.Description = "You are treated as the target of the attack. You are automatically hit (su ering the same stage of Crit as the Triggering attack). The damage of the attack is rolled again.";
             prayer4c.ClarifyingText = "Triggering Action: an ally within 30’ takes damage from an attack that would cause them to become unconscious [5 Stamina]";
             prayer4c.StaminaCost = 5;
             prayer4c.UpkeepCost = null;
@@ -6026,7 +6020,7 @@ namespace Emergence.ViewModel
             prayer5a.Type = TalentType.Ritual;
             prayer5a.Action = ActionType.None;
             prayer5a.DescriptionFluff = "";
-            prayer5a.Description = " e target regains all HP in the Bleed Out Track plus 1 HP in its 3rd Track.  e target is Weakened until fully Healed and for 8 hours a er.  e target su ers [20 Fatigue].  is Ritual cost UEU equal to (the level of the target squared) x 1, 000 to cast.";
+            prayer5a.Description = "The target regains all HP in the Bleed Out Track plus 1 HP in its 3rd Track. The target is Weakened until fully Healed and for 8 hours after. The target su ers [20 Fatigue]. This Ritual cost UEU equal to (the level of the target squared) x 1, 000 to cast.";
             prayer5a.ClarifyingText = "Ritual: 1 hour cast, target adjacent creature that has died within the last 24 hours and whose body is generally intact [6 Fatigue]";
             prayer5a.StaminaCost = null;
             prayer5a.UpkeepCost = null;
@@ -6059,7 +6053,7 @@ namespace Emergence.ViewModel
             prayer5c.Type = TalentType.Benefit;
             prayer5c.Action = ActionType.None;
             prayer5c.DescriptionFluff = "";
-            prayer5c.Description = "You can spend one point of Spirit to gain a +5 to any roll or to your Defense against 1 attack.  is option can be selected a er the roll is made.";
+            prayer5c.Description = "You can spend one point of Spirit to gain a +5 to any roll or to your Defense against 1 attack. This option can be selected after the roll is made.";
             prayer5c.ClarifyingText = "";
             prayer5c.StaminaCost = null;
             prayer5c.UpkeepCost = null;
@@ -6079,7 +6073,7 @@ namespace Emergence.ViewModel
             seeing1a.Action = ActionType.Combat;
             seeing1a.DescriptionFluff = "";
             seeing1a.Description = "Spell {Ranged (Pistol) +0/+0 Psychic} [4 Stamina]";
-            seeing1a.ClarifyingText = "If you damage the target with this attack, you glean their current HP total (a er the damage of this attack), Durability, and the value of 1 Defense of your choice.";
+            seeing1a.ClarifyingText = "If you damage the target with this attack, you glean their current HP total (after the damage of this attack), Durability, and the value of 1 Defense of your choice.";
             seeing1a.StaminaCost = 4;
             seeing1a.UpkeepCost = null;
             seeing1a.Tier = 1;
@@ -6111,7 +6105,7 @@ namespace Emergence.ViewModel
             seeing1c.Type = TalentType.Ritual;
             seeing1c.Action = ActionType.Combat;
             seeing1c.DescriptionFluff = "";
-            seeing1c.Description = "“Read” the history of an item. At the end of the casting time, make an Invocation Check. • MCR 15 – Minor impressions including the general physical appearance of the last people to handle the item and the emotions of the people when they last handled it. • MCR 20 –  e above information as well as the name of the person to last handle the item, minor details concerning his or her appearance, and the last thing he or she did with the item. • MCR 25 –  e above information as well as the length of time the person owned the item and every signi cant event that occurred with the item while it was in that person’s possession.";
+            seeing1c.Description = "“Read” the history of an item. At the end of the casting time, make an Invocation Check. • MCR 15 – Minor impressions including the general physical appearance of the last people to handle the item and the emotions of the people when they last handled it. • MCR 20 – The above information as well as the name of the person to last handle the item, minor details concerning his or her appearance, and the last thing he or she did with the item. • MCR 25 – The above information as well as the length of time the person owned the item and every significant event that occurred with the item while it was in that person’s possession.";
             seeing1c.ClarifyingText = "Ritual: 10-minute cast, target held or adjacent item [2 Fatigue]";
             seeing1c.StaminaCost = null;
             seeing1c.UpkeepCost = null;
@@ -6178,7 +6172,7 @@ namespace Emergence.ViewModel
             seeing3a.Type = TalentType.TriggeredAction;
             seeing3a.Action = ActionType.Reaction;
             seeing3a.DescriptionFluff = "";
-            seeing3a.Description = "You cause the attacker to re-roll the attack and use the new roll.  is ability can only be used once on a given attack.";
+            seeing3a.Description = "You cause the attacker to re-roll the attack and use the new roll. This ability can only be used once on a given attack.";
             seeing3a.ClarifyingText = "Triggering Action: you are hit by a Melee or Ranged attack";
             seeing3a.StaminaCost = 4;
             seeing3a.UpkeepCost = null;
@@ -6210,7 +6204,7 @@ namespace Emergence.ViewModel
             seeing3c.Type = TalentType.Ritual;
             seeing3c.Action = ActionType.None;
             seeing3c.DescriptionFluff = "";
-            seeing3c.Description = "During this Ritual you can ask one yes or no question about what will transpire within the area in the next 24 hours.  e answer to the question must not be dependent on actions from the caster or his allies. Acceptable questions are “will the guards be at their posts over night ?”, Will Manfred return to the area within the next 6 hours ?”, “Will it rain in the next 12 hours ?” or any similar question.";
+            seeing3c.Description = "During this Ritual you can ask one yes or no question about what will transpire within the area in the next 24 hours. The answer to the question must not be dependent on actions from the caster or his allies. Acceptable questions are “will the guards be at their posts over night ?”, Will Manfred return to the area within the next 6 hours ?”, “Will it rain in the next 12 hours ?” or any similar question.";
             seeing3c.ClarifyingText = "Ritual: 1 hour cast, target an area with a 50’ radius you have viewed in the last 24 hours [4 Fatigue]";
             seeing3c.StaminaCost = null;
             seeing3c.UpkeepCost = null;
@@ -6260,7 +6254,7 @@ namespace Emergence.ViewModel
             seeing4c.Type = TalentType.TriggeredAction;
             seeing4c.Action = ActionType.Reaction;
             seeing4c.DescriptionFluff = "";
-            seeing4c.Description = "You can spend 1 Spirit and cause the opponent to lose the point of Spirit he or she was attempting to use.  e target is forced to use the result of the original roll (or spend another point of Spirit).";
+            seeing4c.Description = "You can spend 1 Spirit and cause the opponent to lose the point of Spirit he or she was attempting to use. The target is forced to use the result of the original roll (or spend another point of Spirit).";
             seeing4c.ClarifyingText = "Triggered Action: an opponent within line of sight makes a Spirit re-roll [5 Stamina]";
             seeing4c.StaminaCost = null;
             seeing4c.UpkeepCost = null;
@@ -6277,7 +6271,7 @@ namespace Emergence.ViewModel
             seeing5a.Type = TalentType.Ritual;
             seeing5a.Action = ActionType.None;
             seeing5a.DescriptionFluff = "";
-            seeing5a.Description = "You create a remote viewing device.  e device is a small magical disturbance through which you can see and hear the world.  e device is limited to your available vision modes.A MCR 25 Perception Check is required to notice the presence of the device.  e device can  y at a Speed up to 50 MPH.You can double the Speed of the device for double the Fatigue cost for that hour.  e device can pass through walls but not through wards and other barriers that cause damage or prevent teleportation.You can deliver audio messages through the device.";
+            seeing5a.Description = "You create a remote viewing device. The device is a small magical disturbance through which you can see and hear the world. The device is limited to your available vision modes.A MCR 25 Perception Check is required to notice the presence of the device. The device can fly at a Speed up to 50 MPH.You can double the Speed of the device for double the Fatigue cost for that hour. The device can pass through walls but not through wards and other barriers that cause damage or prevent teleportation.You can deliver audio messages through the device.";
             seeing5a.ClarifyingText = "Ritual, 1-minute cast, target adjacent space [2 + 1 Fatigue per hour used]";
             seeing5a.StaminaCost = null;
             seeing5a.UpkeepCost = null;
@@ -6294,7 +6288,7 @@ namespace Emergence.ViewModel
             seeing5b.Type = TalentType.Benefit;
             seeing5b.Action = ActionType.None;
             seeing5b.DescriptionFluff = "";
-            seeing5b.Description = "You can spend one point of Spirit to gain a +5 to any roll or to your Defense against 1 attack.  is option can be selected a er the roll is made.";
+            seeing5b.Description = "You can spend one point of Spirit to gain a +5 to any roll or to your Defense against 1 attack. This option can be selected after the roll is made.";
             seeing5b.ClarifyingText = "";
             seeing5b.StaminaCost = null;
             seeing5b.UpkeepCost = null;
@@ -6444,7 +6438,7 @@ namespace Emergence.ViewModel
             smiting3b.Type = TalentType.TriggeredAction;
             smiting3b.Action = ActionType.Reaction;
             smiting3b.DescriptionFluff = "";
-            smiting3b.Description = " e attacker su ers a Holy damage roll with a bonus equal to your Presence Attribute. If you are armed with an Ampli er you can expend a charge to add the Amps damage modi er to this roll.";
+            smiting3b.Description = "The attacker su ers a Holy damage roll with a bonus equal to your Presence Attribute. If you are armed with an Amplifier you can expend a charge to add the Amps damage modifier to this roll.";
             smiting3b.ClarifyingText = "Triggering Action: You are hit by a Melee attack.";
             smiting3b.StaminaCost = 4;
             smiting3b.UpkeepCost = null;
@@ -6461,7 +6455,7 @@ namespace Emergence.ViewModel
             smiting3c.Action = ActionType.Combat;
             smiting3c.DescriptionFluff = "";
             smiting3c.Description = "Spell (Area (20’ radius) +0/+0 Holy} [8 Stamina]";
-            smiting3c.ClarifyingText = "Targets hit must use their Combat Action to make an attack against you during their next turn. You gain Forti cation vs. all damage for 1 round.";
+            smiting3c.ClarifyingText = "Targets hit must use their Combat Action to make an attack against you during their next turn. You gain Fortification vs. all damage for 1 round.";
             smiting3c.StaminaCost = 8;
             smiting3c.UpkeepCost = null;
             smiting3c.Tier = 3;
@@ -6477,7 +6471,7 @@ namespace Emergence.ViewModel
             smiting4a.Type = TalentType.TriggeredAction;
             smiting4a.Action = ActionType.Reaction;
             smiting4a.DescriptionFluff = "";
-            smiting4a.Description = " e creature that made the Triggering attack becomes a target of the attack as well. If the creature is hit add your Presence Attribute to any damage they su er.";
+            smiting4a.Description = "The creature that made the Triggering attack becomes a target of the attack as well. If the creature is hit add your Presence Attribute to any damage they su er.";
             smiting4a.ClarifyingText = "Triggering Action: You are hit by a Ranged or Area spell attack.";
             smiting4a.StaminaCost = 5;
             smiting4a.UpkeepCost = null;
@@ -6493,7 +6487,7 @@ namespace Emergence.ViewModel
             smiting4b.Type = TalentType.AttackAugment;
             smiting4b.Action = ActionType.Quick;
             smiting4b.DescriptionFluff = "";
-            smiting4b.Description = " e Augmented attack removes Enhancements, Stances, and e ects that require activation from the target for 1 round if it damages the target.  E ects that are removed by this attack cannot be reactivated for 1 round.";
+            smiting4b.Description = "The Augmented attack removes Enhancements, Stances, and e ects that require activation from the target for 1 round if it damages the target.  E ects that are removed by this attack cannot be reactivated for 1 round.";
             smiting4b.ClarifyingText = "";
             smiting4b.StaminaCost = 5;
             smiting4b.UpkeepCost = null;
@@ -6509,7 +6503,7 @@ namespace Emergence.ViewModel
             smiting4c.Type = TalentType.Enhancement;
             smiting4c.Action = ActionType.Quick;
             smiting4c.DescriptionFluff = "";
-            smiting4c.Description = "Unholy and Undead creatures that damage you in Melee lose HP equal to your Presence. You gain Light Forti cation vs. all damage and Forti cation against Unholy and Necrotic damage.";
+            smiting4c.Description = "Unholy and Undead creatures that damage you in Melee lose HP equal to your Presence. You gain Light Fortification vs. all damage and Fortification against Unholy and Necrotic damage.";
             smiting4c.ClarifyingText = "";
             smiting4c.StaminaCost = 10;
             smiting4c.UpkeepCost = 3;
@@ -6558,7 +6552,7 @@ namespace Emergence.ViewModel
             smiting5c.Type = TalentType.Maneuver;
             smiting5c.Action = ActionType.Combat;
             smiting5c.DescriptionFluff = "";
-            smiting5c.Description = "Summon a Size 3 Natural Companion Of your level to  ght at your side. All Companions are armed with a weapon or amp of your choice that grants a + 1 to Lethal and attacks, and a + 2 to damage. Use the normal rules for commanding companions in combat.  e Companion knows all Smiting Talents of Tier 3 or lower that you know.  e Companion gains Heavenly, Natural Armor(any), and Flight(1) as well as one of the following sets of abilities: •  e Knight gains Brawny, Tough(2) and Feral(2). •  e Mage gains Forceful(2), Fast Recovery(4), and Area attack(10 foot radius in Pistol range / Fire, Cold, or Electricity). •  e Healer gains Fast Recovery(4), Leader(Holy), and Talent ability(Mend Wounds).";
+            smiting5c.Description = "Summon a Size 3 Natural Companion Of your level to fight at your side. All Companions are armed with a weapon or amp of your choice that grants a + 1 to Lethal and attacks, and a + 2 to damage. Use the normal rules for commanding companions in combat. The Companion knows all Smiting Talents of Tier 3 or lower that you know. The Companion gains Heavenly, Natural Armor(any), and Flight(1) as well as one of the following sets of abilities: • The Knight gains Brawny, Tough(2) and Feral(2). • The Mage gains Forceful(2), Fast Recovery(4), and Area attack(10 foot radius in Pistol range / Fire, Cold, or Electricity). • The Healer gains Fast Recovery(4), Leader(Holy), and Talent ability(Mend Wounds).";
             smiting5c.ClarifyingText = "";
             smiting5c.StaminaCost = null;
             smiting5c.UpkeepCost = null;
@@ -6628,7 +6622,7 @@ namespace Emergence.ViewModel
             telepathy2a.Action = ActionType.Combat;
             telepathy2a.DescriptionFluff = "";
             telepathy2a.Description = "Spell {Ranged (Pistol) +0/-inf Resolve (no damage)} [6 Stamina]";
-            telepathy2a.ClarifyingText = "Gain 1-2 sentences worth of surface thoughts as determined by the GM. If the attack exceeds the target’s defense by 3 or more, the target is unaware of the intrusion.If you successfully Read  oughts without being detected during a social interaction, gain +2 to attack rolls made to Interrogate or Persuade.";
+            telepathy2a.ClarifyingText = "Gain 1-2 sentences worth of surface thoughts as determined by the GM. If the attack exceeds the target’s defense by 3 or more, the target is unaware of the intrusion.If you successfully Read Thoughts without being detected during a social interaction, gain +2 to attack rolls made to Interrogate or Persuade.";
             telepathy2a.StaminaCost = 6;
             telepathy2a.UpkeepCost = null;
             telepathy2a.Tier = 2;
@@ -6659,7 +6653,7 @@ namespace Emergence.ViewModel
             telepathy2c.Type = TalentType.Enhancement;
             telepathy2c.Action = ActionType.Quick;
             telepathy2c.DescriptionFluff = "";
-            telepathy2c.Description = "Create a Psychic disguise over yourself, masking your true identity from all observers. Use your Invocation Check in place of Disguise checks.  is does not change your appearance from cameras and monitors, only the natural vision modes of creatures.";
+            telepathy2c.Description = "Create a Psychic disguise over yourself, masking your true identity from all observers. Use your Invocation Check in place of Disguise checks. This does not change your appearance from cameras and monitors, only the natural vision modes of creatures.";
             telepathy2c.ClarifyingText = "";
             telepathy2c.StaminaCost = 6;
             telepathy2c.UpkeepCost = 2;
@@ -6677,7 +6671,7 @@ namespace Emergence.ViewModel
             telepathy3a.Action = ActionType.Combat;
             telepathy3a.DescriptionFluff = "";
             telepathy3a.Description = "Spell {Area (20’ radius) +0/-inf Resolve (no damage)} [8 Stamina]";
-            telepathy3a.ClarifyingText = "Implant a psychic beacon in the minds of all creatures in the area. You are aware of the location of all beaconed creatures.Creatures with beacons cannot bene t from Concealment from you and are Vulnerable to your attacks.  is e ect last for 10 minutes.";
+            telepathy3a.ClarifyingText = "Implant a psychic beacon in the minds of all creatures in the area. You are aware of the location of all beaconed creatures.Creatures with beacons cannot benefit from Concealment from you and are Vulnerable to your attacks. This e ect last for 10 minutes.";
             telepathy3a.StaminaCost = 8;
             telepathy3a.UpkeepCost = null;
             telepathy3a.Tier = 3;
@@ -6693,7 +6687,7 @@ namespace Emergence.ViewModel
             telepathy3b.Action = ActionType.Combat;
             telepathy3b.DescriptionFluff = "";
             telepathy3b.Description = "Spell {Ranged (Pistol) +0/+4 Psychic} [10 Stamina]";
-            telepathy3b.ClarifyingText = "Attack a Natural target; damaged targets become Controlled. Controlled targets are commanded like Companions and cannot choose any of their own actions. Any available action not commanded by you is lost with no bene t to the Controlled creatures.  e target becomes Dazed and Exhausted (until Resisted).  e target is Controlled until it is no longer su ering from Conditions caused by this attack.";
+            telepathy3b.ClarifyingText = "Attack a Natural target; damaged targets become Controlled. Controlled targets are commanded like Companions and cannot choose any of their own actions. Any available action not commanded by you is lost with no benefit to the Controlled creatures. The target becomes Dazed and Exhausted (until Resisted). The target is Controlled until it is no longer su ering from Conditions caused by this attack.";
             telepathy3b.StaminaCost = 10;
             telepathy3b.UpkeepCost = null;
             telepathy3b.Tier = 3;
@@ -6725,7 +6719,7 @@ namespace Emergence.ViewModel
             telepathy4a.Type = TalentType.Ritual;
             telepathy4a.Action = ActionType.Combat;
             telepathy4a.DescriptionFluff = "";
-            telepathy4a.Description = " e minds of all allies within 50’ of you become linked to yours as well as each others. While linked, the a ected participants gain the following bene ts: • Everyone uses the highest Perception score among the group with a + 2 • Everyone can use the highest Knowledge Skill among the group with a +2 • All participants can communicate telepathically as through Mind Link • Everyone shares the vision of the group.If any one participant is aware of an enemy’s location, all participates are immediately aware of an enemy’s location.";
+            telepathy4a.Description = "The minds of all allies within 50’ of you become linked to yours as well as each others. While linked, the a ected participants gain the following benefits: • Everyone uses the highest Perception score among the group with a + 2 • Everyone can use the highest Knowledge Skill among the group with a +2 • All participants can communicate telepathically as through Mind Link • Everyone shares the vision of the group.If any one participant is aware of an enemy’s location, all participates are immediately aware of an enemy’s location.";
             telepathy4a.ClarifyingText = "";
             telepathy4a.StaminaCost = null;
             telepathy4a.UpkeepCost = null;
@@ -6775,7 +6769,7 @@ namespace Emergence.ViewModel
             telepathy5a.Type = TalentType.Benefit;
             telepathy5a.Action = ActionType.None;
             telepathy5a.DescriptionFluff = "";
-            telepathy5a.Description = "Creatures Controlled by you do not su er the e ects of negative Conditions and gain the Focused and Empowered Conditions.  ey also su er a -2 to Resistance Checks.";
+            telepathy5a.Description = "Creatures Controlled by you do not su er the e ects of negative Conditions and gain the Focused and Empowered Conditions. They also su er a -2 to Resistance Checks.";
             telepathy5a.ClarifyingText = "";
             telepathy5a.StaminaCost = null;
             telepathy5a.UpkeepCost = null;
@@ -6792,7 +6786,7 @@ namespace Emergence.ViewModel
             telepathy5b.Action = ActionType.Combat;
             telepathy5b.DescriptionFluff = "";
             telepathy5b.Description = "Spell {Ranged (30’) +0/+12 Psychic} [12 Stamina]";
-            telepathy5b.ClarifyingText = " e attack gains Lethal 1 and ignores Armor.";
+            telepathy5b.ClarifyingText = "The attack gains Lethal 1 and ignores Armor.";
             telepathy5b.StaminaCost = 12;
             telepathy5b.UpkeepCost = null;
             telepathy5b.Tier = 5;
@@ -6858,7 +6852,7 @@ namespace Emergence.ViewModel
             tele1c.Type = TalentType.Ritual;
             tele1c.Action = ActionType.None;
             tele1c.DescriptionFluff = "";
-            tele1c.Description = " e target item becomes Prepared. A Prepared item can be summoned to your hand as a Combat Action from anywhere on the Planet. Wards and other e ects that stop teleportation will inhibit you from calling the item.";
+            tele1c.Description = "The target item becomes Prepared. A Prepared item can be summoned to your hand as a Combat Action from anywhere on the Planet. Wards and other e ects that stop teleportation will inhibit you from calling the item.";
             tele1c.ClarifyingText = "Ritual, 1-hour cast, target one adjacent item up to your Presence in size.";
             tele1c.StaminaCost = null;
             tele1c.UpkeepCost = null;
@@ -6877,7 +6871,7 @@ namespace Emergence.ViewModel
             tele2a.Action = ActionType.Combat;
             tele2a.DescriptionFluff = "";
             tele2a.Description = "Spell {Ranged (20’) +0/-inf Resolve (no damage)}[6 Stamina]";
-            tele2a.ClarifyingText = "On a hit you can teleport one item of your Presence in size or smaller o of the target’s body and deliver it either to your hand, or to another location within 10’ of the target and within line of sight.  e item can be in any state on the target’s body (Armed, Stored etc.) but must be visible to you.";
+            tele2a.ClarifyingText = "On a hit you can teleport one item of your Presence in size or smaller o of the target’s body and deliver it either to your hand, or to another location within 10’ of the target and within line of sight. The item can be in any state on the target’s body (Armed, Stored etc.) but must be visible to you.";
             tele2a.StaminaCost = 6;
             tele2a.UpkeepCost = null;
             tele2a.Tier = 2;
@@ -6908,7 +6902,7 @@ namespace Emergence.ViewModel
             tele2c.Type = TalentType.TriggeredAction;
             tele2c.Action = ActionType.Reaction;
             tele2c.DescriptionFluff = "";
-            tele2c.Description = "You force the creature that made the Triggering attack to re-roll the attack against itself.  is attack uses the same modi ers as the Triggering attack.";
+            tele2c.Description = "You force the creature that made the Triggering attack to re-roll the attack against itself. This attack uses the same modifiers as the Triggering attack.";
             tele2c.ClarifyingText = "Triggering Action: you are missed by a Melee attack.";
             tele2c.StaminaCost = 4;
             tele2c.UpkeepCost = null;
@@ -6941,7 +6935,7 @@ namespace Emergence.ViewModel
             tele3b.Type = TalentType.Ritual;
             tele3b.Action = ActionType.None;
             tele3b.DescriptionFluff = "";
-            tele3b.Description = "At the end of this Ritual’s casting time, you teleport yourself in a direction of your choosing.  e maximum distance you can travel is determined by making a Conjuration Check and multiplying the result by a distance determined by the casting time you selected for this ritual.With this Ritual you pick a direction and a distance.To hit a speci c target space you will need to make a Knowledge Geography Check with an MCR determined by your GM based on distance and the size of the target space.A er teleporting any distance with this ritual you are Vulnerable until the beginning of your next turn. • 10 minute casting time: teleport 500  . times the result of Conjuration Check. • 1 hour casting time: teleport 1 mile times the result of Conjuration Check.";
+            tele3b.Description = "At the end of this Ritual’s casting time, you teleport yourself in a direction of your choosing. The maximum distance you can travel is determined by making a Conjuration Check and multiplying the result by a distance determined by the casting time you selected for this ritual.With this Ritual you pick a direction and a distance.To hit a specific target space you will need to make a Knowledge Geography Check with an MCR determined by your GM based on distance and the size of the target space.After teleporting any distance with this ritual you are Vulnerable until the beginning of your next turn. • 10 minute casting time: teleport 500 ft. times the result of Conjuration Check. • 1 hour casting time: teleport 1 mile times the result of Conjuration Check.";
             tele3b.ClarifyingText = "";
             tele3b.StaminaCost = null;
             tele3b.UpkeepCost = null;
@@ -6959,7 +6953,7 @@ namespace Emergence.ViewModel
             tele3c.Action = ActionType.Combat;
             tele3c.DescriptionFluff = "";
             tele3c.Description = "Spell {Ranged (50’) +0/-inf Resolve (no damage)} [8 Stamina]";
-            tele3c.ClarifyingText = "You teleport the target a number of MI equal to your Presence + the base damage of the Ampli er used.Allies that are targeted by this attack can chose to be automatically hit by it.Anyone hit by this attack gains Vulnerable until the start of your next turn.";
+            tele3c.ClarifyingText = "You teleport the target a number of MI equal to your Presence + the base damage of the Amplifier used.Allies that are targeted by this attack can chose to be automatically hit by it.Anyone hit by this attack gains Vulnerable until the start of your next turn.";
             tele3c.StaminaCost = 8;
             tele3c.UpkeepCost = null;
             tele3c.Tier = 3;
@@ -6975,7 +6969,7 @@ namespace Emergence.ViewModel
             tele4a.Type = TalentType.TriggeredAction;
             tele4a.Action = ActionType.Reaction;
             tele4a.DescriptionFluff = "";
-            tele4a.Description = "You gain a +4 to defenses against the Triggering attack. If you are missed by the attack, you can chose a new target for the attack that is within sight.In the case of an Area attack you chose a new location for the area. You force the creature that made the Triggering attack to re - roll the attack against the new target(s).  is attack uses the same modi ers as the Triggering attack.";
+            tele4a.Description = "You gain a +4 to defenses against the Triggering attack. If you are missed by the attack, you can chose a new target for the attack that is within sight.In the case of an Area attack you chose a new location for the area. You force the creature that made the Triggering attack to re - roll the attack against the new target(s). This attack uses the same modifiers as the Triggering attack.";
             tele4a.ClarifyingText = "Triggering Action: you are hit by Ranged or Area attack.";
             tele4a.StaminaCost = 8;
             tele4a.UpkeepCost = null;
@@ -6991,7 +6985,7 @@ namespace Emergence.ViewModel
             tele4b.Type = TalentType.Ritual;
             tele4b.Action = ActionType.None;
             tele4b.DescriptionFluff = "";
-            tele4b.Description = "At the end of this Ritual’s casting time, you teleport yourself and a number of adjacent willing creatures equal to your Presence Attribute in a direction of your choosing.  e maximum distance you can travel is determined by making a Conjuration Check and multiplying the result by a distance determined by the casting time you selected for this ritual.With this Ritual you pick a direction and a distance, to hit a speci c target space you will need to make a Knowledge Geography Check with an MCR determined by your GM based on distance and the size of the target space. A er teleporting any distance with this ritual you are Vulnerable until the beginning of your next turn. • 10 minute casting time: teleport 500  . times the result of Conjuration Check. • 1 hour casting time: teleport 1 mile times the result of Conjuration Check.";
+            tele4b.Description = "At the end of this Ritual’s casting time, you teleport yourself and a number of adjacent willing creatures equal to your Presence Attribute in a direction of your choosing. The maximum distance you can travel is determined by making a Conjuration Check and multiplying the result by a distance determined by the casting time you selected for this ritual.With this Ritual you pick a direction and a distance, to hit a specific target space you will need to make a Knowledge Geography Check with an MCR determined by your GM based on distance and the size of the target space. After teleporting any distance with this ritual you are Vulnerable until the beginning of your next turn. • 10 minute casting time: teleport 500 ft. times the result of Conjuration Check. • 1 hour casting time: teleport 1 mile times the result of Conjuration Check.";
             tele4b.ClarifyingText = "Ritual: 10 minutes or 1 hour to cast";
             tele4b.StaminaCost = null;
             tele4b.UpkeepCost = null;
@@ -7041,7 +7035,7 @@ namespace Emergence.ViewModel
             tele5b.Type = TalentType.Ritual;
             tele5b.Action = ActionType.None;
             tele5b.DescriptionFluff = "";
-            tele5b.Description = "You open a portal with a maximum radius equal to your Presence Attribute.  is portal connects a space within 10’ of you to a space within 100 miles that you have been before.  e portal can be kept open during each of your turns by spending 2 Stamina as a Quick Action. Failure to do so will result in the portal closing and this Ritual ending at the end of your next turn.Creatures can move freely between the sides of the portal without spending additional MI and they are not Vulnerable a erwards.  e portal and what lies on the other side of it are both plainly visible to casual observation.";
+            tele5b.Description = "You open a portal with a maximum radius equal to your Presence Attribute. This portal connects a space within 10’ of you to a space within 100 miles that you have been before. The portal can be kept open during each of your turns by spending 2 Stamina as a Quick Action. Failure to do so will result in the portal closing and this Ritual ending at the end of your next turn.Creatures can move freely between the sides of the portal without spending additional MI and they are not Vulnerable afterwards. The portal and what lies on the other side of it are both plainly visible to casual observation.";
             tele5b.ClarifyingText = "";
             tele5b.StaminaCost = null;
             tele5b.UpkeepCost = null;
@@ -7068,6 +7062,1495 @@ namespace Emergence.ViewModel
             tele5c.TreeName = "Teleportation";
             tele5c.LinkedSkill = WeaponSkill.Conjuration;
             Talents.Add(tele5c);
+            #endregion
+            #endregion
+            //TODO: Accept stats as Linked Skills
+            #region Armored Fighting (Strength)
+            #region T1
+            Talent armor1a = new Talent();
+            armor1a.Name = "Endurance Training";
+            armor1a.Type = TalentType.Benefit;
+            armor1a.Action = ActionType.None;
+            armor1a.DescriptionFluff = "";
+            armor1a.Description = "Reduce the Stamina penalty for worn armor to 0.";
+            armor1a.ClarifyingText = "";
+            armor1a.StaminaCost = null;
+            armor1a.UpkeepCost = null;
+            armor1a.Tier = 1;
+            armor1a.TierBenefitDescription = "Add the Armor Value of the armor you are wearing to your 2nd Damage Track";
+            armor1a.Tree = TalentTree.ArmoredFighting;
+            armor1a.TreeName = "Armored Fighting";
+            armor1a.LinkedSkill = null;
+            Talents.Add(armor1a);
+
+            Talent armor1b = new Talent();
+            armor1b.Name = "Web Harness";
+            armor1b.Type = TalentType.Benefit;
+            armor1b.Action = ActionType.None;
+            armor1b.DescriptionFluff = "";
+            armor1b.Description = "Readied ammunition does not take up Holster space as long as you are wearing armor.";
+            armor1b.ClarifyingText = "";
+            armor1b.StaminaCost = null;
+            armor1b.UpkeepCost = null;
+            armor1b.Tier = 1;
+            armor1b.TierBenefitDescription = "Add the Armor Value of the armor you are wearing to your 2nd Damage Track";
+            armor1b.Tree = TalentTree.ArmoredFighting;
+            armor1b.TreeName = "Armored Fighting";
+            armor1b.LinkedSkill = null;
+            Talents.Add(armor1b);
+
+            Talent armor1c = new Talent();
+            armor1c.Name = "Weight Distribution";
+            armor1c.Type = TalentType.Benefit;
+            armor1c.Action = ActionType.None;
+            armor1c.DescriptionFluff = "";
+            armor1c.Description = "Increase your carrying capacity by 10.";
+            armor1c.ClarifyingText = "";
+            armor1c.StaminaCost = null;
+            armor1c.UpkeepCost = null;
+            armor1c.Tier = 1;
+            armor1c.TierBenefitDescription = "Add the Armor Value of the armor you are wearing to your 2nd Damage Track";
+            armor1c.Tree = TalentTree.ArmoredFighting;
+            armor1c.TreeName = "Armored Fighting";
+            armor1c.LinkedSkill = null;
+            Talents.Add(armor1c);
+            #endregion
+            #region T2
+            Talent armor2a = new Talent();
+            armor2a.Name = "Square On";
+            armor2a.Type = TalentType.Stance;
+            armor2a.Action = ActionType.Quick;
+            armor2a.DescriptionFluff = "";
+            armor2a.Description = "Gain +2 to Armor Value.";
+            armor2a.ClarifyingText = "";
+            armor2a.StaminaCost = 6;
+            armor2a.UpkeepCost = 2;
+            armor2a.Tier = 2;
+            armor2a.TierBenefitDescription = "You gain Heavy Armor Proficiency";
+            armor2a.Tree = TalentTree.ArmoredFighting;
+            armor2a.TreeName = "Armored Fighting";
+            armor2a.LinkedSkill = null;
+            Talents.Add(armor2a);
+
+            Talent armor2b = new Talent();
+            armor2b.Name = "Vitals Padding";
+            armor2b.Type = TalentType.Benefit;
+            armor2b.Action = ActionType.None;
+            armor2b.DescriptionFluff = "";
+            armor2b.Description = "While wearing armor, receive a -1 to the CM of attacks against you. You must spend 1 hour and 100UEU per point of Armor Value of the armor to receive this Benefit.";
+            armor2b.ClarifyingText = "";
+            armor2b.StaminaCost = null;
+            armor2b.UpkeepCost = null;
+            armor2b.Tier = 2;
+            armor2b.TierBenefitDescription = "You gain Heavy Armor Proficiency";
+            armor2b.Tree = TalentTree.ArmoredFighting;
+            armor2b.TreeName = "Armored Fighting";
+            armor2b.LinkedSkill = null;
+            Talents.Add(armor2b);
+
+            Talent armor2c = new Talent();
+            armor2c.Name = "Double Time";
+            armor2c.Type = TalentType.Enhancement;
+            armor2c.Action = ActionType.Quick;
+            armor2c.DescriptionFluff = "";
+            armor2c.Description = "While wearing armor, ignore Speed penalties of armor and increase the cap on additional MI that can be purchased with Stamina by 2.";
+            armor2c.ClarifyingText = "";
+            armor2c.StaminaCost = 6;
+            armor2c.UpkeepCost = 2;
+            armor2c.Tier = 2;
+            armor2c.TierBenefitDescription = "You gain Heavy Armor Proficiency";
+            armor2c.Tree = TalentTree.ArmoredFighting;
+            armor2c.TreeName = "Armored Fighting";
+            armor2c.LinkedSkill = null;
+            Talents.Add(armor2c);
+            #endregion
+            #region T3
+            Talent armor3a = new Talent();
+            armor3a.Name = "Servo Utilization";
+            armor3a.Type = TalentType.Benefit;
+            armor3a.Action = ActionType.None;
+            armor3a.DescriptionFluff = "";
+            armor3a.Description = "Gain +1 to your Strength Attribute when wearing armor with Powered Servos.";
+            armor3a.ClarifyingText = "";
+            armor3a.StaminaCost = null;
+            armor3a.UpkeepCost = null;
+            armor3a.Tier = 3;
+            armor3a.TierBenefitDescription = "Gain +1 to the Armor Value of armor you wear";
+            armor3a.Tree = TalentTree.ArmoredFighting;
+            armor3a.TreeName = "Armored Fighting";
+            armor3a.LinkedSkill = null;
+            Talents.Add(armor3a);
+
+            Talent armor3b = new Talent();
+            armor3b.Name = "Shield Expertise";
+            armor3b.Type = TalentType.Maneuver;
+            armor3b.Action = ActionType.Combat;
+            armor3b.DescriptionFluff = "";
+            armor3b.Description = "Increase the Cover Toughness of all shields you wield by 1.";
+            armor3b.ClarifyingText = "";
+            armor3b.StaminaCost = null;
+            armor3b.UpkeepCost = null;
+            armor3b.Tier = 3;
+            armor3b.TierBenefitDescription = "Gain +1 to the Armor Value of armor you wear";
+            armor3b.Tree = TalentTree.ArmoredFighting;
+            armor3b.TreeName = "Armored Fighting";
+            armor3b.LinkedSkill = null;
+            Talents.Add(armor3b);
+
+            Talent armor3c = new Talent();
+            armor3c.Name = "";
+            armor3c.Type = TalentType.Maneuver;
+            armor3c.Action = ActionType.Combat;
+            armor3c.DescriptionFluff = "Encumbrance Management";
+            armor3c.Description = "Can sling 2 additional items in a Readied state.";
+            armor3c.ClarifyingText = "";
+            armor3c.StaminaCost = null;
+            armor3c.UpkeepCost = null;
+            armor3c.Tier = 3;
+            armor3c.TierBenefitDescription = "Gain +1 to the Armor Value of armor you wear";
+            armor3c.Tree = TalentTree.ArmoredFighting;
+            armor3c.TreeName = "Armored Fighting";
+            armor3c.LinkedSkill = null;
+            Talents.Add(armor3c);
+            #endregion
+            #region T4
+            Talent armor4a = new Talent();
+            armor4a.Name = "Let the Suit Do the Work (LSDW)";
+            armor4a.Type = TalentType.Maneuver;
+            armor4a.Action = ActionType.Combat;
+            armor4a.DescriptionFluff = "";
+            armor4a.Description = "+2 to Stamina while wearing armor with Powered Servos.";
+            armor4a.ClarifyingText = "";
+            armor4a.StaminaCost = null;
+            armor4a.UpkeepCost = null;
+            armor4a.Tier = 4;
+            armor4a.TierBenefitDescription = "You gain Advanced Armor Proficiency";
+            armor4a.Tree = TalentTree.ArmoredFighting;
+            armor4a.TreeName = "Armored Fighting";
+            armor4a.LinkedSkill = null;
+            Talents.Add(armor4a);
+
+            Talent armor4b = new Talent();
+            armor4b.Name = "Breakdown Training";
+            armor4b.Type = TalentType.Maneuver;
+            armor4b.Action = ActionType.Combat;
+            armor4b.DescriptionFluff = "";
+            armor4b.Description = "You can don or remove your armor and are Girded until the end of your next turn.";
+            armor4b.ClarifyingText = "";
+            armor4b.StaminaCost = 8;
+            armor4b.UpkeepCost = null;
+            armor4b.Tier = 4;
+            armor4b.TierBenefitDescription = "You gain Advanced Armor Proficiency";
+            armor4b.Tree = TalentTree.ArmoredFighting;
+            armor4b.TreeName = "Armored Fighting";
+            armor4b.LinkedSkill = null;
+            Talents.Add(armor4b);
+
+            Talent armor4c = new Talent();
+            armor4c.Name = "Momentum";
+            armor4c.Type = TalentType.Benefit;
+            armor4c.Action = ActionType.None;
+            armor4c.DescriptionFluff = "";
+            armor4c.Description = "Add ½ the Armor Value of the armor you are wearing to your damage rolls on Knockback attacks and to Knockdown attacks. You can Push Through an opponent’s space with 1 additional MI.";
+            armor4c.ClarifyingText = "";
+            armor4c.StaminaCost = null;
+            armor4c.UpkeepCost = null;
+            armor4c.Tier = 4;
+            armor4c.TierBenefitDescription = "You gain Advanced Armor Proficiency";
+            armor4c.Tree = TalentTree.ArmoredFighting;
+            armor4c.TreeName = "Armored Fighting";
+            armor4c.LinkedSkill = null;
+            Talents.Add(armor4c);
+            #endregion
+            #region T5
+            Talent armor5a = new Talent();
+            armor5a.Name = "Second Skin";
+            armor5a.Type = TalentType.Benefit;
+            armor5a.Action = ActionType.None;
+            armor5a.DescriptionFluff = "";
+            armor5a.Description = "Increase Armor Value of any worn armor by 2.";
+            armor5a.ClarifyingText = "";
+            armor5a.StaminaCost = null;
+            armor5a.UpkeepCost = null;
+            armor5a.Tier = 5;
+            armor5a.TierBenefitDescription = "Gain -1 to the Armor Penalty of all armor you wear";
+            armor5a.Tree = TalentTree.ArmoredFighting;
+            armor5a.TreeName = "Armored Fighting";
+            armor5a.LinkedSkill = null;
+            Talents.Add(armor5a);
+
+            Talent armor5b = new Talent();
+            armor5b.Name = "Customized Suit";
+            armor5b.Type = TalentType.Benefit;
+            armor5b.Action = ActionType.None;
+            armor5b.DescriptionFluff = "";
+            armor5b.Description = "Add 1 additional Mod Slot and reduce the Armor Penalty to Skill Checks by 1. You must spend 1 day’s work and 1000x the Armor Value of the armor to gain this Benefit with a particular suit of armor or to change the suit of armor this Talent applies to.";
+            armor5b.ClarifyingText = "";
+            armor5b.StaminaCost = null;
+            armor5b.UpkeepCost = null;
+            armor5b.Tier = 5;
+            armor5b.TierBenefitDescription = "Gain -1 to the Armor Penalty of all armor you wear";
+            armor5b.Tree = TalentTree.ArmoredFighting;
+            armor5b.TreeName = "Armored Fighting";
+            armor5b.LinkedSkill = null;
+            Talents.Add(armor5b);
+
+            Talent armor5c = new Talent();
+            armor5c.Name = "Lucky Bastard";
+            armor5c.Type = TalentType.TriggeredAction;
+            armor5c.Action = ActionType.Reaction;
+            armor5c.DescriptionFluff = "";
+            armor5c.Description = "The attack causes no damage. Instead, the value of your armor is reduced by 2 until repaired (1 hour of work).";
+            armor5c.ClarifyingText = "Triggering Action: a Crit is scored against you";
+            armor5c.StaminaCost = 10;
+            armor5c.UpkeepCost = null;
+            armor5c.Tier = 5;
+            armor5c.TierBenefitDescription = "Gain -1 to the Armor Penalty of all armor you wear";
+            armor5c.Tree = TalentTree.ArmoredFighting;
+            armor5c.TreeName = "Armored Fighting";
+            armor5c.LinkedSkill = null;
+            Talents.Add(armor5c);
+            #endregion
+            #endregion
+            #region Leadership (Presence)
+            #region T1
+            Talent leader1a = new Talent();
+            leader1a.Name = "Taunt";
+            leader1a.Type = TalentType.Maneuver;
+            leader1a.Action = ActionType.Combat;
+            leader1a.DescriptionFluff = "";
+            leader1a.Description = "Roll double your Presence Attribute against the Area/Resolve Defense of a target within 30’ of you. Creatures hit must spend their Combat Action attacking you, unless they are already in Melee with another creature.";
+            leader1a.ClarifyingText = "";
+            leader1a.StaminaCost = 4;
+            leader1a.UpkeepCost = null;
+            leader1a.Tier = 1;
+            leader1a.TierBenefitDescription = "Gain +1 to Negotiation and Persuasion checks";
+            leader1a.Tree = TalentTree.Leadership;
+            leader1a.TreeName = "Leadership";
+            leader1a.LinkedSkill = null;
+            Talents.Add(leader1a);
+
+            Talent leader1b = new Talent();
+            leader1b.Name = "Influence";
+            leader1b.Type = TalentType.Benefit;
+            leader1b.Action = ActionType.None;
+            leader1b.DescriptionFluff = "";
+            leader1b.Description = "You can increase your Lifestyle by one level at no cost.";
+            leader1b.ClarifyingText = "";
+            leader1b.StaminaCost = null;
+            leader1b.UpkeepCost = null;
+            leader1b.Tier = 1;
+            leader1b.TierBenefitDescription = "Gain +1 to Negotiation and Persuasion checks";
+            leader1b.Tree = TalentTree.Leadership;
+            leader1b.TreeName = "Leadership";
+            leader1b.LinkedSkill = null;
+            Talents.Add(leader1b);
+
+            Talent leader1c = new Talent();
+            leader1c.Name = "Powerful Voice";
+            leader1c.Type = TalentType.TriggeredAction;
+            leader1c.Action = ActionType.Reaction;
+            leader1c.DescriptionFluff = "";
+            leader1c.Description = "Roll double your Presence Attribute against the Area/Resolve Defense of the creature making the Triggering attack. If you hit, the attacker is Weakened for the Triggering attack, and the Stage of the Crit(if any) for the attack is reduced by 1.If you miss, you are Vulnerable to the Triggering attack.";
+            leader1c.ClarifyingText = "Triggering Action: you are attacked in Melee";
+            leader1c.StaminaCost = 4;
+            leader1c.UpkeepCost = null;
+            leader1c.Tier = 1;
+            leader1c.TierBenefitDescription = "Gain +1 to Negotiation and Persuasion checks";
+            leader1c.Tree = TalentTree.Leadership;
+            leader1c.TreeName = "Leadership";
+            leader1c.LinkedSkill = null;
+            Talents.Add(leader1c);
+            #endregion
+            #region T2
+            Talent leader2a = new Talent();
+            leader2a.Name = "Inspire";
+            leader2a.Type = TalentType.Enhancement;
+            leader2a.Action = ActionType.Quick;
+            leader2a.DescriptionFluff = "";
+            leader2a.Description = "A single creature other than yourself within 20’ gains Focused. The target must be within range for you to maintain this Enhancement.";
+            leader2a.ClarifyingText = "Enhancement: target ally within 20’.  Focused = +1 to Melee weapon attaks, +1 to all defenses, +2 to Focus linked non-combat skill checks.";
+            leader2a.StaminaCost = 3;
+            leader2a.UpkeepCost = 0;
+            leader2a.Tier = 2;
+            leader2a.TierBenefitDescription = "Gain any 2 Contacts";
+            leader2a.Tree = TalentTree.Leadership;
+            leader2a.TreeName = "Leadership";
+            leader2a.LinkedSkill = null;
+            Talents.Add(leader2a);
+
+            Talent leader2b = new Talent();
+            leader2b.Name = "Lackey";
+            leader2b.Type = TalentType.Benefit;
+            leader2b.Action = ActionType.None;
+            leader2b.DescriptionFluff = "";
+            leader2b.Description = "You gain a Size 3 Natural Companion of your level -2. A Lackey starts with normal equipment for a Companion of its level. When you level(and by proxy your Lackey levels) the Lackey gains the di erence in the equipment value of his last level and his new one in equipment and upgrades.A Lackey does not store money and its equipment cannot be taken, sold, or used in any way except for equipping the Lackey.A Lackey has 1 Talent from the Talent Ability(see Chapter 9: Opponents).A Lackey cannot have Talents from the Leadership Tree. The Lackey also gains a Lackey sub - type and associated Quality from the list below.When a Lackey moves up in level it can replace the Talents it knows with new ones as long as it qualifies for the new Talent. The Lackey Talent can be taken multiple times. • Brawlers gain Brawny(1). • Casters gain Forcful(1) or Honed(1). • Gunners gain Slight(1). • Sneaks gain Skilled(2).";
+            leader2b.ClarifyingText = "";
+            leader2b.StaminaCost = null;
+            leader2b.UpkeepCost = null;
+            leader2b.Tier = 2;
+            leader2b.TierBenefitDescription = "Gain any 2 Contacts";
+            leader2b.Tree = TalentTree.Leadership;
+            leader2b.TreeName = "Leadership";
+            leader2b.LinkedSkill = null;
+            Talents.Add(leader2b);
+
+            Talent leader2c = new Talent();
+            leader2c.Name = "Voice of Reason";
+            leader2c.Type = TalentType.Ritual;
+            leader2c.Action = ActionType.Combat;
+            leader2c.DescriptionFluff = "";
+            leader2c.Description = "You gain a +2 to Resolve Defenses and gain a +2 to Negotiation and Persuasion Checks. The Ritual lasts for the remainder of the encounter as long as you don’t take a Combat Action.";
+            leader2c.ClarifyingText = "Ritual: Combat Action cast";
+            leader2c.StaminaCost = null;
+            leader2c.UpkeepCost = null;
+            leader2c.FatigueCost = 3;
+            leader2c.Tier = 2;
+            leader2c.TierBenefitDescription = "Gain any 2 Contacts";
+            leader2c.Tree = TalentTree.Leadership;
+            leader2c.TreeName = "Leadership";
+            leader2c.LinkedSkill = null;
+            Talents.Add(leader2c);
+            #endregion
+            #region T3
+            Talent leader3a = new Talent();
+            leader3a.Name = "Rally";
+            leader3a.Type = TalentType.Ritual;
+            leader3a.Action = ActionType.Combat;
+            leader3a.DescriptionFluff = "";
+            leader3a.Description = "All allies within 50’ of you regain 5 HP in the 1st and 2nd Tracks, and all Conditions a ecting them are Suppressed until the end of your next turn.";
+            leader3a.ClarifyingText = "";
+            leader3a.StaminaCost = null;
+            leader3a.UpkeepCost = null;
+            leader3a.FatigueCost = 5;
+            leader3a.Tier = 3;
+            leader3a.TierBenefitDescription = "Your Companions require only 1 MI to command them in combat";
+            leader3a.Tree = TalentTree.Leadership;
+            leader3a.TreeName = "Leadership";
+            leader3a.LinkedSkill = null;
+            Talents.Add(leader3a);
+
+            Talent leader3b = new Talent();
+            leader3b.Name = "Follower";
+            leader3b.Type = TalentType.Benefit;
+            leader3b.Action = ActionType.None;
+            leader3b.DescriptionFluff = "";
+            leader3b.Description = "One of your Lackeys becomes a Follower and has its level increased by 1 (to a maximum of your level - 1). This Follower gains all associated bonuses from this increase in level as well as a second Talent from the Talent Ability(see Chapter 9: Opponents).It also gains additional Qualities based on its Lackey sub - type(see below). This Talent can be taken multiple times, each time a ecting a di erent Lackey. • Brawlers gain Brawny(1), Feral(2), and Tough (2). • Casters gain Honed(1), Evasive(Resolve / 2), and Forceful(2). • Gunners gain Slight(1), Evasive(Ranged / 2), and Honed(2). • Sneaks gain Skilled(2), Unerring(1 / any one attack), and Powerful(1 / any one attack).";
+            leader3b.ClarifyingText = "";
+            leader3b.StaminaCost = null;
+            leader3b.UpkeepCost = null;
+            leader3b.Tier = 3;
+            leader3b.TierBenefitDescription = "Your Companions require only 1 MI to command them in combat";
+            leader3b.Tree = TalentTree.Leadership;
+            leader3b.TreeName = "Leadership";
+            leader3b.LinkedSkill = null;
+            Talents.Add(leader3b);
+
+            Talent leader3c = new Talent();
+            leader3c.Name = "Authority Figure";
+            leader3c.Type = TalentType.Benefit;
+            leader3c.Action = ActionType.None;
+            leader3c.DescriptionFluff = "";
+            leader3c.Description = "You gain a +1 to Resolve Defenses, Resistance, and can re-roll 1s when making Social Skill Checks.";
+            leader3c.ClarifyingText = "";
+            leader3c.StaminaCost = null;
+            leader3c.UpkeepCost = null;
+            leader3c.Tier = 3;
+            leader3c.TierBenefitDescription = "Your Companions require only 1 MI to command them in combat";
+            leader3c.Tree = TalentTree.Leadership;
+            leader3c.TreeName = "Leadership";
+            leader3c.LinkedSkill = null;
+            Talents.Add(leader3c);
+            #endregion
+            #region T4
+            Talent leader4a = new Talent();
+            leader4a.Name = "Lead By Example";
+            leader4a.Type = TalentType.Stance;
+            leader4a.Action = ActionType.Quick;
+            leader4a.DescriptionFluff = "";
+            leader4a.Description = "Your Companions gain a +1 to attack and +2 to damage for 1 round whenever you cause damage to an enemy.";
+            leader4a.ClarifyingText = "";
+            leader4a.StaminaCost = 10;
+            leader4a.UpkeepCost = 3;
+            leader4a.Tier = 4;
+            leader4a.TierBenefitDescription = "You may have up to your Presence +1 in Companions at any time. Double your Presence to determine the maximum number of Companions you can have.";
+            leader4a.Tree = TalentTree.Leadership;
+            leader4a.TreeName = "Leadership";
+            leader4a.LinkedSkill = null;
+            Talents.Add(leader4a);
+
+            Talent leader4b = new Talent();
+            leader4b.Name = "Devotee";
+            leader4b.Type = TalentType.Benefit;
+            leader4b.Action = ActionType.None;
+            leader4b.DescriptionFluff = "";
+            leader4b.Description = "One of your Followers becomes a Devotee and has its level increased by 1 (to a maximum of your level). This Devotee gains all associated bonuses from this increase in level as well as a third Talent from the Talent Ability(see Chapter 9: Opponents).It also gains a second Lackey subtype (including all associated Qualities, see below). This Talent can be taken multiple times, each a ecting a di erent Follower. • Brawlers gain Brawny(2), Feral(2), and Tough (2). • Casters gain Honed(2), Evasive(Resolve / 2), and Forceful(2). • Gunners gain Slight(2), Evasive(Ranged / 2), and Honed(2). • Sneaks gain Skilled(2), Unerring(2 / any one attack), and Powerful(2 / any one attack).";
+            leader4b.ClarifyingText = "";
+            leader4b.StaminaCost = null;
+            leader4b.UpkeepCost = null;
+            leader4b.Tier = 4;
+            leader4b.TierBenefitDescription = "You may have up to your Presence +1 in Companions at any time. Double your Presence to determine the maximum number of Companions you can have.";
+            leader4b.Tree = TalentTree.Leadership;
+            leader4b.TreeName = "Leadership";
+            leader4b.LinkedSkill = null;
+            Talents.Add(leader4b);
+
+            Talent leader4c = new Talent();
+            leader4c.Name = "Advanced Training";
+            leader4c.Type = TalentType.Benefit;
+            leader4c.Action = ActionType.None;
+            leader4c.DescriptionFluff = "";
+            leader4c.Description = "Each of your Companions gains an additional Talent of your max Tier -1 from any Talent Tree except Leadership.";
+            leader4c.ClarifyingText = "";
+            leader4c.StaminaCost = null;
+            leader4c.UpkeepCost = null;
+            leader4c.Tier = 4;
+            leader4c.TierBenefitDescription = "You may have up to your Presence +1 in Companions at any time. Double your Presence to determine the maximum number of Companions you can have.";
+            leader4c.Tree = TalentTree.Leadership;
+            leader4c.TreeName = "Leadership";
+            leader4c.LinkedSkill = null;
+            Talents.Add(leader4c);
+            #endregion
+            #region T5
+            Talent leader5a = new Talent();
+            leader5a.Name = "Born To Lead";
+            leader5a.Type = TalentType.Benefit;
+            leader5a.Action = ActionType.None;
+            leader5a.DescriptionFluff = "";
+            leader5a.Description = "For every time you have taken the Lackey Talent you gain 2 Lackeys instead of 1. For each additional time you take the Lackey Talent you will also gain 2 Lackeys instead of 1. These Lackeys follow all of the usual rules that pertain to Lackeys.";
+            leader5a.ClarifyingText = "";
+            leader5a.StaminaCost = null;
+            leader5a.UpkeepCost = null;
+            leader5a.Tier = 5;
+            leader5a.TierBenefitDescription = "Pay 20% less for all purchases";
+            leader5a.Tree = TalentTree.Leadership;
+            leader5a.TreeName = "Leadership";
+            leader5a.LinkedSkill = null;
+            Talents.Add(leader5a);
+
+            Talent leader5b = new Talent();
+            leader5b.Name = "Quest";
+            leader5b.Type = TalentType.Maneuver;
+            leader5b.Action = ActionType.Combat;
+            leader5b.DescriptionFluff = "";
+            leader5b.Description = "While being commanded by you, your Companions gain a +1 to attacks, Defenses, damage, and Durability.";
+            leader5b.ClarifyingText = "";
+            leader5b.StaminaCost = null;
+            leader5b.UpkeepCost = null;
+            leader5b.Tier = 5;
+            leader5b.TierBenefitDescription = "Pay 20% less for all purchases";
+            leader5b.Tree = TalentTree.Leadership;
+            leader5b.TreeName = "Leadership";
+            leader5b.LinkedSkill = null;
+            Talents.Add(leader5b);
+
+            Talent leader5c = new Talent();
+            leader5c.Name = "Fanatics";
+            leader5c.Type = TalentType.TriggeredAction;
+            leader5c.Action = ActionType.Reaction;
+            leader5c.DescriptionFluff = "";
+            leader5c.Description = "The Companion is hit instead and su ers all e ects of the attack instead of you.";
+            leader5c.ClarifyingText = "Triggering Action: you are hit by an attack while adjacent to one of your Companions.";
+            leader5c.StaminaCost = 7;
+            leader5c.UpkeepCost = null;
+            leader5c.Tier = 5;
+            leader5c.TierBenefitDescription = "Pay 20% less for all purchases";
+            leader5c.Tree = TalentTree.Leadership;
+            leader5c.TreeName = "Leadership";
+            leader5c.LinkedSkill = null;
+            Talents.Add(leader5c);
+            #endregion
+            #endregion
+            #region Metamagic (Willpower)
+            #region T1
+            Talent meta1a = new Talent();
+            meta1a.Name = "Extend Range";
+            meta1a.Type = TalentType.AttackAugment;
+            meta1a.Action = ActionType.Quick;
+            meta1a.DescriptionFluff = "";
+            meta1a.Description = "Increase the range of the Augmented spell by one category. Your Melee spells are now Ranged (30’). Any spell with a range listed in feet is increased by 30’.";
+            meta1a.ClarifyingText = "";
+            meta1a.StaminaCost = 2;
+            meta1a.UpkeepCost = null;
+            meta1a.Tier = 1;
+            meta1a.TierBenefitDescription = "Reduce the casting cost of spells by 1 (minimum cost of 1)";
+            meta1a.Tree = TalentTree.Metamagic;
+            meta1a.TreeName = "Metamagic";
+            meta1a.LinkedSkill = null;
+            Talents.Add(meta1a);
+
+            Talent meta1b = new Talent();
+            meta1b.Name = "Enlarge Area";
+            meta1b.Type = TalentType.Maneuver;
+            meta1b.Action = ActionType.Combat;
+            meta1b.DescriptionFluff = "";
+            meta1b.Description = "Increase the Area of the Augmented spell by 10’ radius or 50% (if the area is not radius).";
+            meta1b.ClarifyingText = "";
+            meta1b.StaminaCost = 2;
+            meta1b.UpkeepCost = null;
+            meta1b.Tier = 1;
+            meta1b.TierBenefitDescription = "Reduce the casting cost of spells by 1 (minimum cost of 1)";
+            meta1b.Tree = TalentTree.Metamagic;
+            meta1b.TreeName = "Metamagic";
+            meta1b.LinkedSkill = null;
+            Talents.Add(meta1b);
+
+            Talent meta1c = new Talent();
+            meta1c.Name = "Conceal";
+            meta1c.Type = TalentType.Benefit;
+            meta1c.Action = ActionType.None;
+            meta1c.DescriptionFluff = "";
+            meta1c.Description = "The MCR to notice and identify your spells is increased by 6.";
+            meta1c.ClarifyingText = "";
+            meta1c.StaminaCost = null;
+            meta1c.UpkeepCost = null;
+            meta1c.Tier = 1;
+            meta1c.TierBenefitDescription = "Reduce the casting cost of spells by 1 (minimum cost of 1)";
+            meta1c.Tree = TalentTree.Metamagic;
+            meta1c.TreeName = "Metamagic";
+            meta1c.LinkedSkill = null;
+            Talents.Add(meta1c);
+            #endregion
+            #region T2
+            Talent meta2a = new Talent();
+            meta2a.Name = "Bolster Spell";
+            meta2a.Type = TalentType.Trick;
+            meta2a.Action = ActionType.Quick;
+            meta2a.DescriptionFluff = "";
+            meta2a.Description = "Increase the numerical benefit of the next Enhancement you cast by 1.";
+            meta2a.ClarifyingText = "";
+            meta2a.StaminaCost = 3;
+            meta2a.UpkeepCost = 1;
+            meta2a.Tier = 2;
+            meta2a.TierBenefitDescription = "Gain +1 to damage with all spells";
+            meta2a.Tree = TalentTree.Metamagic;
+            meta2a.TreeName = "Metamagic";
+            meta2a.LinkedSkill = null;
+            Talents.Add(meta2a);
+
+            Talent meta2b = new Talent();
+            meta2b.Name = "Deadly Spell";
+            meta2b.Type = TalentType.AttackAugment;
+            meta2b.Action = ActionType.Quick;
+            meta2b.DescriptionFluff = "";
+            meta2b.Description = "The Augmented spell gains the Armor Piercing quality.";
+            meta2b.ClarifyingText = "Armor Piercing (AP): Reduce worn/natural Armor Value of targets by ½.";
+            meta2b.StaminaCost = 3;
+            meta2b.UpkeepCost = null;
+            meta2b.Tier = 2;
+            meta2b.TierBenefitDescription = "Gain +1 to damage with all spells";
+            meta2b.Tree = TalentTree.Metamagic;
+            meta2b.TreeName = "Metamagic";
+            meta2b.LinkedSkill = null;
+            Talents.Add(meta2b);
+
+            Talent meta2c = new Talent();
+            meta2c.Name = "Invigorate";
+            meta2c.Type = TalentType.Benefit;
+            meta2c.Action = ActionType.None;
+            meta2c.DescriptionFluff = "";
+            meta2c.Description = "Regain 1 additional Stamina per turn while maintaining more than one Enhancement.";
+            meta2c.ClarifyingText = "";
+            meta2c.StaminaCost = null;
+            meta2c.UpkeepCost = null;
+            meta2c.Tier = 2;
+            meta2c.TierBenefitDescription = "Gain +1 to damage with all spells";
+            meta2c.Tree = TalentTree.Metamagic;
+            meta2c.TreeName = "Metamagic";
+            meta2c.LinkedSkill = null;
+            Talents.Add(meta2c);
+            #endregion
+            #region T3
+            Talent meta3a = new Talent();
+            meta3a.Name = "Selective";
+            meta3a.Type = TalentType.AttackAugment;
+            meta3a.Action = ActionType.Quick;
+            meta3a.DescriptionFluff = "";
+            meta3a.Description = "You can exclude creatures within an area of e ect from being targeted by the Augmented spell. [2 Stamina per creature excluded]";
+            meta3a.ClarifyingText = "";
+            meta3a.StaminaCost = 2;
+            meta3a.UpkeepCost = null;
+            meta3a.Tier = 2;
+            meta3a.TierBenefitDescription = "Increase your Stamina Pool by your Willpower";
+            meta3a.Tree = TalentTree.Metamagic;
+            meta3a.TreeName = "Metamagic";
+            meta3a.LinkedSkill = null;
+            Talents.Add(meta3a);
+
+            Talent meta3b = new Talent();
+            meta3b.Name = "Power Swell";
+            meta3b.Type = TalentType.Enhancement;
+            meta3b.Action = ActionType.Quick;
+            meta3b.DescriptionFluff = "";
+            meta3b.Description = "While active, you gain the Empowered condition.";
+            meta3b.ClarifyingText = "Empowered = +1 atk and +2 dmg with spells, +2 to Presence and Strength linked non-combat skill checks.";
+            meta3b.StaminaCost = 8;
+            meta3b.UpkeepCost = 2;
+            meta3b.Tier = 2;
+            meta3b.TierBenefitDescription = "Increase your Stamina Pool by your Willpower";
+            meta3b.Tree = TalentTree.Metamagic;
+            meta3b.TreeName = "Metamagic";
+            meta3b.LinkedSkill = null;
+            Talents.Add(meta3b);
+
+            Talent meta3c = new Talent();
+            meta3c.Name = "Amplify";
+            meta3c.Type = TalentType.AttackAugment;
+            meta3c.Action = ActionType.Quick;
+            meta3c.DescriptionFluff = "";
+            meta3c.Description = "The Augmented spell is treated as rolling a Crit 1 Stage higher than your attack roll would indicate, thus negating a Stage 1 fumble and turning a Stage 2 fumble to a Stage 1fumble, and so forth.";
+            meta3c.ClarifyingText = "";
+            meta3c.StaminaCost = null;
+            meta3c.UpkeepCost = null;
+            meta3c.Tier = 2;
+            meta3c.TierBenefitDescription = "Increase your Stamina Pool by your Willpower";
+            meta3c.Tree = TalentTree.Metamagic;
+            meta3c.TreeName = "Metamagic";
+            meta3c.LinkedSkill = null;
+            Talents.Add(meta3c);
+            #endregion
+            #region T4
+            Talent meta4a = new Talent();
+            meta4a.Name = "Seeking Spell";
+            meta4a.Type = TalentType.AttackAugment;
+            meta4a.Action = ActionType.Quick;
+            meta4a.DescriptionFluff = "";
+            meta4a.Description = "The Augmented spell gains a +2 to attack.";
+            meta4a.ClarifyingText = "";
+            meta4a.StaminaCost = 5;
+            meta4a.UpkeepCost = null;
+            meta4a.Tier = 4;
+            meta4a.TierBenefitDescription = "Reduce the cost to maintain spells by 1 (minimum cost of 1)";
+            meta4a.Tree = TalentTree.Metamagic;
+            meta4a.TreeName = "Metamagic";
+            meta4a.LinkedSkill = null;
+            Talents.Add(meta4a);
+
+            Talent meta4b = new Talent();
+            meta4b.Name = "Explosive Spell";
+            meta4b.Type = TalentType.AttackAugment;
+            meta4b.Action = ActionType.Quick;
+            meta4b.DescriptionFluff = "";
+            meta4b.Description = "Turn Ranged or Melee spell into an Area spell. If originally a Melee spell, the Area is centered on you and you can choose to be a ected by it.If originally a Ranged spell, the spell retains its original range. The Area of the spell becomes a 10’ radius.";
+            meta4b.ClarifyingText = "";
+            meta4b.StaminaCost = 5;
+            meta4b.UpkeepCost = null;
+            meta4b.Tier = 4;
+            meta4b.TierBenefitDescription = "Reduce the cost to maintain spells by 1 (minimum cost of 1)";
+            meta4b.Tree = TalentTree.Metamagic;
+            meta4b.TreeName = "Metamagic";
+            meta4b.LinkedSkill = null;
+            Talents.Add(meta4b);
+
+            Talent meta4c = new Talent();
+            meta4c.Name = "Trigger";
+            meta4c.Type = TalentType.AttackAugment;
+            meta4c.Action = ActionType.Quick;
+            meta4c.DescriptionFluff = "";
+            meta4c.Description = "You cast the Augmented spell but the e ects are delayed. You set a trigger that will activate the e ects as a Triggered Action. The point of origin for the spell is where you were when this Augment was used.If the Triggering event is not met within 10 minutes the Augmented spell fades away with no e ect.";
+            meta4c.ClarifyingText = "";
+            meta4c.StaminaCost = 0;
+            meta4c.UpkeepCost = null;
+            meta4c.Tier = 4;
+            meta4c.TierBenefitDescription = "Reduce the cost to maintain spells by 1 (minimum cost of 1)";
+            meta4c.Tree = TalentTree.Metamagic;
+            meta4c.TreeName = "Metamagic";
+            meta4c.LinkedSkill = null;
+            Talents.Add(meta4c);
+            #endregion
+            #region T5
+            Talent meta5a = new Talent();
+            meta5a.Name = "Homing Spell";
+            meta5a.Type = TalentType.AttackAugment;
+            meta5a.Action = ActionType.Quick;
+            meta5a.DescriptionFluff = "";
+            meta5a.Description = "Do not roll for attack. The attack hits all targets (but no Crit or Fumble is possible).";
+            meta5a.ClarifyingText = "";
+            meta5a.StaminaCost = null;
+            meta5a.UpkeepCost = null;
+            meta5a.Tier = 5;
+            meta5a.TierBenefitDescription = "Reduce the cost of Spell Augments and Enhancements by 1 (minimum cost of 1)";
+            meta5a.Tree = TalentTree.Metamagic;
+            meta5a.TreeName = "Metamagic";
+            meta5a.LinkedSkill = null;
+            Talents.Add(meta5a);
+
+            Talent meta5b = new Talent();
+            meta5b.Name = "Maximize";
+            meta5b.Type = TalentType.AttackAugment;
+            meta5b.Action = ActionType.Quick;
+            meta5b.DescriptionFluff = "";
+            meta5b.Description = "Do not roll for damage. The damage roll is equal to 18.";
+            meta5b.ClarifyingText = "";
+            meta5b.StaminaCost = 6;
+            meta5b.UpkeepCost = null;
+            meta5b.Tier = 5;
+            meta5b.TierBenefitDescription = "Reduce the cost of Spell Augments and Enhancements by 1 (minimum cost of 1)";
+            meta5b.Tree = TalentTree.Metamagic;
+            meta5b.TreeName = "Metamagic";
+            meta5b.LinkedSkill = null;
+            Talents.Add(meta5b);
+
+            Talent meta5c = new Talent();
+            meta5c.Name = "Quicken";
+            meta5c.Type = TalentType.Trick;
+            meta5c.Action = ActionType.Quick;
+            meta5c.DescriptionFluff = "";
+            meta5c.Description = "You cast a spell as part of this Trick. You pay the full cost of this Trick and the Spell cast. Quicken can only be used once a turn.";
+            meta5c.ClarifyingText = "";
+            meta5c.StaminaCost = 8;
+            meta5c.UpkeepCost = null;
+            meta5c.Tier = 5;
+            meta5c.TierBenefitDescription = "Reduce the cost of Spell Augments and Enhancements by 1 (minimum cost of 1)";
+            meta5c.Tree = TalentTree.Metamagic;
+            meta5c.TreeName = "Metamagic";
+            meta5c.LinkedSkill = null;
+            Talents.Add(meta5c);
+            #endregion
+            #endregion
+            #region Quickness (Agility)
+            #region T1
+            Talent quick1a = new Talent();
+            quick1a.Name = "Elusiveness";
+            quick1a.Type = TalentType.Benefit;
+            quick1a.Action = ActionType.None;
+            quick1a.DescriptionFluff = "";
+            quick1a.Description = "+1 to Ranged and Area Defenses while in Melee.";
+            quick1a.ClarifyingText = "";
+            quick1a.StaminaCost = null;
+            quick1a.UpkeepCost = null;
+            quick1a.Tier = 1;
+            quick1a.TierBenefitDescription = "Gain +1 to Speed";
+            quick1a.Tree = TalentTree.Quickness;
+            quick1a.TreeName = "Quickness";
+            quick1a.LinkedSkill = null;
+            Talents.Add(quick1a);
+
+            Talent quick1b = new Talent();
+            quick1b.Name = "Improved Reflexes";
+            quick1b.Type = TalentType.TriggeredAction;
+            quick1b.Action = ActionType.Reaction;
+            quick1b.DescriptionFluff = "";
+            quick1b.Description = "You gain a +2 to the Initiative roll.";
+            quick1b.ClarifyingText = "";
+            quick1b.StaminaCost = 2;
+            quick1b.UpkeepCost = null;
+            quick1b.Tier = 1;
+            quick1b.TierBenefitDescription = "Gain +1 to Speed";
+            quick1b.Tree = TalentTree.Quickness;
+            quick1b.TreeName = "Quickness";
+            quick1b.LinkedSkill = null;
+            Talents.Add(quick1b);
+
+            Talent quick1c = new Talent();
+            quick1c.Name = "Flash";
+            quick1c.Type = TalentType.Benefit;
+            quick1c.Action = ActionType.None;
+            quick1c.DescriptionFluff = "";
+            quick1c.Description = "Once per round while Sprinting, you can purchase 1 additional MI for 1 Stamina. This MI can exceed the normal maximum.";
+            quick1c.ClarifyingText = "";
+            quick1c.StaminaCost = null;
+            quick1c.UpkeepCost = null;
+            quick1c.Tier = 1;
+            quick1c.TierBenefitDescription = "Gain +1 to Speed";
+            quick1c.Tree = TalentTree.Quickness;
+            quick1c.TreeName = "Quickness";
+            quick1c.LinkedSkill = null;
+            Talents.Add(quick1c);
+            #endregion
+            #region T2
+            Talent quick2a = new Talent();
+            quick2a.Name = "Fleet";
+            quick2a.Type = TalentType.Stance;
+            quick2a.Action = ActionType.Quick;
+            quick2a.DescriptionFluff = "";
+            quick2a.Description = "You become Hastened.";
+            quick2a.ClarifyingText = "";
+            quick2a.StaminaCost = 4;
+            quick2a.UpkeepCost = 1;
+            quick2a.Tier = 2;
+            quick2a.TierBenefitDescription = "Reduce the cost of one Triggered Action a turn by 2 Stamina";
+            quick2a.Tree = TalentTree.Quickness;
+            quick2a.TreeName = "Quickness";
+            quick2a.LinkedSkill = null;
+            Talents.Add(quick2a);
+
+            Talent quick2b = new Talent();
+            quick2b.Name = "Hurdler";
+            quick2b.Type = TalentType.Benefit;
+            quick2b.Action = ActionType.None;
+            quick2b.DescriptionFluff = "";
+            quick2b.Description = "Gain +2 to Athletics checks to jump, to overcome rough terrain, and to Scramble. You can stand from Prone for 3 MI.";
+            quick2b.ClarifyingText = "";
+            quick2b.StaminaCost = null;
+            quick2b.UpkeepCost = null;
+            quick2b.Tier = 2;
+            quick2b.TierBenefitDescription = "Reduce the cost of one Triggered Action a turn by 2 Stamina";
+            quick2b.Tree = TalentTree.Quickness;
+            quick2b.TreeName = "Quickness";
+            quick2b.LinkedSkill = null;
+            Talents.Add(quick2b);
+
+            Talent quick2c = new Talent();
+            quick2c.Name = "Defensive Flip";
+            quick2c.Type = TalentType.TriggeredAction;
+            quick2c.Action = ActionType.Reaction;
+            quick2c.DescriptionFluff = "";
+            quick2c.Description = "You gain a 1d6 -2 to Defense against the Triggering attack.";
+            quick2c.ClarifyingText = "";
+            quick2c.StaminaCost = 6;
+            quick2c.UpkeepCost = null;
+            quick2c.Tier = 2;
+            quick2c.TierBenefitDescription = "Reduce the cost of one Triggered Action a turn by 2 Stamina";
+            quick2c.Tree = TalentTree.Quickness;
+            quick2c.TreeName = "Quickness";
+            quick2c.LinkedSkill = null;
+            Talents.Add(quick2c);
+            #endregion
+            #region T3
+            Talent quick3a = new Talent();
+            quick3a.Name = "Improved Sprint";
+            quick3a.Type = TalentType.Benefit;
+            quick3a.Action = ActionType.None;
+            quick3a.DescriptionFluff = "";
+            quick3a.Description = "You pay only 1 Stamina per MI while Sprinting.";
+            quick3a.ClarifyingText = "";
+            quick3a.StaminaCost = null;
+            quick3a.UpkeepCost = null;
+            quick3a.Tier = 3;
+            quick3a.TierBenefitDescription = "Gain +2 to limit of additional MI that can be purchased while Sprinting";
+            quick3a.Tree = TalentTree.Quickness;
+            quick3a.TreeName = "Quickness";
+            quick3a.LinkedSkill = null;
+            Talents.Add(quick3a);
+
+            Talent quick3b = new Talent();
+            quick3b.Name = "Quicken";
+            quick3b.Type = TalentType.Stance;
+            quick3b.Action = ActionType.Quick;
+            quick3b.DescriptionFluff = "";
+            quick3b.Description = "Gain the Hastened and Focused Conditions.";
+            quick3b.ClarifyingText = "";
+            quick3b.StaminaCost = 8;
+            quick3b.UpkeepCost = 2;
+            quick3b.Tier = 3;
+            quick3b.TierBenefitDescription = "Gain +2 to limit of additional MI that can be purchased while Sprinting";
+            quick3b.Tree = TalentTree.Quickness;
+            quick3b.TreeName = "Quickness";
+            quick3b.LinkedSkill = null;
+            Talents.Add(quick3b);
+
+            Talent quick3c = new Talent();
+            quick3c.Name = "Battle Dancer";
+            quick3c.Type = TalentType.Benefit;
+            quick3c.Action = ActionType.None;
+            quick3c.DescriptionFluff = "";
+            quick3c.Description = "When you render an opponent Unconscious with an attack, you can move 2 MI for free.";
+            quick3c.ClarifyingText = "";
+            quick3c.StaminaCost = null;
+            quick3c.UpkeepCost = null;
+            quick3c.Tier = 3;
+            quick3c.TierBenefitDescription = "Gain +2 to limit of additional MI that can be purchased while Sprinting";
+            quick3c.Tree = TalentTree.Quickness;
+            quick3c.TreeName = "Quickness";
+            quick3c.LinkedSkill = null;
+            Talents.Add(quick3c);
+            #endregion
+            #region T4
+            Talent quick4a = new Talent();
+            quick4a.Name = "Blur";
+            quick4a.Type = TalentType.Maneuver;
+            quick4a.Action = ActionType.Combat;
+            quick4a.DescriptionFluff = "";
+            quick4a.Description = "You move 3x your Speed in MI and gain Heavy Concealment until the beginning of your next turn.";
+            quick4a.ClarifyingText = "";
+            quick4a.StaminaCost = 8;
+            quick4a.UpkeepCost = null;
+            quick4a.Tier = 4;
+            quick4a.TierBenefitDescription = "Can use 1 additional Quick Action each turn";
+            quick4a.Tree = TalentTree.Quickness;
+            quick4a.TreeName = "Quickness";
+            quick4a.LinkedSkill = null;
+            Talents.Add(quick4a);
+
+            Talent quick4b = new Talent();
+            quick4b.Name = "Master Hudler";
+            quick4b.Type = TalentType.Benefit;
+            quick4b.Action = ActionType.None;
+            quick4b.DescriptionFluff = "";
+            quick4b.Description = "The Benefit of Hurdler increases to +4. You can stand from Prone for 2 MI. The first Opening you create every round is ignored.";
+            quick4b.ClarifyingText = "";
+            quick4b.StaminaCost = null;
+            quick4b.UpkeepCost = null;
+            quick4b.Tier = 4;
+            quick4b.TierBenefitDescription = "Can use 1 additional Quick Action each turn";
+            quick4b.Tree = TalentTree.Quickness;
+            quick4b.TreeName = "Quickness";
+            quick4b.LinkedSkill = null;
+            Talents.Add(quick4b);
+
+            Talent quick4c = new Talent();
+            quick4c.Name = "Tiptoe through the Tulips (TTTT)";
+            quick4c.Type = TalentType.Benefit;
+            quick4c.Action = ActionType.None;
+            quick4c.DescriptionFluff = "";
+            quick4c.Description = "Pushing Through no longer costs extra MI. You no longer create an Opening for the first enemy you Push Through in a round.";
+            quick4c.ClarifyingText = "";
+            quick4c.StaminaCost = null;
+            quick4c.UpkeepCost = null;
+            quick4c.Tier = 4;
+            quick4c.TierBenefitDescription = "Can use 1 additional Quick Action each turn";
+            quick4c.Tree = TalentTree.Quickness;
+            quick4c.TreeName = "Quickness";
+            quick4c.LinkedSkill = null;
+            Talents.Add(quick4c);
+            #endregion
+            #region T5
+            Talent quick5a = new Talent();
+            quick5a.Name = "Haste";
+            quick5a.Type = TalentType.Stance;
+            quick5a.Action = ActionType.Quick;
+            quick5a.DescriptionFluff = "";
+            quick5a.Description = "Gain Hastened and Focused Conditions. You can make one unaugmented basic attack per round as a Quick Action.";
+            quick5a.ClarifyingText = "";
+            quick5a.StaminaCost = 12;
+            quick5a.UpkeepCost = 3;
+            quick5a.Tier = 5;
+            quick5a.TierBenefitDescription = "Gain +1 to all Defenses if not wearing Heavy or Advanced Armor";
+            quick5a.Tree = TalentTree.Quickness;
+            quick5a.TreeName = "Quickness";
+            quick5a.LinkedSkill = null;
+            Talents.Add(quick5a);
+
+            Talent quick5b = new Talent();
+            quick5b.Name = "After Image";
+            quick5b.Type = TalentType.TriggeredAction;
+            quick5b.Action = ActionType.Reaction;
+            quick5b.DescriptionFluff = "";
+            quick5b.Description = "The attacker must re-roll the attack at a -4. After the attack is resolved, you may move up to 6 MI for free.Movement from this Talent does not create Openings.";
+            quick5b.ClarifyingText = "Triggering Action: you are hit by a Melee or Ranged attack";
+            quick5b.StaminaCost = 12;
+            quick5b.UpkeepCost = null;
+            quick5b.Tier = 5;
+            quick5b.TierBenefitDescription = "Gain +1 to all Defenses if not wearing Heavy or Advanced Armor";
+            quick5b.Tree = TalentTree.Quickness;
+            quick5b.TreeName = "Quickness";
+            quick5b.LinkedSkill = null;
+            Talents.Add(quick5b);
+
+            Talent quick5c = new Talent();
+            quick5c.Name = "Lightning Reflexes";
+            quick5c.Type = TalentType.TriggeredAction;
+            quick5c.Action = ActionType.Reaction;
+            quick5c.DescriptionFluff = "";
+            quick5c.Description = "You automatically go first.";
+            quick5c.ClarifyingText = "Triggering Action: Initiative is rolled";
+            quick5c.StaminaCost = 6;
+            quick5c.UpkeepCost = null;
+            quick5c.Tier = 5;
+            quick5c.TierBenefitDescription = "Gain +1 to all Defenses if not wearing Heavy or Advanced Armor";
+            quick5c.Tree = TalentTree.Quickness;
+            quick5c.TreeName = "Quickness";
+            quick5c.LinkedSkill = null;
+            Talents.Add(quick5c);
+            #endregion
+            #endregion
+            #region Science! (Focus)
+            #region T1
+            Talent sci1a = new Talent();
+            sci1a.Name = "Salvage";
+            sci1a.Type = TalentType.Benefit;
+            sci1a.Action = ActionType.None;
+            sci1a.DescriptionFluff = "";
+            sci1a.Description = "With 1-minute of work, you can salvage 1/10 of an item’s value in materials that can be used for crafting and Mod’ing with Smithing, Electronics, or Mechanics at a later date. These salvaged materials can only be used toward items for which you receive a crafting discount. These materials weigh 1 pound per 1, 000U value.";
+            sci1a.ClarifyingText = "";
+            sci1a.StaminaCost = null;
+            sci1a.UpkeepCost = null;
+            sci1a.Tier = 1;
+            sci1a.TierBenefitDescription = "Reduce the penalty for not possessing the correct tools when making Trade or Healing Skill Checks to -1.";
+            sci1a.Tree = TalentTree.Science;
+            sci1a.TreeName = "Science";
+            sci1a.LinkedSkill = null;
+            Talents.Add(sci1a);
+
+            Talent sci1b = new Talent();
+            sci1b.Name = "Jerry-Rig";
+            sci1b.Type = TalentType.Maneuver;
+            sci1b.Action = ActionType.Combat;
+            sci1b.DescriptionFluff = "";
+            sci1b.Description = "You cause an inoperable piece of equipment to start working again. It continues to work until the end of the encounter or until it is rendered inoperable again.";
+            sci1b.ClarifyingText = "";
+            sci1b.StaminaCost = 4;
+            sci1b.UpkeepCost = null;
+            sci1b.Tier = 1;
+            sci1b.TierBenefitDescription = "Reduce the penalty for not possessing the correct tools when making Trade or Healing Skill Checks to -1.";
+            sci1b.Tree = TalentTree.Science;
+            sci1b.TreeName = "Science";
+            sci1b.LinkedSkill = null;
+            Talents.Add(sci1b);
+
+            Talent sci1c = new Talent();
+            sci1c.Name = "Heavy Bandage";
+            sci1c.Type = TalentType.Trick;
+            sci1c.Action = ActionType.Quick;
+            sci1c.DescriptionFluff = "";
+            sci1c.Description = "Use a Med Unit to Heal damage equal to the Grade of the Med Unit to an adjacent creature (1/2 e ect when Healing in the 3rd Track). All Healing must be applied to a single Track.Can only be used to Heal the 2nd and 3rd Tracks once per 24 hours, per target.";
+            sci1c.ClarifyingText = "";
+            sci1c.StaminaCost = 4;
+            sci1c.UpkeepCost = null;
+            sci1c.Tier = 1;
+            sci1c.TierBenefitDescription = "Reduce the penalty for not possessing the correct tools when making Trade or Healing Skill Checks to -1.";
+            sci1c.Tree = TalentTree.Science;
+            sci1c.TreeName = "Science";
+            sci1c.LinkedSkill = null;
+            Talents.Add(sci1c);
+            #endregion
+            #region T2
+            Talent sci2a = new Talent();
+            sci2a.Name = "Trauma Experience";
+            sci2a.Type = TalentType.Benefit;
+            sci2a.Action = ActionType.None;
+            sci2a.DescriptionFluff = "";
+            sci2a.Description = "Any time you make a Heal Check, do so as if you possess a Grade 1 Med Unit. If you are using a Med Unit of Grade 1 or higher, treat the Med Unit as 1 Grade higher.";
+            sci2a.ClarifyingText = "";
+            sci2a.StaminaCost = null;
+            sci2a.UpkeepCost = null;
+            sci2a.Tier = 2;
+            sci2a.TierBenefitDescription = "Gain -10% to the cost of Cybernetic Augmentations installed by you or installed in your body.";
+            sci2a.Tree = TalentTree.Science;
+            sci2a.TreeName = "Science";
+            sci2a.LinkedSkill = null;
+            Talents.Add(sci2a);
+
+            Talent sci2b = new Talent();
+            sci2b.Name = "Scratch Build";
+            sci2b.Type = TalentType.Ritual;
+            sci2b.Action = ActionType.None;
+            sci2b.DescriptionFluff = "";
+            sci2b.Description = "Create a piece of Ordnance using the available resources. Make a Demolitions Check. The result x 50 is the value of the Ordnance created.Any Ordnance created with this Ritual is unstable and will become inert (and worthless) if not used within 1 hour. The GM applies a modifier to the demolitions roll from -5 to 0 depending on the resources available(pharmacy or lab: -0, park or forest: -5). The GM has discretion on what options are available for Ordnance created with this Ritual.";
+            sci2b.ClarifyingText = "";
+            sci2b.StaminaCost = null;
+            sci2b.UpkeepCost = null;
+            sci2b.FatigueCost = 3;
+            sci2b.Tier = 2;
+            sci2b.TierBenefitDescription = "Gain -10% to the cost of Cybernetic Augmentations installed by you or installed in your body.";
+            sci2b.Tree = TalentTree.Science;
+            sci2b.TreeName = "Science";
+            sci2b.LinkedSkill = null;
+            Talents.Add(sci2b);
+
+            Talent sci2c = new Talent();
+            sci2c.Name = "Hacker";
+            sci2c.Type = TalentType.Benefit;
+            sci2c.Action = ActionType.None;
+            sci2c.DescriptionFluff = "";
+            sci2c.Description = "You can use the Electronics skill to gather information on targets that is restricted or confidential (financials, military records, alias information).";
+            sci2c.ClarifyingText = "";
+            sci2c.StaminaCost = null;
+            sci2c.UpkeepCost = null;
+            sci2c.Tier = 2;
+            sci2c.TierBenefitDescription = "Gain -10% to the cost of Cybernetic Augmentations installed by you or installed in your body.";
+            sci2c.Tree = TalentTree.Science;
+            sci2c.TreeName = "Science";
+            sci2c.LinkedSkill = null;
+            Talents.Add(sci2c);
+            #endregion
+            #region T3
+            Talent sci3a = new Talent();
+            sci3a.Name = "Fine Tune";
+            sci3a.Type = TalentType.Ritual;
+            sci3a.Action = ActionType.None;
+            sci3a.DescriptionFluff = "";
+            sci3a.Description = "1 piece of equipment gains either a +2 to damage, a +1 to Accuracy, +1 CM, +1 Armor, +1 Handling or - 1 to Armor Penalty for 24 hours.";
+            sci3a.ClarifyingText = "";
+            sci3a.StaminaCost = null;
+            sci3a.UpkeepCost = null;
+            sci3a.FatigueCost = 4;
+            sci3a.Tier = 3;
+            sci3a.TierBenefitDescription = "Re-roll all 1s when making checks with a single Trade Skill or the Healing skill (chose one).";
+            sci3a.Tree = TalentTree.Science;
+            sci3a.TreeName = "Science";
+            sci3a.LinkedSkill = null;
+            Talents.Add(sci3a);
+
+            Talent sci3b = new Talent();
+            sci3b.Name = "Combat Cocktail";
+            sci3b.Type = TalentType.Maneuver;
+            sci3b.Action = ActionType.Combat;
+            sci3b.DescriptionFluff = "";
+            sci3b.Description = "Use 1 Med Unit of Grade 3 or better to grant an adjacent ally a Positive Condition for 10 minutes.";
+            sci3b.ClarifyingText = "";
+            sci3b.StaminaCost = 8;
+            sci3b.UpkeepCost = null;
+            sci3b.Tier = 3;
+            sci3b.TierBenefitDescription = "Re-roll all 1s when making checks with a single Trade Skill or the Healing skill (chose one).";
+            sci3b.Tree = TalentTree.Science;
+            sci3b.TreeName = "Science";
+            sci3b.LinkedSkill = null;
+            Talents.Add(sci3b);
+
+            Talent sci3c = new Talent();
+            sci3c.Name = "Mechanical Servant";
+            sci3c.Type = TalentType.Benefit;
+            sci3c.Action = ActionType.None;
+            sci3c.DescriptionFluff = "";
+            sci3c.Description = "You gain a Size 2 Machine Companion of your level minus 1. Use the rules for commanding companions in combat; this Talent can be selected multiple times. The Mechanical Servant gains the Natural Armor(any) and the Mounted Weapon properties as well as one of the following sets: • The Drone gains Flight (1), Night Sight, and Slight(1). • The Hunter - Killer gains Speedy(2), Feral(2), and Lethal(1). • The Brawler gains Brawny(2), Tough(2), and Defender.";
+            sci3c.ClarifyingText = "";
+            sci3c.StaminaCost = null;
+            sci3c.UpkeepCost = null;
+            sci3c.Tier = 3;
+            sci3c.TierBenefitDescription = "Re-roll all 1s when making checks with a single Trade Skill or the Healing skill (chose one).";
+            sci3c.Tree = TalentTree.Science;
+            sci3c.TreeName = "Science";
+            sci3c.LinkedSkill = null;
+            Talents.Add(sci3c);
+            #endregion
+            #region T4
+            Talent sci4a = new Talent();
+            sci4a.Name = "System Intrusion";
+            sci4a.Type = TalentType.Ritual;
+            sci4a.Action = ActionType.None;
+            sci4a.DescriptionFluff = "";
+            sci4a.Description = "Make an Electronics Check against an accessible system (one you are directly linked to, or is accessible through the Internet). The MCR of the Check is based on the capabilities of the system and modified by the di culty of the task being attempted. If the Check is successful, the system performs the desired task. Only tasks deemed possible by the GM can be performed. The base MCR for systems are as follows: simple system(email server, voice mail server): MCR 15; moderate system (e - commerce site, active blue tooth): MCR 20; secure system (factory or high - rise security system): MCR 25, Impenetrable system (military or bank): MCR 30. The di culty modifiers for various tasks are as follows: simple task(view unrestricted data): -2; moderate task (view restricted data or insert small amounts of data to unrestricted sections): 0; di cult task(view and add information to restricted sections, issue commands to specific system controlled devices like elevators, cameras and doors): +2; extreme task (view alter or delete any information in the system, change passwords, add or remove accounts, shut down system, issue commands to all system controlled devices like elevators, cameras and doors): +4.";
+            sci4a.ClarifyingText = "";
+            sci4a.StaminaCost = null;
+            sci4a.UpkeepCost = null;
+            sci4a.FatigueCost = 4;
+            sci4a.Tier = 4;
+            sci4a.TierBenefitDescription = "Choose 1: Receive an additional 10% discount on items crafted by you (items you received a Trade Skill discount on already); or Add 1 to the regained HP for any Healing effect you create.";
+            sci4a.Tree = TalentTree.Science;
+            sci4a.TreeName = "Science";
+            sci4a.LinkedSkill = null;
+            Talents.Add(sci4a);
+
+            Talent sci4b = new Talent();
+            sci4b.Name = "Master Crafter";
+            sci4b.Type = TalentType.Benefit;
+            sci4b.Action = ActionType.None;
+            sci4b.DescriptionFluff = "";
+            sci4b.Description = "Gain an additional Mod Slot on each item you receive at least a 25% discount on for possessing the appropriate Trade Skill.";
+            sci4b.ClarifyingText = "";
+            sci4b.StaminaCost = null;
+            sci4b.UpkeepCost = null;
+            sci4b.Tier = 4;
+            sci4b.TierBenefitDescription = "Choose 1: Receive an additional 10% discount on items crafted by you (items you received a Trade Skill discount on already); or Add 1 to the regained HP for any Healing effect you create.";
+            sci4b.Tree = TalentTree.Science;
+            sci4b.TreeName = "Science";
+            sci4b.LinkedSkill = null;
+            Talents.Add(sci4b);
+
+            Talent sci4c = new Talent();
+            sci4c.Name = "Resucitate";
+            sci4c.Type = TalentType.Maneuver;
+            sci4c.Action = ActionType.Combat;
+            sci4c.DescriptionFluff = "";
+            sci4c.Description = "remove all damage from the Bleed Out Track of an adjacent target. The target also regains 1 HP in each track. At the end of the encounter, the target su ers a damage roll equal to the total amount of damage this Maneuver removed. This damage roll ignores armor.";
+            sci4c.ClarifyingText = "";
+            sci4c.StaminaCost = null;
+            sci4c.UpkeepCost = null;
+            sci4c.Tier = 4;
+            sci4c.TierBenefitDescription = "Choose 1: Receive an additional 10% discount on items crafted by you (items you received a Trade Skill discount on already); or Add 1 to the regained HP for any Healing effect you create.";
+            sci4c.Tree = TalentTree.Science;
+            sci4c.TreeName = "Science";
+            sci4c.LinkedSkill = null;
+            Talents.Add(sci4c);
+            #endregion
+            #region T5
+            Talent sci5a = new Talent();
+            sci5a.Name = "Custom Item";
+            sci5a.Type = TalentType.Benefit;
+            sci5a.Action = ActionType.None;
+            sci5a.DescriptionFluff = "";
+            sci5a.Description = "One item you possess gains 2 additional Mod Slots. These Mod Slots are in addition to whatever slots it had before taking this Talent.Only you gain benefit from these slots. If another creature is using the item, the extra Mods become inert. This Talent can be made to a ect a di erent item with 48 hours’ notice(it would no longer a ect the original item). This Talent can be taken multiple times";
+            sci5a.ClarifyingText = "";
+            sci5a.StaminaCost = null;
+            sci5a.UpkeepCost = null;
+            sci5a.Tier = 5;
+            sci5a.TierBenefitDescription = "Re-roll 1s when making all Trade and Healing Skill Checks.";
+            sci5a.Tree = TalentTree.Science;
+            sci5a.TreeName = "Science";
+            sci5a.LinkedSkill = null;
+            Talents.Add(sci5a);
+
+            Talent sci5b = new Talent();
+            sci5b.Name = "Medical Miracle";
+            sci5b.Type = TalentType.Ritual;
+            sci5b.Action = ActionType.Combat;
+            sci5b.DescriptionFluff = "";
+            sci5b.Description = "Adjacent target regains HP equal to your total Healing skill (Skill+Attribute). If you decide to expend a Med Unit as part of this Maneuver, the target also regains HP equal to its Grade. This Maneuver can restore HP in the 3rd Track as well as the Bleed Out Track.If this Maneuver is used on a target that died up to 5 minutes ago, that target still regains the listed amount of HP (starting in the Bleed Out Track).";
+            sci5b.ClarifyingText = "";
+            sci5b.StaminaCost = null;
+            sci5b.UpkeepCost = null;
+            sci5b.FatigueCost = 10;
+            sci5b.Tier = 5;
+            sci5b.TierBenefitDescription = "Re-roll 1s when making all Trade and Healing Skill Checks.";
+            sci5b.Tree = TalentTree.Science;
+            sci5b.TreeName = "Science";
+            sci5b.LinkedSkill = null;
+            Talents.Add(sci5b);
+
+            Talent sci5c = new Talent();
+            sci5c.Name = "Mechanical Ally";
+            sci5c.Type = TalentType.Benefit;
+            sci5c.Action = ActionType.None;
+            sci5c.DescriptionFluff = "";
+            sci5c.Description = "You gain a Size 3 or 4 (your choice) Machine Companion of your level. Use the rules for commanding companions in combat; This Talent can be selected multiple times. The Mechanical Servants gains the Natural Armor(any) and the Mounted Weapon properties as well as one of the following sets: • The Drone gains Concealment (Light), Flight(1), Night Sight, and Slight(1). • The Hunter - Killer gains Speedy(2), Quick(2), Feral(2), and Lethal(1). • The Brawler gains Brawny(2), Fortified(any 2), Tough(2), and Defender.";
+            sci5c.ClarifyingText = "";
+            sci5c.StaminaCost = null;
+            sci5c.UpkeepCost = null;
+            sci5c.Tier = 5;
+            sci5c.TierBenefitDescription = "Re-roll 1s when making all Trade and Healing Skill Checks.";
+            sci5c.Tree = TalentTree.Science;
+            sci5c.TreeName = "Science";
+            sci5c.LinkedSkill = null;
+            Talents.Add(sci5c);
+            #endregion
+            #endregion
+            #region Toughness (Fortitude)
+            #region T1
+            Talent tough1a = new Talent();
+            tough1a.Name = "Indomitable";
+            tough1a.Type = TalentType.Benefit;
+            tough1a.Action = ActionType.None;
+            tough1a.DescriptionFluff = "";
+            tough1a.Description = "Reduce the Wound penalties to your 2nd Track by 1.";
+            tough1a.ClarifyingText = "";
+            tough1a.StaminaCost = null;
+            tough1a.UpkeepCost = null;
+            tough1a.Tier = 1;
+            tough1a.TierBenefitDescription = "Add your Fortitude to your 1st Damage Track.";
+            tough1a.Tree = TalentTree.Toughness;
+            tough1a.TreeName = "Toughness";
+            tough1a.LinkedSkill = null;
+            Talents.Add(tough1a);
+
+            Talent tough1b = new Talent();
+            tough1b.Name = "Iron Heart";
+            tough1b.Type = TalentType.Benefit;
+            tough1b.Action = ActionType.None;
+            tough1b.DescriptionFluff = "";
+            tough1b.Description = "Gain +1 to Body Defense and +1 Durability vs. attacks targeting Body defenses.";
+            tough1b.ClarifyingText = "";
+            tough1b.StaminaCost = null;
+            tough1b.UpkeepCost = null;
+            tough1b.Tier = 1;
+            tough1b.TierBenefitDescription = "Add your Fortitude to your 1st Damage Track.";
+            tough1b.Tree = TalentTree.Toughness;
+            tough1b.TreeName = "Toughness";
+            tough1b.LinkedSkill = null;
+            Talents.Add(tough1b);
+
+            Talent tough1c = new Talent();
+            tough1c.Name = "Tough as Nails";
+            tough1c.Type = TalentType.Benefit;
+            tough1c.Action = ActionType.None;
+            tough1c.DescriptionFluff = "";
+            tough1c.Description = "Gain +1 to Resistance and regain 1 HP in your 1st Track at the end of each of your turns.";
+            tough1c.ClarifyingText = "";
+            tough1c.StaminaCost = null;
+            tough1c.UpkeepCost = null;
+            tough1c.Tier = 1;
+            tough1c.TierBenefitDescription = "Add your Fortitude to your 1st Damage Track.";
+            tough1c.Tree = TalentTree.Toughness;
+            tough1c.TreeName = "Toughness";
+            tough1c.LinkedSkill = null;
+            Talents.Add(tough1c);
+            #endregion
+            #region T2
+            Talent tough2a = new Talent();
+            tough2a.Name = "Second Wind";
+            tough2a.Type = TalentType.Trick;
+            tough2a.Action = ActionType.Quick;
+            tough2a.DescriptionFluff = "";
+            tough2a.Description = "Regain up to your Fortitude worth of lost HP in the 1st Track. [2 Stamina per HP regained]";
+            tough2a.ClarifyingText = "";
+            tough2a.StaminaCost = 2;
+            tough2a.UpkeepCost = null;
+            tough2a.Tier = 2;
+            tough2a.TierBenefitDescription = "Gain +1 to Durability.";
+            tough2a.Tree = TalentTree.Toughness;
+            tough2a.TreeName = "Toughness";
+            tough2a.LinkedSkill = null;
+            Talents.Add(tough2a);
+
+            Talent tough2b = new Talent();
+            tough2b.Name = "Mountain Defense";
+            tough2b.Type = TalentType.Stance;
+            tough2b.Action = ActionType.Quick;
+            tough2b.DescriptionFluff = "";
+            tough2b.Description = "While active, the user gains a +2 to Durability and cannot be Knocked Back or Knocked Down.";
+            tough2b.ClarifyingText = "";
+            tough2b.StaminaCost = 6;
+            tough2b.UpkeepCost = 2;
+            tough2b.Tier = 2;
+            tough2b.TierBenefitDescription = "Gain +1 to Durability.";
+            tough2b.Tree = TalentTree.Toughness;
+            tough2b.TreeName = "Toughness";
+            tough2b.LinkedSkill = null;
+            Talents.Add(tough2b);
+
+            Talent tough2c = new Talent();
+            tough2c.Name = "Brace for Impact";
+            tough2c.Type = TalentType.TriggeredAction;
+            tough2c.Action = ActionType.Reaction;
+            tough2c.DescriptionFluff = "";
+            tough2c.Description = "Roll 1d6, and reduce the damage taken from the Triggering attack by the result.";
+            tough2c.ClarifyingText = "Triggering Action: you take damage from an attack";
+            tough2c.StaminaCost = 3;
+            tough2c.UpkeepCost = null;
+            tough2c.Tier = 2;
+            tough2c.TierBenefitDescription = "Gain +1 to Durability.";
+            tough2c.Tree = TalentTree.Toughness;
+            tough2c.TreeName = "Toughness";
+            tough2c.LinkedSkill = null;
+            Talents.Add(tough2c);
+            #endregion
+            #region T3
+            Talent fort3a = new Talent();
+            fort3a.Name = "Unstoppable";
+            fort3a.Type = TalentType.Stance;
+            fort3a.Action = ActionType.Quick;
+            fort3a.DescriptionFluff = "";
+            fort3a.Description = "While active, you ignore negative Conditions (except Unconscious).";
+            fort3a.ClarifyingText = "";
+            fort3a.StaminaCost = 8;
+            fort3a.UpkeepCost = 2;
+            fort3a.Tier = 3;
+            fort3a.TierBenefitDescription = "Gain +2 to Long-Term Recovery.";
+            fort3a.Tree = TalentTree.Toughness;
+            fort3a.TreeName = "Toughness";
+            fort3a.LinkedSkill = null;
+            Talents.Add(fort3a);
+
+            Talent fort3b = new Talent();
+            fort3b.Name = "Improved Indomitability";
+            fort3b.Type = TalentType.TriggeredAction;
+            fort3b.Action = ActionType.Reaction;
+            fort3b.DescriptionFluff = "";
+            fort3b.Description = "Reduce the Stage of the Triggering Crit by 1.";
+            fort3b.ClarifyingText = "Triggering Action: a Crit is scored against you.";
+            fort3b.StaminaCost = 4;
+            fort3b.UpkeepCost = null;
+            fort3b.Tier = 3;
+            fort3b.TierBenefitDescription = "Gain +2 to Long-Term Recovery.";
+            fort3b.Tree = TalentTree.Toughness;
+            fort3b.TreeName = "Toughness";
+            fort3b.LinkedSkill = null;
+            Talents.Add(fort3b);
+
+            Talent fort3c = new Talent();
+            fort3c.Name = "Tough as Iron";
+            fort3c.Type = TalentType.Benefit;
+            fort3c.Action = ActionType.None;
+            fort3c.DescriptionFluff = "";
+            fort3c.Description = "-1 to CM of attacks against you.";
+            fort3c.ClarifyingText = "";
+            fort3c.StaminaCost = null;
+            fort3c.UpkeepCost = null;
+            fort3c.Tier = 3;
+            fort3c.TierBenefitDescription = "Gain +2 to Long-Term Recovery.";
+            fort3c.Tree = TalentTree.Toughness;
+            fort3c.TreeName = "Toughness";
+            fort3c.LinkedSkill = null;
+            Talents.Add(fort3c);
+            #endregion
+            #region T4
+            Talent tough4a = new Talent();
+            tough4a.Name = "Steelheart";
+            tough4a.Type = TalentType.TriggeredAction;
+            tough4a.Action = ActionType.Reaction;
+            tough4a.DescriptionFluff = "";
+            tough4a.Description = "Increase your Body Defense by 1d6+1 versus the Triggering attack.";
+            tough4a.ClarifyingText = "Triggering Action: an attack hits your Body Defense.";
+            tough4a.StaminaCost = 5;
+            tough4a.UpkeepCost = null;
+            tough4a.Tier = 4;
+            tough4a.TierBenefitDescription = "Gain +2 to Resistance.";
+            tough4a.Tree = TalentTree.Toughness;
+            tough4a.TreeName = "Toughness";
+            tough4a.LinkedSkill = null;
+            Talents.Add(tough4a);
+
+            Talent tough4b = new Talent();
+            tough4b.Name = "Dig Deep";
+            tough4b.Type = TalentType.Maneuver;
+            tough4b.Action = ActionType.Combat;
+            tough4b.DescriptionFluff = "";
+            tough4b.Description = "Your Stamina pool is filled to current maximum. You lose 1d6 HP in the 2nd Damage Track.";
+            tough4b.ClarifyingText = "";
+            tough4b.StaminaCost = 0;
+            tough4b.UpkeepCost = null;
+            tough4b.Tier = 4;
+            tough4b.TierBenefitDescription = "Gain +2 to Resistance.";
+            tough4b.Tree = TalentTree.Toughness;
+            tough4b.TreeName = "Toughness";
+            tough4b.LinkedSkill = null;
+            Talents.Add(tough4b);
+
+            Talent tough4c = new Talent();
+            tough4c.Name = "Unrelenting";
+            tough4c.Type = TalentType.Stance;
+            tough4c.Action = ActionType.Quick;
+            tough4c.DescriptionFluff = "";
+            tough4c.Description = "You gain the Girded Condition, ignore the e ects of Negative Conditions (except Unconscious), and gain a +2 to Resistance Checks.";
+            tough4c.ClarifyingText = "";
+            tough4c.StaminaCost = 10;
+            tough4c.UpkeepCost = 3;
+            tough4c.Tier = 4;
+            tough4c.TierBenefitDescription = "Gain +2 to Resistance.";
+            tough4c.Tree = TalentTree.Toughness;
+            tough4c.TreeName = "Toughness";
+            tough4c.LinkedSkill = null;
+            Talents.Add(tough4c);
+            #endregion
+            #region T5
+            Talent tough5a = new Talent();
+            tough5a.Name = "Diamond Defense";
+            tough5a.Type = TalentType.Trick;
+            tough5a.Action = ActionType.Quick;
+            tough5a.DescriptionFluff = "";
+            tough5a.Description = "You gain the Girded Condition and Fortification against all damage for 1 round.";
+            tough5a.ClarifyingText = "";
+            tough5a.StaminaCost = 6;
+            tough5a.UpkeepCost = null;
+            tough5a.Tier = 5;
+            tough5a.TierBenefitDescription = "Reduce wound penalties by 2. If you have the Indomitalbe Talent, gain an additional +1 to danage and Durability when you would otherwise be suffering wound penalties.";
+            tough5a.Tree = TalentTree.Toughness;
+            tough5a.TreeName = "Toughness";
+            tough5a.LinkedSkill = null;
+            Talents.Add(tough5a);
+
+            Talent tough5b = new Talent();
+            tough5b.Name = "Tough as Steel";
+            tough5b.Type = TalentType.Benefit;
+            tough5b.Action = ActionType.None;
+            tough5b.DescriptionFluff = "";
+            tough5b.Description = "+2 to Durability.";
+            tough5b.ClarifyingText = "";
+            tough5b.StaminaCost = null;
+            tough5b.UpkeepCost = null;
+            tough5b.Tier = 5;
+            tough5b.TierBenefitDescription = "Reduce wound penalties by 2. If you have the Indomitalbe Talent, gain an additional +1 to danage and Durability when you would otherwise be suffering wound penalties.";
+            tough5b.Tree = TalentTree.Toughness;
+            tough5b.TreeName = "Toughness";
+            tough5b.LinkedSkill = null;
+            Talents.Add(tough5b);
+
+            Talent tough5c = new Talent();
+            tough5c.Name = "Undying";
+            tough5c.Type = TalentType.Stance;
+            tough5c.Action = ActionType.Quick;
+            tough5c.DescriptionFluff = "";
+            tough5c.Description = "You become immune to the e ects of the Unconscious Condition. Whenever you would be Unconscious you are instead Weakened and Vulnerable.You lose 2 HP at the end of any turn that you would have been Unconscious.If you die while this Stance is active, you are still dead.";
+            tough5c.ClarifyingText = "";
+            tough5c.StaminaCost = 12;
+            tough5c.UpkeepCost = 3;
+            tough5c.Tier = 5;
+            tough5c.TierBenefitDescription = "Reduce wound penalties by 2. If you have the Indomitalbe Talent, gain an additional +1 to danage and Durability when you would otherwise be suffering wound penalties.";
+            tough5c.Tree = TalentTree.Toughness;
+            tough5c.TreeName = "Toughness";
+            tough5c.LinkedSkill = null;
+            Talents.Add(tough5c);
             #endregion
             #endregion
         }
@@ -7984,16 +9467,20 @@ namespace Emergence.ViewModel
             {
                 AddRandomTalent(enemy);
             }
-            else if (ability.GrantedAttack != null)
+            else if (ability.GrantedWeapon != null)
             {
-                enemy.model.Attacks.Add(ability.GrantedAttack);
+                //ability.GrantedWeapon.AttackOwner = enemy.model;
+                NpcAttack a = new NpcAttack();
+                a.Weapon = ability.GrantedWeapon;
+                a.Name = ability.GrantedWeapon.Name;
+                enemy.model.Attacks.Add(a);
             }
         }
 
         public void AddAbilityByName(NPCQuickReferenceVM enemy, string abilityName)
         {
             int index = CreatureAbilities.IndexOf(CreatureAbilities.First(q => q.Name == abilityName));
-            AddQualityByIndex(enemy, index);
+            AddAbilityByIndex(enemy, index);
         }
 
         public void AddRandomTalent(NPCQuickReferenceVM enemy)
@@ -8104,6 +9591,7 @@ namespace Emergence.ViewModel
             extraTypes.Add(typeof(NpcMeleeAreaAttack));
             extraTypes.Add(typeof(NpcRangedAttack));
             extraTypes.Add(typeof(NpcRangedAreaAttack));
+            extraTypes.Add(typeof(RangedWeapon));
             extraTypes.Add(typeof(NaturalWeapon));
             extraTypes.Add(typeof(NaturalArmor));
 

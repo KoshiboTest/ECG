@@ -83,7 +83,7 @@ namespace EmergenceApp
         }
 
         //Randomize
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void RandomizeWeapon(object sender, RoutedEventArgs e)
         {
             //Select random item
             int weaponIndex = new Random().Next(ArmoryViewModel.BaseWeapons.Count);
@@ -196,7 +196,7 @@ namespace EmergenceApp
         }
         #endregion
 
-        private void Button_Click_5(object sender, RoutedEventArgs e)
+        private void AddWeaponToSelectedNPC(object sender, RoutedEventArgs e)
         {
             Weapon w = ((WeaponVM)baseWeaponList.SelectedItem).model;
             NonPlayerCharacter npc = ((NPCQuickReferenceVM)EnemiesList.SelectedItem).model;
@@ -225,16 +225,19 @@ namespace EmergenceApp
             ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("PrimaryAttackCM");
             ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("PrimaryAttackRange");
             ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("PrimaryAttackArea");
+            ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("PrimaryAttackProperties");
             ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("SecondaryAttack");
             ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("SecondaryAttackDamage");
             ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("SecondaryAttackCM");
             ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("SecondaryAttackRange");
             ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("SecondaryAttackArea");
+            ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("SecondaryAttackProperties");
             ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("TertiaryAttack");
             ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("TertiaryAttackDamage");
             ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("TertiaryAttackCM");
             ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("TertiaryAttackRange");
             ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("TertiaryAttackArea");
+            ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("TertiaryAttackProperties");
         }
 
         private void DeleteSelectedEnemy(object sender, RoutedEventArgs e)

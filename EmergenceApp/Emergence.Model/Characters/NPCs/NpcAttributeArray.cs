@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-        
+
 namespace Emergence.Model
 {
     public class NpcAttributeArray
@@ -13,15 +13,17 @@ namespace Emergence.Model
             AttributeAdjustments = new List<AttributeModifier>();
         }
 
-        public NpcAttributeArray(int level, NpcClass npcClass)
+        public NpcAttributeArray(int level, NpcClass npcClass, int size)
         {
             this.Level = level;
             this.npcClass = npcClass;
+            this.Size = size;
             AttributeAdjustments = new List<AttributeModifier>();
         }
 
         //Level
         public int Level;
+        public int Size;
         public NpcClass npcClass;
 
         //Primary
@@ -82,13 +84,13 @@ namespace Emergence.Model
                 switch (this.npcClass)
                 {
                     case NpcClass.Foe:
-                        return 8 + Level;
+                        return 8 + Level - Size + 3;
                     case NpcClass.Grunt:
-                        return 6 + Level;
+                        return 6 + Level - Size + 3;
                     case NpcClass.Antagonist:
-                        return 10 + Level;
+                        return 10 + Level - Size + 3;
                     case NpcClass.Companion:
-                        return 8 + Level;
+                        return 8 + Level - Size + 3;
                     default:
                         throw new ArgumentOutOfRangeException("Base Initiave is not defined for this NpcClass '" + this.npcClass.ToString() + "'.");
                 }
@@ -197,13 +199,13 @@ namespace Emergence.Model
                 switch (this.npcClass)
                 {
                     case NpcClass.Foe:
-                        return 5 + ConvertToInt(Level / 2M);
+                        return 5 + ConvertToInt(Level / 2M) + 2 * (Size - 3);
                     case NpcClass.Grunt:
-                        return 3 + ConvertToInt(Level / 2M);
+                        return 3 + ConvertToInt(Level / 2M) + 2 * (Size - 3);
                     case NpcClass.Antagonist:
-                        return 7 + ConvertToInt(Level / 2M);
+                        return 7 + ConvertToInt(Level / 2M) + 2 * (Size - 3);
                     case NpcClass.Companion:
-                        return 5 + ConvertToInt(Level / 2M);
+                        return 5 + ConvertToInt(Level / 2M) + 2 * (Size - 3);
                     default:
                         throw new ArgumentOutOfRangeException("Base Speed is not defined for this NpcClass '" + this.npcClass.ToString() + "'.");
                 }
@@ -481,20 +483,20 @@ namespace Emergence.Model
         {
             get
             {
-                return 0;//skill + accuracy is taken care of in the NpcAttack, this is just to hold modifiers
-                //switch (this.npcClass)
-                //{
-                //    case NpcClass.Foe:
-                //        return 5 + Level;
-                //    case NpcClass.Grunt:
-                //        return 4 + Level;
-                //    case NpcClass.Antagonist:
-                //        return 6 + Level;
-                //    case NpcClass.Companion:
-                //        return 5 + Level;
-                //    default:
-                //        throw new ArgumentOutOfRangeException("Base Primary Attack is not defined for this NpcClass '" + this.npcClass.ToString() + "'.");
-                //}
+                //return 0;//skill + accuracy is taken care of in the NpcAttack, this is just to hold modifiers
+                switch (this.npcClass)
+                {
+                    case NpcClass.Foe:
+                        return 5 + Level;
+                    case NpcClass.Grunt:
+                        return 4 + Level;
+                    case NpcClass.Antagonist:
+                        return 6 + Level;
+                    case NpcClass.Companion:
+                        return 5 + Level;
+                    default:
+                        throw new ArgumentOutOfRangeException("Base Primary Attack is not defined for this NpcClass '" + this.npcClass.ToString() + "'.");
+                }
             }
         }
         public int PrimaryAttack
@@ -534,20 +536,20 @@ namespace Emergence.Model
         {
             get
             {
-                return 0;//skill + accuracy is taken care of in the NpcAttack, this is just to hold modifiers
-                //switch (this.npcClass)
-                //{
-                //    case NpcClass.Foe:
-                //        return 4 + Level;
-                //    case NpcClass.Grunt:
-                //        return 3 + Level;
-                //    case NpcClass.Antagonist:
-                //        return 5 + Level;
-                //    case NpcClass.Companion:
-                //        return 4 + Level;
-                //    default:
-                //        throw new ArgumentOutOfRangeException("Base Secondary Attack is not defined for this NpcClass '" + this.npcClass.ToString() + "'.");
-                //}
+                //return 0;//skill + accuracy is taken care of in the NpcAttack, this is just to hold modifiers
+                switch (this.npcClass)
+                {
+                    case NpcClass.Foe:
+                        return 4 + Level;
+                    case NpcClass.Grunt:
+                        return 3 + Level;
+                    case NpcClass.Antagonist:
+                        return 5 + Level;
+                    case NpcClass.Companion:
+                        return 4 + Level;
+                    default:
+                        throw new ArgumentOutOfRangeException("Base Secondary Attack is not defined for this NpcClass '" + this.npcClass.ToString() + "'.");
+                }
             }
         }
         public int SecondaryAttack

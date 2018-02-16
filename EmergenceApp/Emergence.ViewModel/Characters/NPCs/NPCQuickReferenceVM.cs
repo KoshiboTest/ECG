@@ -367,63 +367,63 @@ namespace Emergence.ViewModel
         {
             get
             {
-                return model.Attributes.MeleePhysical + model.Armor.ArmorPenalty;
+                return model.Attributes.MeleePhysical + model.Armor.ArmorPenalty - model.Size + 3;
             }
         }
         public int MeleeResolve
         {
             get
             {
-                return model.Attributes.MeleeResolve + model.Armor.ArmorPenalty;
+                return model.Attributes.MeleeResolve + model.Armor.ArmorPenalty - model.Size + 3;
             }
         }
         public int MeleeBody
         {
             get
             {
-                return model.Attributes.MeleeBody + model.Armor.ArmorPenalty;
+                return model.Attributes.MeleeBody + model.Armor.ArmorPenalty - model.Size + 3;
             }
         }
         public int AreaPhysical
         {
             get
             {
-                return model.Attributes.AreaPhysical + model.Armor.ArmorPenalty;
+                return model.Attributes.AreaPhysical + model.Armor.ArmorPenalty - model.Size + 3;
             }
         }
         public int AreaResolve
         {
             get
             {
-                return model.Attributes.AreaResolve + model.Armor.ArmorPenalty;
+                return model.Attributes.AreaResolve + model.Armor.ArmorPenalty - model.Size + 3;
             }
         }
         public int AreaBody
         {
             get
             {
-                return model.Attributes.AreaBody + model.Armor.ArmorPenalty;
+                return model.Attributes.AreaBody + model.Armor.ArmorPenalty - model.Size + 3;
             }
         }
         public int RangedPhysical
         {
             get
             {
-                return model.Attributes.RangedPhysical + model.Armor.ArmorPenalty;
+                return model.Attributes.RangedPhysical + model.Armor.ArmorPenalty - model.Size + 3;
             }
         }
         public int RangedResolve
         {
             get
             {
-                return model.Attributes.RangedResolve + model.Armor.ArmorPenalty;
+                return model.Attributes.RangedResolve + model.Armor.ArmorPenalty - model.Size + 3;
             }
         }
         public int RangedBody
         {
             get
             {
-                return model.Attributes.RangedBody + model.Armor.ArmorPenalty;
+                return model.Attributes.RangedBody + model.Armor.ArmorPenalty - model.Size + 3;
             }
         }
 
@@ -486,7 +486,7 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 0)
                     {
-                        return model.Attacks[0].Name + ": +" + (model.Attacks[0].Attack + model.Attributes.PrimaryAttack);
+                        return model.Attacks[0].Name + ": +" + (model.Attacks[0].Attack + model.Attributes.PrimaryAttack - Size + 3);
                     }
                     else
                     {
@@ -507,7 +507,7 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 0)
                     {
-                        return model.Attacks[0].DamageType.ToString() + ": +" + model.Attacks[0].Damage;
+                        return model.Attacks[0].DamageType.ToString() + ": +" + (model.Attacks[0].Damage + 2 * (Size - 3));
                     }
                     else
                     {
@@ -643,7 +643,7 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 1)
                     {
-                        return model.Attacks[1].Name + ": +" + (model.Attacks[1].Attack + model.Attributes.SecondaryAttack);
+                        return model.Attacks[1].Name + ": +" + (model.Attacks[1].Attack + model.Attributes.SecondaryAttack - Size + 3);
                     }
                     else
                     {
@@ -664,7 +664,7 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 1)
                     {
-                        return model.Attacks[1].DamageType.ToString() + ": +" + model.Attacks[1].Damage;
+                        return model.Attacks[1].DamageType.ToString() + ": +" + (model.Attacks[1].Damage + 2 * (Size - 3));
                     }
                     else
                     {
@@ -800,7 +800,7 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 2)
                     {
-                        return model.Attacks[2].Name + ": +" + (model.Attacks[2].Attack + model.Attributes.SecondaryAttack);
+                        return model.Attacks[2].Name + ": +" + (model.Attacks[2].Attack + model.Attributes.SecondaryAttack - Size + 3);
                     }
                     else
                     {
@@ -821,7 +821,7 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 2)
                     {
-                        return model.Attacks[2].DamageType.ToString() + ": +" + model.Attacks[2].Damage;
+                        return model.Attacks[2].DamageType.ToString() + ": +" + (model.Attacks[2].Damage + 2 * (Size - 3));
                     }
                     else
                     {
