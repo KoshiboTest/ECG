@@ -207,8 +207,6 @@ namespace EmergenceApp
                 ra.Name = rw.Name;
                 ra.Weapon = rw;
                 ra.RangeType = rw.RangeType;
-                ra.AttackOwner = npc;
-                ra.IsPrimary = npc.Attacks.Count() == 0;
                 npc.Attacks.Add(ra);
             }
             else
@@ -216,8 +214,6 @@ namespace EmergenceApp
                 NpcMeleeAttack ma = new NpcMeleeAttack();
                 ma.Name = w.Name;
                 ma.Weapon = w;
-                ma.AttackOwner = npc;
-                ma.IsPrimary = npc.Attacks.Count() == 0;
                 npc.Attacks.Add(ma);
             }
             ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("PrimaryAttack");

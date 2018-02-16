@@ -27,6 +27,20 @@ namespace Emergence.ViewModel
             }
         }
 
+        private ObservableCollection<AmpVM> baseAmps;
+        public ObservableCollection<AmpVM> BaseAmps
+        {
+            get
+            {
+                return BaseAmps;
+            }
+            set
+            {
+                baseAmps = value;
+                NotifyPropertyChanged("BaseAmps");
+            }
+        }
+
         public ObservableCollection<WeaponModVM> weaponMods;
         public ObservableCollection<WeaponModVM> WeaponMods
         {
@@ -96,7 +110,9 @@ namespace Emergence.ViewModel
         {
             yourWeapons = new ObservableCollection<WeaponVM>();
             baseWeapons = new ObservableCollection<WeaponVM>();
+            baseAmps = new ObservableCollection<AmpVM>();
 
+            #region Weapons
             WeaponVM Unarmed = new WeaponVM();
             WeaponVM Knife = new WeaponVM();
             WeaponVM CombatGlove = new WeaponVM();
@@ -601,6 +617,65 @@ namespace Emergence.ViewModel
             baseWeapons.Add(Flamethrower);
             baseWeapons.Add(MissileLauncher);
             baseWeapons.Add(Taser);
+            #endregion
+
+            #region Amps
+            AmpVM ring = new AmpVM();
+            AmpVM glove = new AmpVM();
+            AmpVM wand = new AmpVM();
+            AmpVM scepter = new AmpVM();
+            AmpVM staff = new AmpVM();
+            AmpVM circlet = new AmpVM();
+
+            ring.Accuracy = 2;
+            ring.Damage = -2;
+            ring.Charges = 3;
+            ring.Size = 0;
+            ring.Cost = 750;
+            ring.Properties = AmpProperty.Infusing;
+
+            glove.Accuracy = -1;
+            glove.Damage = 4;
+            glove.Charges = 4;
+            glove.Size = 1;
+            glove.Cost = 500;
+            glove.Properties = AmpProperty.Battering;
+
+            wand.Accuracy = 1;
+            wand.Damage = 0;
+            wand.Charges = 4;
+            wand.Size = 2;
+            wand.Cost = 300;
+            wand.Properties = AmpProperty.Dueling;
+
+            scepter.Accuracy = 0;
+            scepter.Damage = 2;
+            scepter.Charges = 5;
+            scepter.Size = 3;
+            scepter.Cost = 500;
+            scepter.Properties = AmpProperty.Destructive;
+
+            staff.Accuracy = -2;
+            staff.Damage = 6;
+            staff.Charges = 5;
+            staff.Size = 4;
+            staff.Cost = 750;
+            staff.Properties = AmpProperty.Reaching;
+
+            circlet.Accuracy = 0;
+            circlet.Damage = 2;
+            circlet.Charges = 3;
+            circlet.Size = 1;
+            circlet.Cost = 500;
+            circlet.Properties = AmpProperty.Compulsive;
+
+            baseAmps.Add(ring);
+            baseAmps.Add(glove);
+            baseAmps.Add(wand);
+            baseAmps.Add(scepter);
+            baseAmps.Add(staff);
+            baseAmps.Add(circlet);
+            #endregion
         }
         private void InitializeWeaponMods()
         {

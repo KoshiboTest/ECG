@@ -486,7 +486,7 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 0)
                     {
-                        return model.Attacks[0].Name + ": +" + (model.Attacks[0].Attack + model.Attributes.PrimaryAttack - Size + 3);
+                        return model.Attacks[0].Name + ": +" + (model.Attacks[0].Weapon.Accuracy + model.Attributes.PrimaryAttack - Size + 3);
                     }
                     else
                     {
@@ -507,7 +507,7 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 0)
                     {
-                        return model.Attacks[0].DamageType.ToString() + ": +" + (model.Attacks[0].Damage + 2 * (Size - 3));
+                        return model.Attacks[0].Weapon.Type.ToString() + ": +" + (model.Attacks[0].Weapon.Damage + model.Attributes.PrimaryAttackDamage + 2 * (Size - 3));
                     }
                     else
                     {
@@ -528,7 +528,7 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 0)
                     {
-                        return model.Attacks[0].CM.ToString() + " CM";
+                        return (model.Attacks[0].Weapon.CM + model.Attributes.CM).ToString() + " CM";
                     }
                     else
                     {
@@ -643,7 +643,7 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 1)
                     {
-                        return model.Attacks[1].Name + ": +" + (model.Attacks[1].Attack + model.Attributes.SecondaryAttack - Size + 3);
+                        return model.Attacks[1].Name + ": +" + (model.Attacks[1].Weapon.Accuracy + model.Attributes.SecondaryAttack - Size + 3);
                     }
                     else
                     {
@@ -664,7 +664,7 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 1)
                     {
-                        return model.Attacks[1].DamageType.ToString() + ": +" + (model.Attacks[1].Damage + 2 * (Size - 3));
+                        return model.Attacks[1].Weapon.Type.ToString() + ": +" + (model.Attacks[1].Weapon.Damage + model.Attributes.SecondaryAttackDamage + 2 * (Size - 3));
                     }
                     else
                     {
@@ -685,7 +685,7 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 1)
                     {
-                        return model.Attacks[1].CM.ToString() + " CM";
+                        return (model.Attacks[1].Weapon.CM + model.Attributes.CM).ToString() + " CM";
                     }
                     else
                     {
@@ -800,7 +800,7 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 2)
                     {
-                        return model.Attacks[2].Name + ": +" + (model.Attacks[2].Attack + model.Attributes.SecondaryAttack - Size + 3);
+                        return model.Attacks[2].Name + ": +" + (model.Attacks[2].Weapon.Accuracy + model.Attributes.SecondaryAttack - Size + 3);
                     }
                     else
                     {
@@ -821,7 +821,7 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 2)
                     {
-                        return model.Attacks[2].DamageType.ToString() + ": +" + (model.Attacks[2].Damage + 2 * (Size - 3));
+                        return model.Attacks[2].Weapon.Type.ToString() + ": +" + (model.Attacks[2].Weapon.Damage + model.Attributes.SecondaryAttackDamage + 2 * (Size - 3));
                     }
                     else
                     {
@@ -842,7 +842,7 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 2)
                     {
-                        return model.Attacks[2].CM.ToString() + " CM";
+                        return (model.Attacks[2].Weapon.CM + model.Attributes.CM).ToString() + " CM";
                     }
                     else
                     {

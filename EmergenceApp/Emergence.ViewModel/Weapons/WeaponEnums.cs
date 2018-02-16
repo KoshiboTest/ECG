@@ -73,4 +73,15 @@ namespace Emergence.ViewModel
         Master,
         Exquisite
     }
+
+    [Flags]
+    public enum AmpProperty
+    {
+        Infusing = 1,
+        Battering = 2,
+        Dueling = 4,
+        Compulsive = 8,
+        Reaching = 16,
+        Destructive = 32
+    }
 }

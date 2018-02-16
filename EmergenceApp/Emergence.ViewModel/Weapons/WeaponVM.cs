@@ -1,4 +1,5 @@
 ﻿using Emergence.Model;
+using Emergence.ViewModel.Weapons;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -275,6 +276,193 @@ namespace Emergence.ViewModel
         public NaturalWeaponVM(NaturalWeaponClass c)
         {
             this.model = new NaturalWeapon(c);
+        }
+    }
+
+    public class AmpVM : INotifyPropertyChanged
+    {
+        public Amp model;
+
+        public string Name
+        {
+            get
+            {
+                return model.Name;
+            }
+            set
+            {
+                model.Name = value;
+                NotifyPropertyChanged("Name");
+            }
+        }
+        public int Accuracy
+        {
+            get
+            {
+                return model.Accuracy;
+            }
+            set
+            {
+                model.Accuracy = value;
+                NotifyPropertyChanged("Accuracy");
+            }
+        }
+        public int Damage
+        {
+            get
+            {
+                return model.Damage;
+            }
+            set
+            {
+                model.Damage = value;
+                NotifyPropertyChanged("Damage");
+            }
+        }
+        public int Charges
+        {
+            get
+            {
+                return model.Charges;
+            }
+            set
+            {
+                model.Charges = value;
+                NotifyPropertyChanged("Charges");
+            }
+        }
+        public int Size
+        {
+            get
+            {
+                return model.Size;
+            }
+            set
+            {
+                model.Size = value;
+                NotifyPropertyChanged("Size");
+            }
+        }
+        public DamageType Type
+        {
+            get
+            {
+                return model.Type;
+            }
+            set
+            {
+                model.Type = value;
+                NotifyPropertyChanged("Type");
+            }
+        }
+        public int Cost
+        {
+            get
+            {
+                return model.Cost;
+            }
+            set
+            {
+                model.Cost = value;
+                NotifyPropertyChanged("Cost");
+            }
+        }
+        public WeaponSkill Skill
+        {
+            get
+            {
+                return model.Skill;
+            }
+            set
+            {
+                model.Skill = value;
+                NotifyPropertyChanged("Skill");
+            }
+        }
+        public AmpProperty Properties
+        {
+            get
+            {
+                return (ViewModel.AmpProperty)model.Properties;
+            }
+            set
+            {
+                model.Properties = (Model.AmpProperty)value;
+                NotifyPropertyChanged("Properties");
+            }
+        }
+        public WeaponQuality Quality
+        {
+            get
+            {
+                return (ViewModel.WeaponQuality)model.Quality;
+            }
+            set
+            {
+                model.Quality = (Model.WeaponQuality)value;
+                NotifyPropertyChanged("Quality");
+            }
+        }
+        public ObservableCollection<AmpModVM> Mods
+        {
+            get
+            {
+                ObservableCollection<AmpModVM> modelMods = new ObservableCollection<AmpModVM>();
+                foreach (var mod in model.Mods)
+                {
+                    modelMods.Add(new AmpModVM(mod));
+                }
+                modelMods.CollectionChanged += Mods_CollectionChanged;
+                return modelMods;
+            }
+            set
+            {
+                foreach (var mod in value)
+                {
+                    model.Mods.Clear();
+                    model.Mods.Add(mod.model); // keep model's mod collection in sync
+                }
+                NotifyPropertyChanged("Mods");
+            }
+        }
+
+        private void Mods_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+                    foreach (AmpModVM addItem in e.NewItems)
+                        model.Mods.Add(addItem.model);
+                    break;
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+                    break;
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+                    foreach (AmpModVM removeItem in e.OldItems)
+                        model.Mods.Remove(removeItem.model);
+                    break;
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Replace:
+                    foreach (AmpModVM addItem in e.NewItems)
+                        model.Mods.Add(addItem.model);
+                    foreach (AmpModVM removeItem in e.OldItems)
+                        model.Mods.Remove(removeItem.model);
+                    break;
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Reset:
+                    model.Mods.Clear();
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void NotifyPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }

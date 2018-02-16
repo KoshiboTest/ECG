@@ -13,7 +13,13 @@ using System.Xml.Serialization;
 
 namespace Emergence.ViewModel
 {
+    //TODO: Replace these text values everywhere at the end
     //TODO: Fix the fact that natual weapons are not saved to disk
+    // Th = " "
+    // th = " "
+    // ff = " "
+    // fi = " "
+    // ft = " "
 
     /// <summary>
     /// NPC spawn
@@ -76,18 +82,18 @@ namespace Emergence.ViewModel
                 grantedAttack.RadiusInFeet = r.Next(10, 51);
                 grantedAttack.Shape = (AreaShape)r.Next(0, 2);
                 grantedAttack.Name = "Natural Area Attack Ability";
-                areaAttack.GrantedWeapon = grantedAttack.Weapon;
+                areaAttack.GrantedAttack = grantedAttack;
             }
             else
             {
                 NpcRangedAreaAttack grantedAttack = new NpcRangedAreaAttack();
                 grantedAttack.Weapon = new NaturalWeapon(NaturalWeaponClass.Light);
-                grantedAttack.Weapon.Type = (DamageType)Math.Pow(2, r.Next(0, 9));
+                grantedAttack.Weapon.Type = (DamageType)Math.Pow(2, r.Next(0, 15));
                 grantedAttack.Shape = (AreaShape)r.Next(0, 2);
                 grantedAttack.RadiusInFeet = r.Next(10, 31);
                 grantedAttack.RangeType = (Range)rangeType;
                 grantedAttack.Name = "Natural Area Attack Ability";
-                areaAttack.GrantedWeapon = grantedAttack.Weapon;
+                areaAttack.GrantedAttack = grantedAttack;
             }
             areaAttack.Description = "Creature gains an Area attack that has the listed area and damage type.";
             areaAttack.StaminaCost = 5; //should be level + 2
@@ -153,10 +159,10 @@ namespace Emergence.ViewModel
             rangedAttack.Name = "Ranged Attack";
             NpcRangedAttack grantedAttack2 = new NpcRangedAttack();
             grantedAttack2.Weapon = new NaturalWeapon(NaturalWeaponClass.Ranged);
-            grantedAttack2.Weapon.Type = (DamageType)Math.Pow(2, r.Next(0, 9));
+            grantedAttack2.Weapon.Type = (DamageType)Math.Pow(2, r.Next(0, 15));
             grantedAttack2.RangeType = (Range)r.Next(0, 8);
             grantedAttack2.Name = "Natural Ranged Attack Ability";
-            rangedAttack.GrantedWeapon = grantedAttack2.Weapon;
+            rangedAttack.GrantedAttack = grantedAttack2;
             rangedAttack.Description = "Creature gains a Ranged attack that has the listed range and damage type.";
             rangedAttack.StaminaCost = 3; //should be level
             rangedAttack.Tier = 1;
@@ -1241,7 +1247,7 @@ namespace Emergence.ViewModel
             #endregion
             #region T4
             Talent brutality4a = new Talent();
-            brutality4a.Name = "Residual E ects";
+            brutality4a.Name = "Residual Effects";
             brutality4a.Type = TalentType.TriggeredAction;
             brutality4a.Action = ActionType.Reaction;
             brutality4a.DescriptionFluff = "Despite its Resistance to your blow, you manage to pull vigor from your enemy.";
@@ -1409,7 +1415,7 @@ namespace Emergence.ViewModel
             bulwark2b.Name = "Lunge";
             bulwark2b.Type = TalentType.AttackAugment;
             bulwark2b.Action = ActionType.Quick;
-            bulwark2b.DescriptionFluff = "Through quick footwork you are able to extend your area of in uence while fighting.";
+            bulwark2b.DescriptionFluff = "Through quick footwork you are able to extend your area of influence while fighting.";
             bulwark2b.Description = "For the augmented attack and for 1 round aft er, your weapon gains the Reach property. [3 Stamina]";
             bulwark2b.ClarifyingText = "An Unarmed or Untrained attack against a target armed with a Reach weapon while not wielding a Reach weapon creates an opening.  Reach = Gain +2 to attack and damage with the Reaction Attack from Openings.";
             bulwark2b.StaminaCost = 3;
@@ -1444,7 +1450,7 @@ namespace Emergence.ViewModel
             bulwark3a.Action = ActionType.Combat;
             bulwark3a.DescriptionFluff = "You slam your weapon into your opponent’s head.";
             bulwark3a.Description = "Weapon {Melee +0/+0} [6 Stamina]";
-            bulwark3a.ClarifyingText = "If the target is damaged by this attack, it gains the Weakened condition until the end of the encounter.If you make this attack with a shield, gain +2 to attack and damage and increase the Resistance MCR by 2.";
+            bulwark3a.ClarifyingText = "If the target is damaged by this attack, it gains the Weakened condition until the end of the encounter. If you make this attack with a shield, gain +2 to attack and damage and increase the Resistance MCR by 2.";
             bulwark3a.StaminaCost = 6;
             bulwark3a.UpkeepCost = null;
             bulwark3a.Tier = 3;
@@ -3454,7 +3460,7 @@ namespace Emergence.ViewModel
             sniping3c.Name = "Rapid Acquisition";
             sniping3c.Type = TalentType.AttackAugment;
             sniping3c.Action = ActionType.Quick;
-            sniping3c.DescriptionFluff = "You take a re exive shot against a target considered too close to use a scope.";
+            sniping3c.DescriptionFluff = "You take a reflexive shot against a target considered too close to use a scope.";
             sniping3c.Description = "Your next attack with a scope-equipped rifle gains a +2 to attack and damage against a target at Short or Medium range. [4 Stamina]";
             sniping3c.ClarifyingText = "";
             sniping3c.StaminaCost = 4;
@@ -4704,7 +4710,7 @@ namespace Emergence.ViewModel
             incantation3c.Type = TalentType.Benefit;
             incantation3c.Action = ActionType.None;
             incantation3c.DescriptionFluff = "You are practiced in creating permanent magical items.";
-            incantation3c.Description = "Reduce the cost of Magic Items that you craftby 10%.";
+            incantation3c.Description = "Reduce the cost of Magic Items that you craft by 10%.";
             incantation3c.ClarifyingText = "";
             incantation3c.StaminaCost = null;
             incantation3c.UpkeepCost = null;
@@ -8555,6 +8561,7 @@ namespace Emergence.ViewModel
             #endregion
         }
 
+
         public void GenerateRandomEnemy()
         {
             NPCQuickReferenceVM enemy = new NPCQuickReferenceVM();
@@ -9467,13 +9474,9 @@ namespace Emergence.ViewModel
             {
                 AddRandomTalent(enemy);
             }
-            else if (ability.GrantedWeapon != null)
+            else if (ability.GrantedAttack != null)
             {
-                //ability.GrantedWeapon.AttackOwner = enemy.model;
-                NpcAttack a = new NpcAttack();
-                a.Weapon = ability.GrantedWeapon;
-                a.Name = ability.GrantedWeapon.Name;
-                enemy.model.Attacks.Add(a);
+                enemy.model.Attacks.Add(ability.GrantedAttack);
             }
         }
 
@@ -9618,8 +9621,6 @@ namespace Emergence.ViewModel
                     NpcMeleeAttack ma = new NpcMeleeAttack();
                     ma.Name = w.Name;
                     ma.Weapon = w;
-                    ma.AttackOwner = enemy.model;
-                    ma.IsPrimary = enemy.model.Attacks.Count() == 0;
                     enemy.model.Attacks.Add(ma);
                 }
             }

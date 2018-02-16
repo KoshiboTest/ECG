@@ -67,10 +67,21 @@ namespace Emergence.Model
 
     public enum WeaponQuality
     {
-        Poor=0,
+        Poor = 0,
         Standard,
         High,
         Master,
         Exquisite
+    }
+
+    [Flags]
+    public enum AmpProperty
+    { 
+        Infusing = 1,
+        Battering = 2,
+        Dueling = 4,
+        Compulsive = 8,
+        Reaching = 16,
+        Destructive = 32
     }
 }
