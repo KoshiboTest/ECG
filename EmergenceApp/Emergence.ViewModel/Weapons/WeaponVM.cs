@@ -1,5 +1,4 @@
 ﻿using Emergence.Model;
-using Emergence.ViewModel.Weapons;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -60,6 +59,30 @@ namespace Emergence.ViewModel
             {
                 model.Size = value;
                 NotifyPropertyChanged("Size");
+            }
+        }
+        public Range Range
+        {
+            get
+            {
+                return model.Range;
+            }
+            set
+            {
+                model.Range = value;
+                NotifyPropertyChanged("Range");
+            }
+        }
+        public int? AmmoCapacity
+        {
+            get
+            {
+                return model.AmmoCapacity;
+            }
+            set
+            {
+                model.AmmoCapacity = value;
+                NotifyPropertyChanged("AmmoCapacity");
             }
         }
         public DamageType Type
@@ -229,43 +252,6 @@ namespace Emergence.ViewModel
         }
     }
 
-    public class RangedWeaponVM : WeaponVM
-    {
-        public int AmmoCapacity
-        {
-            get
-            {
-                return (model as RangedWeapon).AmmoCapacity;
-            }
-            set
-            {
-                (model as RangedWeapon).AmmoCapacity = value;
-                NotifyPropertyChanged("AmmoCapacity");
-            }
-        }
-        public Range RangeType
-        {
-            get
-            {
-                return ((RangedWeapon)model).RangeType;
-            }
-            set
-            {
-                ((RangedWeapon)model).RangeType = value;
-                NotifyPropertyChanged("RangeType");
-            }
-        }
-
-        public RangedWeaponVM(RangedWeapon model) : base(model)
-        {
-        }
-
-        public RangedWeaponVM()
-        {
-            this.model = new RangedWeapon();
-        }
-    }
-
     public class NaturalWeaponVM : WeaponVM
     {
         public NaturalWeaponVM(NaturalWeapon model)
@@ -367,18 +353,30 @@ namespace Emergence.ViewModel
                 NotifyPropertyChanged("Cost");
             }
         }
-        public WeaponSkill Skill
+        public Range Range
         {
             get
             {
-                return model.Skill;
+                return model.Range;
             }
             set
             {
-                model.Skill = value;
-                NotifyPropertyChanged("Skill");
+                model.Range = value;
+                NotifyPropertyChanged("Range");
             }
         }
+        //public WeaponSkill Skill
+        //{
+        //    get
+        //    {
+        //        return model.Skill;
+        //    }
+        //    set
+        //    {
+        //        model.Skill = value;
+        //        NotifyPropertyChanged("Skill");
+        //    }
+        //}
         public AmpProperty Properties
         {
             get
@@ -426,6 +424,38 @@ namespace Emergence.ViewModel
             }
         }
 
+        public AmpVM(Amp model)
+        {
+            this.model = model;
+            Mods.CollectionChanged += Mods_CollectionChanged;
+        }
+
+        public AmpVM()
+        {
+            this.model = new Amp();
+            Mods.CollectionChanged += Mods_CollectionChanged;
+        }
+
+        public void IncreaseQuality()
+        {
+            if ((int)model.Quality < 4)
+            {
+                model.Quality++;
+                NotifyPropertyChanged("Quality");
+                NotifyPropertyChanged("Cost");
+            }
+        }
+
+        public void DecreaseQuality()
+        {
+            if ((int)model.Quality > 0)
+            {
+                model.Quality--;
+                NotifyPropertyChanged("Quality");
+                NotifyPropertyChanged("Cost");
+            }
+        }
+
         private void Mods_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             switch (e.Action)
@@ -453,7 +483,6 @@ namespace Emergence.ViewModel
                     throw new NotImplementedException();
             }
         }
-
 
         public event PropertyChangedEventHandler PropertyChanged;
 

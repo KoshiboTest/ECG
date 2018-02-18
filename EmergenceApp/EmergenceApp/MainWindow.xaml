@@ -14,8 +14,9 @@
                 <DockPanel LastChildFill="True">
                     <TextBlock DockPanel.Dock="Top">Armory:</TextBlock>
                     <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                        <Button Click="RandomizeWeapon">Randomize</Button>
-                        <Button Click="AddWeaponToSelectedNPC" >Add to currently selected NPC</Button>
+                        <Button Click="RandomizeWeapon">Randomize Weapon</Button>
+                        <Button Click="AddWeaponToSelectedNPC" >Add weapon to currently selected NPC</Button>
+                        <Button Click="AddAmpToSelectedNPC" >Add amp to currently selected NPC</Button>
                     </StackPanel>
                     <ListView DockPanel.Dock="Left" Name="baseWeaponList" ItemsSource="{Binding Path=BaseWeapons}" Grid.IsSharedSizeScope="True">
                         <ListView.ItemTemplate>
@@ -75,69 +76,203 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <Grid DockPanel.Dock="Right" DataContext="{Binding ElementName=baseWeaponList, Path=SelectedItem}">
+                    <ListView DockPanel.Dock="Left" Name="baseAmpList" ItemsSource="{Binding Path=BaseAmps}" Grid.IsSharedSizeScope="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" SharedSizeGroup="name2"/>
+                                        <ColumnDefinition SharedSizeGroup="button2"/>
+                                        <ColumnDefinition Width="75"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center" Padding="0,0,15,0"/>
+                                    <Button Grid.Column="1" Click="Button_Click" CommandParameter="{Binding}" Margin="0,0,15,0" Width="90">
+                                        <Button.Content>
+                                            <TextBlock Text="{Binding Path=Cost, StringFormat='Buy for {0}'}"/>
+                                        </Button.Content>
+                                    </Button>
+                                    <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <TextBlock x:Name="txtNum" Text="{Binding Quality}" VerticalAlignment="Center" />
+                                        <StackPanel Orientation="Vertical">
+                                            <Button x:Name="cmdUpAmp" Content="+" Width="20" Click="cmdUpAmp_Click" />
+                                            <Button x:Name="cmdDownAmp" Content="-" Width="20" Click="cmdDownAmp_Click" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ListView DockPanel.Dock="Left" Name="ampModsList" ItemsSource="{Binding Path=AmpMods}" Grid.IsSharedSizeScope="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition SharedSizeGroup="modname2"/>
+                                        <ColumnDefinition SharedSizeGroup="modbutton2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding Path=Name}" ToolTip="{Binding Path=Effect}">
+                                        <TextBlock.Resources>
+                                            <Style TargetType="ToolTip">
+                                                <Setter Property="ContentTemplate">
+                                                    <Setter.Value>
+                                                        <DataTemplate>
+                                                            <StackPanel>
+                                                                <TextBlock Text="{Binding}"  MaxWidth="400" TextWrapping='Wrap' />
+                                                            </StackPanel>
+                                                        </DataTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </TextBlock.Resources>
+                                    </TextBlock>
+                                    <Button Grid.Column="1" Click="AddAmpMod" CommandParameter="{Binding ElementName=baseAmpList, Path=SelectedItem}">
+                                        <Button.Content>
+                                            <TextBlock Text="{Binding Path=Cost, StringFormat='Add for {0}'}"/>
+                                        </Button.Content>
+                                    </Button>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Grid DockPanel.Dock="Right">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="5*"/>
-                            <ColumnDefinition Width="88*"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" Text="Name"/>
-                        <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Path=Name}" Grid.ColumnSpan="2"/>
-                        <TextBlock Grid.Row="1" Text="Accuracy"/>
-                        <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Path=Accuracy}" Grid.ColumnSpan="2"/>
-                        <TextBlock Grid.Row="2" Text="Damage"/>
-                        <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding Path=Damage}" Grid.ColumnSpan="2"/>
-                        <TextBlock Grid.Row="3" Text="Size"/>
-                        <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding Path=Size}" Grid.ColumnSpan="2"/>
-                        <TextBlock Grid.Row="4" Text="Damage Type"/>
-                        <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding Path=Type}" Grid.ColumnSpan="2"/>
-                        <TextBlock Grid.Row="5" Text="Cost"/>
-                        <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding Path=Cost}" Grid.ColumnSpan="2"/>
-                        <TextBlock Grid.Row="6" Text="Weapon Skill"/>
-                        <TextBlock Grid.Row="6" Grid.Column="2" Text="{Binding Path=Skill}" Grid.ColumnSpan="2"/>
-                        <TextBlock Grid.Row="7" Text="Properties"/>
-                        <TextBlock Grid.Row="7" Grid.Column="2" Text="{Binding Path=Properties}" Grid.ColumnSpan="2"/>
-                        <TextBlock Grid.Row="8" Text="Quality"/>
-                        <TextBlock Grid.Row="8" Grid.Column="2" Text="{Binding Path=Quality}" Grid.ColumnSpan="2"/>
-                        <TextBlock Grid.Row="9" Text="Mods"/>
-                        <ListView Grid.Row="9" Grid.Column="2" ItemsSource="{Binding Path=Mods}" Grid.ColumnSpan="2" Grid.IsSharedSizeScope="True">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Border BorderBrush="Black" BorderThickness="1">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition SharedSizeGroup="labels"/>
-                                                <ColumnDefinition SharedSizeGroup="texts"/>
-                                                <ColumnDefinition Width="auto"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition/>
-                                                <RowDefinition/>
-                                                <RowDefinition/>
-                                            </Grid.RowDefinitions>
-                                            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Path=Name}"/>
-                                            <Button HorizontalAlignment="Right" Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" Content="Remove" Click="Button_Click_2" CommandParameter="{Binding ElementName=baseWeaponList, Path=SelectedItem}"/>
-                                            <TextBlock Grid.Row="1" Text="Cost: "/>
-                                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Cost}"/>
-                                            <TextBlock Grid.Row="2" Text="Effect: "/>
-                                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=Effect}" MaxWidth="600" TextWrapping="Wrap"/>
-                                        </Grid>
-                                    </Border>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                        <Grid Grid.Column="0" DataContext="{Binding ElementName=baseWeaponList, Path=SelectedItem}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="88*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="Name"/>
+                            <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Path=Name}"/>
+                            <TextBlock Grid.Row="1" Text="Accuracy"/>
+                            <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Path=Accuracy}"/>
+                            <TextBlock Grid.Row="2" Text="Damage"/>
+                            <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding Path=Damage}"/>
+                            <TextBlock Grid.Row="3" Text="Size"/>
+                            <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding Path=Size}"/>
+                            <TextBlock Grid.Row="4" Text="Damage Type"/>
+                            <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding Path=Type}"/>
+                            <TextBlock Grid.Row="5" Text="Range"/>
+                            <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding Path=Range}"/>
+                            <TextBlock Grid.Row="6" Text="Cost"/>
+                            <TextBlock Grid.Row="6" Grid.Column="2" Text="{Binding Path=Cost}"/>
+                            <TextBlock Grid.Row="7" Text="Weapon Skill"/>
+                            <TextBlock Grid.Row="7" Grid.Column="2" Text="{Binding Path=Skill}"/>
+                            <TextBlock Grid.Row="8" Text="Properties"/>
+                            <TextBlock Grid.Row="8" Grid.Column="2" Text="{Binding Path=Properties}"/>
+                            <TextBlock Grid.Row="9" Text="Quality"/>
+                            <TextBlock Grid.Row="9" Grid.Column="2" Text="{Binding Path=Quality}"/>
+                            <TextBlock Grid.Row="10" Text="Mods"/>
+                            <ListView Grid.Row="10" Grid.Column="2" ItemsSource="{Binding Path=Mods}" Grid.IsSharedSizeScope="True">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition SharedSizeGroup="labels"/>
+                                                    <ColumnDefinition SharedSizeGroup="texts"/>
+                                                    <ColumnDefinition Width="auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Path=Name}"/>
+                                                <Button HorizontalAlignment="Right" Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" Content="Remove" Click="RemoveWeaponMod" CommandParameter="{Binding ElementName=baseWeaponList, Path=SelectedItem}"/>
+                                                <TextBlock Grid.Row="1" Text="Cost: "/>
+                                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Cost}"/>
+                                                <TextBlock Grid.Row="2" Text="Effect: "/>
+                                                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=Effect}" MaxWidth="600" TextWrapping="Wrap"/>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
+                        <Grid Grid.Column="1" DataContext="{Binding ElementName=baseAmpList, Path=SelectedItem}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="88*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="Name"/>
+                            <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Path=Name}"/>
+                            <TextBlock Grid.Row="1" Text="Accuracy"/>
+                            <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Path=Accuracy}"/>
+                            <TextBlock Grid.Row="2" Text="Damage"/>
+                            <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding Path=Damage}"/>
+                            <TextBlock Grid.Row="3" Text="Size"/>
+                            <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding Path=Size}"/>
+                            <TextBlock Grid.Row="4" Text="Damage Type"/>
+                            <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding Path=Type}"/>
+                            <TextBlock Grid.Row="5" Text="Range"/>
+                            <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding Path=Range}"/>
+                            <TextBlock Grid.Row="6" Text="Cost"/>
+                            <TextBlock Grid.Row="6" Grid.Column="2" Text="{Binding Path=Cost}"/>
+                            <TextBlock Grid.Row="7" Text="Charges"/>
+                            <TextBlock Grid.Row="7" Grid.Column="2" Text="{Binding Path=Charges}"/>
+                            <TextBlock Grid.Row="8" Text="Properties"/>
+                            <TextBlock Grid.Row="8" Grid.Column="2" Text="{Binding Path=Properties}"/>
+                            <TextBlock Grid.Row="9" Text="Quality"/>
+                            <TextBlock Grid.Row="9" Grid.Column="2" Text="{Binding Path=Quality}"/>
+                            <TextBlock Grid.Row="10" Text="Mods"/>
+                            <ListView Grid.Row="10" Grid.Column="2" ItemsSource="{Binding Path=Mods}" Grid.IsSharedSizeScope="True">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition SharedSizeGroup="labels"/>
+                                                    <ColumnDefinition SharedSizeGroup="texts"/>
+                                                    <ColumnDefinition Width="auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Path=Name}"/>
+                                                <Button HorizontalAlignment="Right" Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" Content="Remove" Click="RemoveAmpMod" CommandParameter="{Binding ElementName=baseAmpList, Path=SelectedItem}"/>
+                                                <TextBlock Grid.Row="1" Text="Cost: "/>
+                                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Cost}"/>
+                                                <TextBlock Grid.Row="2" Text="Effect: "/>
+                                                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=Effect}" MaxWidth="600" TextWrapping="Wrap"/>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
                     </Grid>
                 </DockPanel>
             </TabItem>
@@ -240,8 +375,7 @@
                                 <Label Grid.Row="6" Grid.Column="5">Damage:</Label>
                                 <Label Grid.Row="6" Grid.Column="6">CM:</Label>
                                 <Label Grid.Row="6" Grid.Column="7">Range:</Label>
-                                <Label Grid.Row="6" Grid.Column="8">Area:</Label>
-                                <Label Grid.Row="6" Grid.Column="9">Properties:</Label>
+                                <Label Grid.Row="6" Grid.Column="8" Grid.ColumnSpan="2">Properties:</Label>
 
                                 <Label Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="2" Content="{Binding Path=PrimaryAttack}"/>
                                 <Label Grid.Row="8" Grid.Column="3" Grid.ColumnSpan="2" Content="{Binding Path=SecondaryAttack}"/>
@@ -259,13 +393,9 @@
                                 <Label Grid.Row="8" Grid.Column="7" Content="{Binding Path=SecondaryAttackRange}"/>
                                 <Label Grid.Row="9" Grid.Column="7" Content="{Binding Path=TertiaryAttackRange}"/>
 
-                                <Label Grid.Row="7" Grid.Column="8" Content="{Binding Path=PrimaryAttackArea}"/>
-                                <Label Grid.Row="8" Grid.Column="8" Content="{Binding Path=SecondaryAttackArea}"/>
-                                <Label Grid.Row="9" Grid.Column="8" Content="{Binding Path=TertiaryAttackArea}"/>
-
-                                <Label Grid.Row="7" Grid.Column="9" Content="{Binding Path=PrimaryAttackProperties}"/>
-                                <Label Grid.Row="8" Grid.Column="9" Content="{Binding Path=SecondaryAttackProperties}"/>
-                                <Label Grid.Row="9" Grid.Column="9" Content="{Binding Path=TertiaryAttackProperties}"/>
+                                <Label Grid.Row="7" Grid.Column="8" Grid.ColumnSpan="2" Content="{Binding Path=PrimaryAttackProperties}"/>
+                                <Label Grid.Row="8" Grid.Column="8" Grid.ColumnSpan="2" Content="{Binding Path=SecondaryAttackProperties}"/>
+                                <Label Grid.Row="9" Grid.Column="8" Grid.ColumnSpan="2" Content="{Binding Path=TertiaryAttackProperties}"/>
 
                                 <Label Grid.Row="0" Grid.Column="5">Defenses:</Label>
                                 <Label Grid.Row="1" Grid.Column="5">Physical:</Label>

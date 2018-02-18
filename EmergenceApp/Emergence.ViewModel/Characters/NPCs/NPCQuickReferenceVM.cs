@@ -486,7 +486,18 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 0)
                     {
-                        return model.Attacks[0].Name + ": +" + (model.Attacks[0].Weapon.Accuracy + model.Attributes.PrimaryAttack - Size + 3);
+                        if (model.Attacks[0] is NpcWeaponAttack)
+                        {
+                            return model.Attacks[0].Name + ": +" + ((model.Attacks[0] as NpcWeaponAttack).Weapon.Accuracy + model.Attributes.PrimaryAttack - Size + 3);
+                        }
+                        else if (model.Attacks[0] is NpcAmpAttack)
+                        {
+                            return model.Attacks[0].Name + ": +" + ((model.Attacks[0] as NpcAmpAttack).Amp.Accuracy + model.Attributes.PrimaryAttack - Size + 3);
+                        }
+                        else
+                        {
+                            throw new NotImplementedException();
+                        }
                     }
                     else
                     {
@@ -507,7 +518,18 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 0)
                     {
-                        return model.Attacks[0].Weapon.Type.ToString() + ": +" + (model.Attacks[0].Weapon.Damage + model.Attributes.PrimaryAttackDamage + 2 * (Size - 3));
+                        if (model.Attacks[0] is NpcWeaponAttack)
+                        {
+                            return (model.Attacks[0] as NpcWeaponAttack).Weapon.Type.ToString() + ": +" + ((model.Attacks[0] as NpcWeaponAttack).Weapon.Damage + model.Attributes.PrimaryAttackDamage + 2 * (Size - 3));
+                        }
+                        else if (model.Attacks[0] is NpcAmpAttack)
+                        {
+                            return (model.Attacks[0] as NpcAmpAttack).Amp.Type.ToString() + ": +" + ((model.Attacks[0] as NpcAmpAttack).Amp.Damage + model.Attributes.PrimaryAttackDamage + 2 * (Size - 3));
+                        }
+                        else
+                        {
+                            throw new NotImplementedException();
+                        }
                     }
                     else
                     {
@@ -528,7 +550,18 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 0)
                     {
-                        return (model.Attacks[0].Weapon.CM + model.Attributes.CM).ToString() + " CM";
+                        if (model.Attacks[0] is NpcWeaponAttack)
+                        {
+                            return ((model.Attacks[0] as NpcWeaponAttack).Weapon.CM + model.Attributes.CM).ToString() + " CM";
+                        }
+                        else if (model.Attacks[0] is NpcAmpAttack)
+                        {
+                            return ((model.Attacks[0] as NpcAmpAttack).Amp.CM + model.Attributes.CM).ToString() + " CM";
+                        }
+                        else
+                        {
+                            throw new NotImplementedException();
+                        }
                     }
                     else
                     {
@@ -549,21 +582,17 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 0)
                     {
-                        if (model.Attacks[0] is NpcMeleeAttack || model.Attacks[0] is NpcMeleeAreaAttack)
+                        if (model.Attacks[0] is NpcWeaponAttack)
                         {
-                            return "Melee";
+                            return (model.Attacks[0] as NpcWeaponAttack).Weapon.Range.ToString();
                         }
-                        else if (model.Attacks[0] is NpcRangedAttack)
+                        else if (model.Attacks[0] is NpcAmpAttack)
                         {
-                            return ((NpcRangedAttack)model.Attacks[0]).RangeType.ToString();
-                        }
-                        else if (model.Attacks[0] is NpcRangedAreaAttack)
-                        {
-                            return ((NpcRangedAreaAttack)model.Attacks[0]).RangeType.ToString();
+                            return (model.Attacks[0] as NpcAmpAttack).Amp.Range.ToString();
                         }
                         else
                         {
-                            return "None";
+                            throw new NotImplementedException();
                         }
                     }
                     else
@@ -577,42 +606,42 @@ namespace Emergence.ViewModel
                 }
             }
         }
-        public string PrimaryAttackArea
-        {
-            get
-            {
-                try
-                {
-                    if (model.Attacks.Count > 0)
-                    {
-                        if (model.Attacks[0] is NpcMeleeAttack || model.Attacks[0] is NpcRangedAttack)
-                        {
-                            return "None";
-                        }
-                        else if (model.Attacks[0] is NpcRangedAreaAttack)
-                        {
-                            return ((NpcRangedAreaAttack)model.Attacks[0]).RadiusInFeet.ToString() + " ft. " + ((NpcMeleeAreaAttack)model.Attacks[0]).Shape.ToString();
-                        }
-                        else if (model.Attacks[0] is NpcMeleeAreaAttack)
-                        {
-                            return ((NpcMeleeAreaAttack)model.Attacks[0]).RadiusInFeet.ToString() + " ft. " + ((NpcMeleeAreaAttack)model.Attacks[0]).Shape.ToString();
-                        }
-                        else
-                        {
-                            return "None";
-                        }
-                    }
-                    else
-                    {
-                        return "None";
-                    }
-                }
-                catch
-                {
-                    return "None";
-                }
-            }
-        }
+        //public string PrimaryAttackArea
+        //{
+        //    get
+        //    {
+        //        try
+        //        {
+        //            if (model.Attacks.Count > 0)
+        //            {
+        //                if (model.Attacks[0] is NpcWeaponAttack || model.Attacks[0] is NpcRangedAttack)
+        //                {
+        //                    return "None";
+        //                }
+        //                else if (model.Attacks[0] is NpcRangedAreaAttack)
+        //                {
+        //                    return ((NpcRangedAreaAttack)model.Attacks[0]).RadiusInFeet.ToString() + " ft. " + ((NpcMeleeAreaAttack)model.Attacks[0]).Shape.ToString();
+        //                }
+        //                else if (model.Attacks[0] is NpcMeleeAreaAttack)
+        //                {
+        //                    return ((NpcMeleeAreaAttack)model.Attacks[0]).RadiusInFeet.ToString() + " ft. " + ((NpcMeleeAreaAttack)model.Attacks[0]).Shape.ToString();
+        //                }
+        //                else
+        //                {
+        //                    return "None";
+        //                }
+        //            }
+        //            else
+        //            {
+        //                return "None";
+        //            }
+        //        }
+        //        catch
+        //        {
+        //            return "None";
+        //        }
+        //    }
+        //}
         public string PrimaryAttackProperties
         {
             get
@@ -621,7 +650,18 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 0)
                     {
-                        return model.Attacks[0].Weapon.Properties.ToString();
+                        if (model.Attacks[0] is NpcWeaponAttack)
+                        {
+                            return (model.Attacks[0] as NpcWeaponAttack).Weapon.Properties.ToString();
+                        }
+                        else if (model.Attacks[0] is NpcAmpAttack)
+                        {
+                            return (model.Attacks[0] as NpcAmpAttack).Amp.Properties.ToString();
+                        }
+                        else
+                        {
+                            throw new NotImplementedException();
+                        }
                     }
                     else
                     {
@@ -643,7 +683,18 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 1)
                     {
-                        return model.Attacks[1].Name + ": +" + (model.Attacks[1].Weapon.Accuracy + model.Attributes.SecondaryAttack - Size + 3);
+                        if (model.Attacks[1] is NpcWeaponAttack)
+                        {
+                            return model.Attacks[1].Name + ": +" + (((model.Attacks[1] as NpcWeaponAttack)).Weapon.Accuracy + model.Attributes.SecondaryAttack - Size + 3);
+                        }
+                        else if (model.Attacks[1] is NpcAmpAttack)
+                        {
+                            return model.Attacks[1].Name + ": +" + ((model.Attacks[1] as NpcAmpAttack).Amp.Accuracy + model.Attributes.SecondaryAttack - Size + 3);
+                        }
+                        else
+                        {
+                            throw new NotImplementedException();
+                        }
                     }
                     else
                     {
@@ -664,7 +715,18 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 1)
                     {
-                        return model.Attacks[1].Weapon.Type.ToString() + ": +" + (model.Attacks[1].Weapon.Damage + model.Attributes.SecondaryAttackDamage + 2 * (Size - 3));
+                        if (model.Attacks[1] is NpcWeaponAttack)
+                        {
+                            return (model.Attacks[1] as NpcWeaponAttack).Weapon.Type.ToString() + ": +" + ((model.Attacks[1] as NpcWeaponAttack).Weapon.Damage + model.Attributes.SecondaryAttackDamage + 2 * (Size - 3));
+                        }
+                        else if (model.Attacks[1] is NpcAmpAttack)
+                        {
+                            return (model.Attacks[1] as NpcAmpAttack).Amp.Type.ToString() + ": +" + ((model.Attacks[1] as NpcAmpAttack).Amp.Damage + model.Attributes.SecondaryAttackDamage + 2 * (Size - 3));
+                        }
+                        else
+                        {
+                            throw new NotImplementedException();
+                        }
                     }
                     else
                     {
@@ -685,7 +747,18 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 1)
                     {
-                        return (model.Attacks[1].Weapon.CM + model.Attributes.CM).ToString() + " CM";
+                        if (model.Attacks[1] is NpcWeaponAttack)
+                        {
+                            return ((model.Attacks[1] as NpcWeaponAttack).Weapon.CM + model.Attributes.CM).ToString() + " CM";
+                        }
+                        else if (model.Attacks[1] is NpcAmpAttack)
+                        {
+                            return ((model.Attacks[1] as NpcAmpAttack).Amp.CM + model.Attributes.CM).ToString() + " CM";
+                        }
+                        else
+                        {
+                            throw new NotImplementedException();
+                        }
                     }
                     else
                     {
@@ -706,21 +779,17 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 1)
                     {
-                        if (model.Attacks[1] is NpcMeleeAttack || model.Attacks[1] is NpcMeleeAreaAttack)
+                        if (model.Attacks[1] is NpcWeaponAttack)
                         {
-                            return "Melee";
+                            return (model.Attacks[1] as NpcWeaponAttack).Weapon.Range.ToString();
                         }
-                        else if (model.Attacks[1] is NpcRangedAttack)
+                        else if (model.Attacks[1] is NpcAmpAttack)
                         {
-                            return ((NpcRangedAttack)model.Attacks[1]).RangeType.ToString();
-                        }
-                        else if (model.Attacks[1] is NpcRangedAreaAttack)
-                        {
-                            return ((NpcRangedAreaAttack)model.Attacks[1]).RangeType.ToString();
+                            return (model.Attacks[1] as NpcAmpAttack).Amp.Range.ToString();
                         }
                         else
                         {
-                            return "None";
+                            throw new NotImplementedException();
                         }
                     }
                     else
@@ -734,42 +803,42 @@ namespace Emergence.ViewModel
                 }
             }
         }
-        public string SecondaryAttackArea
-        {
-            get
-            {
-                try
-                {
-                    if (model.Attacks.Count > 1)
-                    {
-                        if (model.Attacks[1] is NpcMeleeAttack || model.Attacks[1] is NpcRangedAttack)
-                        {
-                            return "None";
-                        }
-                        else if (model.Attacks[1] is NpcRangedAreaAttack)
-                        {
-                            return ((NpcRangedAreaAttack)model.Attacks[1]).RadiusInFeet.ToString() + " ft. " + ((NpcMeleeAreaAttack)model.Attacks[1]).Shape.ToString();
-                        }
-                        else if (model.Attacks[1] is NpcMeleeAreaAttack)
-                        {
-                            return ((NpcMeleeAreaAttack)model.Attacks[1]).RadiusInFeet.ToString() + " ft. " + ((NpcMeleeAreaAttack)model.Attacks[1]).Shape.ToString();
-                        }
-                        else
-                        {
-                            return "None";
-                        }
-                    }
-                    else
-                    {
-                        return "None";
-                    }
-                }
-                catch
-                {
-                    return "None";
-                }
-            }
-        }
+        //public string SecondaryAttackArea
+        //{
+        //    get
+        //    {
+        //        try
+        //        {
+        //            if (model.Attacks.Count > 1)
+        //            {
+        //                if (model.Attacks[1] is NpcWeaponAttack || model.Attacks[1] is NpcRangedAttack)
+        //                {
+        //                    return "None";
+        //                }
+        //                else if (model.Attacks[1] is NpcRangedAreaAttack)
+        //                {
+        //                    return ((NpcRangedAreaAttack)model.Attacks[1]).RadiusInFeet.ToString() + " ft. " + ((NpcMeleeAreaAttack)model.Attacks[1]).Shape.ToString();
+        //                }
+        //                else if (model.Attacks[1] is NpcMeleeAreaAttack)
+        //                {
+        //                    return ((NpcMeleeAreaAttack)model.Attacks[1]).RadiusInFeet.ToString() + " ft. " + ((NpcMeleeAreaAttack)model.Attacks[1]).Shape.ToString();
+        //                }
+        //                else
+        //                {
+        //                    return "None";
+        //                }
+        //            }
+        //            else
+        //            {
+        //                return "None";
+        //            }
+        //        }
+        //        catch
+        //        {
+        //            return "None";
+        //        }
+        //    }
+        //}
         public string SecondaryAttackProperties
         {
             get
@@ -778,7 +847,18 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 1)
                     {
-                        return model.Attacks[1].Weapon.Properties.ToString();
+                        if (model.Attacks[1] is NpcWeaponAttack)
+                        {
+                            return (model.Attacks[1] as NpcWeaponAttack).Weapon.Properties.ToString();
+                        }
+                        else if (model.Attacks[1] is NpcAmpAttack)
+                        {
+                            return (model.Attacks[1] as NpcAmpAttack).Amp.Properties.ToString();
+                        }
+                        else
+                        {
+                            throw new NotImplementedException();
+                        }
                     }
                     else
                     {
@@ -800,7 +880,18 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 2)
                     {
-                        return model.Attacks[2].Name + ": +" + (model.Attacks[2].Weapon.Accuracy + model.Attributes.SecondaryAttack - Size + 3);
+                        if (model.Attacks[2] is NpcWeaponAttack)
+                        {
+                            return model.Attacks[2].Name + ": +" + (((model.Attacks[2] as NpcWeaponAttack)).Weapon.Accuracy + model.Attributes.SecondaryAttack - Size + 3);
+                        }
+                        else if (model.Attacks[2] is NpcAmpAttack)
+                        {
+                            return model.Attacks[2].Name + ": +" + ((model.Attacks[2] as NpcAmpAttack).Amp.Accuracy + model.Attributes.SecondaryAttack - Size + 3);
+                        }
+                        else
+                        {
+                            throw new NotImplementedException();
+                        }
                     }
                     else
                     {
@@ -821,7 +912,18 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 2)
                     {
-                        return model.Attacks[2].Weapon.Type.ToString() + ": +" + (model.Attacks[2].Weapon.Damage + model.Attributes.SecondaryAttackDamage + 2 * (Size - 3));
+                        if (model.Attacks[2] is NpcWeaponAttack)
+                        {
+                            return (model.Attacks[2] as NpcWeaponAttack).Weapon.Type.ToString() + ": +" + ((model.Attacks[2] as NpcWeaponAttack).Weapon.Damage + model.Attributes.SecondaryAttackDamage + 2 * (Size - 3));
+                        }
+                        else if (model.Attacks[2] is NpcAmpAttack)
+                        {
+                            return (model.Attacks[2] as NpcAmpAttack).Amp.Type.ToString() + ": +" + ((model.Attacks[2] as NpcAmpAttack).Amp.Damage + model.Attributes.SecondaryAttackDamage + 2 * (Size - 3));
+                        }
+                        else
+                        {
+                            throw new NotImplementedException();
+                        }
                     }
                     else
                     {
@@ -842,7 +944,18 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 2)
                     {
-                        return (model.Attacks[2].Weapon.CM + model.Attributes.CM).ToString() + " CM";
+                        if (model.Attacks[2] is NpcWeaponAttack)
+                        {
+                            return ((model.Attacks[2] as NpcWeaponAttack).Weapon.CM + model.Attributes.CM).ToString() + " CM";
+                        }
+                        else if (model.Attacks[2] is NpcAmpAttack)
+                        {
+                            return ((model.Attacks[2] as NpcAmpAttack).Amp.CM + model.Attributes.CM).ToString() + " CM";
+                        }
+                        else
+                        {
+                            throw new NotImplementedException();
+                        }
                     }
                     else
                     {
@@ -863,21 +976,17 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 2)
                     {
-                        if (model.Attacks[2] is NpcMeleeAttack || model.Attacks[2] is NpcMeleeAreaAttack)
+                        if (model.Attacks[2] is NpcWeaponAttack)
                         {
-                            return "Melee";
+                            return (model.Attacks[2] as NpcWeaponAttack).Weapon.Range.ToString();
                         }
-                        else if (model.Attacks[2] is NpcRangedAttack)
+                        else if (model.Attacks[2] is NpcAmpAttack)
                         {
-                            return ((NpcRangedAttack)model.Attacks[2]).RangeType.ToString();
-                        }
-                        else if (model.Attacks[2] is NpcRangedAreaAttack)
-                        {
-                            return ((NpcRangedAreaAttack)model.Attacks[2]).RangeType.ToString();
+                            return (model.Attacks[2] as NpcAmpAttack).Amp.Range.ToString();
                         }
                         else
                         {
-                            return "None";
+                            throw new NotImplementedException();
                         }
                     }
                     else
@@ -891,42 +1000,42 @@ namespace Emergence.ViewModel
                 }
             }
         }
-        public string TertiaryAttackArea
-        {
-            get
-            {
-                try
-                {
-                    if (model.Attacks.Count > 2)
-                    {
-                        if (model.Attacks[2] is NpcMeleeAttack || model.Attacks[2] is NpcRangedAttack)
-                        {
-                            return "None";
-                        }
-                        else if (model.Attacks[2] is NpcRangedAreaAttack)
-                        {
-                            return ((NpcRangedAreaAttack)model.Attacks[2]).RadiusInFeet.ToString() + " ft. " + ((NpcMeleeAreaAttack)model.Attacks[2]).Shape.ToString();
-                        }
-                        else if (model.Attacks[2] is NpcMeleeAreaAttack)
-                        {
-                            return ((NpcMeleeAreaAttack)model.Attacks[2]).RadiusInFeet.ToString() + " ft. " + ((NpcMeleeAreaAttack)model.Attacks[2]).Shape.ToString();
-                        }
-                        else
-                        {
-                            return "None";
-                        }
-                    }
-                    else
-                    {
-                        return "None";
-                    }
-                }
-                catch
-                {
-                    return "None";
-                }
-            }
-        }
+        //public string TertiaryAttackArea
+        //{
+        //    get
+        //    {
+        //        try
+        //        {
+        //            if (model.Attacks.Count > 2)
+        //            {
+        //                if (model.Attacks[2] is NpcWeaponAttack || model.Attacks[2] is NpcRangedAttack)
+        //                {
+        //                    return "None";
+        //                }
+        //                else if (model.Attacks[2] is NpcRangedAreaAttack)
+        //                {
+        //                    return ((NpcRangedAreaAttack)model.Attacks[2]).RadiusInFeet.ToString() + " ft. " + ((NpcMeleeAreaAttack)model.Attacks[2]).Shape.ToString();
+        //                }
+        //                else if (model.Attacks[2] is NpcMeleeAreaAttack)
+        //                {
+        //                    return ((NpcMeleeAreaAttack)model.Attacks[2]).RadiusInFeet.ToString() + " ft. " + ((NpcMeleeAreaAttack)model.Attacks[2]).Shape.ToString();
+        //                }
+        //                else
+        //                {
+        //                    return "None";
+        //                }
+        //            }
+        //            else
+        //            {
+        //                return "None";
+        //            }
+        //        }
+        //        catch
+        //        {
+        //            return "None";
+        //        }
+        //    }
+        //}
         public string TertiaryAttackProperties
         {
             get
@@ -935,7 +1044,18 @@ namespace Emergence.ViewModel
                 {
                     if (model.Attacks.Count > 2)
                     {
-                        return model.Attacks[2].Weapon.Properties.ToString();
+                        if (model.Attacks[2] is NpcWeaponAttack)
+                        {
+                            return (model.Attacks[2] as NpcWeaponAttack).Weapon.Properties.ToString();
+                        }
+                        else if (model.Attacks[2] is NpcAmpAttack)
+                        {
+                            return (model.Attacks[2] as NpcAmpAttack).Amp.Properties.ToString();
+                        }
+                        else
+                        {
+                            throw new NotImplementedException();
+                        }
                     }
                     else
                     {
@@ -948,6 +1068,7 @@ namespace Emergence.ViewModel
                 }
             }
         }
+
 
         public void NotifyDefenses()
         {

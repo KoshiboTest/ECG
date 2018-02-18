@@ -83,17 +83,22 @@ namespace Emergence.Model
         Technology
     }
 
+    [Flags]
     public enum Range
     {
-        Pistol,
-        SMG,
-        Shotgun,
-        Rifle,
-        HeavyRifle,
-        Bows,
-        Thrown,
-        TwentyFeet,
-        ThirtyFootCone
+        Melee=1,
+        Pistol=2,
+        SMG=4,
+        Shotgun=8,
+        Rifle=16,
+        HeavyRifle=32,
+        Bows=64,
+        Thrown=128,
+        TwentyFeet=256,
+        ThirtyFootCone=512,
+        FiveFootRadius=1024,
+        TenFootRadius=2048,
+        FifteenFootCone=4096
     }
 
     public enum NaturalWeaponClass
@@ -124,6 +129,10 @@ namespace Emergence.Model
         public int Size
         { get; set; }
         public DamageType Type
+        { get; set; }
+        public Range Range
+        { get; set; }
+        public int? AmmoCapacity
         { get; set; }
         private int baseCost;
         public int Cost
@@ -163,14 +172,6 @@ namespace Emergence.Model
         public WeaponQuality Quality
         { get; set; }
         public List<WeaponMod> Mods
-        { get; set; }
-    }
-
-    public class RangedWeapon : Weapon
-    {
-        public int AmmoCapacity
-        { get; set; }
-        public Range RangeType
         { get; set; }
     }
 
@@ -219,7 +220,6 @@ namespace Emergence.Model
                     default:
                         throw new Exception("Natural Weapon Class doesn't have accuracy, damage and skill defined.");
                 }
-                CM = 3;
             }
         }
 
@@ -284,15 +284,16 @@ namespace Emergence.Model
                 baseCost = value;
             }
         }
-        public WeaponSkill Skill
-        { get; set; }
+        //public WeaponSkill Skill
+        //{ get; set; }
         public AmpProperty Properties
         { get; set; }
         public WeaponQuality Quality
         { get; set; }
         public List<AmpMod> Mods
         { get; set; }
-
+        public Range Range
+        { get; set; }
     }
 
 }

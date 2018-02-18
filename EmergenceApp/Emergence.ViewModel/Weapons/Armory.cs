@@ -32,7 +32,7 @@ namespace Emergence.ViewModel
         {
             get
             {
-                return BaseAmps;
+                return baseAmps;
             }
             set
             {
@@ -41,7 +41,7 @@ namespace Emergence.ViewModel
             }
         }
 
-        public ObservableCollection<WeaponModVM> weaponMods;
+        private ObservableCollection<WeaponModVM> weaponMods;
         public ObservableCollection<WeaponModVM> WeaponMods
         {
             get
@@ -52,6 +52,20 @@ namespace Emergence.ViewModel
             {
                 weaponMods = value;
                 NotifyPropertyChanged("WeaponMods");
+            }
+        }
+
+        private ObservableCollection<AmpModVM> ampMods;
+        public ObservableCollection<AmpModVM> AmpMods
+        {
+            get
+            {
+                return ampMods;
+            }
+            set
+            {
+                ampMods = value;
+                NotifyPropertyChanged("AmpMods");
             }
         }
 
@@ -69,6 +83,20 @@ namespace Emergence.ViewModel
             }
         }
 
+        private ObservableCollection<AmpVM> yourAmps;
+        public ObservableCollection<AmpVM> YourAmps
+        {
+            get
+            {
+                return yourAmps;
+            }
+            private set
+            {
+                yourAmps = value;
+                NotifyPropertyChanged("YourWeapons");
+            }
+        }
+
         public RelayCommand<WeaponVM> BuyCommand;
         
         public void Buy(object w)
@@ -76,6 +104,10 @@ namespace Emergence.ViewModel
             if (w is WeaponVM)
             {
                 yourWeapons.Add(w as WeaponVM);
+            }
+            else if (w is AmpVM)
+            {
+                yourAmps.Add(w as AmpVM);
             }
         }
 
@@ -131,27 +163,27 @@ namespace Emergence.ViewModel
             WeaponVM Flail = new WeaponVM();
             WeaponVM Polearm = new WeaponVM();
             WeaponVM StunGun = new WeaponVM();
-            RangedWeaponVM LightPistol = new RangedWeaponVM();
-            RangedWeaponVM HeavyPistol = new RangedWeaponVM();
-            RangedWeaponVM HandCannon = new RangedWeaponVM();
-            RangedWeaponVM SMG = new RangedWeaponVM();
-            RangedWeaponVM Shotgun = new RangedWeaponVM();
-            RangedWeaponVM LightRifle = new RangedWeaponVM();
-            RangedWeaponVM HeavyRifle = new RangedWeaponVM();
-            RangedWeaponVM Longbow = new RangedWeaponVM();
-            RangedWeaponVM Shortbow = new RangedWeaponVM();
-            RangedWeaponVM LightCrossbow = new RangedWeaponVM();
-            RangedWeaponVM HeavyCrossbow = new RangedWeaponVM();
-            RangedWeaponVM LightThrown = new RangedWeaponVM();
-            RangedWeaponVM HeavyThrown = new RangedWeaponVM();
+            WeaponVM LightPistol = new WeaponVM();
+            WeaponVM HeavyPistol = new WeaponVM();
+            WeaponVM HandCannon = new WeaponVM();
+            WeaponVM SMG = new WeaponVM();
+            WeaponVM Shotgun = new WeaponVM();
+            WeaponVM LightRifle = new WeaponVM();
+            WeaponVM HeavyRifle = new WeaponVM();
+            WeaponVM Longbow = new WeaponVM();
+            WeaponVM Shortbow = new WeaponVM();
+            WeaponVM LightCrossbow = new WeaponVM();
+            WeaponVM HeavyCrossbow = new WeaponVM();
+            WeaponVM LightThrown = new WeaponVM();
+            WeaponVM HeavyThrown = new WeaponVM();
             WeaponVM Buckler = new WeaponVM();
             WeaponVM HeavyShield = new WeaponVM();
             WeaponVM TowerShield = new WeaponVM();
-            RangedWeaponVM GrenadeLauncher = new RangedWeaponVM();
-            RangedWeaponVM RocketLauncher = new RangedWeaponVM();
-            RangedWeaponVM Flamethrower = new RangedWeaponVM();
-            RangedWeaponVM MissileLauncher = new RangedWeaponVM();
-            RangedWeaponVM Taser = new RangedWeaponVM();
+            WeaponVM GrenadeLauncher = new WeaponVM();
+            WeaponVM RocketLauncher = new WeaponVM();
+            WeaponVM Flamethrower = new WeaponVM();
+            WeaponVM MissileLauncher = new WeaponVM();
+            WeaponVM Taser = new WeaponVM();
 
 
             Unarmed.Accuracy = 2;
@@ -163,6 +195,7 @@ namespace Emergence.ViewModel
             Unarmed.Skill = WeaponSkill.Unarmed;
             Unarmed.Properties = WeaponProperty.Attached | WeaponProperty.NonLethal | WeaponProperty.NoMods;
             Unarmed.Name = "Unarmed";
+            Unarmed.Range = Range.Melee;
 
             Knife.Accuracy = 1;
             Knife.Damage = 1;
@@ -173,6 +206,7 @@ namespace Emergence.ViewModel
             Knife.Skill = WeaponSkill.CloseCombat;
             Knife.Properties = WeaponProperty.Agile | WeaponProperty.Penetrating | WeaponProperty.Thrown;
             Knife.Name = "Knife";
+            Knife.Range = Range.Melee;
 
             CombatGlove.Accuracy = 1;
             CombatGlove.Damage = 1;
@@ -183,6 +217,7 @@ namespace Emergence.ViewModel
             CombatGlove.Skill = WeaponSkill.Unarmed;
             CombatGlove.Properties = WeaponProperty.Attached | WeaponProperty.Unarmed;
             CombatGlove.Name = "Combat Glove";
+            CombatGlove.Range = Range.Melee;
 
             ShortSword.Accuracy = 0;
             ShortSword.Damage = 3;
@@ -193,6 +228,7 @@ namespace Emergence.ViewModel
             ShortSword.Skill = WeaponSkill.CloseCombat;
             ShortSword.Properties = WeaponProperty.Defensive | WeaponProperty.Agile | WeaponProperty.Penetrating;
             ShortSword.Name = "Short Sword";
+            ShortSword.Range = Range.Melee;
 
             LongSword.Accuracy = -1;
             LongSword.Damage = 5;
@@ -203,6 +239,7 @@ namespace Emergence.ViewModel
             LongSword.Skill = WeaponSkill.Dueling;
             LongSword.Properties = WeaponProperty.Defensive | WeaponProperty.Penetrating;
             LongSword.Name = "Long Sword";
+            LongSword.Range = Range.Melee;
 
             GreatSword.Accuracy = -2;
             GreatSword.Damage = 7;
@@ -213,6 +250,7 @@ namespace Emergence.ViewModel
             GreatSword.Skill = WeaponSkill.Heavy;
             GreatSword.Properties = WeaponProperty.Vicious1 | WeaponProperty.Defensive;
             GreatSword.Name = "Great Sword";
+            GreatSword.Range = Range.Melee;
 
             Hatchet.Accuracy = 0;
             Hatchet.Damage = 4;
@@ -223,6 +261,7 @@ namespace Emergence.ViewModel
             Hatchet.Skill = WeaponSkill.CloseCombat;
             Hatchet.Properties = WeaponProperty.CritModPlus1;
             Hatchet.Name = "Hatchet";
+            Hatchet.Range = Range.Melee;
 
             Axe.Accuracy = -1;
             Axe.Damage = 6;
@@ -233,6 +272,7 @@ namespace Emergence.ViewModel
             Axe.Skill = WeaponSkill.Dueling;
             Axe.Properties = WeaponProperty.CritModPlus1;
             Axe.Name = "Axe";
+            Axe.Range = Range.Melee;
 
             GreatAxe.Accuracy = -3;
             GreatAxe.Damage = 9;
@@ -243,6 +283,7 @@ namespace Emergence.ViewModel
             GreatAxe.Skill = WeaponSkill.Heavy;
             GreatAxe.Properties = WeaponProperty.Vicious1 | WeaponProperty.CritModPlus1;
             GreatAxe.Name = "Great Axe";
+            GreatAxe.Range = Range.Melee;
 
             Mace.Accuracy = 0;
             Mace.Damage = 4;
@@ -253,6 +294,7 @@ namespace Emergence.ViewModel
             Mace.Skill = WeaponSkill.CloseCombat;
             Mace.Properties = WeaponProperty.Thundering | WeaponProperty.Agile;
             Mace.Name = "Mace";
+            Mace.Range = Range.Melee;
 
             Hammer.Accuracy = -2;
             Hammer.Damage = 6;
@@ -263,6 +305,7 @@ namespace Emergence.ViewModel
             Hammer.Skill = WeaponSkill.Dueling;
             Hammer.Properties = WeaponProperty.Blasting | WeaponProperty.Thundering | WeaponProperty.Vicious1;
             Hammer.Name = "Hammer";
+            Hammer.Range = Range.Melee;
 
             Maul.Accuracy = -3;
             Maul.Damage = 8;
@@ -273,6 +316,7 @@ namespace Emergence.ViewModel
             Maul.Skill = WeaponSkill.Heavy;
             Maul.Properties = WeaponProperty.Blasting | WeaponProperty.Thundering | WeaponProperty.Vicious1 | WeaponProperty.CritKnockback;
             Maul.Name = "Maul";
+            Maul.Range = Range.Melee;
 
             Staff.Accuracy = 0;
             Staff.Damage = 4;
@@ -283,6 +327,7 @@ namespace Emergence.ViewModel
             Staff.Skill = WeaponSkill.Heavy;
             Staff.Properties = WeaponProperty.Hafted | WeaponProperty.Defensive | WeaponProperty.Reach | WeaponProperty.CritModLess1;
             Staff.Name = "Staff";
+            Staff.Range = Range.Melee;
 
             Spear.Accuracy = -1;
             Spear.Damage = 5;
@@ -293,6 +338,7 @@ namespace Emergence.ViewModel
             Spear.Skill = WeaponSkill.Heavy;
             Spear.Properties = WeaponProperty.Hafted | WeaponProperty.Defensive | WeaponProperty.Penetrating | WeaponProperty.Thundering | WeaponProperty.Reach;
             Spear.Name = "Spear";
+            Spear.Range = Range.Melee;
 
             Whip.Accuracy = 0;
             Whip.Damage = 4;
@@ -303,6 +349,7 @@ namespace Emergence.ViewModel
             Whip.Skill = WeaponSkill.Dueling;
             Whip.Properties = WeaponProperty.Agile | WeaponProperty.Limited4 | WeaponProperty.Confounding | WeaponProperty.Entangling | WeaponProperty.Reach | WeaponProperty.NonLethal;
             Whip.Name = "Whip";
+            Whip.Range = Range.Melee;
 
             Flail.Accuracy = -1;
             Flail.Damage = 5;
@@ -313,6 +360,7 @@ namespace Emergence.ViewModel
             Flail.Skill = WeaponSkill.Dueling;
             Flail.Properties = WeaponProperty.Confounding | WeaponProperty.Blasting | WeaponProperty.Entangling;
             Flail.Name = "Flail";
+            Flail.Range = Range.Melee;
 
             Polearm.Accuracy = -2;
             Polearm.Damage = 8;
@@ -323,6 +371,7 @@ namespace Emergence.ViewModel
             Polearm.Skill = WeaponSkill.Heavy;
             Polearm.Properties = WeaponProperty.VariableDamage | WeaponProperty.Reach;
             Polearm.Name = "Polearm";
+            Polearm.Range = Range.Melee;
 
             StunGun.Accuracy = 0;
             StunGun.Damage = 7;
@@ -333,6 +382,7 @@ namespace Emergence.ViewModel
             StunGun.Skill = WeaponSkill.CloseCombat;
             StunGun.Properties = WeaponProperty.Limited0 | WeaponProperty.CritModPlus3 | WeaponProperty.NonLethal;
             StunGun.Name = "Stun Gun";
+            StunGun.Range = Range.Melee;
 
             LightPistol.Accuracy = 0;
             LightPistol.Damage = 3;
@@ -344,7 +394,7 @@ namespace Emergence.ViewModel
             LightPistol.Skill = WeaponSkill.Shortarms;
             LightPistol.Properties = WeaponProperty.Consistent3 | WeaponProperty.SemiAuto4;
             LightPistol.Name = "Light Pistol";
-            LightPistol.RangeType = Range.Pistol;
+            LightPistol.Range = Range.Pistol;
 
             HeavyPistol.Accuracy = -1;
             HeavyPistol.Damage = 6;
@@ -356,7 +406,7 @@ namespace Emergence.ViewModel
             HeavyPistol.Skill = WeaponSkill.Shortarms;
             HeavyPistol.Properties = WeaponProperty.Consistent3 | WeaponProperty.Vicious1 | WeaponProperty.SemiAuto3;
             HeavyPistol.Name = "Heavy Pistol";
-            HeavyPistol.RangeType = Range.Pistol;
+            HeavyPistol.Range = Range.Pistol;
 
             HandCannon.Accuracy = -2;
             HandCannon.Damage = 8;
@@ -368,7 +418,7 @@ namespace Emergence.ViewModel
             HandCannon.Skill = WeaponSkill.Shortarms;
             HandCannon.Properties = WeaponProperty.Consistent4 | WeaponProperty.Vicious2 | WeaponProperty.CritModPlus1;
             HandCannon.Name = "Hand Cannon";
-            HandCannon.RangeType = Range.Pistol;
+            HandCannon.Range = Range.Pistol;
 
             SMG.Accuracy = -1;
             SMG.Damage = 5;
@@ -380,7 +430,7 @@ namespace Emergence.ViewModel
             SMG.Skill = WeaponSkill.Shortarms;
             SMG.Properties = WeaponProperty.Consistent3 | WeaponProperty.SemiAuto3 | WeaponProperty.FullAuto15;
             SMG.Name = "SMG";
-            SMG.RangeType = Range.SMG;
+            SMG.Range = Range.SMG;
 
             Shotgun.Accuracy = -2;
             Shotgun.Damage = 8;
@@ -392,7 +442,7 @@ namespace Emergence.ViewModel
             Shotgun.Skill = WeaponSkill.Longarms;
             Shotgun.Properties = WeaponProperty.Consistent4 | WeaponProperty.Vicious3 | WeaponProperty.CritModPlus1;
             Shotgun.Name = "Shotgun";
-            Shotgun.RangeType = Range.Shotgun;
+            Shotgun.Range = Range.Shotgun;
 
             LightRifle.Accuracy = -1;
             LightRifle.Damage = 6;
@@ -404,7 +454,7 @@ namespace Emergence.ViewModel
             LightRifle.Skill = WeaponSkill.Longarms;
             LightRifle.Properties = WeaponProperty.Consistent3 | WeaponProperty.SemiAuto3 | WeaponProperty.Vicious1;
             LightRifle.Name = "Light Rifle";
-            LightRifle.RangeType = Range.Rifle;
+            LightRifle.Range = Range.Rifle;
 
             HeavyRifle.Accuracy = -2;
             HeavyRifle.Damage = 9;
@@ -416,7 +466,7 @@ namespace Emergence.ViewModel
             HeavyRifle.Skill = WeaponSkill.Longarms;
             HeavyRifle.Properties = WeaponProperty.Consistent4 | WeaponProperty.Vicious2 | WeaponProperty.TwoHanded | WeaponProperty.CritModPlus1;
             HeavyRifle.Name = "Heavy Rifle";
-            HeavyRifle.RangeType = Range.HeavyRifle;
+            HeavyRifle.Range = Range.HeavyRifle;
 
             Longbow.Accuracy = -1;
             Longbow.Damage = 7;
@@ -428,7 +478,7 @@ namespace Emergence.ViewModel
             Longbow.Skill = WeaponSkill.Bows;
             Longbow.Properties = WeaponProperty.TwoHanded | WeaponProperty.ManualLoad | WeaponProperty.Hindering | WeaponProperty.Reusable;
             Longbow.Name = "Longbow";
-            Longbow.RangeType = Range.Bows;
+            Longbow.Range = Range.Bows;
 
             Shortbow.Accuracy = 0;
             Shortbow.Damage = 5;
@@ -440,7 +490,7 @@ namespace Emergence.ViewModel
             Shortbow.Skill = WeaponSkill.Bows;
             Shortbow.Properties = WeaponProperty.TwoHanded | WeaponProperty.ManualLoad | WeaponProperty.Hindering | WeaponProperty.Reusable;
             Shortbow.Name = "Shortbow";
-            Shortbow.RangeType = Range.Bows;
+            Shortbow.Range = Range.Bows;
 
             LightCrossbow.Accuracy = -1;
             LightCrossbow.Damage = 7;
@@ -452,7 +502,7 @@ namespace Emergence.ViewModel
             LightCrossbow.Skill = WeaponSkill.Bows;
             LightCrossbow.Properties = WeaponProperty.ManualLoad | WeaponProperty.Hindering | WeaponProperty.Reusable;
             LightCrossbow.Name = "Light Crossbow";
-            LightCrossbow.RangeType = Range.Bows;
+            LightCrossbow.Range = Range.Bows;
 
             HeavyCrossbow.Accuracy = -2;
             HeavyCrossbow.Damage = 9;
@@ -464,7 +514,7 @@ namespace Emergence.ViewModel
             HeavyCrossbow.Skill = WeaponSkill.Bows;
             HeavyCrossbow.Properties = WeaponProperty.ManualLoad | WeaponProperty.Hindering | WeaponProperty.Reusable;
             HeavyCrossbow.Name = "Heavy Crossbow";
-            HeavyCrossbow.RangeType = Range.Bows;
+            HeavyCrossbow.Range = Range.Bows;
 
             LightThrown.Accuracy = 1;
             LightThrown.Damage = 2;
@@ -475,7 +525,7 @@ namespace Emergence.ViewModel
             LightThrown.Skill = WeaponSkill.Thrown;
             LightThrown.Properties = WeaponProperty.QuickDraw | WeaponProperty.Agile | WeaponProperty.OneHanded;
             LightThrown.Name = "Light Thrown";
-            LightThrown.RangeType = Range.Thrown;
+            LightThrown.Range = Range.Thrown;
 
             HeavyThrown.Accuracy = -1;
             HeavyThrown.Damage = 6;
@@ -486,7 +536,7 @@ namespace Emergence.ViewModel
             HeavyThrown.Skill = WeaponSkill.Thrown;
             HeavyThrown.Properties = WeaponProperty.VariableDamage | WeaponProperty.OneHanded;
             HeavyThrown.Name = "Heavy Thrown";
-            HeavyThrown.RangeType = Range.Thrown;
+            HeavyThrown.Range = Range.Thrown;
 
             Buckler.Accuracy = 0;
             Buckler.Damage = 0;
@@ -497,6 +547,7 @@ namespace Emergence.ViewModel
             Buckler.Skill = WeaponSkill.CloseCombat;
             Buckler.Properties = WeaponProperty.Attached | WeaponProperty.ShieldingL2;
             Buckler.Name = "Buckler";
+            Buckler.Range = Range.Melee;
 
             HeavyShield.Accuracy = -1;
             HeavyShield.Damage = 1;
@@ -507,6 +558,7 @@ namespace Emergence.ViewModel
             HeavyShield.Skill = WeaponSkill.Dueling;
             HeavyShield.Properties = WeaponProperty.Strapped | WeaponProperty.ShieldingL4;
             HeavyShield.Name = "Heavy Shield";
+            HeavyShield.Range = Range.Melee;
 
             TowerShield.Accuracy = -2;
             TowerShield.Damage = 2;
@@ -517,6 +569,7 @@ namespace Emergence.ViewModel
             TowerShield.Skill = WeaponSkill.Heavy;
             TowerShield.Properties = WeaponProperty.Strapped | WeaponProperty.ShieldingH4;
             TowerShield.Name = "Tower Shield";
+            TowerShield.Range = Range.Melee;
 
             GrenadeLauncher.Accuracy = -1;
             GrenadeLauncher.Damage = 0;
@@ -528,7 +581,7 @@ namespace Emergence.ViewModel
             GrenadeLauncher.Skill = WeaponSkill.Launcher;
             GrenadeLauncher.Properties = WeaponProperty.OrdinanceFiring | WeaponProperty.RangeShotgun;
             GrenadeLauncher.Name = "Grenade Launcher";
-            GrenadeLauncher.RangeType = Range.Shotgun;
+            GrenadeLauncher.Range = Range.Shotgun;
 
             RocketLauncher.Accuracy = -2;
             RocketLauncher.Damage = 0;
@@ -540,7 +593,7 @@ namespace Emergence.ViewModel
             RocketLauncher.Skill = WeaponSkill.Launcher;
             RocketLauncher.Properties = WeaponProperty.OrdinanceFiring | WeaponProperty.RangeRifle;
             RocketLauncher.Name = "Rocket Launcher";
-            RocketLauncher.RangeType = Range.Rifle;
+            RocketLauncher.Range = Range.Rifle;
 
             Flamethrower.Accuracy = 0;
             Flamethrower.Damage = 4;
@@ -552,7 +605,7 @@ namespace Emergence.ViewModel
             Flamethrower.Skill = WeaponSkill.Launcher;
             Flamethrower.Properties = WeaponProperty.Cone | WeaponProperty.Consistent6;
             Flamethrower.Name = "Flamethrower";
-            Flamethrower.RangeType = Range.ThirtyFootCone;
+            Flamethrower.Range = Range.ThirtyFootCone;
 
             MissileLauncher.Accuracy = -3;
             MissileLauncher.Damage = 0;
@@ -564,7 +617,7 @@ namespace Emergence.ViewModel
             MissileLauncher.Skill = WeaponSkill.Launcher;
             MissileLauncher.Properties = WeaponProperty.OrdinanceFiring | WeaponProperty.RangeHeavyRifle;
             MissileLauncher.Name = "Missile Launcher";
-            MissileLauncher.RangeType = Range.HeavyRifle;
+            MissileLauncher.Range = Range.HeavyRifle;
 
             Taser.Accuracy = 1;
             Taser.Damage = 2;
@@ -576,7 +629,7 @@ namespace Emergence.ViewModel
             Taser.Skill = WeaponSkill.Launcher;
             Taser.Properties = WeaponProperty.Lethal1 | WeaponProperty.NonLethal | WeaponProperty.LowImpact | WeaponProperty.Range20;
             Taser.Name = "Taser";
-            Taser.RangeType = Range.TwentyFeet;
+            Taser.Range = Range.TwentyFeet;
 
             baseWeapons.Add(Unarmed);
             baseWeapons.Add(Knife);
@@ -627,46 +680,64 @@ namespace Emergence.ViewModel
             AmpVM staff = new AmpVM();
             AmpVM circlet = new AmpVM();
 
+            ring.Name = "Ring";
             ring.Accuracy = 2;
             ring.Damage = -2;
             ring.Charges = 3;
             ring.Size = 0;
             ring.Cost = 750;
+            ring.Range = Range.Pistol;
+            ring.Type = DamageType.Untyped;
             ring.Properties = AmpProperty.Infusing;
 
+            glove.Name = "Glove";
             glove.Accuracy = -1;
             glove.Damage = 4;
             glove.Charges = 4;
             glove.Size = 1;
             glove.Cost = 500;
+            glove.Range = Range.Melee;
+            glove.Type = DamageType.Bludgeoning;
             glove.Properties = AmpProperty.Battering;
 
+            wand.Name = "Wand";
             wand.Accuracy = 1;
             wand.Damage = 0;
             wand.Charges = 4;
             wand.Size = 2;
             wand.Cost = 300;
+            wand.Range = Range.Pistol;
+            wand.Type = DamageType.Force;
             wand.Properties = AmpProperty.Dueling;
 
+            scepter.Name = "Scepter";
             scepter.Accuracy = 0;
             scepter.Damage = 2;
             scepter.Charges = 5;
             scepter.Size = 3;
             scepter.Cost = 500;
+            scepter.Range = Range.Melee | Range.TenFootRadius;
+            scepter.Type = DamageType.Psychic;
             scepter.Properties = AmpProperty.Destructive;
 
+            staff.Name = "Staff";
             staff.Accuracy = -2;
             staff.Damage = 6;
             staff.Charges = 5;
             staff.Size = 4;
             staff.Cost = 750;
+            staff.Range = Range.SMG | Range.FiveFootRadius;
+            staff.Type = DamageType.Force;
             staff.Properties = AmpProperty.Reaching;
 
+            circlet.Name = "Circlet";
             circlet.Accuracy = 0;
             circlet.Damage = 2;
             circlet.Charges = 3;
             circlet.Size = 1;
             circlet.Cost = 500;
+            circlet.Range = Range.FifteenFootCone;
+            circlet.Type = DamageType.Psychic;
             circlet.Properties = AmpProperty.Compulsive;
 
             baseAmps.Add(ring);
@@ -681,6 +752,7 @@ namespace Emergence.ViewModel
         {
             weaponMods = new ObservableCollection<WeaponModVM>();
 
+            #region WeaponMods
             WeaponModVM Channeling = new WeaponModVM();
             Channeling.Name = "Channeling";
             Channeling.Cost = 750;
@@ -1036,6 +1108,163 @@ namespace Emergence.ViewModel
             weaponMods.Add(Plasma);
 
             weaponMods.OrderBy(wm => wm.Name);
+            #endregion
+
+            ampMods = new ObservableCollection<ViewModel.AmpModVM>();
+
+            #region AmpMods
+            AmpModVM cruel = new AmpModVM();
+            cruel.Name = "Cruel";
+            cruel.Cost = 650;
+            cruel.Effect = "+1 to CM for all Spells cast using this Amp.";
+            ampMods.Add(cruel);
+
+            AmpModVM destructive = new AmpModVM();
+            destructive.Name = "Destructive";
+            destructive.Cost = 750;
+            destructive.Effect = "Gain +2 damage for your next attack. [2 Stamina]";
+            ampMods.Add(destructive);
+
+            AmpModVM imbued = new AmpModVM();
+            imbued.Name = "Imbued";
+            imbued.Cost = 500;
+            imbued.Effect = " e Charges of this Amp are increased by 3.";
+            ampMods.Add(imbued);
+
+            RequiresPowerRuneAmpModVM lesserSpellpower = new RequiresPowerRuneAmpModVM();
+            lesserSpellpower.Name = "Lesser Spellpower";
+            lesserSpellpower.Cost = 1000;
+            lesserSpellpower.Effect = "Treat your Presence Attribute as 3 when determining the damage of spells cast through this Amp.Requires Power Rune.";
+            ampMods.Add(lesserSpellpower);
+
+            AmpModVM lucky = new AmpModVM();
+            lucky.Name = "Lucky";
+            lucky.Cost = 500;
+            lucky.Effect = "You can treat results of 1 and 2 as 1s for the purpose of Spirit re - rolls when making attacks with this Amp.";
+            ampMods.Add(lucky);
+
+            AmpModVM powerRune = new AmpModVM();
+            powerRune.Name = "Power Rune";
+            powerRune.Cost = 1000;
+            powerRune.Effect = "Required for certain other Mods. Activation of attack powers used with the Amp are at a -1 to Stamina cost.";
+            ampMods.Add(powerRune);
+
+            AmpModVM reaching = new AmpModVM();
+            reaching.Name = "Reaching";
+            reaching.Cost = 500;
+            reaching.Effect = " e Amp gains the Reaching property if it did not already possess it.";
+            ampMods.Add(reaching);
+
+            StaffModVM stunted = new StaffModVM();
+            stunted.Name = "Stunted";
+            stunted.Cost = 250;
+            stunted.Effect = " e Amp loses the Reaching property.Sta only.";
+            ampMods.Add(stunted);
+
+            AmpModVM wild = new AmpModVM();
+            wild.Name = "Wild";
+            wild.Cost = 500;
+            wild.Effect = "Spells cast through the Amp gain +1 Vicious.";
+            ampMods.Add(wild);
+
+            AmpModVM bonded = new AmpModVM();
+            bonded.Name = "Bonded";
+            bonded.Cost = 2500;
+            bonded.Effect = " e Amp can be called to you by a mental command as a Quick Action [2 Stamina] from up to 1,000’ away.  e Amp will travel 500’ per turn to deliver itself to your hand, automatically avoiding any obstacles between itself and you. Additionally, you cannot be disarmed of this Amp and the Amp can be Armed from its Holster for 1 less MI than its Holster indicates.";
+            ampMods.Add(bonded);
+
+            RequiresPowerRuneAmpModVM deadly = new RequiresPowerRuneAmpModVM();
+            deadly.Name = "Deadly";
+            deadly.Cost = 3500;
+            deadly.Effect = "Deadly: Increase the base damage of the Amp by 2. Requires: Power Rune.";
+            ampMods.Add(deadly);
+
+            RequiresPowerRuneAmpModVM greaterImbued = new RequiresPowerRuneAmpModVM();
+            greaterImbued.Name = "Greater Imbued";
+            greaterImbued.Cost = 5000;
+            greaterImbued.Effect = " e Charges of this Amp are increased by 7. Requires Power Rune.";
+            ampMods.Add(greaterImbued);
+
+            AmpModVM heavyPowerRune = new AmpModVM();
+            heavyPowerRune.Name = "Heavy Power Rune";
+            heavyPowerRune.Cost = 5000;
+            heavyPowerRune.Effect = "Reduce the Stamina cost of all Maneuvers or Attack Augments used through this Amp by 1.";
+            ampMods.Add(heavyPowerRune);
+
+            AmpModVM homing = new AmpModVM();
+            homing.Name = "Homing";
+            homing.Cost = 3500;
+            homing.Effect = " e Accuracy of the Amp is increased by 1.";
+            ampMods.Add(homing);
+
+            RequiresPowerRuneAmpModVM spellpower = new RequiresPowerRuneAmpModVM();
+            spellpower.Name = "Spellpower";
+            spellpower.Cost = 4000;
+            spellpower.Effect = " e caster treats his Presence Attribute as 5 when determining the damage of his spells cast through this Amp.Requires Power Rune.";
+            ampMods.Add(spellpower);
+
+            AmpModVM terrible = new AmpModVM();
+            terrible.Name = "Terrible";
+            terrible.Cost = 3500;
+            terrible.Effect = "Spells cast through this Amp become Lethal 1. Requires Power Rune.";
+            ampMods.Add(terrible);
+
+            AmpModVM transforming = new AmpModVM();
+            transforming.Name = "Transforming";
+            transforming.Cost = 4000;
+            transforming.Effect = " is Amp can be Transformed from 1 Amp to another.All Mods remain intact but fail to function if the Mod does not work on the Amp’s new form. Transforming Amps have only 1 alternate form that is selected when this Mod is installed.Transforming the Amp between its 2 forms is done as a Quick Action.";
+            ampMods.Add(transforming);
+
+            AmpModVM transmuting = new AmpModVM();
+            transmuting.Name = "Transmuting";
+            transmuting.Cost = 3000;
+            transmuting.Effect = "When this Mod is installed, 2 damage types are selected (i.e.Fire and Acid). When you make an attack that contains 1 of these damage types, that damage type can be replaced for the other type selected for the attack.";
+            ampMods.Add(transmuting);
+
+            RequiresHeavyPowerRuneAmpModVM annihilation = new RequiresHeavyPowerRuneAmpModVM();
+            annihilation.Name = "Annihilation";
+            annihilation.Cost = 15000;
+            annihilation.Effect = "Gain Vicious +1; when using Vicious on this weapon, die results of 2 can be re - rolled as if they were 1’s. Requires Heavy Power Rune.";
+            ampMods.Add(annihilation);
+
+            RequiresHeavyPowerRuneAmpModVM eternal = new RequiresHeavyPowerRuneAmpModVM();
+            eternal.Name = "Eternal";
+            eternal.Cost = 45000;
+            eternal.Effect = " is Amp does not have a Charges Attribute and does not have a limit to the number of times it can be used before recharging. All Spells and Enhancements cast through Eternal Amps have their Stamina cost reduced by 1 to activate and maintain. Requires Heavy Power Rune.";
+            ampMods.Add(eternal);
+
+            AmpModVM fortuitous = new AmpModVM();
+            fortuitous.Name = "Fortuitous";
+            fortuitous.Cost = 20000;
+            fortuitous.Effect = "You can treat any roll of 1, 2, or 3 as a result of 1 for the purpose of using Spirit re-rolls.";
+            ampMods.Add(fortuitous);
+
+            RequiresHeavyPowerRuneAmpModVM greaterSpellpower = new RequiresHeavyPowerRuneAmpModVM();
+            greaterSpellpower.Name = "Greater Spellpower";
+            greaterSpellpower.Cost = 35000;
+            greaterSpellpower.Effect = "You treat your Presence Attribute as 7 when determining the damage of your spells cast through this Amp. Requires Heavy Power Rune.";
+            ampMods.Add(greaterSpellpower);
+
+            RequiresHeavyPowerRuneAmpModVM powerswell = new RequiresHeavyPowerRuneAmpModVM();
+            powerswell.Name = "Powerswell Rune";
+            powerswell.Cost = 15000;
+            powerswell.Effect = "You can maintain a single spell that was cast through this Amp with a maintenance cost of 5 or less, without spending Stamina. Requires Heavy Power Rune.";
+            ampMods.Add(powerswell);
+
+            RequiresHeavyPowerRuneAmpModVM sacrifice = new RequiresHeavyPowerRuneAmpModVM();
+            sacrifice.Name = "Sacrifice Rune";
+            sacrifice.Cost = 30000;
+            sacrifice.Effect = "As a Quick Action, you can lose a number of HP up to your Presence Attribute in your 2nd Damage Track. In exchange, you gain triple that number in Stamina.Any Stamina in excess of your normal maximum is lost at the end of your current turn. Requires Heavy Power Rune.";
+            ampMods.Add(sacrifice);
+
+            AmpModVM spellStoring = new AmpModVM();
+            spellStoring.Name = "Spell Storing";
+            spellStoring.Cost = 20000;
+            spellStoring.Effect = "Store attack spells with a with a total Stamina cost of no more than 20 (before caster cost reductions).  e spells are placed into the weapon by casting the spell and touching the weapon. Stored spells are stored until expended or dismissed. To expend the spell, spend a Combat Action and attack as if you had cast the spell (using the caster’s original attack and damage). To dismiss the spell, spend a Quick Action.  e weapon glows a brilliant color and the space is then free to store additional spells.";
+            ampMods.Add(spellStoring);
+
+            ampMods.OrderBy(am => am.Name);
+            #endregion
         }
 
         #region INotifyPropertyChanged

@@ -63,6 +63,25 @@ namespace EmergenceApp
             }
         }
 
+        private void AddAmpMod(object sender, RoutedEventArgs e)
+        {
+            Button b = (Button)sender;
+            AmpModVM am = (AmpModVM)b.DataContext;
+            AmpVM a = b.CommandParameter as AmpVM;
+            if (a != null && am.ApplyTo(a))
+            {
+            }
+            else if (a == null)
+            {
+                MessageBox.Show("Select a weapon.");
+            }
+            else
+            {
+                MessageBox.Show(((AmpModVM)((Button)sender).DataContext).ApplyError);
+            }
+        }
+
+        //Change quality
         private void cmdUp_Click(object sender, RoutedEventArgs e)
         {
             ((WeaponVM)((Button)sender).DataContext).IncreaseQuality();
@@ -73,8 +92,18 @@ namespace EmergenceApp
             ((WeaponVM)((Button)sender).DataContext).DecreaseQuality();
         }
 
+        private void cmdUpAmp_Click(object sender, RoutedEventArgs e)
+        {
+            ((AmpVM)((Button)sender).DataContext).IncreaseQuality();
+        }
+
+        private void cmdDownAmp_Click(object sender, RoutedEventArgs e)
+        {
+            ((AmpVM)((Button)sender).DataContext).DecreaseQuality();
+        }
+
         //Remove
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void RemoveWeaponMod(object sender, RoutedEventArgs e)
         {
             Button b = (Button)sender;
             WeaponModVM wm = (WeaponModVM)b.DataContext;
@@ -82,6 +111,13 @@ namespace EmergenceApp
             wm.RemoveFrom(w);
         }
 
+        private void RemoveAmpMod(object sender, RoutedEventArgs e)
+        {
+            Button b = (Button)sender;
+            AmpModVM am = (AmpModVM)b.DataContext;
+            AmpVM a = b.CommandParameter as AmpVM;
+            am.RemoveFrom(a);
+        }
         //Randomize
         private void RandomizeWeapon(object sender, RoutedEventArgs e)
         {
@@ -180,42 +216,15 @@ namespace EmergenceApp
             }
         }
 
-        #endregion
-
-        #region Barracks
-        Barracks BarracksViewModel;
-        #endregion
-
-        #region Lair
-        Lair LairViewModel;
-
-        //Randomize Enemy
-        private void CreateRandomEnemy(object sender, RoutedEventArgs e)
-        {
-            LairViewModel.GenerateRandomEnemy();
-        }
-        #endregion
-
+        //Add to NPC
         private void AddWeaponToSelectedNPC(object sender, RoutedEventArgs e)
         {
             Weapon w = ((WeaponVM)baseWeaponList.SelectedItem).model;
             NonPlayerCharacter npc = ((NPCQuickReferenceVM)EnemiesList.SelectedItem).model;
-            if (w is RangedWeapon)
-            {
-                RangedWeapon rw = w as RangedWeapon;
-                NpcRangedAttack ra = new Emergence.Model.NpcRangedAttack();
-                ra.Name = rw.Name;
-                ra.Weapon = rw;
-                ra.RangeType = rw.RangeType;
-                npc.Attacks.Add(ra);
-            }
-            else
-            {
-                NpcMeleeAttack ma = new NpcMeleeAttack();
-                ma.Name = w.Name;
-                ma.Weapon = w;
-                npc.Attacks.Add(ma);
-            }
+            NpcWeaponAttack wa = new NpcWeaponAttack();
+            wa.Name = w.Name;
+            wa.Weapon = w;
+            npc.Attacks.Add(wa);
             ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("PrimaryAttack");
             ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("PrimaryAttackDamage");
             ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("PrimaryAttackCM");
@@ -235,6 +244,51 @@ namespace EmergenceApp
             ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("TertiaryAttackArea");
             ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("TertiaryAttackProperties");
         }
+
+        private void AddAmpToSelectedNPC(object sender, RoutedEventArgs e)
+        {
+            Amp a = ((AmpVM)baseAmpList.SelectedItem).model;
+            NonPlayerCharacter npc = ((NPCQuickReferenceVM)EnemiesList.SelectedItem).model;
+            NpcAmpAttack aa = new NpcAmpAttack();
+            aa.Name = a.Name;
+            aa.Amp = a;
+            npc.Attacks.Add(aa);
+            ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("PrimaryAttack");
+            ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("PrimaryAttackDamage");
+            ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("PrimaryAttackCM");
+            ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("PrimaryAttackRange");
+            ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("PrimaryAttackArea");
+            ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("PrimaryAttackProperties");
+            ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("SecondaryAttack");
+            ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("SecondaryAttackDamage");
+            ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("SecondaryAttackCM");
+            ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("SecondaryAttackRange");
+            ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("SecondaryAttackArea");
+            ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("SecondaryAttackProperties");
+            ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("TertiaryAttack");
+            ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("TertiaryAttackDamage");
+            ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("TertiaryAttackCM");
+            ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("TertiaryAttackRange");
+            ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("TertiaryAttackArea");
+            ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("TertiaryAttackProperties");
+        }
+        #endregion
+
+        #region Barracks
+        Barracks BarracksViewModel;
+        #endregion
+
+        #region Lair
+        Lair LairViewModel;
+
+        //Randomize Enemy
+        private void CreateRandomEnemy(object sender, RoutedEventArgs e)
+        {
+            LairViewModel.GenerateRandomEnemy();
+        }
+        #endregion
+
+
 
         private void DeleteSelectedEnemy(object sender, RoutedEventArgs e)
         {

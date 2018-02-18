@@ -128,7 +128,7 @@ namespace Emergence.ViewModel
     {
         public override bool ApplyTo(WeaponVM w)
         {
-            if (w is RangedWeaponVM)
+            if ((w.Range & Range.Melee) != 0)
             {
                 ApplyError = "This mod cannot be applied to a ranged weapon.";
                 return false;
@@ -471,7 +471,7 @@ namespace Emergence.ViewModel
     {
         public override bool ApplyTo(WeaponVM w)
         {
-            if (w is RangedWeaponVM && w.Skill != WeaponSkill.Bows)
+            if ((w.Range & Range.Melee) != Range.Melee || (w.Range & Range.Bows) != Range.Bows)
             {
                 ApplyError = "This mod can only be applied to melee or bow weapons.";
                 return false;

@@ -73,28 +73,46 @@ namespace Emergence.ViewModel
             #region AreaAttack
             NpcAbility areaAttack = new Model.NpcAbility();
             areaAttack.Name = "Area Attack";
-            int rangeType = r.Next(-1, 9);
-            if (rangeType == -1)
+            NpcWeaponAttack grantedAttack = new NpcWeaponAttack();
+            grantedAttack.Weapon = new NaturalWeapon(NaturalWeaponClass.Light);
+            switch (r.Next(0, 11))
             {
-                //Make it melee
-                NpcMeleeAreaAttack grantedAttack = new NpcMeleeAreaAttack();
-                grantedAttack.Weapon = new NaturalWeapon(NaturalWeaponClass.Light);
-                grantedAttack.RadiusInFeet = r.Next(10, 51);
-                grantedAttack.Shape = (AreaShape)r.Next(0, 2);
-                grantedAttack.Name = "Natural Area Attack Ability";
-                areaAttack.GrantedAttack = grantedAttack;
+                case 0:
+                    grantedAttack.Weapon.Range = Range.Melee | Range.FifteenFootCone;
+                    break;
+                case 1:
+                    grantedAttack.Weapon.Range = Range.Melee | Range.ThirtyFootCone;                    
+                    break;
+                case 2:
+                    grantedAttack.Weapon.Range = Range.Melee | Range.FiveFootRadius;                    
+                    break;
+                case 3:
+                    grantedAttack.Weapon.Range = Range.Melee | Range.TenFootRadius;
+                    break;
+                case 4:
+                    grantedAttack.Weapon.Range = Range.Pistol | Range.TenFootRadius;
+                    break;
+                case 5:
+                    grantedAttack.Weapon.Range = Range.Rifle | Range.TenFootRadius;
+                    break;
+                case 6:
+                    grantedAttack.Weapon.Range = Range.Shotgun | Range.TenFootRadius;
+                    break;
+                case 7:
+                    grantedAttack.Weapon.Range = Range.SMG | Range.TenFootRadius;
+                    break;
+                case 8:
+                    grantedAttack.Weapon.Range = Range.HeavyRifle | Range.TenFootRadius;
+                    break;
+                case 9:
+                    grantedAttack.Weapon.Range = Range.Thrown | Range.TenFootRadius;
+                    break;
+                case 10:
+                    grantedAttack.Weapon.Range = Range.Bows | Range.TenFootRadius;
+                    break;
             }
-            else
-            {
-                NpcRangedAreaAttack grantedAttack = new NpcRangedAreaAttack();
-                grantedAttack.Weapon = new NaturalWeapon(NaturalWeaponClass.Light);
-                grantedAttack.Weapon.Type = (DamageType)Math.Pow(2, r.Next(0, 15));
-                grantedAttack.Shape = (AreaShape)r.Next(0, 2);
-                grantedAttack.RadiusInFeet = r.Next(10, 31);
-                grantedAttack.RangeType = (Range)rangeType;
-                grantedAttack.Name = "Natural Area Attack Ability";
-                areaAttack.GrantedAttack = grantedAttack;
-            }
+            grantedAttack.Name = "Natural Area Attack Ability";
+            areaAttack.GrantedAttack = grantedAttack;
             areaAttack.Description = "Creature gains an Area attack that has the listed area and damage type.";
             areaAttack.StaminaCost = 5; //should be level + 2
             areaAttack.Tier = 1;
@@ -157,10 +175,33 @@ namespace Emergence.ViewModel
             #region Ranged Attack
             NpcAbility rangedAttack = new Model.NpcAbility();
             rangedAttack.Name = "Ranged Attack";
-            NpcRangedAttack grantedAttack2 = new NpcRangedAttack();
+            NpcWeaponAttack grantedAttack2 = new NpcWeaponAttack();
             grantedAttack2.Weapon = new NaturalWeapon(NaturalWeaponClass.Ranged);
             grantedAttack2.Weapon.Type = (DamageType)Math.Pow(2, r.Next(0, 15));
-            grantedAttack2.RangeType = (Range)r.Next(0, 8);
+            switch (r.Next(0, 7))
+            {
+                case 0:
+                    grantedAttack2.Weapon.Range = Range.Pistol;
+                    break;
+                case 1:
+                    grantedAttack2.Weapon.Range = Range.Rifle;
+                    break;
+                case 2:
+                    grantedAttack2.Weapon.Range = Range.Shotgun;
+                    break;
+                case 3:
+                    grantedAttack2.Weapon.Range = Range.SMG;
+                    break;
+                case 4:
+                    grantedAttack2.Weapon.Range = Range.HeavyRifle;
+                    break;
+                case 5:
+                    grantedAttack2.Weapon.Range = Range.Thrown;
+                    break;
+                case 6:
+                    grantedAttack2.Weapon.Range = Range.Bows;
+                    break;
+            }
             grantedAttack2.Name = "Natural Ranged Attack Ability";
             rangedAttack.GrantedAttack = grantedAttack2;
             rangedAttack.Description = "Creature gains a Ranged attack that has the listed range and damage type.";
@@ -9528,7 +9569,7 @@ namespace Emergence.ViewModel
             {
                 //add the talent and one of a tier lower than max
                 enemy.model.Talents.Add(t);
-                List<Talent> validTalents = Talents.Where(tal => tal.Tree == t.Tree && tal.Tier == maxTier-1).ToList(); //May cause dups, not caring right now
+                List<Talent> validTalents = Talents.Where(tal => tal.Tree == t.Tree && tal.Tier == maxTier - 1).ToList(); //May cause dups, not caring right now
                 enemy.model.Talents.Add(validTalents[r.Next(0, validTalents.Count())]);
             }
         }
@@ -9590,11 +9631,8 @@ namespace Emergence.ViewModel
         {
             List<Type> extraTypes = new List<Type>();
             extraTypes.Add(typeof(NpcAttack));
-            extraTypes.Add(typeof(NpcMeleeAttack));
-            extraTypes.Add(typeof(NpcMeleeAreaAttack));
-            extraTypes.Add(typeof(NpcRangedAttack));
-            extraTypes.Add(typeof(NpcRangedAreaAttack));
-            extraTypes.Add(typeof(RangedWeapon));
+            extraTypes.Add(typeof(NpcWeaponAttack));
+            extraTypes.Add(typeof(NpcAmpAttack));
             extraTypes.Add(typeof(NaturalWeapon));
             extraTypes.Add(typeof(NaturalArmor));
 
@@ -9618,7 +9656,7 @@ namespace Emergence.ViewModel
             {
                 foreach (var w in CreatureQualities[index].GrantedWeapons)
                 {
-                    NpcMeleeAttack ma = new NpcMeleeAttack();
+                    NpcWeaponAttack ma = new NpcWeaponAttack();
                     ma.Name = w.Name;
                     ma.Weapon = w;
                     enemy.model.Attacks.Add(ma);

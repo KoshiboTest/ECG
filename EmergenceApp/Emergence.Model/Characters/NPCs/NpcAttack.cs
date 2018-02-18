@@ -11,28 +11,19 @@ namespace Emergence.Model
     {
         public string Name;
         public bool IsSpell = false;
+    }
+
+    public class NpcWeaponAttack : NpcAttack
+    {
         public Weapon Weapon;
     }
 
-    public class NpcMeleeAttack : NpcAttack
+    public class NpcAmpAttack : NpcAttack
     {
-    }
-
-    public class NpcRangedAttack : NpcAttack
-    {
-        public Range RangeType;
-    }
-
-    public class NpcMeleeAreaAttack : NpcAttack
-    {
-        public int RadiusInFeet;
-        public AreaShape Shape;
-    }
-
-    public class NpcRangedAreaAttack : NpcAttack
-    {
-        public Range RangeType;
-        public int RadiusInFeet;
-        public AreaShape Shape;
+        public Amp Amp;
+        public NpcAmpAttack()
+        {
+            IsSpell = true;
+        }        
     }
 }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Emergence.ViewModel.Weapons
+namespace Emergence.ViewModel
 {
     public class AmpModVM : INotifyPropertyChanged
     {
@@ -70,28 +70,28 @@ namespace Emergence.ViewModel.Weapons
             this.model = new AmpMod();
         }
 
-        public virtual bool ApplyTo(AmpVM w)
+        public virtual bool ApplyTo(AmpVM a)
         {
             ApplyError = string.Empty;
 
-            if (w.Quality == WeaponQuality.Poor)
+            if (a.Quality == WeaponQuality.Poor)
             {
                 ApplyError = "Poor quality Amps cannot have mods applied.";
                 return false;
             }
-            else if (w.Mods.Count >= (int)w.Quality)
+            else if (a.Mods.Count >= (int)a.Quality)
             {
                 ApplyError = "The Amp has the maximum number of mods.  Raise the quality prior to adding this mod.";
                 return false;
             }
-            else if (w.Mods.Contains(this))
+            else if (a.Mods.Contains(this))
             {
                 ApplyError = "The Amp already has this modification.  It cannot be added again.";
                 return false;
             }
-            w.Mods.Add(this);
-            w.NotifyPropertyChanged("Cost");
-            w.NotifyPropertyChanged("Mods");
+            a.Mods.Add(this);
+            a.NotifyPropertyChanged("Cost");
+            a.NotifyPropertyChanged("Mods");
             return true;
         }
         public virtual void RemoveFrom(AmpVM w)
@@ -111,6 +111,70 @@ namespace Emergence.ViewModel.Weapons
             if (PropertyChanged != null)
             {
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+
+    public class StaffModVM : AmpModVM
+    {
+        public override bool ApplyTo(AmpVM a)
+        {
+            if (a.Name != "Staff")
+            {
+                ApplyError = "This mod can only be applied to the staff amp.";
+                return false;
+            }
+            else
+            {
+                return base.ApplyTo(a);
+            }
+        }
+    }
+
+    public class RequiresPowerRuneAmpModVM : AmpModVM
+    {
+        public override bool ApplyTo(AmpVM a)
+        {
+            bool hasRequiredMod = false;
+            foreach (AmpModVM m in a.Mods)
+            {
+                if (m.Name == "Power Rune" || m.Name == "Heavy Power Rune")
+                {
+                    hasRequiredMod = true;
+                }
+            }
+            if (!hasRequiredMod)
+            {
+                ApplyError = "This mod requries Power Rune.";
+                return false;
+            }
+            else
+            {
+                return base.ApplyTo(a);
+            }
+        }
+    }
+
+    public class RequiresHeavyPowerRuneAmpModVM : AmpModVM
+    {
+        public override bool ApplyTo(AmpVM a)
+        {
+            bool hasRequiredMod = false;
+            foreach (AmpModVM m in a.Mods)
+            {
+                if (m.Name == "Heavy Power Rune")
+                {
+                    hasRequiredMod = true;
+                }
+            }
+            if (!hasRequiredMod)
+            {
+                ApplyError = "This mod requries Heavy Power Rune.";
+                return false;
+            }
+            else
+            {
+                return base.ApplyTo(a);
             }
         }
     }
