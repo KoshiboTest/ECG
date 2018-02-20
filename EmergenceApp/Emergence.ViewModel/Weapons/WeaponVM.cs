@@ -365,18 +365,6 @@ namespace Emergence.ViewModel
                 NotifyPropertyChanged("Range");
             }
         }
-        //public WeaponSkill Skill
-        //{
-        //    get
-        //    {
-        //        return model.Skill;
-        //    }
-        //    set
-        //    {
-        //        model.Skill = value;
-        //        NotifyPropertyChanged("Skill");
-        //    }
-        //}
         public AmpProperty Properties
         {
             get

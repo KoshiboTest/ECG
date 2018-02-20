@@ -483,7 +483,6 @@ namespace Emergence.Model
         {
             get
             {
-                //return 0;//skill + accuracy is taken care of in the NpcAttack, this is just to hold modifiers
                 switch (this.npcClass)
                 {
                     case NpcClass.Foe:

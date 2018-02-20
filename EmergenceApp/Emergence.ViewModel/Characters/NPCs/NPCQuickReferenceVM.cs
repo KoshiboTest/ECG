@@ -488,7 +488,38 @@ namespace Emergence.ViewModel
                     {
                         if (model.Attacks[0] is NpcWeaponAttack)
                         {
-                            return model.Attacks[0].Name + ": +" + ((model.Attacks[0] as NpcWeaponAttack).Weapon.Accuracy + model.Attributes.PrimaryAttack - Size + 3);
+                            var weapon = (model.Attacks[0] as NpcWeaponAttack).Weapon;
+                            int baseAttack = weapon.Accuracy + model.Attributes.PrimaryAttack - Size + 3;
+                            string rangeString = "";
+                            switch (weapon.Range)
+                            {
+                                //Add ranged breakdown
+                                case Range.Pistol:
+                                    rangeString = (baseAttack - 1).ToString() + "/" + (baseAttack - 0).ToString() + "/" + (baseAttack - 2).ToString() + "/" + (baseAttack - 4).ToString() + "/" + (baseAttack - 6).ToString();
+                                    break;
+                                case Range.SMG:
+                                    rangeString = (baseAttack - 2).ToString() + "/" + (baseAttack - 1).ToString() + "/" + (baseAttack - 0).ToString() + "/" + (baseAttack - 4).ToString() + "/" + (baseAttack - 6).ToString();
+                                    break;
+                                case Range.Shotgun:
+                                    rangeString = (baseAttack - 4).ToString() + "/" + (baseAttack - 1).ToString() + "/" + (baseAttack - 0).ToString() + "/" + (baseAttack - 2).ToString() + "/" + (baseAttack - 6).ToString();
+                                    break;
+                                case Range.Rifle:
+                                    rangeString = (baseAttack - 6).ToString() + "/" + (baseAttack - 2).ToString() + "/" + (baseAttack - 1).ToString() + "/" + (baseAttack - 0).ToString() + "/" + (baseAttack - 4).ToString();
+                                    break;
+                                case Range.HeavyRifle:
+                                    rangeString = (baseAttack - 6).ToString() + "/" + (baseAttack - 4).ToString() + "/" + (baseAttack - 2).ToString() + "/" + (baseAttack - 0).ToString() + "/" + (baseAttack - 1).ToString();
+                                    break;
+                                case Range.Bows:
+                                    rangeString = (baseAttack - 6).ToString() + "/" + (baseAttack - 0).ToString() + "/" + (baseAttack - 1).ToString() + "/" + (baseAttack - 2).ToString() + "/" + (baseAttack - 4).ToString();
+                                    break;
+                                case Range.Thrown:
+                                    rangeString = (baseAttack - 0).ToString() + "/" + (baseAttack - 1).ToString() + "/" + (baseAttack - 2).ToString() + "/" + (baseAttack - 4).ToString() + "/" + (baseAttack - 6).ToString();
+                                    break;
+                                default:
+                                    rangeString = baseAttack.ToString();
+                                    break;
+                            }
+                            return model.Attacks[0].Name + ": +" + rangeString;
                         }
                         else if (model.Attacks[0] is NpcAmpAttack)
                         {
@@ -606,42 +637,6 @@ namespace Emergence.ViewModel
                 }
             }
         }
-        //public string PrimaryAttackArea
-        //{
-        //    get
-        //    {
-        //        try
-        //        {
-        //            if (model.Attacks.Count > 0)
-        //            {
-        //                if (model.Attacks[0] is NpcWeaponAttack || model.Attacks[0] is NpcRangedAttack)
-        //                {
-        //                    return "None";
-        //                }
-        //                else if (model.Attacks[0] is NpcRangedAreaAttack)
-        //                {
-        //                    return ((NpcRangedAreaAttack)model.Attacks[0]).RadiusInFeet.ToString() + " ft. " + ((NpcMeleeAreaAttack)model.Attacks[0]).Shape.ToString();
-        //                }
-        //                else if (model.Attacks[0] is NpcMeleeAreaAttack)
-        //                {
-        //                    return ((NpcMeleeAreaAttack)model.Attacks[0]).RadiusInFeet.ToString() + " ft. " + ((NpcMeleeAreaAttack)model.Attacks[0]).Shape.ToString();
-        //                }
-        //                else
-        //                {
-        //                    return "None";
-        //                }
-        //            }
-        //            else
-        //            {
-        //                return "None";
-        //            }
-        //        }
-        //        catch
-        //        {
-        //            return "None";
-        //        }
-        //    }
-        //}
         public string PrimaryAttackProperties
         {
             get
@@ -685,7 +680,38 @@ namespace Emergence.ViewModel
                     {
                         if (model.Attacks[1] is NpcWeaponAttack)
                         {
-                            return model.Attacks[1].Name + ": +" + (((model.Attacks[1] as NpcWeaponAttack)).Weapon.Accuracy + model.Attributes.SecondaryAttack - Size + 3);
+                            var weapon = (model.Attacks[1] as NpcWeaponAttack).Weapon;                            
+                            int baseAttack = weapon.Accuracy + model.Attributes.SecondaryAttack - Size + 3;
+                            string rangeString = "";
+                            switch (weapon.Range)
+                            {
+                                //Add ranged breakdown
+                                case Range.Pistol:
+                                    rangeString = (baseAttack - 1).ToString() + "/" + (baseAttack - 0).ToString() + "/" + (baseAttack - 2).ToString() + "/" + (baseAttack - 4).ToString() + "/" + (baseAttack - 6).ToString();
+                                    break;
+                                case Range.SMG:
+                                    rangeString = (baseAttack - 2).ToString() + "/" + (baseAttack - 1).ToString() + "/" + (baseAttack - 0).ToString() + "/" + (baseAttack - 4).ToString() + "/" + (baseAttack - 6).ToString();
+                                    break;
+                                case Range.Shotgun:
+                                    rangeString = (baseAttack - 4).ToString() + "/" + (baseAttack - 1).ToString() + "/" + (baseAttack - 0).ToString() + "/" + (baseAttack - 2).ToString() + "/" + (baseAttack - 6).ToString();
+                                    break;
+                                case Range.Rifle:
+                                    rangeString = (baseAttack - 6).ToString() + "/" + (baseAttack - 2).ToString() + "/" + (baseAttack - 1).ToString() + "/" + (baseAttack - 0).ToString() + "/" + (baseAttack - 4).ToString();
+                                    break;
+                                case Range.HeavyRifle:
+                                    rangeString = (baseAttack - 6).ToString() + "/" + (baseAttack - 4).ToString() + "/" + (baseAttack - 2).ToString() + "/" + (baseAttack - 0).ToString() + "/" + (baseAttack - 1).ToString();
+                                    break;
+                                case Range.Bows:
+                                    rangeString = (baseAttack - 6).ToString() + "/" + (baseAttack - 0).ToString() + "/" + (baseAttack - 1).ToString() + "/" + (baseAttack - 2).ToString() + "/" + (baseAttack - 4).ToString();
+                                    break;
+                                case Range.Thrown:
+                                    rangeString = (baseAttack - 0).ToString() + "/" + (baseAttack - 1).ToString() + "/" + (baseAttack - 2).ToString() + "/" + (baseAttack - 4).ToString() + "/" + (baseAttack - 6).ToString();
+                                    break;
+                                default:
+                                    rangeString = baseAttack.ToString();
+                                    break;
+                            }
+                            return model.Attacks[1].Name + ": +" + rangeString;
                         }
                         else if (model.Attacks[1] is NpcAmpAttack)
                         {
@@ -803,42 +829,6 @@ namespace Emergence.ViewModel
                 }
             }
         }
-        //public string SecondaryAttackArea
-        //{
-        //    get
-        //    {
-        //        try
-        //        {
-        //            if (model.Attacks.Count > 1)
-        //            {
-        //                if (model.Attacks[1] is NpcWeaponAttack || model.Attacks[1] is NpcRangedAttack)
-        //                {
-        //                    return "None";
-        //                }
-        //                else if (model.Attacks[1] is NpcRangedAreaAttack)
-        //                {
-        //                    return ((NpcRangedAreaAttack)model.Attacks[1]).RadiusInFeet.ToString() + " ft. " + ((NpcMeleeAreaAttack)model.Attacks[1]).Shape.ToString();
-        //                }
-        //                else if (model.Attacks[1] is NpcMeleeAreaAttack)
-        //                {
-        //                    return ((NpcMeleeAreaAttack)model.Attacks[1]).RadiusInFeet.ToString() + " ft. " + ((NpcMeleeAreaAttack)model.Attacks[1]).Shape.ToString();
-        //                }
-        //                else
-        //                {
-        //                    return "None";
-        //                }
-        //            }
-        //            else
-        //            {
-        //                return "None";
-        //            }
-        //        }
-        //        catch
-        //        {
-        //            return "None";
-        //        }
-        //    }
-        //}
         public string SecondaryAttackProperties
         {
             get
@@ -882,7 +872,38 @@ namespace Emergence.ViewModel
                     {
                         if (model.Attacks[2] is NpcWeaponAttack)
                         {
-                            return model.Attacks[2].Name + ": +" + (((model.Attacks[2] as NpcWeaponAttack)).Weapon.Accuracy + model.Attributes.SecondaryAttack - Size + 3);
+                            var weapon = (model.Attacks[2] as NpcWeaponAttack).Weapon;
+                            int baseAttack = weapon.Accuracy + model.Attributes.SecondaryAttack - Size + 3;
+                            string rangeString = "";
+                            switch (weapon.Range)
+                            {
+                                //Add ranged breakdown
+                                case Range.Pistol:
+                                    rangeString = (baseAttack - 1).ToString() + "/" + (baseAttack - 0).ToString() + "/" + (baseAttack - 2).ToString() + "/" + (baseAttack - 4).ToString() + "/" + (baseAttack - 6).ToString();
+                                    break;
+                                case Range.SMG:
+                                    rangeString = (baseAttack - 2).ToString() + "/" + (baseAttack - 1).ToString() + "/" + (baseAttack - 0).ToString() + "/" + (baseAttack - 4).ToString() + "/" + (baseAttack - 6).ToString();
+                                    break;
+                                case Range.Shotgun:
+                                    rangeString = (baseAttack - 4).ToString() + "/" + (baseAttack - 1).ToString() + "/" + (baseAttack - 0).ToString() + "/" + (baseAttack - 2).ToString() + "/" + (baseAttack - 6).ToString();
+                                    break;
+                                case Range.Rifle:
+                                    rangeString = (baseAttack - 6).ToString() + "/" + (baseAttack - 2).ToString() + "/" + (baseAttack - 1).ToString() + "/" + (baseAttack - 0).ToString() + "/" + (baseAttack - 4).ToString();
+                                    break;
+                                case Range.HeavyRifle:
+                                    rangeString = (baseAttack - 6).ToString() + "/" + (baseAttack - 4).ToString() + "/" + (baseAttack - 2).ToString() + "/" + (baseAttack - 0).ToString() + "/" + (baseAttack - 1).ToString();
+                                    break;
+                                case Range.Bows:
+                                    rangeString = (baseAttack - 6).ToString() + "/" + (baseAttack - 0).ToString() + "/" + (baseAttack - 1).ToString() + "/" + (baseAttack - 2).ToString() + "/" + (baseAttack - 4).ToString();
+                                    break;
+                                case Range.Thrown:
+                                    rangeString = (baseAttack - 0).ToString() + "/" + (baseAttack - 1).ToString() + "/" + (baseAttack - 2).ToString() + "/" + (baseAttack - 4).ToString() + "/" + (baseAttack - 6).ToString();
+                                    break;
+                                default:
+                                    rangeString = baseAttack.ToString();
+                                    break;
+                            }
+                            return model.Attacks[2].Name + ": +" + rangeString;
                         }
                         else if (model.Attacks[2] is NpcAmpAttack)
                         {
@@ -1000,42 +1021,6 @@ namespace Emergence.ViewModel
                 }
             }
         }
-        //public string TertiaryAttackArea
-        //{
-        //    get
-        //    {
-        //        try
-        //        {
-        //            if (model.Attacks.Count > 2)
-        //            {
-        //                if (model.Attacks[2] is NpcWeaponAttack || model.Attacks[2] is NpcRangedAttack)
-        //                {
-        //                    return "None";
-        //                }
-        //                else if (model.Attacks[2] is NpcRangedAreaAttack)
-        //                {
-        //                    return ((NpcRangedAreaAttack)model.Attacks[2]).RadiusInFeet.ToString() + " ft. " + ((NpcMeleeAreaAttack)model.Attacks[2]).Shape.ToString();
-        //                }
-        //                else if (model.Attacks[2] is NpcMeleeAreaAttack)
-        //                {
-        //                    return ((NpcMeleeAreaAttack)model.Attacks[2]).RadiusInFeet.ToString() + " ft. " + ((NpcMeleeAreaAttack)model.Attacks[2]).Shape.ToString();
-        //                }
-        //                else
-        //                {
-        //                    return "None";
-        //                }
-        //            }
-        //            else
-        //            {
-        //                return "None";
-        //            }
-        //        }
-        //        catch
-        //        {
-        //            return "None";
-        //        }
-        //    }
-        //}
         public string TertiaryAttackProperties
         {
             get
@@ -1126,6 +1111,7 @@ namespace Emergence.ViewModel
             NotifyPropertyChanged("Resistance");
             NotifyPropertyChanged("TotalHealth");
             NotifyPropertyChanged("DamageTracks");
+            NotifyPropertyChanged("Notes");
         }
 
         public void NotifyAll()

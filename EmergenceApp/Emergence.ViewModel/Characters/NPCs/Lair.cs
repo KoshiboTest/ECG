@@ -177,7 +177,7 @@ namespace Emergence.ViewModel
             rangedAttack.Name = "Ranged Attack";
             NpcWeaponAttack grantedAttack2 = new NpcWeaponAttack();
             grantedAttack2.Weapon = new NaturalWeapon(NaturalWeaponClass.Ranged);
-            grantedAttack2.Weapon.Type = (DamageType)Math.Pow(2, r.Next(0, 15));
+            grantedAttack2.Weapon.Type = (DamageType)Math.Pow(2, r.Next(0, 14));
             switch (r.Next(0, 7))
             {
                 case 0:
@@ -9518,6 +9518,45 @@ namespace Emergence.ViewModel
             else if (ability.GrantedAttack != null)
             {
                 enemy.model.Attacks.Add(ability.GrantedAttack);
+                RandomizeGrantedAttack(ability);
+            }
+            enemy.NotifyAll();
+        }
+
+        private void RandomizeGrantedAttack(NpcAbility ability)
+        {
+            if (ability.GrantedAttack is NpcWeaponAttack && ability.Name.Contains("Range"))
+            {
+                //Swap out the granted attack
+                NpcWeaponAttack grantedAttack2 = new NpcWeaponAttack();
+                grantedAttack2.Weapon = new NaturalWeapon(NaturalWeaponClass.Ranged);
+                grantedAttack2.Weapon.Type = (DamageType)Math.Pow(2, r.Next(0, 14));
+                switch (r.Next(0, 7))
+                {
+                    case 0:
+                        grantedAttack2.Weapon.Range = Range.Pistol;
+                        break;
+                    case 1:
+                        grantedAttack2.Weapon.Range = Range.Rifle;
+                        break;
+                    case 2:
+                        grantedAttack2.Weapon.Range = Range.Shotgun;
+                        break;
+                    case 3:
+                        grantedAttack2.Weapon.Range = Range.SMG;
+                        break;
+                    case 4:
+                        grantedAttack2.Weapon.Range = Range.HeavyRifle;
+                        break;
+                    case 5:
+                        grantedAttack2.Weapon.Range = Range.Thrown;
+                        break;
+                    case 6:
+                        grantedAttack2.Weapon.Range = Range.Bows;
+                        break;
+                }
+                grantedAttack2.Name = "Natural Ranged Attack Ability";
+                ability.GrantedAttack = grantedAttack2;
             }
         }
 
@@ -9717,6 +9756,8 @@ namespace Emergence.ViewModel
                 NaturalWeaponVM weapon1 = new ViewModel.NaturalWeaponVM(GetRandomNaturalWeaponClass());
                 weapon1.Name = "Natural Weapon 1";
                 weapon1.Type = GetRandomPhysicalDamageType();
+                weapon1.Range = Range.Melee;
+                weapon1.Properties = WeaponProperty.None;
                 animalistic.GrantedWeapons.Add(weapon1.model);
 
                 NaturalArmorVM armor1 = new NaturalArmorVM(GetRandomNaturalArmorClass());

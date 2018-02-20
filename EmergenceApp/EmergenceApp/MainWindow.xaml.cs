@@ -272,6 +272,15 @@ namespace EmergenceApp
             ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("TertiaryAttackArea");
             ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyPropertyChanged("TertiaryAttackProperties");
         }
+
+        //Remove attack
+        private void RemoveAttack(object sender, RoutedEventArgs e)
+        {
+            NonPlayerCharacter npc = ((NPCQuickReferenceVM)EnemiesList.SelectedItem).model;
+            int attackNumber = (int.Parse((sender as Button).CommandParameter.ToString()));
+            npc.Attacks.RemoveAt(attackNumber - 1);
+            ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyAttacks();
+        }
         #endregion
 
         #region Barracks

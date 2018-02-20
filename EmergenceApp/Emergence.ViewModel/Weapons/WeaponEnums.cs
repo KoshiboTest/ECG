@@ -9,6 +9,7 @@ namespace Emergence.ViewModel
     [Flags]
     public enum WeaponProperty : long
     {
+        None = 0,
         Agile = 1,
         ArmorPiercing = 2,
         Attached = 4,
