@@ -121,8 +121,9 @@ namespace EmergenceApp
         //Randomize
         private void RandomizeWeapon(object sender, RoutedEventArgs e)
         {
+            Random r = new Random();
             //Select random item
-            int weaponIndex = new Random().Next(ArmoryViewModel.BaseWeapons.Count);
+            int weaponIndex = r.Next(ArmoryViewModel.BaseWeapons.Count);
             baseWeaponList.SelectedIndex = weaponIndex;
             //select quality
             ((WeaponVM)baseWeaponList.SelectedItem).Mods.Clear();
@@ -138,7 +139,7 @@ namespace EmergenceApp
             //set mods
             while (quality > 0)
             {
-                int modIndex = new Random().Next(ArmoryViewModel.WeaponMods.Count);
+                int modIndex = r.Next(ArmoryViewModel.WeaponMods.Count);
                 if (ArmoryViewModel.WeaponMods[modIndex].ApplyTo(((WeaponVM)baseWeaponList.SelectedItem)))
                 {
                     quality--;
@@ -152,7 +153,6 @@ namespace EmergenceApp
                     if (ArmoryViewModel.WeaponMods[modIndex].ApplyError.Contains("Heavy Power Rune"))
                     {
                         if (
-                        //ViewModel.WeaponMods[29].ApplyTo(((WeaponVM)baseWeaponList.SelectedItem)) 
                         ArmoryViewModel.WeaponMods.FirstOrDefault(wm => wm.Name == "Heavy Power Rune").ApplyTo(((WeaponVM)baseWeaponList.SelectedItem)) &&
                         ArmoryViewModel.WeaponMods[modIndex].ApplyTo(((WeaponVM)baseWeaponList.SelectedItem)))
                         {
@@ -167,7 +167,6 @@ namespace EmergenceApp
                     else if (ArmoryViewModel.WeaponMods[modIndex].ApplyError.Contains("Heavy Magecell-Powered"))
                     {
                         if (
-                        //ViewModel.WeaponMods[28].ApplyTo(((WeaponVM)baseWeaponList.SelectedItem)) &&
                         ArmoryViewModel.WeaponMods.FirstOrDefault(wm => wm.Name == "Heavy Magecell-Powered").ApplyTo(((WeaponVM)baseWeaponList.SelectedItem)) &&
                         ArmoryViewModel.WeaponMods[modIndex].ApplyTo(((WeaponVM)baseWeaponList.SelectedItem)))
                         {
@@ -183,7 +182,6 @@ namespace EmergenceApp
                     else if (ArmoryViewModel.WeaponMods[modIndex].ApplyError.Contains("Magecell-Powered"))
                     {
                         if (
-                        //ViewModel.WeaponMods[37].ApplyTo(((WeaponVM)baseWeaponList.SelectedItem)) &&
                         ArmoryViewModel.WeaponMods.FirstOrDefault(wm => wm.Name == "Magecell-Powered").ApplyTo(((WeaponVM)baseWeaponList.SelectedItem)) &&
                         ArmoryViewModel.WeaponMods[modIndex].ApplyTo(((WeaponVM)baseWeaponList.SelectedItem)))
                         {
@@ -199,9 +197,72 @@ namespace EmergenceApp
                     else if (ArmoryViewModel.WeaponMods[modIndex].ApplyError.Contains("Power Rune"))
                     {
                         if (
-                        //ViewModel.WeaponMods[46].ApplyTo(((WeaponVM)baseWeaponList.SelectedItem)) &&
                         ArmoryViewModel.WeaponMods.FirstOrDefault(wm => wm.Name == "Power Rune").ApplyTo(((WeaponVM)baseWeaponList.SelectedItem)) &&
                         ArmoryViewModel.WeaponMods[modIndex].ApplyTo(((WeaponVM)baseWeaponList.SelectedItem)))
+                        {
+                            quality -= 2;
+                        }
+                        else
+                        {
+
+                            quality--;
+                            MessageBox.Show("RuhRoh");
+                        }
+                    }
+                }
+            }
+        }
+
+        private void RandomizeAmp(object sender, RoutedEventArgs e)
+        {
+            Random r = new Random();
+            //Select random item
+            int AmpIndex = r.Next(ArmoryViewModel.BaseAmps.Count);
+            baseAmpList.SelectedIndex = AmpIndex;
+            //select quality
+            ((AmpVM)baseAmpList.SelectedItem).Mods.Clear();
+            int quality = new Random().Next(4);
+            while (quality < (int)((AmpVM)baseAmpList.SelectedItem).Quality)
+            {
+                ((AmpVM)baseAmpList.SelectedItem).DecreaseQuality();
+            }
+            while (quality > (int)((AmpVM)baseAmpList.SelectedItem).Quality)
+            {
+                ((AmpVM)baseAmpList.SelectedItem).IncreaseQuality();
+            }
+            //set mods
+            while (quality > 0)
+            {
+                int modIndex = r.Next(ArmoryViewModel.AmpMods.Count);
+                if (ArmoryViewModel.AmpMods[modIndex].ApplyTo(((AmpVM)baseAmpList.SelectedItem)))
+                {
+                    quality--;
+                }
+                else if (ArmoryViewModel.AmpMods[modIndex].ApplyError.Contains("no mods"))
+                {
+                    return;
+                }
+                else if (quality > 1)
+                {
+                    if (ArmoryViewModel.AmpMods[modIndex].ApplyError.Contains("Heavy Power Rune"))
+                    {
+                        if ( 
+                        ArmoryViewModel.AmpMods.FirstOrDefault(wm => wm.Name == "Heavy Power Rune").ApplyTo(((AmpVM)baseAmpList.SelectedItem)) &&
+                        ArmoryViewModel.AmpMods[modIndex].ApplyTo(((AmpVM)baseAmpList.SelectedItem)))
+                        {
+                            quality -= 2;
+                        }
+                        else
+                        {
+                            quality--;
+                            MessageBox.Show("RuhRoh");
+                        }
+                    }
+                    else if (ArmoryViewModel.AmpMods[modIndex].ApplyError.Contains("Power Rune"))
+                    {
+                        if (
+                        ArmoryViewModel.AmpMods.FirstOrDefault(wm => wm.Name == "Power Rune").ApplyTo(((AmpVM)baseAmpList.SelectedItem)) &&
+                        ArmoryViewModel.AmpMods[modIndex].ApplyTo(((AmpVM)baseAmpList.SelectedItem)))
                         {
                             quality -= 2;
                         }
