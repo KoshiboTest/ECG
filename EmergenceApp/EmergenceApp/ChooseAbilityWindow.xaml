@@ -1,0 +1,36 @@
+﻿<Window x:Class="EmergenceApp.ChooseAbilityWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EmergenceApp"
+        mc:Ignorable="d"
+        Title="ChooseAbilityWindow" Height="300" Width="300">
+    <Grid>
+        <DockPanel LastChildFill="True">
+            <ListView DockPanel.Dock="Left" Name="AbilitiesList" ItemsSource="{Binding Path=CreatureAbilities}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=Name}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Grid DataContext="{Binding Path=SelectedItem, ElementName=AbilitiesList}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0">Name:</Label>
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                <Label Grid.Row="1" Grid.Column="0">Description:</Label>
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Description}" VerticalAlignment="Center"/>
+                <Button Grid.Row="2" Grid.Column="0" Click="Done">OK</Button>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</Window>

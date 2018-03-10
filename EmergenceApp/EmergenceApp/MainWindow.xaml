@@ -288,7 +288,7 @@
                                     </ListView>
                                 </Grid>
                             </Grid>
-                        </DockPanel>                        
+                        </DockPanel>
                     </TabItem>
                 </TabControl>
             </TabItem>
@@ -298,7 +298,7 @@
                         <DockPanel LastChildFill="True">
                             <TextBlock DockPanel.Dock="Top">Lair:</TextBlock>
                             <StackPanel  DockPanel.Dock="Top" Orientation="Horizontal">
-                                <!--<Button Click="Button_Click_9">Create Empty Enemy</Button>-->
+                                <Button Click="CreateBlankEnemy">New Enemy</Button>
                                 <Button Click="CreateRandomEnemy">Create New Random Enemy</Button>
                                 <Button Click="LoadEnemies">Load</Button>
                                 <Button Click="SaveEnemies">Save</Button>
@@ -357,9 +357,29 @@
                                     </ComboBox>
                                 </StackPanel>
                                 <Label Grid.Row="4" Grid.Column="0">Type:</Label>
-                                <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=NpcType}"/>
+                                <StackPanel Grid.Row="4" Grid.Column="1">
+                                    <ComboBox SelectedValue="{Binding Path=NpcType}" SelectedValuePath="Content">
+                                        <ComboBoxItem>Flesh_aka_Unliving</ComboBoxItem>
+                                        <ComboBoxItem>Plant</ComboBoxItem>
+                                        <ComboBoxItem>Fluid</ComboBoxItem>
+                                        <ComboBoxItem>Swarm</ComboBoxItem>
+                                        <ComboBoxItem>Machine</ComboBoxItem>
+                                        <ComboBoxItem>Energy</ComboBoxItem>
+                                        <ComboBoxItem>Solid</ComboBoxItem>
+                                        <ComboBoxItem>Natural</ComboBoxItem>
+                                    </ComboBox>
+                                </StackPanel>
                                 <Label Grid.Row="5" Grid.Column="0">Archetype:</Label>
-                                <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Path=Archetype}"/>
+                                <StackPanel Grid.Row="5" Grid.Column="1" >
+                                    <ComboBox Name="ArchetypeComboBox" SelectedValue="{Binding Path=Archetype}" SelectedValuePath="Content">
+                                        <ComboBoxItem>Beast</ComboBoxItem>
+                                        <ComboBoxItem>Risen</ComboBoxItem>
+                                        <ComboBoxItem>Demonic</ComboBoxItem>
+                                        <ComboBoxItem>Flying_aka_Dragonkin</ComboBoxItem>
+                                        <ComboBoxItem>Elemental</ComboBoxItem>
+                                        <ComboBoxItem>Humanoid</ComboBoxItem>
+                                    </ComboBox>
+                                </StackPanel>
                                 <Label Grid.Row="6" Grid.Column="0">Stamina:</Label>
                                 <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Path=Stamina}"/>
                                 <Label Grid.Row="7" Grid.Column="0">Stamina Regen:</Label>
@@ -471,9 +491,9 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Row="0" Grid.Column="0">Name:</Label>
-                                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Name}" VerticalAlignment="Center"/>
                                 <Label Grid.Row="1" Grid.Column="0">Description:</Label>
-                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Description}" VerticalAlignment="Center"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Description}" VerticalAlignment="Center"/>
                                 <Label Grid.Row="2" Grid.Column="0">xVariable:</Label>
                                 <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=xVariable}" VerticalAlignment="Center"/>
                                 <Label Grid.Row="3" Grid.Column="0">Modifiers:</Label>
@@ -545,10 +565,52 @@
                     <TabItem Header="Talents">
                         <DockPanel LastChildFill="True">
                             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                                <Button>Add</Button>
+                                <Button Click="AddSelectedTalent">Add</Button>
                                 <Button Click="AddRandomTalent">Add Random</Button>
                                 <Button>Remove</Button>
                             </StackPanel>
+                            <ListView DockPanel.Dock="Left" Name="TalentsList" ItemsSource="{Binding Path=Talents}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Path=Name}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <Grid DockPanel.Dock="Top">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Name"/>
+                                    <TextBlock Text="Description"/>
+                                    <TextBlock Text="DescriptionFluff"/>
+                                    <TextBlock Text="ClarifyingText"/>
+                                    <TextBlock Text="Tree"/>
+                                    <TextBlock Text="TreeName"/>
+                                    <TextBlock Text="Tier"/>
+                                    <TextBlock Text="TierBenefitDescription"/>
+                                    <TextBlock Text="StaminaCost"/>
+                                    <TextBlock Text="UpkeepCost"/>
+                                </StackPanel>
+                                <StackPanel DataContext="{Binding ElementName=TalentsList, Path=SelectedItem}" MaxWidth="400">
+                                    <TextBlock Text="{Binding Path=Name}"/>
+                                    <TextBlock Text="{Binding Path=Description}"/>
+                                    <TextBlock Text="{Binding Path=DescriptionFluff}"/>
+                                    <TextBlock Text="{Binding Path=ClarifyingText}"/>
+                                    <TextBlock Text="{Binding Path=Tree}"/>
+                                    <TextBlock Text="{Binding Path=TreeName}"/>
+                                    <TextBlock Text="{Binding Path=Tier}"/>
+                                    <TextBlock Text="{Binding Path=TierBenefitDescription}"/>
+                                    <TextBlock Text="{Binding Path=StaminaCost}"/>
+                                    <TextBlock Text="{Binding Path=UpkeepCost}"/>
+                                </StackPanel>
+                            </Grid>
                         </DockPanel>
                     </TabItem>
                 </TabControl>

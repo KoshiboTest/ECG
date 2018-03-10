@@ -69,7 +69,7 @@ namespace Emergence.ViewModel
                     case Model.NpcClass.Grunt:
                         return "Grunt";
                     default:
-                        throw new Exception("Class name not defined.");
+                        throw new ArgumentOutOfRangeException("Class name not defined.");
                 }
             }
             set
@@ -144,8 +144,8 @@ namespace Emergence.ViewModel
                     case "Energy":
                         model.Type = Model.NpcType.Energy;
                         break;
-                    case "Flesh":
-                        model.Type = Model.NpcType.Flesh;
+                    case "Flesh_aka_Unliving":
+                        model.Type = Model.NpcType.Flesh_aka_Unliving;
                         break;
                     case "Fluid":
                         model.Type = Model.NpcType.Fluid;
@@ -179,6 +179,15 @@ namespace Emergence.ViewModel
             }
             set
             {
+                if (model.Archetype.ToString().Equals(value))
+                {
+                    return;
+                }
+                else
+                {
+                    model.Qualities.Clear();
+                    model.SpecializedSkills.Clear();
+                }
                 switch (value)
                 {
                     case "Beast":
@@ -202,6 +211,8 @@ namespace Emergence.ViewModel
                     default:
                         break;
                 }
+                Lair l = new Lair();
+                l.AddArchetypeToEnemy(this, model.Archetype);
                 NotifyPropertyChanged("Archetype");
             }
         }
@@ -220,7 +231,7 @@ namespace Emergence.ViewModel
                     case Model.NpcClass.Companion:
                         return 0;
                     default:
-                        throw new Exception("Set NpcClass before getting the Stamina value.");
+                        throw new ArgumentOutOfRangeException("Set NpcClass before getting the Stamina value.");
                 }
             }
             set
@@ -243,7 +254,7 @@ namespace Emergence.ViewModel
                     case Model.NpcClass.Companion:
                         return 0;
                     default:
-                        throw new Exception("Set NpcClass before getting the Stamina Regen value.");
+                        throw new ArgumentOutOfRangeException("Set NpcClass before getting the Stamina Regen value.");
                 }
             }
             set
@@ -310,7 +321,7 @@ namespace Emergence.ViewModel
         {
             get
             {
-                return model.Attributes.Speed + model.Armor.SpeedPenalty;
+                return model.Attributes.Speed - model.Armor.SpeedPenalty;
             }
             set
             {
@@ -340,9 +351,30 @@ namespace Emergence.ViewModel
         {
             get
             {
-                return model.Attributes.HealthPoints * DamageTracks;
+                var multiplier = 1.0;
+                var additive = 0;
+                if (Size < 3)
+                {
+                    multiplier = .25 * Size + .25;
+                }
+                if (Size == 4)
+                {
+                    additive = 5;
+                }
+                if (Size > 4)
+                {
+                    additive = (Size - 4) * 10;
+                }
+                return ConvertToInt(model.Attributes.HealthPoints * multiplier + additive) * DamageTracks;
             }
         }
+
+        private int ConvertToInt(double v)
+        {            
+            //Apply base rounding principle (round up)
+            return Convert.ToInt32(Math.Ceiling(v));            
+        }
+
         public int DamageTracks
         {
             get
@@ -358,7 +390,7 @@ namespace Emergence.ViewModel
                     case Model.NpcClass.Companion:
                         return 3;
                     default:
-                        throw new Exception("Set NpcClass before getting the Damage Tracks value.");
+                        throw new ArgumentOutOfRangeException("Set NpcClass before getting the Damage Tracks value.");
                 }
             }
         }
@@ -367,63 +399,63 @@ namespace Emergence.ViewModel
         {
             get
             {
-                return model.Attributes.MeleePhysical + model.Armor.ArmorPenalty - model.Size + 3;
+                return model.Attributes.MeleePhysical - model.Armor.ArmorPenalty - model.Size + 3;
             }
         }
         public int MeleeResolve
         {
             get
             {
-                return model.Attributes.MeleeResolve + model.Armor.ArmorPenalty - model.Size + 3;
+                return model.Attributes.MeleeResolve - model.Armor.ArmorPenalty - model.Size + 3;
             }
         }
         public int MeleeBody
         {
             get
             {
-                return model.Attributes.MeleeBody + model.Armor.ArmorPenalty - model.Size + 3;
+                return model.Attributes.MeleeBody - model.Armor.ArmorPenalty - model.Size + 3;
             }
         }
         public int AreaPhysical
         {
             get
             {
-                return model.Attributes.AreaPhysical + model.Armor.ArmorPenalty - model.Size + 3;
+                return model.Attributes.AreaPhysical - model.Armor.ArmorPenalty - model.Size + 3;
             }
         }
         public int AreaResolve
         {
             get
             {
-                return model.Attributes.AreaResolve + model.Armor.ArmorPenalty - model.Size + 3;
+                return model.Attributes.AreaResolve - model.Armor.ArmorPenalty - model.Size + 3;
             }
         }
         public int AreaBody
         {
             get
             {
-                return model.Attributes.AreaBody + model.Armor.ArmorPenalty - model.Size + 3;
+                return model.Attributes.AreaBody - model.Armor.ArmorPenalty - model.Size + 3;
             }
         }
         public int RangedPhysical
         {
             get
             {
-                return model.Attributes.RangedPhysical + model.Armor.ArmorPenalty - model.Size + 3;
+                return model.Attributes.RangedPhysical - model.Armor.ArmorPenalty - model.Size + 3;
             }
         }
         public int RangedResolve
         {
             get
             {
-                return model.Attributes.RangedResolve + model.Armor.ArmorPenalty - model.Size + 3;
+                return model.Attributes.RangedResolve - model.Armor.ArmorPenalty - model.Size + 3;
             }
         }
         public int RangedBody
         {
             get
             {
-                return model.Attributes.RangedBody + model.Armor.ArmorPenalty - model.Size + 3;
+                return model.Attributes.RangedBody - model.Armor.ArmorPenalty - model.Size + 3;
             }
         }
 
@@ -466,7 +498,30 @@ namespace Emergence.ViewModel
             {
                 //TODO: Implement Skills (other than combat/weapon)
                 //NOTE: Whenever this is implemented apply armor penalty to skills
-                return "SKILLS: " + "";
+                StringBuilder skillsString = new StringBuilder();
+                skillsString.Append("SKILLS: ");
+                foreach (var cs in model.CombatSkills)
+                {
+                    skillsString.Append(cs.Key.ToString());
+                    skillsString.Append(": ");
+                    skillsString.Append(cs.Value);
+                    skillsString.Append("  ");
+                }
+                foreach (var cs in model.SpecializedSkills)
+                {
+                    skillsString.Append(cs.Key.ToString());
+                    skillsString.Append(": ");
+                    skillsString.Append(cs.Value);
+                    skillsString.Append("  ");
+                }
+                foreach (var cs in model.KnowledgeSkills)
+                {
+                    skillsString.Append(cs.Key.ToString());
+                    skillsString.Append(": ");
+                    skillsString.Append(cs.Value);
+                    skillsString.Append("  ");
+                }
+                return skillsString.ToString();
             }
         }
 
@@ -680,7 +735,7 @@ namespace Emergence.ViewModel
                     {
                         if (model.Attacks[1] is NpcWeaponAttack)
                         {
-                            var weapon = (model.Attacks[1] as NpcWeaponAttack).Weapon;                            
+                            var weapon = (model.Attacks[1] as NpcWeaponAttack).Weapon;
                             int baseAttack = weapon.Accuracy + model.Attributes.SecondaryAttack - Size + 3;
                             string rangeString = "";
                             switch (weapon.Range)

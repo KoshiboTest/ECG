@@ -1,0 +1,41 @@
+﻿<Window x:Class="Emergence.ViewModel.ChooseDefense"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Emergence.ViewModel"
+        mc:Ignorable="d"
+        Title="ChooseDefense" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding}"/>
+        <Button Grid.Row="1" Grid.Column="0">All</Button>
+        <Button Grid.Row="1" Grid.Column="1" Click="Melee_Click">Melee</Button>
+        <Button Grid.Row="1" Grid.Column="2" Click="Area_Click">Area</Button>
+        <Button Grid.Row="1" Grid.Column="3" Click="Ranged_Click">Ranged</Button>
+        <Button Grid.Row="2" Grid.Column="0" Click="Physical_Click">Physical</Button>
+        <Button Grid.Row="2" Grid.Column="1">Melee/Physical</Button>
+        <Button Grid.Row="2" Grid.Column="2">Area/Physical</Button>
+        <Button Grid.Row="2" Grid.Column="3">Ranged/Physical</Button>
+        <Button Grid.Row="3" Grid.Column="0" Click="Resolve_Click">Resolve</Button>
+        <Button Grid.Row="3" Grid.Column="1">Melee/Resolve</Button>
+        <Button Grid.Row="3" Grid.Column="2">Area/Resolve</Button>
+        <Button Grid.Row="3" Grid.Column="3">Ranged/Resolve</Button>
+        <Button Grid.Row="4" Grid.Column="0" Click="Body_Click">Body</Button>
+        <Button Grid.Row="4" Grid.Column="1">Melee/Body</Button>
+        <Button Grid.Row="4" Grid.Column="2">Area/Body</Button>
+        <Button Grid.Row="4" Grid.Column="3">Ranged/Body</Button>
+    </Grid>
+</Window>

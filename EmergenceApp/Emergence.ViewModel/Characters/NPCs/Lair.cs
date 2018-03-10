@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Emergence.Model.Equipment;
 using System.IO;
 using System.Xml.Serialization;
+using System.Windows;
 
 namespace Emergence.ViewModel
 {
@@ -41,6 +42,862 @@ namespace Emergence.ViewModel
             }
         }
 
+        public void AddNewNPC(string name, int level, int size, NpcClass npcClass, NpcType npcType, Archetype archetype, List<int> abilityIndexes, List<int> qualityIndexes, List<int> talentIndexes)
+        {
+            NPCQuickReferenceVM enemy = new NPCQuickReferenceVM();
+            //Archetype
+            Archetype ra = archetype;
+
+            //Level
+            NpcClass rc = npcClass;
+            NpcType rt = npcType;
+            enemy.model = new NonPlayerCharacter(ra, level, rc, size, rt);
+            enemy.model.Qualities = new List<NpcQuality>();
+            AddArchetypeToEnemy(enemy, ra);
+
+            enemy.Name = name;
+
+            //Add type qualities
+            #region
+            switch (rt)
+            {
+                case NpcType.Flesh_aka_Unliving:
+                    {
+                        NpcQuality fortifiedCold = new NpcQuality();
+                        fortifiedCold.Name = "Fortified (Cold)";
+                        fortifiedCold.Description = "Gains a +4 to Durability against the listed damage type. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(fortifiedCold);
+
+                        NpcQuality susceptibleFire = new NpcQuality();
+                        susceptibleFire.Name = "Susceptible (Fire)";
+                        susceptibleFire.Description = "Suffers a +4 damage from damage of the listed type. (Can take this Quality more than once applying it to a different damage type each time.) Taking this Quality gives the creature 1 free selection of the Fortified Quality.";
+                        enemy.model.Qualities.Add(susceptibleFire);
+                        NpcQuality susceptibleAcid = new NpcQuality();
+                        susceptibleAcid.Name = "Susceptible (Acid)";
+                        susceptibleAcid.Description = "Suffers a +4 damage from damage of the listed type. (Can take this Quality more than once applying it to a different damage type each time.) Taking this Quality gives the creature 1 free selection of the Fortified Quality.";
+                        enemy.model.Qualities.Add(susceptibleAcid);
+
+                        AttributeModifier primeMeleeBody = new AttributeModifier();
+                        primeMeleeBody.AttributeName = "MeleeBody";
+                        primeMeleeBody.ModifierValue = 2;
+                        primeMeleeBody.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(primeMeleeBody);
+                        AttributeModifier primeAreaBody = new AttributeModifier();
+                        primeAreaBody.AttributeName = "AreaBody";
+                        primeAreaBody.ModifierValue = 2;
+                        primeAreaBody.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(primeAreaBody);
+                        AttributeModifier primeRangedBody = new AttributeModifier();
+                        primeRangedBody.AttributeName = "RangedBody";
+                        primeRangedBody.ModifierValue = 2;
+                        primeRangedBody.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(primeRangedBody);
+
+                        AttributeModifier lesserMeleeResolve = new AttributeModifier();
+                        lesserMeleeResolve.AttributeName = "MeleeResolve";
+                        lesserMeleeResolve.ModifierValue = -2;
+                        lesserMeleeResolve.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(lesserMeleeResolve);
+                        AttributeModifier lesserAreaResolve = new AttributeModifier();
+                        lesserAreaResolve.AttributeName = "AreaResolve";
+                        lesserAreaResolve.ModifierValue = -2;
+                        lesserAreaResolve.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(lesserAreaResolve);
+                        AttributeModifier lesserRangedResolve = new AttributeModifier();
+                        lesserRangedResolve.AttributeName = "RangedResolve";
+                        lesserRangedResolve.ModifierValue = -2;
+                        lesserRangedResolve.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(lesserRangedResolve);
+
+                        NpcQuality immune = new NpcQuality();
+                        immune.Name = "Immune (Secondary Crit Effects)";
+                        immune.Description = "The creature is immune to the listed damage type. If an attack is of multiple damage types the final damage is divided by the total number of damage types and then multiplied by the number of damage types the creature is not immune to. The result is applied as normal health loss. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(immune);
+
+                        AttributeModifier hp2 = new AttributeModifier();
+                        hp2.AttributeName = "HealthPoints";
+                        hp2.ModifierValue = 2;
+                        hp2.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(hp2);
+                        break;
+                    }
+                case NpcType.Plant:
+                    {
+                        NpcQuality fortifiedCold = new NpcQuality();
+                        fortifiedCold.Name = "Fortified (Cold)";
+                        fortifiedCold.Description = "Gains a +4 to Durability against the listed damage type. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(fortifiedCold);
+                        NpcQuality fortifiedPoison = new NpcQuality();
+                        fortifiedPoison.Name = "Fortified (Poison)";
+                        fortifiedPoison.Description = "Gains a +4 to Durability against the listed damage type. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(fortifiedPoison);
+
+                        NpcQuality susceptibleFire = new NpcQuality();
+                        susceptibleFire.Name = "Susceptible (Fire)";
+                        susceptibleFire.Description = "Suffers a +4 damage from damage of the listed type. (Can take this Quality more than once applying it to a different damage type each time.) Taking this Quality gives the creature 1 free selection of the Fortified Quality.";
+                        enemy.model.Qualities.Add(susceptibleFire);
+                        NpcQuality susceptibleSlashing = new NpcQuality();
+                        susceptibleSlashing.Name = "Susceptible (Slashing)";
+                        susceptibleSlashing.Description = "Suffers a +4 damage from damage of the listed type. (Can take this Quality more than once applying it to a different damage type each time.) Taking this Quality gives the creature 1 free selection of the Fortified Quality.";
+                        enemy.model.Qualities.Add(susceptibleSlashing);
+
+                        AttributeModifier primeMeleeResolve = new AttributeModifier();
+                        primeMeleeResolve.AttributeName = "MeleeResolve";
+                        primeMeleeResolve.ModifierValue = 2;
+                        primeMeleeResolve.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(primeMeleeResolve);
+                        AttributeModifier primeAreaResolve = new AttributeModifier();
+                        primeAreaResolve.AttributeName = "AreaResolve";
+                        primeAreaResolve.ModifierValue = 2;
+                        primeAreaResolve.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(primeAreaResolve);
+                        AttributeModifier primeRangedResolve = new AttributeModifier();
+                        primeRangedResolve.AttributeName = "RangedResolve";
+                        primeRangedResolve.ModifierValue = 2;
+                        primeRangedResolve.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(primeRangedResolve);
+
+                        AttributeModifier lesserMeleePhysical = new AttributeModifier();
+                        lesserMeleePhysical.AttributeName = "MeleePhysical";
+                        lesserMeleePhysical.ModifierValue = -2;
+                        lesserMeleePhysical.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(lesserMeleePhysical);
+                        AttributeModifier lesserMeleeResolve = new AttributeModifier();
+                        lesserMeleeResolve.AttributeName = "MeleeResolve";
+                        lesserMeleeResolve.ModifierValue = -2;
+                        lesserMeleeResolve.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(lesserMeleeResolve);
+                        AttributeModifier lesserMeleeBody = new AttributeModifier();
+                        lesserMeleeBody.AttributeName = "MeleeBody";
+                        lesserMeleeBody.ModifierValue = -2;
+                        lesserMeleeBody.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(lesserMeleeBody);
+
+                        enemy.model.Attributes.Special = "-1 CM against Ranged Attacks";
+                        break;
+                    }
+                case NpcType.Fluid:
+                    {
+                        NpcQuality fortifiedPhysical = new NpcQuality();
+                        fortifiedPhysical.Name = "Fortified (Physical)";
+                        fortifiedPhysical.Description = "Gains a +4 to Durability against the listed damage type. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(fortifiedPhysical);
+
+                        NpcQuality susceptibleCold = new NpcQuality();
+                        susceptibleCold.Name = "Susceptible (Cold)";
+                        susceptibleCold.Description = "Suffers a +4 damage from damage of the listed type. (Can take this Quality more than once applying it to a different damage type each time.) Taking this Quality gives the creature 1 free selection of the Fortified Quality.";
+                        enemy.model.Qualities.Add(susceptibleCold);
+
+                        AttributeModifier primeMeleePhysical = new AttributeModifier();
+                        primeMeleePhysical.AttributeName = "MeleePhysical";
+                        primeMeleePhysical.ModifierValue = 2;
+                        primeMeleePhysical.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(primeMeleePhysical);
+                        AttributeModifier primeAreaPhysical = new AttributeModifier();
+                        primeAreaPhysical.AttributeName = "AreaPhysical";
+                        primeAreaPhysical.ModifierValue = 2;
+                        primeAreaPhysical.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(primeAreaPhysical);
+                        AttributeModifier primeRangedPhysical = new AttributeModifier();
+                        primeRangedPhysical.AttributeName = "RangedPhysical";
+                        primeRangedPhysical.ModifierValue = 2;
+                        primeRangedPhysical.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(primeRangedPhysical);
+
+                        AttributeModifier lesserAreaPhysical = new AttributeModifier();
+                        lesserAreaPhysical.AttributeName = "AreaPhysical";
+                        lesserAreaPhysical.ModifierValue = -2;
+                        lesserAreaPhysical.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(lesserAreaPhysical);
+                        AttributeModifier lesserAreaResolve = new AttributeModifier();
+                        lesserAreaResolve.AttributeName = "AreaResolve";
+                        lesserAreaResolve.ModifierValue = -2;
+                        lesserAreaResolve.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(lesserAreaResolve);
+                        AttributeModifier lesserAreaBody = new AttributeModifier();
+                        lesserAreaBody.AttributeName = "AreaBody";
+                        lesserAreaBody.ModifierValue = -2;
+                        lesserAreaBody.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(lesserAreaBody);
+
+                        NpcQuality immunePiercing = new NpcQuality();
+                        immunePiercing.Name = "Immune (Piercing)";
+                        immunePiercing.Description = "The creature is immune to the listed damage type. If an attack is of multiple damage types the final damage is divided by the total number of damage types and then multiplied by the number of damage types the creature is not immune to. The result is applied as normal health loss. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(immunePiercing);
+
+                        enemy.model.Attributes.Special = "+5 to Athletics checks to escape";
+                        break;
+                    }
+                case NpcType.Swarm:
+                    {
+                        NpcQuality fortifiedMelee = new NpcQuality();
+                        fortifiedMelee.Name = "Fortified (Melee)";
+                        fortifiedMelee.Description = "Gains a +4 to Durability against the listed damage type. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(fortifiedMelee);
+                        NpcQuality fortifiedRanged = new NpcQuality();
+                        fortifiedRanged.Name = "Fortified (Ranged)";
+                        fortifiedRanged.Description = "Gains a +4 to Durability against the listed damage type. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(fortifiedRanged);
+
+                        NpcQuality susceptibleArea = new NpcQuality();
+                        susceptibleArea.Name = "Susceptible (Area)";
+                        susceptibleArea.Description = "Suffers a +4 damage from damage of the listed type. (Can take this Quality more than once applying it to a different damage type each time.) Taking this Quality gives the creature 1 free selection of the Fortified Quality.";
+                        enemy.model.Qualities.Add(susceptibleArea);
+
+                        AttributeModifier primeMeleeResolve = new AttributeModifier();
+                        primeMeleeResolve.AttributeName = "MeleeResolve";
+                        primeMeleeResolve.ModifierValue = 2;
+                        primeMeleeResolve.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(primeMeleeResolve);
+                        AttributeModifier primeAreaResolve = new AttributeModifier();
+                        primeAreaResolve.AttributeName = "AreaResolve";
+                        primeAreaResolve.ModifierValue = 2;
+                        primeAreaResolve.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(primeAreaResolve);
+                        AttributeModifier primeRangedResolve = new AttributeModifier();
+                        primeRangedResolve.AttributeName = "RangedResolve";
+                        primeRangedResolve.ModifierValue = 2;
+                        primeRangedResolve.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(primeRangedResolve);
+
+                        AttributeModifier lesserMeleePhysical = new AttributeModifier();
+                        lesserMeleePhysical.AttributeName = "MeleePhysical";
+                        lesserMeleePhysical.ModifierValue = -2;
+                        lesserMeleePhysical.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(lesserMeleePhysical);
+                        AttributeModifier lesserAreaPhysical = new AttributeModifier();
+                        lesserAreaPhysical.AttributeName = "AreaPhysical";
+                        lesserAreaPhysical.ModifierValue = -2;
+                        lesserAreaPhysical.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(lesserAreaPhysical);
+                        AttributeModifier lesserRangedPhysical = new AttributeModifier();
+                        lesserRangedPhysical.AttributeName = "RangedPhysical";
+                        lesserRangedPhysical.ModifierValue = -2;
+                        lesserRangedPhysical.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(lesserRangedPhysical);
+
+                        NpcQuality immune = new NpcQuality();
+                        immune.Name = "Immune (Mind Control)";
+                        immune.Description = "The creature is immune to the listed damage type. If an attack is of multiple damage types the final damage is divided by the total number of damage types and then multiplied by the number of damage types the creature is not immune to. The result is applied as normal health loss. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(immune);
+
+                        enemy.model.Attributes.Special = "+5 to defense on incoming Social Skill Attacks";
+                        break;
+                    }
+                case NpcType.Machine:
+                    {
+                        NpcQuality fortifiedFire = new NpcQuality();
+                        fortifiedFire.Name = "Fortified (Fire)";
+                        fortifiedFire.Description = "Gains a +4 to Durability against the listed damage type. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(fortifiedFire);
+                        NpcQuality fortifiedCold = new NpcQuality();
+                        fortifiedCold.Name = "Fortified (Cold)";
+                        fortifiedCold.Description = "Gains a +4 to Durability against the listed damage type. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(fortifiedCold);
+                        NpcQuality fortifiedForce = new NpcQuality();
+                        fortifiedForce.Name = "Fortified (Force)";
+                        fortifiedForce.Description = "Gains a +4 to Durability against the listed damage type. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(fortifiedForce);
+
+                        NpcQuality susceptibleAcid = new NpcQuality();
+                        susceptibleAcid.Name = "Susceptible (Acid)";
+                        susceptibleAcid.Description = "Suffers a +4 damage from damage of the listed type. (Can take this Quality more than once applying it to a different damage type each time.) Taking this Quality gives the creature 1 free selection of the Fortified Quality.";
+                        enemy.model.Qualities.Add(susceptibleAcid);
+                        NpcQuality susceptibleElectricity = new NpcQuality();
+                        susceptibleElectricity.Name = "Susceptible (Electricity)";
+                        susceptibleElectricity.Description = "Suffers a +4 damage from damage of the listed type. (Can take this Quality more than once applying it to a different damage type each time.) Taking this Quality gives the creature 1 free selection of the Fortified Quality.";
+                        enemy.model.Qualities.Add(susceptibleElectricity);
+
+                        AttributeModifier primeMeleeResolve = new AttributeModifier();
+                        primeMeleeResolve.AttributeName = "MeleeResolve";
+                        primeMeleeResolve.ModifierValue = 2;
+                        primeMeleeResolve.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(primeMeleeResolve);
+                        AttributeModifier primeAreaResolve = new AttributeModifier();
+                        primeAreaResolve.AttributeName = "AreaResolve";
+                        primeAreaResolve.ModifierValue = 2;
+                        primeAreaResolve.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(primeAreaResolve);
+                        AttributeModifier primeRangedResolve = new AttributeModifier();
+                        primeRangedResolve.AttributeName = "RangedResolve";
+                        primeRangedResolve.ModifierValue = 2;
+                        primeRangedResolve.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(primeRangedResolve);
+
+                        AttributeModifier lesserMeleePhysical = new AttributeModifier();
+                        lesserMeleePhysical.AttributeName = "MeleePhysical";
+                        lesserMeleePhysical.ModifierValue = -2;
+                        lesserMeleePhysical.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(lesserMeleePhysical);
+                        AttributeModifier lesserAreaPhysical = new AttributeModifier();
+                        lesserAreaPhysical.AttributeName = "AreaPhysical";
+                        lesserAreaPhysical.ModifierValue = -2;
+                        lesserAreaPhysical.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(lesserAreaPhysical);
+                        AttributeModifier lesserRangedPhysical = new AttributeModifier();
+                        lesserRangedPhysical.AttributeName = "RangedPhysical";
+                        lesserRangedPhysical.ModifierValue = -2;
+                        lesserRangedPhysical.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(lesserRangedPhysical);
+
+                        NpcQuality immune = new NpcQuality();
+                        immune.Name = "Immune (Mind Control)";
+                        immune.Description = "The creature is immune to the listed damage type. If an attack is of multiple damage types the final damage is divided by the total number of damage types and then multiplied by the number of damage types the creature is not immune to. The result is applied as normal health loss. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(immune);
+                        NpcQuality immune2 = new NpcQuality();
+                        immune2.Name = "Immune (Social Skill Attacks)";
+                        immune2.Description = "The creature is immune to the listed damage type. If an attack is of multiple damage types the final damage is divided by the total number of damage types and then multiplied by the number of damage types the creature is not immune to. The result is applied as normal health loss. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(immune2);
+
+                        enemy.model.Attributes.Special = "-1 CM to incoming reaction attacks";
+                        break;
+                    }
+                case NpcType.Energy:
+                    {
+                        NpcQuality fortifiedReactionAttacks = new NpcQuality();
+                        fortifiedReactionAttacks.Name = "Fortified (Reaction Attacks)";
+                        fortifiedReactionAttacks.Description = "Gains a +4 to Durability against the listed damage type. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(fortifiedReactionAttacks);
+
+                        if (r.NextDouble() < .5)
+                        {
+                            AttributeModifier primeMeleeResolve = new AttributeModifier();
+                            primeMeleeResolve.AttributeName = "MeleeResolve";
+                            primeMeleeResolve.ModifierValue = 2;
+                            primeMeleeResolve.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(primeMeleeResolve);
+                            AttributeModifier primeAreaResolve = new AttributeModifier();
+                            primeAreaResolve.AttributeName = "AreaResolve";
+                            primeAreaResolve.ModifierValue = 2;
+                            primeAreaResolve.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(primeAreaResolve);
+                            AttributeModifier primeRangedResolve = new AttributeModifier();
+                            primeRangedResolve.AttributeName = "RangedResolve";
+                            primeRangedResolve.ModifierValue = 2;
+                            primeRangedResolve.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(primeRangedResolve);
+
+                            AttributeModifier lesserMeleePhysical = new AttributeModifier();
+                            lesserMeleePhysical.AttributeName = "MeleePhysical";
+                            lesserMeleePhysical.ModifierValue = -2;
+                            lesserMeleePhysical.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserMeleePhysical);
+                            AttributeModifier lesserAreaPhysical = new AttributeModifier();
+                            lesserAreaPhysical.AttributeName = "AreaPhysical";
+                            lesserAreaPhysical.ModifierValue = -2;
+                            lesserAreaPhysical.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserAreaPhysical);
+                            AttributeModifier lesserRangedPhysical = new AttributeModifier();
+                            lesserRangedPhysical.AttributeName = "RangedPhysical";
+                            lesserRangedPhysical.ModifierValue = -2;
+                            lesserRangedPhysical.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserRangedPhysical);
+
+                            AttributeModifier lesserMeleeBody = new AttributeModifier();
+                            lesserMeleeBody.AttributeName = "MeleeBody";
+                            lesserMeleeBody.ModifierValue = -2;
+                            lesserMeleeBody.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserMeleeBody);
+                            AttributeModifier lesserAreaBody = new AttributeModifier();
+                            lesserAreaBody.AttributeName = "AreaBody";
+                            lesserAreaBody.ModifierValue = -2;
+                            lesserAreaBody.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserAreaBody);
+                            AttributeModifier lesserRangedBody = new AttributeModifier();
+                            lesserRangedBody.AttributeName = "RangedBody";
+                            lesserRangedBody.ModifierValue = -2;
+                            lesserRangedBody.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserRangedBody);
+                        }
+                        else
+                        {
+                            AttributeModifier primeMeleeBody = new AttributeModifier();
+                            primeMeleeBody.AttributeName = "MeleeBody";
+                            primeMeleeBody.ModifierValue = 2;
+                            primeMeleeBody.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(primeMeleeBody);
+                            AttributeModifier primeAreaBody = new AttributeModifier();
+                            primeAreaBody.AttributeName = "AreaBody";
+                            primeAreaBody.ModifierValue = 2;
+                            primeAreaBody.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(primeAreaBody);
+                            AttributeModifier primeRangedBody = new AttributeModifier();
+                            primeRangedBody.AttributeName = "RangedBody";
+                            primeRangedBody.ModifierValue = 2;
+                            primeRangedBody.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(primeRangedBody);
+
+                            AttributeModifier lesserMeleePhysical = new AttributeModifier();
+                            lesserMeleePhysical.AttributeName = "MeleePhysical";
+                            lesserMeleePhysical.ModifierValue = -2;
+                            lesserMeleePhysical.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserMeleePhysical);
+                            AttributeModifier lesserAreaPhysical = new AttributeModifier();
+                            lesserAreaPhysical.AttributeName = "AreaPhysical";
+                            lesserAreaPhysical.ModifierValue = -2;
+                            lesserAreaPhysical.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserAreaPhysical);
+                            AttributeModifier lesserRangedPhysical = new AttributeModifier();
+                            lesserRangedPhysical.AttributeName = "RangedPhysical";
+                            lesserRangedPhysical.ModifierValue = -2;
+                            lesserRangedPhysical.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserRangedPhysical);
+
+                            AttributeModifier lesserMeleeResolve = new AttributeModifier();
+                            lesserMeleeResolve.AttributeName = "MeleeResolve";
+                            lesserMeleeResolve.ModifierValue = -2;
+                            lesserMeleeResolve.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserMeleeResolve);
+                            AttributeModifier lesserAreaResolve = new AttributeModifier();
+                            lesserAreaResolve.AttributeName = "AreaResolve";
+                            lesserAreaResolve.ModifierValue = -2;
+                            lesserAreaResolve.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserAreaResolve);
+                            AttributeModifier lesserRangedResolve = new AttributeModifier();
+                            lesserRangedResolve.AttributeName = "RangedResolve";
+                            lesserRangedResolve.ModifierValue = -2;
+                            lesserRangedResolve.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserRangedResolve);
+                        }
+
+                        NpcQuality immune = new NpcQuality();
+                        immune.Name = "Immune (Same Energy Type)";
+                        immune.Description = "The creature is immune to the listed damage type. If an attack is of multiple damage types the final damage is divided by the total number of damage types and then multiplied by the number of damage types the creature is not immune to. The result is applied as normal health loss. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(immune);
+
+                        enemy.model.Attributes.Special = "All attacks gain damage type matching energy type";
+                        break;
+                    }
+                case NpcType.Solid:
+                    {
+                        NpcQuality fortifiedPiercing = new NpcQuality();
+                        fortifiedPiercing.Name = "Fortified (Piercing)";
+                        fortifiedPiercing.Description = "Gains a +4 to Durability against the listed damage type. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(fortifiedPiercing);
+                        NpcQuality fortifiedBallistic = new NpcQuality();
+                        fortifiedBallistic.Name = "Fortified (Ballistic)";
+                        fortifiedBallistic.Description = "Gains a +4 to Durability against the listed damage type. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(fortifiedBallistic);
+                        NpcQuality fortifiedSlashing = new NpcQuality();
+                        fortifiedSlashing.Name = "Fortified (Slashing)";
+                        fortifiedSlashing.Description = "Gains a +4 to Durability against the listed damage type. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(fortifiedSlashing);
+                        NpcQuality fortifiedPsycic = new NpcQuality();
+                        fortifiedPsycic.Name = "Fortified (Psycic)";
+                        fortifiedPsycic.Description = "Gains a +4 to Durability against the listed damage type. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(fortifiedPsycic);
+                        NpcQuality fortifiedUnholy = new NpcQuality();
+                        fortifiedUnholy.Name = "Fortified (Unholy)";
+                        fortifiedUnholy.Description = "Gains a +4 to Durability against the listed damage type. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(fortifiedUnholy);
+                        NpcQuality fortifiedHoly = new NpcQuality();
+                        fortifiedHoly.Name = "Fortified (Holy)";
+                        fortifiedHoly.Description = "Gains a +4 to Durability against the listed damage type. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(fortifiedHoly);
+                        NpcQuality fortifiedFire = new NpcQuality();
+                        fortifiedFire.Name = "Fortified (Fire)";
+                        fortifiedFire.Description = "Gains a +4 to Durability against the listed damage type. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(fortifiedFire);
+                        NpcQuality fortifiedAcid = new NpcQuality();
+                        fortifiedAcid.Name = "Fortified (Acid)";
+                        fortifiedAcid.Description = "Gains a +4 to Durability against the listed damage type. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(fortifiedAcid);
+                        NpcQuality fortifiedElectricity = new NpcQuality();
+                        fortifiedElectricity.Name = "Fortified (Electricity)";
+                        fortifiedElectricity.Description = "Gains a +4 to Durability against the listed damage type. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(fortifiedElectricity);
+                        NpcQuality fortifiedCold = new NpcQuality();
+                        fortifiedCold.Name = "Fortified (Cold)";
+                        fortifiedCold.Description = "Gains a +4 to Durability against the listed damage type. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(fortifiedCold);
+                        NpcQuality fortifiedNecrotic = new NpcQuality();
+                        fortifiedNecrotic.Name = "Fortified (Necrotic)";
+                        fortifiedNecrotic.Description = "Gains a +4 to Durability against the listed damage type. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(fortifiedNecrotic);
+                        NpcQuality fortifiedPoison = new NpcQuality();
+                        fortifiedPoison.Name = "Fortified (Poison)";
+                        fortifiedPoison.Description = "Gains a +4 to Durability against the listed damage type. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(fortifiedPoison);
+
+                        AttributeModifier lesserMeleePhysical = new AttributeModifier();
+                        lesserMeleePhysical.AttributeName = "MeleePhysical";
+                        lesserMeleePhysical.ModifierValue = -2;
+                        lesserMeleePhysical.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(lesserMeleePhysical);
+                        AttributeModifier lesserMeleeResolve = new AttributeModifier();
+                        lesserMeleeResolve.AttributeName = "MeleeResolve";
+                        lesserMeleeResolve.ModifierValue = -2;
+                        lesserMeleeResolve.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(lesserMeleeResolve);
+                        AttributeModifier lesserMeleeBody = new AttributeModifier();
+                        lesserMeleeBody.AttributeName = "MeleeBody";
+                        lesserMeleeBody.ModifierValue = -2;
+                        lesserMeleeBody.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(lesserMeleeBody);
+                        AttributeModifier lesserAreaPhysical = new AttributeModifier();
+                        lesserAreaPhysical.AttributeName = "AreaPhysical";
+                        lesserAreaPhysical.ModifierValue = -2;
+                        lesserAreaPhysical.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(lesserAreaPhysical);
+                        AttributeModifier lesserAreaResolve = new AttributeModifier();
+                        lesserAreaResolve.AttributeName = "AreaResolve";
+                        lesserAreaResolve.ModifierValue = -2;
+                        lesserAreaResolve.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(lesserAreaResolve);
+                        AttributeModifier lesserAreaBody = new AttributeModifier();
+                        lesserAreaBody.AttributeName = "AreaBody";
+                        lesserAreaBody.ModifierValue = -2;
+                        lesserAreaBody.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(lesserAreaBody);
+                        AttributeModifier lesserRangedPhysical = new AttributeModifier();
+                        lesserRangedPhysical.AttributeName = "RangedPhysical";
+                        lesserRangedPhysical.ModifierValue = -2;
+                        lesserRangedPhysical.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(lesserRangedPhysical);
+                        AttributeModifier lesserRangedResolve = new AttributeModifier();
+                        lesserRangedResolve.AttributeName = "RangedResolve";
+                        lesserRangedResolve.ModifierValue = -2;
+                        lesserRangedResolve.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(lesserRangedResolve);
+                        AttributeModifier lesserRangedBody = new AttributeModifier();
+                        lesserRangedBody.AttributeName = "RangedBody";
+                        lesserRangedBody.ModifierValue = -2;
+                        lesserRangedBody.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(lesserRangedBody);
+
+                        NpcQuality susceptibleBludgeoning = new NpcQuality();
+                        susceptibleBludgeoning.Name = "Susceptible (Bludgeoning)";
+                        susceptibleBludgeoning.Description = "Suffers a +4 damage from damage of the listed type. (Can take this Quality more than once applying it to a different damage type each time.) Taking this Quality gives the creature 1 free selection of the Fortified Quality.";
+                        enemy.model.Qualities.Add(susceptibleBludgeoning);
+                        NpcQuality susceptibleForce = new NpcQuality();
+                        susceptibleForce.Name = "Susceptible (Force)";
+                        susceptibleForce.Description = "Suffers a +4 damage from damage of the listed type. (Can take this Quality more than once applying it to a different damage type each time.) Taking this Quality gives the creature 1 free selection of the Fortified Quality.";
+                        enemy.model.Qualities.Add(susceptibleForce);
+
+                        NpcQuality immune = new NpcQuality();
+                        immune.Name = "Immune (Secondary Crit Effects)";
+                        immune.Description = "The creature is immune to the listed damage type. If an attack is of multiple damage types the final damage is divided by the total number of damage types and then multiplied by the number of damage types the creature is not immune to. The result is applied as normal health loss. (Can take this Quality more than once applying it to a different damage type each time.)";
+                        enemy.model.Qualities.Add(immune);
+
+                        enemy.model.Attributes.Special = "-1 CM on incoming attacks";
+
+                        AttributeModifier durability2 = new AttributeModifier();
+                        durability2.AttributeName = "Durability";
+                        durability2.ModifierValue = 2;
+                        durability2.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(durability2);
+
+                        AttributeModifier speed2 = new AttributeModifier();
+                        speed2.AttributeName = "Speed";
+                        speed2.ModifierValue = -2;
+                        speed2.Type = ModifierType.Additive;
+                        enemy.model.Attributes.AttributeAdjustments.Add(speed2);
+                        break;
+                    }
+                case NpcType.Natural:
+                    {
+                        ChooseDefense d = new ChooseDefense("Pick Prime Defense");
+                        d.ShowDialog();
+                        int randPrimeDef = d.ChosenDefense;
+                        if (randPrimeDef == 0)
+                        {
+                            // Melee
+                            AttributeModifier primeMeleePhysical = new AttributeModifier();
+                            primeMeleePhysical.AttributeName = "MeleePhysical";
+                            primeMeleePhysical.ModifierValue = 2;
+                            primeMeleePhysical.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(primeMeleePhysical);
+                            AttributeModifier primeMeleeResolve = new AttributeModifier();
+                            primeMeleeResolve.AttributeName = "MeleeResolve";
+                            primeMeleeResolve.ModifierValue = 2;
+                            primeMeleeResolve.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(primeMeleeResolve);
+                            AttributeModifier primeMeleeBody = new AttributeModifier();
+                            primeMeleeBody.AttributeName = "MeleeBody";
+                            primeMeleeBody.ModifierValue = 2;
+                            primeMeleeBody.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(primeMeleeBody);
+                        }
+                        else if (randPrimeDef == 1)
+                        {
+                            // Area
+                            AttributeModifier primeAreaPhysical = new AttributeModifier();
+                            primeAreaPhysical.AttributeName = "AreaPhysical";
+                            primeAreaPhysical.ModifierValue = 2;
+                            primeAreaPhysical.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(primeAreaPhysical);
+                            AttributeModifier primeAreaResolve = new AttributeModifier();
+                            primeAreaResolve.AttributeName = "AreaResolve";
+                            primeAreaResolve.ModifierValue = 2;
+                            primeAreaResolve.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(primeAreaResolve);
+                            AttributeModifier primeAreaBody = new AttributeModifier();
+                            primeAreaBody.AttributeName = "AreaBody";
+                            primeAreaBody.ModifierValue = 2;
+                            primeAreaBody.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(primeAreaBody);
+                        }
+                        else if (randPrimeDef == 2)
+                        {
+                            //Ranged
+                            AttributeModifier primeRangedPhysical = new AttributeModifier();
+                            primeRangedPhysical.AttributeName = "RangedPhysical";
+                            primeRangedPhysical.ModifierValue = 2;
+                            primeRangedPhysical.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(primeRangedPhysical);
+                            AttributeModifier primeRangedResolve = new AttributeModifier();
+                            primeRangedResolve.AttributeName = "RangedResolve";
+                            primeRangedResolve.ModifierValue = 2;
+                            primeRangedResolve.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(primeRangedResolve);
+                            AttributeModifier primeRangedBody = new AttributeModifier();
+                            primeRangedBody.AttributeName = "RangedBody";
+                            primeRangedBody.ModifierValue = 2;
+                            primeRangedBody.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(primeRangedBody);
+                        }
+                        else if (randPrimeDef == 3)
+                        {
+                            //Physical
+                            AttributeModifier primeMeleePhysical = new AttributeModifier();
+                            primeMeleePhysical.AttributeName = "MeleePhysical";
+                            primeMeleePhysical.ModifierValue = 2;
+                            primeMeleePhysical.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(primeMeleePhysical);
+                            AttributeModifier primeAreaPhysical = new AttributeModifier();
+                            primeAreaPhysical.AttributeName = "AreaPhysical";
+                            primeAreaPhysical.ModifierValue = 2;
+                            primeAreaPhysical.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(primeAreaPhysical);
+                            AttributeModifier primeRangedPhysical = new AttributeModifier();
+                            primeRangedPhysical.AttributeName = "RangedPhysical";
+                            primeRangedPhysical.ModifierValue = 2;
+                            primeRangedPhysical.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(primeRangedPhysical);
+                        }
+                        else if (randPrimeDef == 4)
+                        {
+                            //Resolve
+                            AttributeModifier primeMeleeResolve = new AttributeModifier();
+                            primeMeleeResolve.AttributeName = "MeleeResolve";
+                            primeMeleeResolve.ModifierValue = 2;
+                            primeMeleeResolve.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(primeMeleeResolve);
+                            AttributeModifier primeAreaResolve = new AttributeModifier();
+                            primeAreaResolve.AttributeName = "AreaResolve";
+                            primeAreaResolve.ModifierValue = 2;
+                            primeAreaResolve.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(primeAreaResolve);
+                            AttributeModifier primeRangedResolve = new AttributeModifier();
+                            primeRangedResolve.AttributeName = "RangedResolve";
+                            primeRangedResolve.ModifierValue = 2;
+                            primeRangedResolve.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(primeRangedResolve);
+                        }
+                        else
+                        {
+                            //Body
+                            AttributeModifier primeMeleeBody = new AttributeModifier();
+                            primeMeleeBody.AttributeName = "MeleeBody";
+                            primeMeleeBody.ModifierValue = 2;
+                            primeMeleeBody.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(primeMeleeBody);
+                            AttributeModifier primeAreaBody = new AttributeModifier();
+                            primeAreaBody.AttributeName = "AreaBody";
+                            primeAreaBody.ModifierValue = 2;
+                            primeAreaBody.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(primeAreaBody);
+                            AttributeModifier primeRangedBody = new AttributeModifier();
+                            primeRangedBody.AttributeName = "RangedBody";
+                            primeRangedBody.ModifierValue = 2;
+                            primeRangedBody.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(primeRangedBody);
+                        }
+
+                        //int randLesserDef = r.Next(0, 6);
+                        ChooseDefense l = new ChooseDefense("Pick Lesser Defense");
+                        l.ShowDialog();
+                        int randLesserDef = l.ChosenDefense;
+                        if (randLesserDef == 0)
+                        {
+                            // Melee
+                            AttributeModifier lesserMeleePhysical = new AttributeModifier();
+                            lesserMeleePhysical.AttributeName = "MeleePhysical";
+                            lesserMeleePhysical.ModifierValue = -2;
+                            lesserMeleePhysical.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserMeleePhysical);
+                            AttributeModifier lesserMeleeResolve = new AttributeModifier();
+                            lesserMeleeResolve.AttributeName = "MeleeResolve";
+                            lesserMeleeResolve.ModifierValue = -2;
+                            lesserMeleeResolve.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserMeleeResolve);
+                            AttributeModifier lesserMeleeBody = new AttributeModifier();
+                            lesserMeleeBody.AttributeName = "MeleeBody";
+                            lesserMeleeBody.ModifierValue = -2;
+                            lesserMeleeBody.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserMeleeBody);
+                        }
+                        else if (randLesserDef == 1)
+                        {
+                            // Area
+                            AttributeModifier lesserAreaPhysical = new AttributeModifier();
+                            lesserAreaPhysical.AttributeName = "AreaPhysical";
+                            lesserAreaPhysical.ModifierValue = -2;
+                            lesserAreaPhysical.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserAreaPhysical);
+                            AttributeModifier lesserAreaResolve = new AttributeModifier();
+                            lesserAreaResolve.AttributeName = "AreaResolve";
+                            lesserAreaResolve.ModifierValue = -2;
+                            lesserAreaResolve.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserAreaResolve);
+                            AttributeModifier lesserAreaBody = new AttributeModifier();
+                            lesserAreaBody.AttributeName = "AreaBody";
+                            lesserAreaBody.ModifierValue = -2;
+                            lesserAreaBody.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserAreaBody);
+                        }
+                        else if (randLesserDef == 2)
+                        {
+                            //Ranged
+                            AttributeModifier lesserRangedPhysical = new AttributeModifier();
+                            lesserRangedPhysical.AttributeName = "RangedPhysical";
+                            lesserRangedPhysical.ModifierValue = -2;
+                            lesserRangedPhysical.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserRangedPhysical);
+                            AttributeModifier lesserRangedResolve = new AttributeModifier();
+                            lesserRangedResolve.AttributeName = "RangedResolve";
+                            lesserRangedResolve.ModifierValue = -2;
+                            lesserRangedResolve.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserRangedResolve);
+                            AttributeModifier lesserRangedBody = new AttributeModifier();
+                            lesserRangedBody.AttributeName = "RangedBody";
+                            lesserRangedBody.ModifierValue = -2;
+                            lesserRangedBody.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserRangedBody);
+                        }
+                        else if (randLesserDef == 3)
+                        {
+                            //Physical
+                            AttributeModifier lesserMeleePhysical = new AttributeModifier();
+                            lesserMeleePhysical.AttributeName = "MeleePhysical";
+                            lesserMeleePhysical.ModifierValue = -2;
+                            lesserMeleePhysical.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserMeleePhysical);
+                            AttributeModifier lesserAreaPhysical = new AttributeModifier();
+                            lesserAreaPhysical.AttributeName = "AreaPhysical";
+                            lesserAreaPhysical.ModifierValue = -2;
+                            lesserAreaPhysical.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserAreaPhysical);
+                            AttributeModifier lesserRangedPhysical = new AttributeModifier();
+                            lesserRangedPhysical.AttributeName = "RangedPhysical";
+                            lesserRangedPhysical.ModifierValue = -2;
+                            lesserRangedPhysical.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserRangedPhysical);
+                        }
+                        else if (randLesserDef == 4)
+                        {
+                            //Resolve
+                            AttributeModifier lesserMeleeResolve = new AttributeModifier();
+                            lesserMeleeResolve.AttributeName = "MeleeResolve";
+                            lesserMeleeResolve.ModifierValue = -2;
+                            lesserMeleeResolve.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserMeleeResolve);
+                            AttributeModifier lesserAreaResolve = new AttributeModifier();
+                            lesserAreaResolve.AttributeName = "AreaResolve";
+                            lesserAreaResolve.ModifierValue = -2;
+                            lesserAreaResolve.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserAreaResolve);
+                            AttributeModifier lesserRangedResolve = new AttributeModifier();
+                            lesserRangedResolve.AttributeName = "RangedResolve";
+                            lesserRangedResolve.ModifierValue = -2;
+                            lesserRangedResolve.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserRangedResolve);
+                        }
+                        else
+                        {
+                            //Body
+                            AttributeModifier lesserMeleeBody = new AttributeModifier();
+                            lesserMeleeBody.AttributeName = "MeleeBody";
+                            lesserMeleeBody.ModifierValue = -2;
+                            lesserMeleeBody.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserMeleeBody);
+                            AttributeModifier lesserAreaBody = new AttributeModifier();
+                            lesserAreaBody.AttributeName = "AreaBody";
+                            lesserAreaBody.ModifierValue = -2;
+                            lesserAreaBody.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserAreaBody);
+                            AttributeModifier lesserRangedBody = new AttributeModifier();
+                            lesserRangedBody.AttributeName = "RangedBody";
+                            lesserRangedBody.ModifierValue = -2;
+                            lesserRangedBody.Type = ModifierType.Additive;
+                            enemy.model.Attributes.AttributeAdjustments.Add(lesserRangedBody);
+                        }
+
+                        AttributeModifier skill1 = new AttributeModifier();
+                        skill1.AttributeName = "PrimaryAttack";
+                        skill1.Type = ModifierType.Additive;
+                        skill1.ModifierValue = 1;
+                        enemy.model.Attributes.AttributeAdjustments.Add(skill1);
+
+                        AttributeModifier skill2 = new AttributeModifier();
+                        skill2.AttributeName = "SecondaryAttack";
+                        skill2.Type = ModifierType.Additive;
+                        skill2.ModifierValue = 1;
+                        enemy.model.Attributes.AttributeAdjustments.Add(skill2);
+
+                        enemy.model.Attributes.Special = "+1 to all skills";
+                        break;
+                    }
+            }
+            #endregion
+
+            //Add selected stuff
+            foreach (var i in abilityIndexes)
+            {
+                if (i >= 0 && i < CreatureAbilities.Count())
+                {
+                    try
+                    {
+                        AddAbilityByIndex(enemy, i);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+            foreach (var i in talentIndexes)
+            {
+                if (i >= 0 && i < Talents.Count())
+                {
+                    try
+                    {
+                        AddTalentByIndex(enemy, i);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+            foreach (var i in qualityIndexes)
+            {
+                if (i >= 0 && i < CreatureQualities.Count())
+                {
+                    try
+                    {
+                        AddQualityByIndex(enemy, i);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+
+            Enemies.Add(enemy);
+        }
+
         private ObservableCollection<NpcQuality> creatureQualities = new ObservableCollection<NpcQuality>();
         public ObservableCollection<NpcQuality> CreatureQualities
         {
@@ -56,10 +913,14 @@ namespace Emergence.ViewModel
         }
 
         public ObservableCollection<NpcAbility> CreatureAbilities { get; set; }
-        public ObservableCollection<Talent> Talents = new ObservableCollection<Talent>();
+        public ObservableCollection<Talent> Talents
+        {
+            get; set;
+        }
 
         public Lair()
         {
+            Talents = new ObservableCollection<Talent>();
             InitializeCreatureQualities();
             InitializeAbilities();
             InitializeTalents();
@@ -81,10 +942,10 @@ namespace Emergence.ViewModel
                     grantedAttack.Weapon.Range = Range.Melee | Range.FifteenFootCone;
                     break;
                 case 1:
-                    grantedAttack.Weapon.Range = Range.Melee | Range.ThirtyFootCone;                    
+                    grantedAttack.Weapon.Range = Range.Melee | Range.ThirtyFootCone;
                     break;
                 case 2:
-                    grantedAttack.Weapon.Range = Range.Melee | Range.FiveFootRadius;                    
+                    grantedAttack.Weapon.Range = Range.Melee | Range.FiveFootRadius;
                     break;
                 case 3:
                     grantedAttack.Weapon.Range = Range.Melee | Range.TenFootRadius;
@@ -222,10 +1083,15 @@ namespace Emergence.ViewModel
             #region Talent
             NpcAbility talentAbility = new NpcAbility();
             talentAbility.Name = "Talent Ability";
-            talentAbility.Description = "Creature has the listed Talent from the PC Talent lists. The creature also gains the Talent Tier benefit for the Tier the Talent was selected from.Creatures do not need to meet prerequisites to gain talents. They need only observe the Tier limit based on level.";
-            talentAbility.StaminaCost = 6;
-            talentAbility.Tier = 1;
+            talentAbility.Description = "Trade 1 Ability for 1 Talent";
             CreatureAbilities.Add(talentAbility);
+            #endregion
+
+            #region Quality
+            NpcAbility qualityAbility = new NpcAbility();
+            qualityAbility.Name = "Quality Ability";
+            qualityAbility.Description = "Trade 1 Ability for 1 Quality";
+            CreatureAbilities.Add(qualityAbility);
             #endregion
         }
 
@@ -8602,7 +9468,6 @@ namespace Emergence.ViewModel
             #endregion
         }
 
-
         public void GenerateRandomEnemy()
         {
             NPCQuickReferenceVM enemy = new NPCQuickReferenceVM();
@@ -8620,42 +9485,13 @@ namespace Emergence.ViewModel
             enemy.model = new NonPlayerCharacter(ra, level.Min(), rc, GetRandomSize(), rt);
             enemy.model.Qualities = new List<NpcQuality>();
 
-            //Archetype freebies
-            switch (ra)
-            {
-                case Archetype.Beast:
-                    AddQualityByName(enemy, "Animalistic");
-                    enemy.model.SpecializedSkills.Add(new KeyValuePair<SpecializedSkill, int>(SpecializedSkill.Stealth, enemy.model.Level + 5));
-                    break;
-                case Archetype.Risen:
-                    AddQualityByName(enemy, "Undead");
-                    enemy.model.SpecializedSkills.Add(new KeyValuePair<SpecializedSkill, int>(SpecializedSkill.Intimidation, enemy.model.Level + 5));
-                    break;
-                case Archetype.Demonic:
-                    AddQualityByName(enemy, "Infernal");
-                    enemy.model.SpecializedSkills.Add(new KeyValuePair<SpecializedSkill, int>(SpecializedSkill.Deception, enemy.model.Level + 5));
-                    break;
-                case Archetype.Flying_aka_Dragonkin:
-                    NpcQuality flight = new NpcQuality();
-                    flight.Name = "Flight (1 or 1/2)";
-                    flight.Description = "Gains flight as a movement mode.  The listed number is the quantity of MI needed to purchase a single MI of flight.";
-                    enemy.model.Qualities.Add(flight);
-                    enemy.model.SpecializedSkills.Add(new KeyValuePair<SpecializedSkill, int>(SpecializedSkill.Survival, enemy.model.Level + 5));
-                    break;
-                case Archetype.Elemental:
-                    AddQualityByName(enemy, "Blindsight");
-                    enemy.model.SpecializedSkills.Add(new KeyValuePair<SpecializedSkill, int>(SpecializedSkill.Athletics, enemy.model.Level + 5));
-                    break;
-                case Archetype.Humanoid:
-                    AddRandomQuality(enemy);
-                    break;
-            }
+            AddArchetypeToEnemy(enemy, ra);
 
             //Add type qualities
             #region
             switch (rt)
             {
-                case NpcType.Flesh:
+                case NpcType.Flesh_aka_Unliving:
                     {
                         NpcQuality fortifiedCold = new NpcQuality();
                         fortifiedCold.Name = "Fortified (Cold)";
@@ -9501,6 +10337,43 @@ namespace Emergence.ViewModel
             Enemies.Add(enemy);
         }
 
+        public void AddArchetypeToEnemy(NPCQuickReferenceVM enemy, Archetype ra)
+        {
+            if (!enemy.model.Archetype.HasFlag(ra))
+            {
+                //Archetype freebies
+                switch (ra)
+                {
+                    case Archetype.Beast:
+                        AddQualityByName(enemy, "Animalistic");
+                        enemy.model.SpecializedSkills.Add(new KeyValuePair<SpecializedSkill, int>(SpecializedSkill.Stealth, enemy.model.Level + 5));
+                        break;
+                    case Archetype.Risen:
+                        AddQualityByName(enemy, "Undead");
+                        enemy.model.SpecializedSkills.Add(new KeyValuePair<SpecializedSkill, int>(SpecializedSkill.Intimidation, enemy.model.Level + 5));
+                        break;
+                    case Archetype.Demonic:
+                        AddQualityByName(enemy, "Infernal");
+                        enemy.model.SpecializedSkills.Add(new KeyValuePair<SpecializedSkill, int>(SpecializedSkill.Deception, enemy.model.Level + 5));
+                        break;
+                    case Archetype.Flying_aka_Dragonkin:
+                        NpcQuality flight = new NpcQuality();
+                        flight.Name = "Flight (1 or 1/2)";
+                        flight.Description = "Gains flight as a movement mode.  The listed number is the quantity of MI needed to purchase a single MI of flight.";
+                        enemy.model.Qualities.Add(flight);
+                        enemy.model.SpecializedSkills.Add(new KeyValuePair<SpecializedSkill, int>(SpecializedSkill.Survival, enemy.model.Level + 5));
+                        break;
+                    case Archetype.Elemental:
+                        AddQualityByName(enemy, "Blindsight");
+                        enemy.model.SpecializedSkills.Add(new KeyValuePair<SpecializedSkill, int>(SpecializedSkill.Athletics, enemy.model.Level + 5));
+                        break;
+                    case Archetype.Humanoid:
+                        AddRandomQuality(enemy);
+                        break;
+                }
+            }
+        }
+
         private void AddRandomAbility(NPCQuickReferenceVM enemy)
         {
             int index = r.Next(0, CreatureAbilities.Count);
@@ -9579,7 +10452,7 @@ namespace Emergence.ViewModel
             }
         }
 
-        private void AddTalentByIndex(NPCQuickReferenceVM enemy, int index)
+        public void AddTalentByIndex(NPCQuickReferenceVM enemy, int index)
         {
             Talent t = Talents[index];
             int maxTier = 0;
@@ -9600,16 +10473,9 @@ namespace Emergence.ViewModel
             {
                 throw new ArgumentOutOfRangeException("Talent Tier Too High.");
             }
-            else if (t.Tier == maxTier)
-            {
-                enemy.model.Talents.Add(t);
-            }
             else
             {
-                //add the talent and one of a tier lower than max
                 enemy.model.Talents.Add(t);
-                List<Talent> validTalents = Talents.Where(tal => tal.Tree == t.Tree && tal.Tier == maxTier - 1).ToList(); //May cause dups, not caring right now
-                enemy.model.Talents.Add(validTalents[r.Next(0, validTalents.Count())]);
             }
         }
 
@@ -9749,59 +10615,66 @@ namespace Emergence.ViewModel
         {
             #region Animalistic
             {
-                NpcQuality animalistic = new NpcQuality();
-                animalistic.Name = "Animalistic";
-                animalistic.Description = "Gains a Natural Weapon(Any) and Natural Armor(Any), +1 to CM of Melee attacks, and + 1 to Defense, Attack, Damage, and Durability.  Companions with the Animalistic Quality start with no UEU, Equipment, Gear, or Augmentations.";
+                foreach (NaturalArmorClass na in Enum.GetValues(typeof(NaturalArmorClass)))
+                {
+                    foreach (NaturalWeaponClass nw in Enum.GetValues(typeof(NaturalWeaponClass)))
+                    {
+                        NpcQuality animalistic = new NpcQuality();
+                        animalistic.Name = "Animalistic (" + nw.ToString() + "/" + na.ToString() + ")";
+                        animalistic.Description = "Gains a Natural Weapon(Any) and Natural Armor(Any), +1 to CM of Melee attacks, and + 1 to Defense, Attack, Damage, and Durability.  Companions with the Animalistic Quality start with no UEU, Equipment, Gear, or Augmentations.";
 
-                NaturalWeaponVM weapon1 = new ViewModel.NaturalWeaponVM(GetRandomNaturalWeaponClass());
-                weapon1.Name = "Natural Weapon 1";
-                weapon1.Type = GetRandomPhysicalDamageType();
-                weapon1.Range = Range.Melee;
-                weapon1.Properties = WeaponProperty.None;
-                animalistic.GrantedWeapons.Add(weapon1.model);
+                        NaturalWeaponVM weapon1 = new ViewModel.NaturalWeaponVM(nw);
+                        weapon1.Name = "Natural Weapon (" + nw.ToString() + ")";
+                        weapon1.Type = GetRandomPhysicalDamageType();
+                        weapon1.Range = Range.Melee;
+                        weapon1.Properties = WeaponProperty.None;
+                        weapon1.CM = 3;
+                        animalistic.GrantedWeapons.Add(weapon1.model);
 
-                NaturalArmorVM armor1 = new NaturalArmorVM(GetRandomNaturalArmorClass());
-                animalistic.GrantedArmors.Add(armor1.model);
+                        NaturalArmorVM armor1 = new NaturalArmorVM(na);
+                        animalistic.GrantedArmors.Add(armor1.model);
 
-                AttributeModifier animalisticMod0 = new AttributeModifier();
-                animalisticMod0.AttributeName = "CM";
-                animalisticMod0.Type = ModifierType.Additive;
-                animalisticMod0.ModifierValue = 1;
-                animalistic.Modifiers.Add(animalisticMod0);
+                        AttributeModifier animalisticMod0 = new AttributeModifier();
+                        animalisticMod0.AttributeName = "CM";
+                        animalisticMod0.Type = ModifierType.Additive;
+                        animalisticMod0.ModifierValue = 1;
+                        animalistic.Modifiers.Add(animalisticMod0);
 
-                ModifyDefenses(animalistic, 1);
+                        ModifyDefenses(animalistic, 1);
 
-                AttributeModifier animalisticMod10 = new AttributeModifier();
-                animalisticMod10.AttributeName = "PrimaryAttack";
-                animalisticMod10.Type = ModifierType.Additive;
-                animalisticMod10.ModifierValue = 1;
-                animalistic.Modifiers.Add(animalisticMod10);
+                        AttributeModifier animalisticMod10 = new AttributeModifier();
+                        animalisticMod10.AttributeName = "PrimaryAttack";
+                        animalisticMod10.Type = ModifierType.Additive;
+                        animalisticMod10.ModifierValue = 1;
+                        animalistic.Modifiers.Add(animalisticMod10);
 
-                AttributeModifier animalisticMod11 = new AttributeModifier();
-                animalisticMod11.AttributeName = "SecondaryAttack";
-                animalisticMod11.Type = ModifierType.Additive;
-                animalisticMod11.ModifierValue = 1;
-                animalistic.Modifiers.Add(animalisticMod11);
+                        AttributeModifier animalisticMod11 = new AttributeModifier();
+                        animalisticMod11.AttributeName = "SecondaryAttack";
+                        animalisticMod11.Type = ModifierType.Additive;
+                        animalisticMod11.ModifierValue = 1;
+                        animalistic.Modifiers.Add(animalisticMod11);
 
-                AttributeModifier animalisticMod12 = new AttributeModifier();
-                animalisticMod12.AttributeName = "PrimaryAttackDamage";
-                animalisticMod12.Type = ModifierType.Additive;
-                animalisticMod12.ModifierValue = 1;
-                animalistic.Modifiers.Add(animalisticMod12);
+                        AttributeModifier animalisticMod12 = new AttributeModifier();
+                        animalisticMod12.AttributeName = "PrimaryAttackDamage";
+                        animalisticMod12.Type = ModifierType.Additive;
+                        animalisticMod12.ModifierValue = 1;
+                        animalistic.Modifiers.Add(animalisticMod12);
 
-                AttributeModifier animalisticMod13 = new AttributeModifier();
-                animalisticMod13.AttributeName = "SecondaryAttackDamage";
-                animalisticMod13.Type = ModifierType.Additive;
-                animalisticMod13.ModifierValue = 1;
-                animalistic.Modifiers.Add(animalisticMod13);
+                        AttributeModifier animalisticMod13 = new AttributeModifier();
+                        animalisticMod13.AttributeName = "SecondaryAttackDamage";
+                        animalisticMod13.Type = ModifierType.Additive;
+                        animalisticMod13.ModifierValue = 1;
+                        animalistic.Modifiers.Add(animalisticMod13);
 
-                AttributeModifier animalisticMod14 = new AttributeModifier();
-                animalisticMod14.AttributeName = "Durability";
-                animalisticMod14.Type = ModifierType.Additive;
-                animalisticMod14.ModifierValue = 1;
-                animalistic.Modifiers.Add(animalisticMod14);
+                        AttributeModifier animalisticMod14 = new AttributeModifier();
+                        animalisticMod14.AttributeName = "Durability";
+                        animalisticMod14.Type = ModifierType.Additive;
+                        animalisticMod14.ModifierValue = 1;
+                        animalistic.Modifiers.Add(animalisticMod14);
 
-                CreatureQualities.Add(animalistic);
+                        CreatureQualities.Add(animalistic);
+                    }
+                }
             }
             #endregion
             #region Battering
@@ -10149,27 +11022,34 @@ namespace Emergence.ViewModel
             #endregion
             #region Natural Armor
             {
-                NpcQuality naturalArmor = new NpcQuality();
-                naturalArmor.Name = "Natural Armor";
-                naturalArmor.Description = "The creature gains a Natural Armor of the listed type.";
+                foreach (NaturalArmorClass na in Enum.GetValues(typeof(NaturalArmorClass)))
+                {
+                    NpcQuality naturalArmor = new NpcQuality();
+                    naturalArmor.Name = "Natural Armor (" + na.ToString() + ")";
+                    naturalArmor.Description = "The creature gains a Natural Armor of the listed type.";
 
-                NaturalArmorVM naturalArmor1 = new NaturalArmorVM(GetRandomNaturalArmorClass());
-                naturalArmor.GrantedArmors.Add(naturalArmor1.model);
-                CreatureQualities.Add(naturalArmor);
+                    NaturalArmorVM naturalArmor1 = new NaturalArmorVM(na);
+                    naturalArmor.GrantedArmors.Add(naturalArmor1.model);
+                    CreatureQualities.Add(naturalArmor);
+                }
             }
             #endregion
             #region Natural Weapon
             {
-                NpcQuality naturalWeapon = new NpcQuality();
-                naturalWeapon.Name = "Natural Weapon";
-                naturalWeapon.Description = "The creature gains Natural Weapon of the listed type.";
+                foreach (NaturalWeaponClass nw in Enum.GetValues(typeof(NaturalWeaponClass)))
+                {
+                    NpcQuality naturalWeapon = new NpcQuality();
+                    naturalWeapon.Name = "Natural Weapon (" + nw.ToString() + ")";
+                    naturalWeapon.Description = "The creature gains Natural Weapon of the listed type.";
 
-                NaturalWeaponVM naturalWeapon1 = new ViewModel.NaturalWeaponVM(GetRandomNaturalWeaponClass());
-                naturalWeapon1.Name = "Natural Weapon 1";
-                naturalWeapon1.Type = GetRandomPhysicalDamageType();
-                naturalWeapon1.Skill = Model.WeaponSkill.Unarmed;
-                naturalWeapon.GrantedWeapons.Add(naturalWeapon1.model);
-                CreatureQualities.Add(naturalWeapon);
+                    NaturalWeaponVM naturalWeapon1 = new ViewModel.NaturalWeaponVM(nw);
+                    naturalWeapon1.Name = "Natural Weapon (" + nw.ToString() + ")";
+                    naturalWeapon1.CM = 3;
+                    naturalWeapon1.Type = GetRandomPhysicalDamageType();
+                    naturalWeapon1.Skill = Model.WeaponSkill.Unarmed;
+                    naturalWeapon.GrantedWeapons.Add(naturalWeapon1.model);
+                    CreatureQualities.Add(naturalWeapon);
+                }
             }
             #endregion
             #region Night Sight

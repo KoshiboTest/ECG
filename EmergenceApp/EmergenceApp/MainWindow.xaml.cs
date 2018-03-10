@@ -375,9 +375,11 @@ namespace EmergenceApp
             LairViewModel.Load();
         }
 
-        private void Button_Click_9(object sender, RoutedEventArgs e)
+        private void CreateBlankEnemy(object sender, RoutedEventArgs e)
         {
-            LairViewModel.Enemies.Add(new NPCQuickReferenceVM());
+            NewNPCWindow win = new EmergenceApp.NewNPCWindow();
+            win.Lair = LairViewModel;
+            win.Show();
         }
 
         private void AddSelectedQuality(object sender, RoutedEventArgs e)
@@ -404,6 +406,13 @@ namespace EmergenceApp
         {
             NPCQuickReferenceVM enemy = ((NPCQuickReferenceVM)EnemiesList.SelectedItem);
             LairViewModel.AddRandomTalent(enemy);
+        }
+
+        private void AddSelectedTalent(object sender, RoutedEventArgs e)
+        {
+            int index = TalentsList.SelectedIndex;
+            NPCQuickReferenceVM enemy = ((NPCQuickReferenceVM)EnemiesList.SelectedItem);
+            LairViewModel.AddTalentByIndex(enemy, index);
         }
     }
 }

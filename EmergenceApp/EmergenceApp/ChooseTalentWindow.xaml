@@ -1,0 +1,54 @@
+﻿<Window x:Class="EmergenceApp.ChooseTalentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EmergenceApp"
+        mc:Ignorable="d"
+        Title="ChooseTalentWindow" Height="300" Width="300">
+    <DockPanel LastChildFill="True">
+        <ListView DockPanel.Dock="Left" Name="TalentsList" ItemsSource="{Binding Path=Talents}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Path=Name}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid DockPanel.Dock="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <TextBlock Text="Name"/>
+                <TextBlock Text="Description"/>
+                <TextBlock Text="DescriptionFluff"/>
+                <TextBlock Text="ClarifyingText"/>
+                <TextBlock Text="Tree"/>
+                <TextBlock Text="TreeName"/>
+                <TextBlock Text="Tier"/>
+                <TextBlock Text="TierBenefitDescription"/>
+                <TextBlock Text="StaminaCost"/>
+                <TextBlock Text="UpkeepCost"/>
+            </StackPanel>
+            <StackPanel DataContext="{Binding ElementName=TalentsList, Path=SelectedItem}" MaxWidth="400">
+                <TextBlock Text="{Binding Path=Name}"/>
+                <TextBlock Text="{Binding Path=Description}"/>
+                <TextBlock Text="{Binding Path=DescriptionFluff}"/>
+                <TextBlock Text="{Binding Path=ClarifyingText}"/>
+                <TextBlock Text="{Binding Path=Tree}"/>
+                <TextBlock Text="{Binding Path=TreeName}"/>
+                <TextBlock Text="{Binding Path=Tier}"/>
+                <TextBlock Text="{Binding Path=TierBenefitDescription}"/>
+                <TextBlock Text="{Binding Path=StaminaCost}"/>
+                <TextBlock Text="{Binding Path=UpkeepCost}"/>
+            </StackPanel>
+        </Grid>
+        <Button Click="Button_Click">Ok</Button>
+    </DockPanel>
+</Window>

@@ -535,7 +535,6 @@ namespace Emergence.Model
         {
             get
             {
-                //return 0;//skill + accuracy is taken care of in the NpcAttack, this is just to hold modifiers
                 switch (this.npcClass)
                 {
                     case NpcClass.Foe:
@@ -625,7 +624,7 @@ namespace Emergence.Model
                     case NpcClass.Companion:
                         return 2 + ConvertToInt(Level / 3M);
                     default:
-                        throw new ArgumentOutOfRangeException("Base Speed is not defined for this NpcClass '" + this.npcClass.ToString() + "'.");
+                        throw new ArgumentOutOfRangeException("Max Tier is not defined for this NpcClass '" + this.npcClass.ToString() + "'.");
                 }
             }
         }

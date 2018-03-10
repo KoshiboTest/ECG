@@ -8,14 +8,16 @@ namespace Emergence.Model
 {
     public enum NpcClass
     {
-        Companion,
+        NotSet =0,
         Grunt,
         Foe,
-        Antagonist
+        Antagonist,
+        Companion
     }
 
     public enum Archetype
     {
+        NotSet = 0,
         Beast,
         Risen,
         Demonic,
@@ -26,7 +28,8 @@ namespace Emergence.Model
 
     public enum NpcType
     {
-        Flesh,
+        NotSet = 0,
+        Flesh_aka_Unliving,
         Plant,
         Fluid,
         Swarm,

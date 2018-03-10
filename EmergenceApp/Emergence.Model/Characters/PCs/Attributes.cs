@@ -57,7 +57,7 @@ namespace Emergence.Model
         //Derived
         private int baseSpeed
         {
-            get { return 2 + ((Strength + Agility + Fortitude) / 2); }
+            get { return 2 + ConvertToInt((Strength + Agility + Fortitude) / 2); }
         }
         public int Speed
         {
@@ -192,8 +192,8 @@ namespace Emergence.Model
 
         private int ConvertToInt(decimal v)
         {
-            //Apply base rounding principle (round down)
-            return decimal.ToInt32(Math.Floor(v));
+            //Apply base rounding principle (round up)
+            return decimal.ToInt32(Math.Ceiling(v));
         }
     }
 }
