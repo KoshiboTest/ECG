@@ -4,21 +4,55 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Emergence.Model.Equipment
+namespace Emergence.Model
 {
     public class Armor
     {
         public string Name;
+        public string Class;
+        public string Type;
         public int ArmorValue;
         public int ArmorPenalty;
         public int SpeedPenalty;
+        private int baseCost;
+        public int Cost
+        {
+            get
+            {
+                int modCost = 0;
+                foreach (ArmorMod wm in Mods)
+                {
+                    modCost += wm.Cost;
+                }
+                switch (Quality)
+                {
+                    case ItemQuality.Poor:
+                        return baseCost / 2 + modCost;
+                    case ItemQuality.Standard:
+                        return baseCost + modCost;
+                    case ItemQuality.High:
+                        return baseCost + 1000 + modCost;
+                    case ItemQuality.Master:
+                        return baseCost + 5000 + modCost;
+                    case ItemQuality.Exquisite:
+                        return baseCost + 25000 + modCost;
+                    default:
+                        return baseCost;
+                }
+            }
+            set
+            {
+                baseCost = value;
+            }
+        }
+        public ArmorProperty Properties;
         public List<ArmorMod> Mods;
-        public int Quality;
+        public ItemQuality Quality;
 
         public Armor()
         {
             Name = "None";
-            Mods = new List<Equipment.ArmorMod>();
+            Mods = new List<ArmorMod>();
         }
     }
 

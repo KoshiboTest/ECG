@@ -243,22 +243,11 @@ namespace Emergence.ViewModel
         {
             get
             {
-                switch (model.NpcClass)
-                {
-                    case Model.NpcClass.Grunt:
-                        return 0;
-                    case Model.NpcClass.Foe:
-                        return 4 + decimal.ToInt32(Math.Floor(model.Level / 2.0M));
-                    case Model.NpcClass.Antagonist:
-                        return 4 + decimal.ToInt32(Math.Floor(model.Level / 2.0M));
-                    case Model.NpcClass.Companion:
-                        return 0;
-                    default:
-                        throw new ArgumentOutOfRangeException("Set NpcClass before getting the Stamina Regen value.");
-                }
+                return model.Attributes.StaminaRegen;
             }
             set
             {
+                model.Attributes.StaminaRegen = value;
                 NotifyPropertyChanged("StaminaRegen");
             }
         }
@@ -315,6 +304,10 @@ namespace Emergence.ViewModel
             get
             {
                 return model.Armor.ArmorValue;
+            }
+            set
+            {
+                model.Armor.ArmorValue = value;
             }
         }
         public int Speed

@@ -1,5 +1,4 @@
-﻿using Emergence.Model.Equipment;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Emergence.Model
 {

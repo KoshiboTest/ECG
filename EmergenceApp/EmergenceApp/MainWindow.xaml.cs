@@ -246,7 +246,7 @@ namespace EmergenceApp
                 {
                     if (ArmoryViewModel.AmpMods[modIndex].ApplyError.Contains("Heavy Power Rune"))
                     {
-                        if ( 
+                        if (
                         ArmoryViewModel.AmpMods.FirstOrDefault(wm => wm.Name == "Heavy Power Rune").ApplyTo(((AmpVM)baseAmpList.SelectedItem)) &&
                         ArmoryViewModel.AmpMods[modIndex].ApplyTo(((AmpVM)baseAmpList.SelectedItem)))
                         {
@@ -413,6 +413,55 @@ namespace EmergenceApp
             int index = TalentsList.SelectedIndex;
             NPCQuickReferenceVM enemy = ((NPCQuickReferenceVM)EnemiesList.SelectedItem);
             LairViewModel.AddTalentByIndex(enemy, index);
+        }
+
+        private void RandomizeArmor(object sender, RoutedEventArgs e)
+        {
+            //TODO
+        }
+
+        private void AddArmorToSelectedNPC(object sender, RoutedEventArgs e)
+        {
+            Armor w = ((ArmorVM)baseArmorList.SelectedItem).model;
+            NonPlayerCharacter npc = ((NPCQuickReferenceVM)EnemiesList.SelectedItem).model;
+            npc.Armor = w;
+            ((NPCQuickReferenceVM)EnemiesList.SelectedItem).NotifyAll();
+        }
+
+        private void cmdUpArmor_Click(object sender, RoutedEventArgs e)
+        {
+            ((ArmorVM)((Button)sender).DataContext).IncreaseQuality();
+        }
+
+        private void cmdDownArmor_Click(object sender, RoutedEventArgs e)
+        {
+            ((ArmorVM)((Button)sender).DataContext).DecreaseQuality();
+        }
+
+        private void AddArmorMod(object sender, RoutedEventArgs e)
+        {
+            Button b = (Button)sender;
+            ArmorModVM wm = (ArmorModVM)b.DataContext;
+            ArmorVM w = b.CommandParameter as ArmorVM;
+            if (w != null && wm.ApplyTo(w))
+            {
+            }
+            else if (w == null)
+            {
+                MessageBox.Show("Select an armor.");
+            }
+            else
+            {
+                MessageBox.Show(((ArmorModVM)((Button)sender).DataContext).ApplyError);
+            }
+        }
+
+        private void RemoveArmorMod(object sender, RoutedEventArgs e)
+        {
+            Button b = (Button)sender;
+            ArmorModVM wm = (ArmorModVM)b.DataContext;
+            ArmorVM w = b.CommandParameter as ArmorVM;
+            wm.RemoveFrom(w);
         }
     }
 }

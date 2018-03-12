@@ -146,15 +146,15 @@ namespace Emergence.Model
                 }
                 switch (Quality)
                 {
-                    case WeaponQuality.Poor:
+                    case ItemQuality.Poor:
                         return baseCost / 2 + modCost;
-                    case WeaponQuality.Standard:
+                    case ItemQuality.Standard:
                         return baseCost + modCost;
-                    case WeaponQuality.High:
+                    case ItemQuality.High:
                         return baseCost + 1000 + modCost;
-                    case WeaponQuality.Master:
+                    case ItemQuality.Master:
                         return baseCost + 5000 + modCost;
-                    case WeaponQuality.Exquisite:
+                    case ItemQuality.Exquisite:
                         return baseCost + 25000 + modCost;
                     default:
                         return baseCost;
@@ -169,7 +169,7 @@ namespace Emergence.Model
         { get; set; }
         public WeaponProperty Properties
         { get; set; }
-        public WeaponQuality Quality
+        public ItemQuality Quality
         { get; set; }
         public List<WeaponMod> Mods
         { get; set; }
@@ -265,15 +265,15 @@ namespace Emergence.Model
                 }
                 switch (Quality)
                 {
-                    case WeaponQuality.Poor:
+                    case ItemQuality.Poor:
                         return baseCost / 2 + modCost;
-                    case WeaponQuality.Standard:
+                    case ItemQuality.Standard:
                         return baseCost + modCost;
-                    case WeaponQuality.High:
+                    case ItemQuality.High:
                         return baseCost + 1000 + modCost;
-                    case WeaponQuality.Master:
+                    case ItemQuality.Master:
                         return baseCost + 5000 + modCost;
-                    case WeaponQuality.Exquisite:
+                    case ItemQuality.Exquisite:
                         return baseCost + 25000 + modCost;
                     default:
                         return baseCost;
@@ -288,7 +288,7 @@ namespace Emergence.Model
         //{ get; set; }
         public AmpProperty Properties
         { get; set; }
-        public WeaponQuality Quality
+        public ItemQuality Quality
         { get; set; }
         public List<AmpMod> Mods
         { get; set; }

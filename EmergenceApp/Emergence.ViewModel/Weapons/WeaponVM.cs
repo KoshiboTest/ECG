@@ -125,23 +125,23 @@ namespace Emergence.ViewModel
         {
             get
             {
-                return (ViewModel.WeaponProperty)model.Properties;
+                return model.Properties;
             }
             set
             {
-                model.Properties = (Model.WeaponProperty)value;
+                model.Properties = value;
                 NotifyPropertyChanged("Properties");
             }
         }
-        public WeaponQuality Quality
+        public ItemQuality Quality
         {
             get
             {
-                return (ViewModel.WeaponQuality)model.Quality;
+                return model.Quality;
             }
             set
             {
-                model.Quality = (Model.WeaponQuality)value;
+                model.Quality = value;
                 NotifyPropertyChanged("Quality");
             }
         }
@@ -369,23 +369,23 @@ namespace Emergence.ViewModel
         {
             get
             {
-                return (ViewModel.AmpProperty)model.Properties;
+                return model.Properties;
             }
             set
             {
-                model.Properties = (Model.AmpProperty)value;
+                model.Properties = value;
                 NotifyPropertyChanged("Properties");
             }
         }
-        public WeaponQuality Quality
+        public ItemQuality Quality
         {
             get
             {
-                return (ViewModel.WeaponQuality)model.Quality;
+                return model.Quality;
             }
             set
             {
-                model.Quality = (Model.WeaponQuality)value;
+                model.Quality = value;
                 NotifyPropertyChanged("Quality");
             }
         }

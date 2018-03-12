@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Emergence.Model.Equipment
+namespace Emergence.Model
 {
     public enum EquipmentType
     {

@@ -1,5 +1,4 @@
 ﻿using Emergence.Model;
-using Emergence.Model.Equipment;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -52,6 +52,7 @@
     <Compile Include="Equipment\ArmorVM.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Weapons\AmpModVM.cs" />
+    <Compile Include="Weapons\ArmorModVM.cs" />
     <Compile Include="Weapons\Armory.cs" />
     <Compile Include="Characters\PCs\Barracks.cs" />
     <Compile Include="DataContext.cs" />

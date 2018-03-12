@@ -1,4 +1,5 @@
-﻿using Emergence.Model.Weapons;
+﻿using Emergence.Model;
+using Emergence.Model.Weapons;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -74,7 +75,7 @@ namespace Emergence.ViewModel
         {
             ApplyError = string.Empty;
 
-            if (a.Quality == WeaponQuality.Poor)
+            if (a.Quality == ItemQuality.Poor)
             {
                 ApplyError = "Poor quality Amps cannot have mods applied.";
                 return false;

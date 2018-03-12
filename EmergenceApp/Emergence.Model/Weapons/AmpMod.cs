@@ -20,19 +20,19 @@ namespace Emergence.Model.Weapons
         public virtual bool ApplyTo(Amp a)
         {
             ApplyError = string.Empty;
-            if (a.Quality == WeaponQuality.Poor)
+            if (a.Quality == ItemQuality.Poor)
             {
-                ApplyError = "Poor quality weapons cannot have mods applied.";
+                ApplyError = "Poor quality amps cannot have mods applied.";
                 return false;
             }
             else if (a.Mods.Count >= (int)a.Quality)
             {
-                ApplyError = "The weapon has the maximum number of mods.  Raise the quality prior to adding this mod.";
+                ApplyError = "The amp has the maximum number of mods.  Raise the quality prior to adding this mod.";
                 return false;
             }
             else if (a.Mods.Contains(this))
             {
-                ApplyError = "The weapon already has this modification.  It cannot be added again.";
+                ApplyError = "The amp already has this modification.  It cannot be added again.";
                 return false;
             }
             a.Mods.Add(this);

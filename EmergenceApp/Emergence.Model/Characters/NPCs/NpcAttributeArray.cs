@@ -51,7 +51,16 @@ namespace Emergence.Model
             }
         }
         public int StaminaRegen
-        { get; }
+        {
+            get
+            {
+                return ApplyModifiers("StaminaRegen", baseStaminaRegen);
+            }
+            set
+            {
+                AttributeAdjustments.Add(new AttributeModifier() { AttributeName = "StaminaRegen", Type = ModifierType.Additive, ModifierValue = value - StaminaRegen });
+            }
+        }
 
         //Derived
         private int baseSpeed

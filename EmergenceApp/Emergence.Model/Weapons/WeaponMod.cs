@@ -26,7 +26,7 @@ namespace Emergence.Model
                 ApplyError = "A weapon with the no mods attribute cannot have mods applied.";
                 return false;
             }
-            if (w.Quality == WeaponQuality.Poor)
+            if (w.Quality == ItemQuality.Poor)
             {
                 ApplyError = "Poor quality weapons cannot have mods applied.";
                 return false;

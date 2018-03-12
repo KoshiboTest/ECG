@@ -41,6 +41,20 @@ namespace Emergence.ViewModel
             }
         }
 
+        private ObservableCollection<ArmorVM> baseArmors;
+        public ObservableCollection<ArmorVM> BaseArmors
+        {
+            get
+            {
+                return baseArmors;
+            }
+            set
+            {
+                baseArmors = value;
+                NotifyPropertyChanged("BaseArmors");
+            }
+        }
+
         private ObservableCollection<WeaponModVM> weaponMods;
         public ObservableCollection<WeaponModVM> WeaponMods
         {
@@ -66,6 +80,20 @@ namespace Emergence.ViewModel
             {
                 ampMods = value;
                 NotifyPropertyChanged("AmpMods");
+            }
+        }
+
+        private ObservableCollection<ArmorModVM> armorMods;
+        public ObservableCollection<ArmorModVM> ArmorMods
+        {
+            get
+            {
+                return armorMods;   
+            }
+            set
+            {
+                armorMods = value;
+                NotifyPropertyChanged("ArmorMods");
             }
         }
 
@@ -143,6 +171,7 @@ namespace Emergence.ViewModel
             yourWeapons = new ObservableCollection<WeaponVM>();
             baseWeapons = new ObservableCollection<WeaponVM>();
             baseAmps = new ObservableCollection<AmpVM>();
+            baseArmors = new ObservableCollection<ArmorVM>();
 
             #region Weapons
             WeaponVM Unarmed = new WeaponVM();
@@ -747,6 +776,77 @@ namespace Emergence.ViewModel
             baseAmps.Add(staff);
             baseAmps.Add(circlet);
             #endregion
+
+            #region Armors
+            ArmorVM vest = new ArmorVM();
+            ArmorVM breastplate = new ArmorVM();
+            ArmorVM battlesuit = new ArmorVM();
+            ArmorVM plate = new ArmorVM();
+            ArmorVM mageforged = new ArmorVM();
+            ArmorVM combatshell = new ArmorVM();
+
+            vest.Name = "Armored Vest";
+            vest.Class = "Light";
+            vest.Type = "Flexible";
+            vest.ArmorValue = 2;
+            vest.ArmorPenalty = 1;
+            vest.SpeedPenalty = 0;
+            vest.Cost = 300;
+            vest.Properties = ArmorProperty.Innocuous;
+
+            breastplate.Name = "Breastplate";
+            breastplate.Class = "Light";
+            breastplate.Type = "Rigid";
+            breastplate.ArmorValue = 3;
+            breastplate.ArmorPenalty = 1;
+            breastplate.SpeedPenalty = 1;
+            breastplate.Cost = 300;
+            breastplate.Properties = ArmorProperty.Sturdy;
+
+            battlesuit.Name = "Battle Suit";
+            battlesuit.Class = "Heavy";
+            battlesuit.Type = "Flexible";
+            battlesuit.ArmorValue = 5;
+            battlesuit.ArmorPenalty = 2;
+            battlesuit.SpeedPenalty = 1;
+            battlesuit.Cost = 1500;
+            battlesuit.Properties = ArmorProperty.Versatile;
+
+            plate.Name = "Plate Armor";
+            plate.Class = "Heavy";
+            plate.Type = "Rigid";
+            plate.ArmorValue = 6;
+            plate.ArmorPenalty = 2;
+            plate.SpeedPenalty = 2;
+            plate.Cost = 1500;
+            plate.Properties = ArmorProperty.Encompassing;
+
+            mageforged.Name = "Mageforged";
+            mageforged.Class = "Advanced";
+            mageforged.Type = "Flexible";
+            mageforged.ArmorValue = 8;
+            mageforged.ArmorPenalty = 3;
+            mageforged.SpeedPenalty = 2;
+            mageforged.Cost = 7500;
+            mageforged.Properties = ArmorProperty.Fused;
+
+            combatshell.Name = "Combat Shell";
+            combatshell.Class = "Advanced";
+            combatshell.Type = "Rigid";
+            combatshell.ArmorValue = 9;
+            combatshell.ArmorPenalty = 3;
+            combatshell.SpeedPenalty = 3;
+            combatshell.Cost = 7500;
+            combatshell.Properties = ArmorProperty.CombatArmature;
+
+            baseArmors.Add(vest);
+            baseArmors.Add(breastplate);
+            baseArmors.Add(battlesuit);
+            baseArmors.Add(plate);
+            baseArmors.Add(mageforged);
+            baseArmors.Add(combatshell);
+
+            #endregion
         }
         private void InitializeWeaponMods()
         {
@@ -1128,19 +1228,19 @@ namespace Emergence.ViewModel
             AmpModVM imbued = new AmpModVM();
             imbued.Name = "Imbued";
             imbued.Cost = 500;
-            imbued.Effect = " e Charges of this Amp are increased by 3.";
+            imbued.Effect = "The Charges of this Amp are increased by 3.";
             ampMods.Add(imbued);
 
             RequiresPowerRuneAmpModVM lesserSpellpower = new RequiresPowerRuneAmpModVM();
             lesserSpellpower.Name = "Lesser Spellpower";
             lesserSpellpower.Cost = 1000;
-            lesserSpellpower.Effect = "Treat your Presence Attribute as 3 when determining the damage of spells cast through this Amp.Requires Power Rune.";
+            lesserSpellpower.Effect = "Treat your Presence Attribute as 3 when determining the damage of spells cast through this Amp. Requires Power Rune.";
             ampMods.Add(lesserSpellpower);
 
             AmpModVM lucky = new AmpModVM();
             lucky.Name = "Lucky";
             lucky.Cost = 500;
-            lucky.Effect = "You can treat results of 1 and 2 as 1s for the purpose of Spirit re - rolls when making attacks with this Amp.";
+            lucky.Effect = "You can treat results of 1 and 2 as 1s for the purpose of Spirit re-rolls when making attacks with this Amp.";
             ampMods.Add(lucky);
 
             AmpModVM powerRune = new AmpModVM();
@@ -1152,13 +1252,13 @@ namespace Emergence.ViewModel
             AmpModVM reaching = new AmpModVM();
             reaching.Name = "Reaching";
             reaching.Cost = 500;
-            reaching.Effect = " e Amp gains the Reaching property if it did not already possess it.";
+            reaching.Effect = "The Amp gains the Reaching property if it did not already possess it.";
             ampMods.Add(reaching);
 
             StaffModVM stunted = new StaffModVM();
             stunted.Name = "Stunted";
             stunted.Cost = 250;
-            stunted.Effect = " e Amp loses the Reaching property.Sta only.";
+            stunted.Effect = "The Amp loses the Reaching property. Staff only.";
             ampMods.Add(stunted);
 
             AmpModVM wild = new AmpModVM();
@@ -1170,7 +1270,7 @@ namespace Emergence.ViewModel
             AmpModVM bonded = new AmpModVM();
             bonded.Name = "Bonded";
             bonded.Cost = 2500;
-            bonded.Effect = " e Amp can be called to you by a mental command as a Quick Action [2 Stamina] from up to 1,000’ away.  e Amp will travel 500’ per turn to deliver itself to your hand, automatically avoiding any obstacles between itself and you. Additionally, you cannot be disarmed of this Amp and the Amp can be Armed from its Holster for 1 less MI than its Holster indicates.";
+            bonded.Effect = "The Amp can be called to you by a mental command as a Quick Action [2 Stamina] from up to 1,000’ away. The Amp will travel 500’ per turn to deliver itself to your hand, automatically avoiding any obstacles between itself and you. Additionally, you cannot be disarmed of this Amp and the Amp can be Armed from its Holster for 1 less MI than its Holster indicates.";
             ampMods.Add(bonded);
 
             RequiresPowerRuneAmpModVM deadly = new RequiresPowerRuneAmpModVM();
@@ -1182,7 +1282,7 @@ namespace Emergence.ViewModel
             RequiresPowerRuneAmpModVM greaterImbued = new RequiresPowerRuneAmpModVM();
             greaterImbued.Name = "Greater Imbued";
             greaterImbued.Cost = 5000;
-            greaterImbued.Effect = " e Charges of this Amp are increased by 7. Requires Power Rune.";
+            greaterImbued.Effect = "The Charges of this Amp are increased by 7. Requires Power Rune.";
             ampMods.Add(greaterImbued);
 
             AmpModVM heavyPowerRune = new AmpModVM();
@@ -1194,13 +1294,13 @@ namespace Emergence.ViewModel
             AmpModVM homing = new AmpModVM();
             homing.Name = "Homing";
             homing.Cost = 3500;
-            homing.Effect = " e Accuracy of the Amp is increased by 1.";
+            homing.Effect = "The Accuracy of the Amp is increased by 1.";
             ampMods.Add(homing);
 
             RequiresPowerRuneAmpModVM spellpower = new RequiresPowerRuneAmpModVM();
             spellpower.Name = "Spellpower";
             spellpower.Cost = 4000;
-            spellpower.Effect = " e caster treats his Presence Attribute as 5 when determining the damage of his spells cast through this Amp.Requires Power Rune.";
+            spellpower.Effect = "The caster treats his Presence Attribute as 5 when determining the damage of his spells cast through this Amp.Requires Power Rune.";
             ampMods.Add(spellpower);
 
             AmpModVM terrible = new AmpModVM();
@@ -1212,7 +1312,7 @@ namespace Emergence.ViewModel
             AmpModVM transforming = new AmpModVM();
             transforming.Name = "Transforming";
             transforming.Cost = 4000;
-            transforming.Effect = " is Amp can be Transformed from 1 Amp to another.All Mods remain intact but fail to function if the Mod does not work on the Amp’s new form. Transforming Amps have only 1 alternate form that is selected when this Mod is installed.Transforming the Amp between its 2 forms is done as a Quick Action.";
+            transforming.Effect = "This Amp can be Transformed from 1 Amp to another.All Mods remain intact but fail to function if the Mod does not work on the Amp’s new form. Transforming Amps have only 1 alternate form that is selected when this Mod is installed.Transforming the Amp between its 2 forms is done as a Quick Action.";
             ampMods.Add(transforming);
 
             AmpModVM transmuting = new AmpModVM();
@@ -1230,7 +1330,7 @@ namespace Emergence.ViewModel
             RequiresHeavyPowerRuneAmpModVM eternal = new RequiresHeavyPowerRuneAmpModVM();
             eternal.Name = "Eternal";
             eternal.Cost = 45000;
-            eternal.Effect = " is Amp does not have a Charges Attribute and does not have a limit to the number of times it can be used before recharging. All Spells and Enhancements cast through Eternal Amps have their Stamina cost reduced by 1 to activate and maintain. Requires Heavy Power Rune.";
+            eternal.Effect = "This Amp does not have a Charges Attribute and does not have a limit to the number of times it can be used before recharging. All Spells and Enhancements cast through Eternal Amps have their Stamina cost reduced by 1 to activate and maintain. Requires Heavy Power Rune.";
             ampMods.Add(eternal);
 
             AmpModVM fortuitous = new AmpModVM();
@@ -1260,10 +1360,266 @@ namespace Emergence.ViewModel
             AmpModVM spellStoring = new AmpModVM();
             spellStoring.Name = "Spell Storing";
             spellStoring.Cost = 20000;
-            spellStoring.Effect = "Store attack spells with a with a total Stamina cost of no more than 20 (before caster cost reductions).  e spells are placed into the weapon by casting the spell and touching the weapon. Stored spells are stored until expended or dismissed. To expend the spell, spend a Combat Action and attack as if you had cast the spell (using the caster’s original attack and damage). To dismiss the spell, spend a Quick Action.  e weapon glows a brilliant color and the space is then free to store additional spells.";
+            spellStoring.Effect = "Store attack spells with a with a total Stamina cost of no more than 20 (before caster cost reductions). The spells are placed into the weapon by casting the spell and touching the weapon. Stored spells are stored until expended or dismissed. To expend the spell, spend a Combat Action and attack as if you had cast the spell (using the caster’s original attack and damage). To dismiss the spell, spend a Quick Action. The weapon glows a brilliant color and the space is then free to store additional spells.";
             ampMods.Add(spellStoring);
 
             ampMods.OrderBy(am => am.Name);
+            #endregion
+
+            armorMods = new ObservableCollection<ArmorModVM>();
+
+            #region
+            ArmorModVM cloaked = new ArmorModVM();
+            cloaked.Name = "Cloaked";
+            cloaked.Cost = 1000;
+            cloaked.Effect = "Cloaked (as the Illusion): Activate to become Cloaked for 1 round. [4 Stamina]";
+            armorMods.Add(cloaked);
+
+            ArmorModVM invigorating = new ArmorModVM();
+            invigorating.Name = "Invigorating";
+            invigorating.Cost = 1000;
+            invigorating.Effect = "Gain +1 HP per track and +2 Stamina";
+            armorMods.Add(invigorating);
+
+            ArmorModVM powerRune1 = new ArmorModVM();
+            powerRune1.Name = "Power Rune";
+            powerRune1.Cost = 1000;
+            powerRune1.Effect = "Required for certain other Mods. + 1 to Stamina Regen.";
+            armorMods.Add(powerRune1);
+
+            RequiresPowerRuneArmorModVM quick = new RequiresPowerRuneArmorModVM();
+            quick.Name = "Quick";
+            quick.Cost = 1000;
+            quick.Effect = "Activate to gain the Hastened condition for 1 round. Requires Power Rune.";
+            armorMods.Add(quick);
+
+            ArmorModVM resistance = new ViewModel.ArmorModVM();
+            resistance.Name = "Resistance";
+            resistance.Cost = 650;
+            resistance.Effect = "Gain Light Fortification.";
+            armorMods.Add(resistance);
+
+            ArmorModVM soulBond = new ViewModel.ArmorModVM();
+            soulBond.Name = "Soul Bond";
+            soulBond.Cost = 750;
+            soulBond.Effect = "Gain +1 to Long-Term Recovery and to your total HP in each Track.";
+            armorMods.Add(soulBond);
+
+            ArmorModVM enhancedMobility = new ViewModel.ArmorModVM();
+            enhancedMobility.Name = "Enhanced Mobility";
+            enhancedMobility.Cost = 500;
+            enhancedMobility.Effect = "Reduces Speed Penalty by 1.";
+            armorMods.Add(enhancedMobility);
+
+            ArmorModVM extraProtection = new ViewModel.ArmorModVM();
+            extraProtection.Name = "Extra Protection";
+            extraProtection.Cost = 500;
+            extraProtection.Effect = "Increase Armor Value by 1 and Speed Penalty by 1.";
+            armorMods.Add(extraProtection);
+
+            ArmorModVM holster = new ArmorModVM();
+            holster.Name = "Holster";
+            holster.Cost = 500;
+            holster.Effect = "The armor gains storage for weapons up to a combined Size of 8.";
+            armorMods.Add(holster);
+
+            ArmorModVM lightFort = new ViewModel.ArmorModVM();
+            lightFort.Name = "Light Fortification";
+            lightFort.Cost = 650;
+            lightFort.Effect = "Increase Armor vs. one damage type by 2.";
+            armorMods.Add(lightFort);
+
+            ArmorModVM lightWMount = new ViewModel.ArmorModVM();
+            lightWMount.Name = "Light Weapon Mount";
+            lightWMount.Cost = 300;
+            lightWMount.Effect = "Mount a Size 3 or smaller weapon onto the armor. You are always considered Armed when wearing the armor. Any attempts to Conceal the weapon incur a Concealment penalty of + 4.";
+            armorMods.Add(lightWMount);
+
+            ArmorModVM mcPowered = new ViewModel.ArmorModVM();
+            mcPowered.Name = "Magecell-Powered";
+            mcPowered.Cost = 1000;
+            mcPowered.Effect = "Prerequisite for certain other Mods. You can Power Tether 1 weapon to the armor to meet the Magecell-Powered requirement for other Mods installed on that weapon(see Weapon Attachments on page 214).";
+            armorMods.Add(mcPowered);
+
+            ArmorModVM dimensionalHolster = new ViewModel.ArmorModVM();
+            dimensionalHolster.Name = "Dimensional Holster";
+            dimensionalHolster.Cost = 5000;
+            dimensionalHolster.Effect = "Gain a Concealed Holster for weapons with Size of 6 or less. Mundane forms of detection will always fail to detect the space.A MCR 25 Alteration Check w will detect the presence of the space but not its contents.";
+            armorMods.Add(dimensionalHolster);
+
+            ArmorModVM fleet = new ViewModel.ArmorModVM();
+            fleet.Name = "Fleet";
+            fleet.Cost = 2500;
+            fleet.Effect = "Gain +1 Speed and +5 to Jump Checks.";
+            armorMods.Add(fleet);
+
+            ArmorModVM hpRune = new ViewModel.ArmorModVM();
+            hpRune.Name = "Heavy Power Rune";
+            hpRune.Cost = 5000;
+            hpRune.Effect = "This Mod is a requirement for certain other Mods and counts as a Power Rune for the purposes of meeting prerequisites. Gain + 2 to Stamina Regen.";
+            armorMods.Add(hpRune);
+
+            RequiresPowerRuneArmorModVM lifeSpring = new RequiresPowerRuneArmorModVM();
+            lifeSpring.Name = "Life Spring";
+            lifeSpring.Cost = 2500;
+            lifeSpring.Effect = "Gain +4 Stamina and +1 to Resistance Checks. Requires Power Rune.";
+            armorMods.Add(lifeSpring);
+
+            RequiresPowerRuneArmorModVM phaseRune = new RequiresPowerRuneArmorModVM();
+            phaseRune.Name = "Phase Rune";
+            phaseRune.Cost = 5000;
+            phaseRune.Effect = "Gain +5 to Athletics Checks to escape and ignore Rough terrain.You can Push Through for 1 additional MI, and you gain + 1 to Physical defenses.Requires Power Rune.";
+            armorMods.Add(phaseRune);
+
+            ArmorModVM retracting = new ViewModel.ArmorModVM();
+            retracting.Name = "Retracting";
+            retracting.Cost = 5000;
+            retracting.Effect = "The armor can be dismissed or summoned as a Combat Action. While dismissed, the armor retracts into itself and becomes a somewhat innocuous version of itself. While retracted, the armor provides none of its armor or Mod benefits, and the effective Size of the armor becomes 1 for determining its Concealment modifier.";
+            armorMods.Add(retracting);
+
+            RequiresPowerRuneArmorModVM runeEtched = new RequiresPowerRuneArmorModVM();
+            runeEtched.Name = "Rune-Etched";
+            runeEtched.Cost = 3500;
+            runeEtched.Effect = "Freely maintain 1 Enhancement cast on yourself with a Maintenance cost of 3 or less. +1 to damage with Spells. Requires Power Rune.";
+            armorMods.Add(runeEtched);
+
+            ArmorModVM spellWard = new ViewModel.ArmorModVM();
+            spellWard.Name = "Spell Ward";
+            spellWard.Cost = 3500;
+            spellWard.Effect = "Increase your Armor by 2 vs. all Spells.";
+            armorMods.Add(spellWard);
+
+            ArmorModVM customFit = new ViewModel.ArmorModVM();
+            customFit.Name = "Custom Fitted";
+            customFit.Cost = 3500;
+            customFit.Effect = "Reduces Armor Penalty by 1.";
+            armorMods.Add(customFit);
+
+            ArmorModVM enviroSeal = new ViewModel.ArmorModVM();
+            enviroSeal.Name = "Environmental Seal";
+            enviroSeal.Cost = 4000;
+            enviroSeal.Effect = "Gain +4 to armor vs. Area attacks and environmental effects. The armor also gains a 1-hour sealed breathing supply.";
+            armorMods.Add(enviroSeal);
+
+            ArmorModVM fort = new ViewModel.ArmorModVM();
+            fort.Name = "Fortification";
+            fort.Cost = 3000;
+            fort.Effect = "Increase your armor by 4 vs. 1 damage type; does not stack with other types of Fortification.";
+            armorMods.Add(fort);
+
+            ArmorModVM hMagecell = new ViewModel.ArmorModVM();
+            hMagecell.Name = "Heavy Magecell";
+            hMagecell.Cost = 2000;
+            hMagecell.Effect = "Prerequisite for certain other Mods. You can Power Tether (see Weapon Attachments on page 214) weapons and other items to the armor to power them and to meet the Magecell-Powered or Heavy Magecell requirements for other Mods on those items. Counts as Magecell-Powered as well as Heavy Magecell for meeting requirements.";
+            armorMods.Add(hMagecell);
+
+            ArmorModVM jumpAssist = new ViewModel.ArmorModVM();
+            jumpAssist.Name = "Jump Assist";
+            jumpAssist.Cost = 4000;
+            jumpAssist.Effect = "Gain +5 to Jump Checks and +1 to Speed. Requires Powered Servos.";
+            armorMods.Add(jumpAssist);
+
+            ArmorModVM jumpJets = new ViewModel.ArmorModVM();
+            jumpJets.Name = "Jump Jets";
+            jumpJets.Cost = 5000;
+            jumpJets.Effect = "You add +30 to your next Jump Check.Requires Magecell-Powered. [6 Stamina]";
+            armorMods.Add(jumpJets);
+
+            RequiresMageCellPoweredArmorModVM lightShields = new RequiresMageCellPoweredArmorModVM();
+            lightShields.Name = "Light Shields";
+            lightShields.Cost = 6500;
+            lightShields.Effect = "This Mod creates a protective bubble around you.Use a Quick Action to create a damage buffer with HP equal to 5 + your level. When you suffer damage from an attack or environmental effect, that damage is removed from this buffer before any damage can be inflicted on any of your Damage Tracks. This Mod has no effect on direct loss of HP. Damage taken to the buffer does not count as damage to you. This Mod must be activated during each encounter; leaving it on in between encounters will destroy the Mod. The damage buffer lasts until the end of the encounter. This Mod can only be activated once per encounter. Requires: Magecell-Powered.";
+            armorMods.Add(lightShields);
+
+            RequiresMageCellPoweredArmorModVM poweredServos = new RequiresMageCellPoweredArmorModVM();
+            poweredServos.Name = "Powered Servos";
+            poweredServos.Cost = 3000;
+            poweredServos.Effect = "Gain +1 to Strength and an additional +1 to Li ing power. Requires Magecell-Powered.";
+            armorMods.Add(poweredServos);
+
+            ArmorModVM reinforcement = new ViewModel.ArmorModVM();
+            reinforcement.Name = "Reinforcement";
+            reinforcement.Cost = 3000;
+            reinforcement.Effect = "Gain -1 to the CM of attacks against you, and add your level to your 3rd Damage Track.";
+            armorMods.Add(reinforcement);
+
+            RequiresPowerRuneArmorModVM conduitRune = new RequiresPowerRuneArmorModVM();
+            conduitRune.Name = "Conduit Rune";
+            conduitRune.Cost = 30000;
+            conduitRune.Effect = "When you lose HP, regain spent Stamina equal to ¼ the HP lost. Requires Power Rune.";
+            armorMods.Add(conduitRune);
+
+            RequiresHeavyPowerRuneArmorModVM greaterSpellWard = new ViewModel.RequiresHeavyPowerRuneArmorModVM();
+            greaterSpellWard.Name = "Greater Spell Ward";
+            greaterSpellWard.Cost = 55000;
+            greaterSpellWard.Effect = "Gain +4 Armor Value vs. Spells. Requires Heavy Power Rune.";
+            armorMods.Add(greaterSpellWard);
+
+            ArmorModVM powerful = new ViewModel.ArmorModVM();
+            powerful.Name = "Powerful";
+            powerful.Cost = 25000;
+            powerful.Effect = "Gain +1 to an Attribute of your choice.";
+
+            RequiresHeavyPowerRuneArmorModVM runeInscribed = new RequiresHeavyPowerRuneArmorModVM();
+            runeInscribed.Name = "Rune Inscribed";
+            runeInscribed.Cost = 20000;
+            runeInscribed.Effect = "Gain 1 Slot for Runescribing in a body location of your choice.Gain access to the Augmentation only while the armor is worn. Requires Heavy Power Rune.";
+            armorMods.Add(runeInscribed);
+
+            ArmorModVM sacrificeRune = new ArmorModVM();
+            sacrificeRune.Name = "Sacrifice Rune";
+            sacrificeRune.Cost = 20000;
+            sacrificeRune.Effect = "As a Quick Action, you can lose HP up to your Presence Attribute. In exchange, gain double that number in Stamina. Any Stamina in excess of your normal maximum is lost at the end of your current turn.";
+            armorMods.Add(sacrificeRune);
+
+            ArmorModVM summoned = new ViewModel.ArmorModVM();
+            summoned.Name = "Summoned";
+            summoned.Cost = 20000;
+            summoned.Effect = "As a Quick Action, you can summon the armor from anywhere on Kython. The armor appears on you as if you had donned it, as long as Teleportation between the 2 places is possible. The armor comes with a location key, a small piece of the armor that can be placed at a location. Dismiss the armor as a Quick Action;             when dismissed the armor Teleports to the             location key until summoned. The armor is permanently keyed to you and the Mod must be removed and reapplied for it to be keyed to a new owner.If you are already wearing armor when you summon the armor, it takes the place of the worn armor until the summoned armor is dismissed.";
+            armorMods.Add(summoned);
+
+            ArmorModVM warded = new ViewModel.ArmorModVM();
+            warded.Name = "Warded";
+            warded.Cost = 15000;
+            warded.Effect = "Gain Light Fortification vs. all Area and Resolve attacks.";
+            armorMods.Add(warded);
+
+            ArmorModVM advSystems = new ViewModel.ArmorModVM();
+            advSystems.Name = "Advanced Systems";
+            advSystems.Cost = 20000;
+            advSystems.Effect = "You gain 1 Slot for Cybernetics in a body location of your choosing.Gain the effects of the Augmentation only while the armor is worn. Requires Powered Servos.";
+            armorMods.Add(advSystems);
+
+            ArmorModVM hFort = new ViewModel.ArmorModVM();
+            hFort.Name = "Heavy Fortification";
+            hFort.Cost = 40000;
+            hFort.Effect = "Increase the armor’s Armor Value by 4 vs. 3 damage types of your choosing. This effect cannot be stacked with other types of Fortification.";
+            armorMods.Add(hFort);
+
+            HeavyServosArmorModVM hServos = new ViewModel.HeavyServosArmorModVM();
+            hServos.Name = "Heavy Servos";
+            hServos.Cost = 25000;
+            hServos.Effect = "Gain +2 to Strength. Increase the Armor Penalty of the armor by 1 and the Speed Penalty of the armor by 2.Gain an additional +2 to Li ing power. Requires Heavy Power Cell; does not stack with Powered Servos.";
+            armorMods.Add(hServos);
+
+            RequiresHeavyMagecellPoweredArmorModVM hShields = new RequiresHeavyMagecellPoweredArmorModVM();
+            hShields.Name = "Heavy Shields";
+            hShields.Cost = 40000;
+            hShields.Effect = "A protective bubble forms around you. Use a Quick Action to create a buffer with HP equal to 20 + double your level.When you suffer damage from an attack or environmental effect, HP are removed from this buffer before any damage can be in icted to any of your damage tracks. This Mod has no effect on direct loss of HP. Damage taken to the buffer does not count as damage to the user. This Mod must be activated during each encounter; leaving it on in between encounters will destroy the Mod. The damage buffer lasts until the end of the encounter. This Mod can only be activated once per encounter.Requires: Heavy Magecell.";
+            armorMods.Add(hShields);
+
+            RequiresPoweredServosArmorModVM powDon = new RequiresPoweredServosArmorModVM();
+            powDon.Name = "Powered Donning";
+            powDon.Cost = 15000;
+            powDon.Effect = "Donning the armor is now a Combat Action.While stored, the armor is considered 2 Sizes smaller. Requires Powered Servos.";
+            armorMods.Add(powDon);
+
+            RequiresHeavyMagecellPoweredArmorModVM thrusters = new RequiresHeavyMagecellPoweredArmorModVM();
+            thrusters.Name = "Thrusters";
+            thrusters.Cost = 60000;
+            thrusters.Effect = "Gain Flight and Overland Flight (as the Talents in Kinesis). Requires Heavy Magecell.";
+            armorMods.Add(thrusters);
+
             #endregion
         }
 

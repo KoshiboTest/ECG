@@ -66,7 +66,7 @@ namespace Emergence.Model
         Consistent6 = 9007199254740992
     }
 
-    public enum WeaponQuality
+    public enum ItemQuality
     {
         Poor = 0,
         Standard,
@@ -77,12 +77,23 @@ namespace Emergence.Model
 
     [Flags]
     public enum AmpProperty
-    { 
+    {
         Infusing = 1,
         Battering = 2,
         Dueling = 4,
         Compulsive = 8,
         Reaching = 16,
         Destructive = 32
+    }
+
+    [Flags]
+    public enum ArmorProperty
+    {
+        Innocuous = 1,
+        Sturdy = 2,
+        Versatile = 4,
+        Encompassing = 8,
+        Fused = 16,
+        CombatArmature = 32
     }
 }
