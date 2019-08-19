@@ -99,6 +99,7 @@
                                         <RowDefinition Height="auto"/>
                                         <RowDefinition Height="auto"/>
                                         <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
                                     </Grid.RowDefinitions>
                                     <TextBlock Grid.Row="0" Text="Name"/>
                                     <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Path=Name}"/>
@@ -106,22 +107,24 @@
                                     <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Path=Accuracy}"/>
                                     <TextBlock Grid.Row="2" Text="Damage"/>
                                     <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding Path=Damage}"/>
-                                    <TextBlock Grid.Row="3" Text="Size"/>
-                                    <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding Path=Size}"/>
-                                    <TextBlock Grid.Row="4" Text="Damage Type"/>
-                                    <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding Path=Type}"/>
-                                    <TextBlock Grid.Row="5" Text="Range"/>
-                                    <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding Path=Range}"/>
-                                    <TextBlock Grid.Row="6" Text="Cost"/>
-                                    <TextBlock Grid.Row="6" Grid.Column="2" Text="{Binding Path=Cost}"/>
-                                    <TextBlock Grid.Row="7" Text="Weapon Skill"/>
-                                    <TextBlock Grid.Row="7" Grid.Column="2" Text="{Binding Path=Skill}"/>
-                                    <TextBlock Grid.Row="8" Text="Properties"/>
-                                    <TextBlock Grid.Row="8" Grid.Column="2" Text="{Binding Path=Properties}"/>
-                                    <TextBlock Grid.Row="9" Text="Quality"/>
-                                    <TextBlock Grid.Row="9" Grid.Column="2" Text="{Binding Path=Quality}"/>
-                                    <TextBlock Grid.Row="10" Text="Mods"/>
-                                    <ListView Grid.Row="10" Grid.Column="2" ItemsSource="{Binding Path=Mods}" Grid.IsSharedSizeScope="True">
+                                    <TextBlock Grid.Row="3" Text="Crit Mod(CM)"/>
+                                    <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding Path=CM}"/>
+                                    <TextBlock Grid.Row="4" Text="Size"/>
+                                    <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding Path=Size}"/>
+                                    <TextBlock Grid.Row="5" Text="Damage Type"/>
+                                    <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding Path=Type}"/>
+                                    <TextBlock Grid.Row="6" Text="Range"/>
+                                    <TextBlock Grid.Row="6" Grid.Column="2" Text="{Binding Path=Range}"/>
+                                    <TextBlock Grid.Row="7" Text="Cost"/>
+                                    <TextBlock Grid.Row="7" Grid.Column="2" Text="{Binding Path=Cost}"/>
+                                    <TextBlock Grid.Row="8" Text="Weapon Skill"/>
+                                    <TextBlock Grid.Row="8" Grid.Column="2" Text="{Binding Path=Skill}"/>
+                                    <TextBlock Grid.Row="9" Text="Properties"/>
+                                    <TextBlock Grid.Row="9" Grid.Column="2" Text="{Binding Path=Properties}"/>
+                                    <TextBlock Grid.Row="10" Text="Quality"/>
+                                    <TextBlock Grid.Row="10" Grid.Column="2" Text="{Binding Path=Quality}"/>
+                                    <TextBlock Grid.Row="11" Text="Mods"/>
+                                    <ListView Grid.Row="11" Grid.Column="2" ItemsSource="{Binding Path=Mods}" Grid.IsSharedSizeScope="True">
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <Border BorderBrush="Black" BorderThickness="1">

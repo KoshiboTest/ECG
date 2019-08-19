@@ -52,11 +52,13 @@
     <Compile Include="Characters\PCs\Attributes.cs" />
     <Compile Include="Characters\PCs\Background.cs" />
     <Compile Include="Characters\PCs\BackgroundSpecial.cs" />
+    <Compile Include="Characters\PCs\Conditon.cs" />
     <Compile Include="Characters\PCs\Contact.cs" />
     <Compile Include="Characters\PCs\Lifestyle.cs" />
     <Compile Include="Characters\PCs\PlayerCharacter.cs" />
     <Compile Include="Characters\PCs\PlayerEnums.cs" />
     <Compile Include="Characters\PCs\RacialTrait.cs" />
+    <Compile Include="Characters\PCs\State.cs" />
     <Compile Include="Characters\PCs\Talent.cs" />
     <Compile Include="Equipment\Armor.cs" />
     <Compile Include="Equipment\ArmorMod.cs" />

@@ -128,7 +128,7 @@ namespace Emergence.ViewModel
     {
         public override bool ApplyTo(WeaponVM w)
         {
-            if ((w.Range & Range.Melee) != 0)
+            if ((w.Range & Range.Melee) != Range.Melee)
             {
                 ApplyError = "This mod cannot be applied to a ranged weapon.";
                 return false;

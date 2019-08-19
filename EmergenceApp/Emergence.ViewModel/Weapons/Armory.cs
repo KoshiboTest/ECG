@@ -1207,7 +1207,15 @@ namespace Emergence.ViewModel
             Plasma.Effect = "The weapon now causes fire and ballistic damage as well as gaining Lethal 1, CM +2.  Plasma weapons can only be fired in SS or SA modes.  Canot be combined with Laser mod.  Requires Heavy Magecell-Powered.";
             weaponMods.Add(Plasma);
 
-            weaponMods.OrderBy(wm => wm.Name);
+            //HACK
+            WeaponModVM[] modArray = new WeaponModVM[weaponMods.Count];
+            weaponMods.CopyTo(modArray, 0);
+            var costSortedMods = modArray.OrderBy(wm => wm.Cost);
+            weaponMods.Clear();
+            foreach (WeaponModVM w in costSortedMods)
+            {
+                weaponMods.Add(w);
+            }
             #endregion
 
             ampMods = new ObservableCollection<ViewModel.AmpModVM>();

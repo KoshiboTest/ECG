@@ -1095,6 +1095,7 @@ namespace Emergence.ViewModel
 
         private void InitializeTalents()
         {
+            //Weaponskills
             #region Archery (Bows)
             #region T1
             Talent archery1a = new Talent();
@@ -1634,7 +1635,6 @@ namespace Emergence.ViewModel
             Talents.Add(assassination5c);
             #endregion
             #endregion
-            //TODO: Finish Automatics at some point.. Fuck NPCs with auto talents anyways
             #region Automatics (Longarms)
             #region T1
             Talent automatics1a = new Talent();
@@ -1741,19 +1741,393 @@ namespace Emergence.ViewModel
             automatics3a.Action = ActionType.Quick;
             automatics3a.DescriptionFluff = "You target the terrain with your suppressive ffre to break it apart.";
             automatics3a.Description = "At the conclusion of your next suppression or Full-Auto attack, reduce the Cover Value of all obstructions in the area by one Grade.";
-            automatics3a.ClarifyingText = "-2 or dash => 6";
+            automatics3a.ClarifyingText = "";
             automatics3a.StaminaCost = 4;
             automatics3a.UpkeepCost = null;
             automatics3a.Tier = 3;
-            automatics3a.TierBenefitDescription = "When you target only one creature with a Full-Auto attack, the attack gains Vicious +2";
+            automatics3a.TierBenefitDescription = "When you target only one creature with a Full-Auto attack, the attack gains Vicious +2.";
             automatics3a.Tree = TalentTree.Automatics;
             automatics3a.TreeName = "Automatics";
             automatics3a.LinkedSkill = WeaponSkill.Longarms;
             Talents.Add(automatics3a);
+
+            Talent automatics3b = new Talent();
+            automatics3b.Name = "Run and Gun";
+            automatics3b.Type = TalentType.Maneuver;
+            automatics3b.Action = ActionType.Combat;
+            automatics3b.DescriptionFluff = "You can attack with reasonable accuracy even when moving at full speed.";
+            automatics3b.Description = "Move your speed (does not count against your normal allotment of MI for the turn), and attack at -2 to hit.";
+            automatics3b.ClarifyingText = "";
+            automatics3b.StaminaCost = 8;
+            automatics3b.UpkeepCost = null;
+            automatics3b.Tier = 3;
+            automatics3b.TierBenefitDescription = "When you target only one creature with a Full-Auto attack, the attack gains Vicious +2.";
+            automatics3b.Tree = TalentTree.Automatics;
+            automatics3b.TreeName = "Automatics";
+            automatics3b.LinkedSkill = WeaponSkill.Longarms;
+            Talents.Add(automatics3b);
+
+            Talent automatics3c = new Talent();
+            automatics3c.Name = "Field of Fire";
+            automatics3c.Type = TalentType.Benefit;
+            automatics3c.Action = ActionType.None;
+            automatics3c.DescriptionFluff = "The volume of fire you can accurately place further hampers your targets.";
+            automatics3c.Description = "Crits from your Full-Auto attacks inflict 2 secondary effects. These effects follow the normal rules for Crits.";
+            automatics3c.ClarifyingText = "";
+            automatics3c.StaminaCost = null;
+            automatics3c.UpkeepCost = null;
+            automatics3c.Tier = 3;
+            automatics3c.TierBenefitDescription = "When you target only one creature with a Full-Auto attack, the attack gains Vicious +2.";
+            automatics3c.Tree = TalentTree.Automatics;
+            automatics3c.TreeName = "Automatics";
+            automatics3c.LinkedSkill = WeaponSkill.Longarms;
+            Talents.Add(automatics3c);
+            #endregion
+            #region T4
+            Talent automatics4a = new Talent();
+            automatics4a.Name = "Strafe";
+            automatics4a.Type = TalentType.Maneuver;
+            automatics4a.Action = ActionType.Combat;
+            automatics4a.DescriptionFluff = "You systematically walk your line of fire across multiple enemies.";
+            automatics4a.Description = "Your next Full-Auto attack only needs to allocate groupings to an empty space for every full 15’ between targets and you gain a +2 to attack and damage vs. targets with Cover.";
+            automatics4a.ClarifyingText = "";
+            automatics4a.StaminaCost = 10;
+            automatics4a.UpkeepCost = null;
+            automatics4a.Tier = 4;
+            automatics4a.TierBenefitDescription = "If you apply more than 1 FullAuto grouping to a target, your attack gains Lethal 1.";
+            automatics4a.Tree = TalentTree.Automatics;
+            automatics4a.TreeName = "Automatics";
+            automatics4a.LinkedSkill = WeaponSkill.Longarms;
+            Talents.Add(automatics4a);
+
+            Talent automatics4b = new Talent();
+            automatics4b.Name = "Terrifying Suppression";
+            automatics4b.Type = TalentType.AttackAugment;
+            automatics4b.Action = ActionType.Quick;
+            automatics4b.DescriptionFluff = "You terrorize your enemies with a horrific deluge of machinegun fire.";
+            automatics4b.Description = "Your next Suppression attack causes everyone in the area to become Exhausted if they are hit.";
+            automatics4b.ClarifyingText = "";
+            automatics4b.StaminaCost = 5;
+            automatics4b.UpkeepCost = null;
+            automatics4b.Tier = 4;
+            automatics4b.TierBenefitDescription = "If you apply more than 1 FullAuto grouping to a target, your attack gains Lethal 1.";
+            automatics4b.Tree = TalentTree.Automatics;
+            automatics4b.TreeName = "Automatics";
+            automatics4b.LinkedSkill = WeaponSkill.Longarms;
+            Talents.Add(automatics4b);
+
+            Talent automatics4c = new Talent();
+            automatics4c.Name = "Lead the Target";
+            automatics4c.Type = TalentType.Benefit;
+            automatics4c.Action = ActionType.None;
+            automatics4c.DescriptionFluff = "Impaired and slow-moving targets are easy prey to your fire.";
+            automatics4c.Description = " You gain a bonus to damage equal to your Focus against all Slowed, Vulnerable, or Weakened targets when making Full-Auto attacks.";
+            automatics4c.ClarifyingText = "";
+            automatics4c.StaminaCost = null;
+            automatics4c.UpkeepCost = null;
+            automatics4c.Tier = 4;
+            automatics4c.TierBenefitDescription = "If you apply more than 1 FullAuto grouping to a target, your attack gains Lethal 1.";
+            automatics4c.Tree = TalentTree.Automatics;
+            automatics4c.TreeName = "Automatics";
+            automatics4c.LinkedSkill = WeaponSkill.Longarms;
+            Talents.Add(automatics4c);
+            #endregion
+            #region T5
+            Talent automatics5a = new Talent();
+            automatics5a.Name = "Oppressive Gunfire";
+            automatics5a.Type = TalentType.Benefit;
+            automatics5a.Action = ActionType.None;
+            automatics5a.DescriptionFluff = "It is difficult to mount an effective offense while weathering a hurricane of gunfire.";
+            automatics5a.Description = "When you damage an opponent with a Full-Auto attack, the target becomes Weakened for 1 round.";
+            automatics5a.ClarifyingText = "Weakened = - 2 to Strength-linked noncombat Skill Checks and -2 to attack and damage rolls.";
+            automatics5a.StaminaCost = null;
+            automatics5a.UpkeepCost = null;
+            automatics5a.Tier = 5;
+            automatics5a.TierBenefitDescription = "When you make a Full-Auto attack, gain 1 additional grouping without expending additional ammunition.";
+            automatics5a.Tree = TalentTree.Automatics;
+            automatics5a.TreeName = "Automatics";
+            automatics5a.LinkedSkill = WeaponSkill.Longarms;
+            Talents.Add(automatics5a);
+
+            Talent automatics5b = new Talent();
+            automatics5b.Name = "Hail of Bullets";
+            automatics5b.Type = TalentType.Stance;
+            automatics5b.Action = ActionType.Quick;
+            automatics5b.DescriptionFluff = "If you bury your target in enough bullets, escape will become impossible.";
+            automatics5b.Description = "While active, your Full-Auto attacks gain a bonus to hit each target equal to ½ the grouping targeting them; you are Slowed.";
+            automatics5b.ClarifyingText = "Slowed = ½ Speed cannot sprint or run, -2 to Agility linked noncombat Skill Checks.";
+            automatics5b.StaminaCost = 12;
+            automatics5b.UpkeepCost = 3;
+            automatics5b.Tier = 5;
+            automatics5b.TierBenefitDescription = "When you make a Full-Auto attack, gain 1 additional grouping without expending additional ammunition.";
+            automatics5b.Tree = TalentTree.Automatics;
+            automatics5b.TreeName = "Automatics";
+            automatics5b.LinkedSkill = WeaponSkill.Longarms;
+            Talents.Add(automatics5b);
+
+            Talent automatics5c = new Talent();
+            automatics5c.Name = "Focused Fire";
+            automatics5c.Type = TalentType.Maneuver;
+            automatics5c.Action = ActionType.Combat;
+            automatics5c.DescriptionFluff = "You leave yourself vulnerable to concentrate your fi repower on an important target.";
+            automatics5c.Description = "Weapon {Ranged +2/+2}";
+            automatics5c.ClarifyingText = "Make a Full-Auto attack targeting only 1 creature. Reduce the number of rounds required per Grouping by 1. This attack gains Lethal +1 and a +2 CM. You become Vulnerable to all creatures other than the target.";
+            automatics5c.StaminaCost = 12;
+            automatics5c.UpkeepCost = null;
+            automatics5c.Tier = 5;
+            automatics5c.TierBenefitDescription = "When you make a Full-Auto attack, gain 1 additional grouping without expending additional ammunition.";
+            automatics5c.Tree = TalentTree.Automatics;
+            automatics5c.TreeName = "Automatics";
+            automatics5c.LinkedSkill = WeaponSkill.Longarms;
+            Talents.Add(automatics5c);
             #endregion
             #endregion
             #region Automatics (Shortarms)
-            //TODO: Copy
+            #region T1
+            Talent saautomatics1a = new Talent();
+            saautomatics1a.Name = "Tactical Crouch";
+            saautomatics1a.Type = TalentType.Stance;
+            saautomatics1a.Action = ActionType.Quick;
+            saautomatics1a.DescriptionFluff = "You take on a defensive Stance that does not impair your aim.";
+            saautomatics1a.Description = "+1 to Ranged and Area Defenses. [4/1 Stamina]";
+            saautomatics1a.ClarifyingText = "";
+            saautomatics1a.StaminaCost = 4;
+            saautomatics1a.UpkeepCost = 1;
+            saautomatics1a.Tier = 1;
+            saautomatics1a.TierBenefitDescription = "You may choose the number of bullets used in a Full-Auto attack up to the maximum rate of fire";
+            saautomatics1a.Tree = TalentTree.Automatics;
+            saautomatics1a.TreeName = "Automatics";
+            saautomatics1a.LinkedSkill = WeaponSkill.Shortarms;
+            Talents.Add(saautomatics1a);
+
+            Talent saautomatics1b = new Talent();
+            saautomatics1b.Name = "Spray and Pray";
+            saautomatics1b.Type = TalentType.AttackAugment;
+            saautomatics1b.Action = ActionType.Quick;
+            saautomatics1b.DescriptionFluff = "You use Full-Auto to its fullest benefft.";
+            saautomatics1b.Description = "Your next Full-Auto attack can cross 5 additional feet between targets without allocating groupings to open space. [2 Stamina]";
+            saautomatics1b.ClarifyingText = "";
+            saautomatics1b.StaminaCost = 2;
+            saautomatics1b.UpkeepCost = null;
+            saautomatics1b.Tier = 1;
+            saautomatics1b.TierBenefitDescription = "You may choose the number of bullets used in a Full-Auto attack up to the maximum rate of fire";
+            saautomatics1b.Tree = TalentTree.Automatics;
+            saautomatics1b.TreeName = "Automatics";
+            saautomatics1b.LinkedSkill = WeaponSkill.Shortarms;
+            Talents.Add(saautomatics1b);
+
+            Talent saautomatics1c = new Talent();
+            saautomatics1c.Name = "Recoil Compensation";
+            saautomatics1c.Type = TalentType.AttackAugment;
+            saautomatics1c.Action = ActionType.Quick;
+            saautomatics1c.DescriptionFluff = "You steady yourself to absorb as much recoil as possible.";
+            saautomatics1c.Description = "Use one less round to produce a Full-Auto Grouping. [1 Stamina per grouping fired]";
+            saautomatics1c.ClarifyingText = "";
+            saautomatics1c.StaminaCost = 1;
+            saautomatics1c.UpkeepCost = null;
+            saautomatics1c.Tier = 1;
+            saautomatics1c.TierBenefitDescription = "You may choose the number of bullets used in a Full-Auto attack up to the maximum rate of fire";
+            saautomatics1c.Tree = TalentTree.Automatics;
+            saautomatics1c.TreeName = "Automatics";
+            saautomatics1c.LinkedSkill = WeaponSkill.Shortarms;
+            Talents.Add(saautomatics1c);
+            #endregion
+            #region T2
+            Talent saautomatics2a = new Talent();
+            saautomatics2a.Name = "Frightening Suppression";
+            saautomatics2a.Type = TalentType.AttackAugment;
+            saautomatics2a.Action = ActionType.Quick;
+            saautomatics2a.DescriptionFluff = "The intensity of your suppression surprises your targets.";
+            saautomatics2a.Description = "Targets of the augmented Suppressive Fire attack become Vulnerable to the next attack against them.";
+            saautomatics2a.ClarifyingText = "";
+            saautomatics2a.StaminaCost = 2;
+            saautomatics2a.UpkeepCost = null;
+            saautomatics2a.Tier = 2;
+            saautomatics2a.TierBenefitDescription = "Ignore a single 5-foot space between targets of a Full-Auto attack";
+            saautomatics2a.Tree = TalentTree.Automatics;
+            saautomatics2a.TreeName = "Automatics";
+            saautomatics2a.LinkedSkill = WeaponSkill.Shortarms;
+            Talents.Add(saautomatics2a);
+
+            Talent saautomatics2b = new Talent();
+            saautomatics2b.Name = "Wide Spray";
+            saautomatics2b.Type = TalentType.AttackAugment;
+            saautomatics2b.Action = ActionType.Quick;
+            saautomatics2b.DescriptionFluff = "You widen your ffeld of ffre to encapsulate your opponent with lead.";
+            saautomatics2b.Description = "The augmented Full-Auto attack gains a +1 to attack but suffers a -1 to damage and CM. [2 Stamina]";
+            saautomatics2b.ClarifyingText = "'How the fuck is this widening your field of fire?'-Neums";
+            saautomatics2b.StaminaCost = 2;
+            saautomatics2b.UpkeepCost = null;
+            saautomatics2b.Tier = 2;
+            saautomatics2b.TierBenefitDescription = "Ignore a single 5-foot space between targets of a Full-Auto attack";
+            saautomatics2b.Tree = TalentTree.Automatics;
+            saautomatics2b.TreeName = "Automatics";
+            saautomatics2b.LinkedSkill = WeaponSkill.Shortarms;
+            Talents.Add(saautomatics2b);
+
+            Talent saautomatics2c = new Talent();
+            saautomatics2c.Name = "Bump Fire";
+            saautomatics2c.Type = TalentType.Benefit;
+            saautomatics2c.Action = ActionType.None;
+            saautomatics2c.DescriptionFluff = "You feather the trigger to conserve ammunition.";
+            saautomatics2c.Description = "You gain the ability to use Burst Fire (4) on Longarm or Shortarm Full-Auto weapons.";
+            saautomatics2c.ClarifyingText = "";
+            saautomatics2c.StaminaCost = null;
+            saautomatics2c.UpkeepCost = null;
+            saautomatics2c.Tier = 2;
+            saautomatics2c.TierBenefitDescription = "Ignore a single 5-foot space between targets of a Full-Auto attack";
+            saautomatics2c.Tree = TalentTree.Automatics;
+            saautomatics2c.TreeName = "Automatics";
+            saautomatics2c.LinkedSkill = WeaponSkill.Shortarms;
+            Talents.Add(saautomatics2c);
+            #endregion
+            #region T3
+            Talent saautomatics3a = new Talent();
+            saautomatics3a.Name = "Withering Suppression";
+            saautomatics3a.Type = TalentType.AttackAugment;
+            saautomatics3a.Action = ActionType.Quick;
+            saautomatics3a.DescriptionFluff = "You target the terrain with your suppressive ffre to break it apart.";
+            saautomatics3a.Description = "At the conclusion of your next suppression or Full-Auto attack, reduce the Cover Value of all obstructions in the area by one Grade.";
+            saautomatics3a.ClarifyingText = "";
+            saautomatics3a.StaminaCost = 4;
+            saautomatics3a.UpkeepCost = null;
+            saautomatics3a.Tier = 3;
+            saautomatics3a.TierBenefitDescription = "When you target only one creature with a Full-Auto attack, the attack gains Vicious +2.";
+            saautomatics3a.Tree = TalentTree.Automatics;
+            saautomatics3a.TreeName = "Automatics";
+            saautomatics3a.LinkedSkill = WeaponSkill.Shortarms;
+            Talents.Add(saautomatics3a);
+
+            Talent saautomatics3b = new Talent();
+            saautomatics3b.Name = "Run and Gun";
+            saautomatics3b.Type = TalentType.Maneuver;
+            saautomatics3b.Action = ActionType.Combat;
+            saautomatics3b.DescriptionFluff = "You can attack with reasonable accuracy even when moving at full speed.";
+            saautomatics3b.Description = "Move your speed (does not count against your normal allotment of MI for the turn), and attack at -2 to hit.";
+            saautomatics3b.ClarifyingText = "";
+            saautomatics3b.StaminaCost = 8;
+            saautomatics3b.UpkeepCost = null;
+            saautomatics3b.Tier = 3;
+            saautomatics3b.TierBenefitDescription = "When you target only one creature with a Full-Auto attack, the attack gains Vicious +2.";
+            saautomatics3b.Tree = TalentTree.Automatics;
+            saautomatics3b.TreeName = "Automatics";
+            saautomatics3b.LinkedSkill = WeaponSkill.Shortarms;
+            Talents.Add(saautomatics3b);
+
+            Talent saautomatics3c = new Talent();
+            saautomatics3c.Name = "Field of Fire";
+            saautomatics3c.Type = TalentType.Benefit;
+            saautomatics3c.Action = ActionType.None;
+            saautomatics3c.DescriptionFluff = "The volume of fire you can accurately place further hampers your targets.";
+            saautomatics3c.Description = "Crits from your Full-Auto attacks inflict 2 secondary effects. These effects follow the normal rules for Crits.";
+            saautomatics3c.ClarifyingText = "";
+            saautomatics3c.StaminaCost = null;
+            saautomatics3c.UpkeepCost = null;
+            saautomatics3c.Tier = 3;
+            saautomatics3c.TierBenefitDescription = "When you target only one creature with a Full-Auto attack, the attack gains Vicious +2.";
+            saautomatics3c.Tree = TalentTree.Automatics;
+            saautomatics3c.TreeName = "Automatics";
+            saautomatics3c.LinkedSkill = WeaponSkill.Shortarms;
+            Talents.Add(saautomatics3c);
+            #endregion
+            #region T4
+            Talent saautomatics4a = new Talent();
+            saautomatics4a.Name = "Strafe";
+            saautomatics4a.Type = TalentType.Maneuver;
+            saautomatics4a.Action = ActionType.Combat;
+            saautomatics4a.DescriptionFluff = "You systematically walk your line of fire across multiple enemies.";
+            saautomatics4a.Description = "Your next Full-Auto attack only needs to allocate groupings to an empty space for every full 15’ between targets and you gain a +2 to attack and damage vs. targets with Cover.";
+            saautomatics4a.ClarifyingText = "";
+            saautomatics4a.StaminaCost = 10;
+            saautomatics4a.UpkeepCost = null;
+            saautomatics4a.Tier = 4;
+            saautomatics4a.TierBenefitDescription = "If you apply more than 1 FullAuto grouping to a target, your attack gains Lethal 1.";
+            saautomatics4a.Tree = TalentTree.Automatics;
+            saautomatics4a.TreeName = "Automatics";
+            saautomatics4a.LinkedSkill = WeaponSkill.Shortarms;
+            Talents.Add(saautomatics4a);
+
+            Talent saautomatics4b = new Talent();
+            saautomatics4b.Name = "Terrifying Suppression";
+            saautomatics4b.Type = TalentType.AttackAugment;
+            saautomatics4b.Action = ActionType.Quick;
+            saautomatics4b.DescriptionFluff = "You terrorize your enemies with a horrific deluge of machinegun fire.";
+            saautomatics4b.Description = "Your next Suppression attack causes everyone in the area to become Exhausted if they are hit.";
+            saautomatics4b.ClarifyingText = "";
+            saautomatics4b.StaminaCost = 5;
+            saautomatics4b.UpkeepCost = null;
+            saautomatics4b.Tier = 4;
+            saautomatics4b.TierBenefitDescription = "If you apply more than 1 FullAuto grouping to a target, your attack gains Lethal 1.";
+            saautomatics4b.Tree = TalentTree.Automatics;
+            saautomatics4b.TreeName = "Automatics";
+            saautomatics4b.LinkedSkill = WeaponSkill.Shortarms;
+            Talents.Add(saautomatics4b);
+
+            Talent saautomatics4c = new Talent();
+            saautomatics4c.Name = "Lead the Target";
+            saautomatics4c.Type = TalentType.Benefit;
+            saautomatics4c.Action = ActionType.None;
+            saautomatics4c.DescriptionFluff = "Impaired and slow-moving targets are easy prey to your fire.";
+            saautomatics4c.Description = " You gain a bonus to damage equal to your Focus against all Slowed, Vulnerable, or Weakened targets when making Full-Auto attacks.";
+            saautomatics4c.ClarifyingText = "";
+            saautomatics4c.StaminaCost = null;
+            saautomatics4c.UpkeepCost = null;
+            saautomatics4c.Tier = 4;
+            saautomatics4c.TierBenefitDescription = "If you apply more than 1 FullAuto grouping to a target, your attack gains Lethal 1.";
+            saautomatics4c.Tree = TalentTree.Automatics;
+            saautomatics4c.TreeName = "Automatics";
+            saautomatics4c.LinkedSkill = WeaponSkill.Shortarms;
+            Talents.Add(saautomatics4c);
+            #endregion
+            #region T5
+            Talent saautomatics5a = new Talent();
+            saautomatics5a.Name = "Oppressive Gunfire";
+            saautomatics5a.Type = TalentType.Benefit;
+            saautomatics5a.Action = ActionType.None;
+            saautomatics5a.DescriptionFluff = "It is difficult to mount an effective offense while weathering a hurricane of gunfire.";
+            saautomatics5a.Description = "When you damage an opponent with a Full-Auto attack, the target becomes Weakened for 1 round.";
+            saautomatics5a.ClarifyingText = "Weakened = - 2 to Strength-linked noncombat Skill Checks and -2 to attack and damage rolls.";
+            saautomatics5a.StaminaCost = null;
+            saautomatics5a.UpkeepCost = null;
+            saautomatics5a.Tier = 5;
+            saautomatics5a.TierBenefitDescription = "When you make a Full-Auto attack, gain 1 additional grouping without expending additional ammunition.";
+            saautomatics5a.Tree = TalentTree.Automatics;
+            saautomatics5a.TreeName = "Automatics";
+            saautomatics5a.LinkedSkill = WeaponSkill.Shortarms;
+            Talents.Add(saautomatics5a);
+
+            Talent saautomatics5b = new Talent();
+            saautomatics5b.Name = "Hail of Bullets";
+            saautomatics5b.Type = TalentType.Stance;
+            saautomatics5b.Action = ActionType.Quick;
+            saautomatics5b.DescriptionFluff = "If you bury your target in enough bullets, escape will become impossible.";
+            saautomatics5b.Description = "While active, your Full-Auto attacks gain a bonus to hit each target equal to ½ the grouping targeting them; you are Slowed.";
+            saautomatics5b.ClarifyingText = "Slowed = ½ Speed cannot sprint or run, -2 to Agility linked noncombat Skill Checks.";
+            saautomatics5b.StaminaCost = 12;
+            saautomatics5b.UpkeepCost = 3;
+            saautomatics5b.Tier = 5;
+            saautomatics5b.TierBenefitDescription = "When you make a Full-Auto attack, gain 1 additional grouping without expending additional ammunition.";
+            saautomatics5b.Tree = TalentTree.Automatics;
+            saautomatics5b.TreeName = "Automatics";
+            saautomatics5b.LinkedSkill = WeaponSkill.Shortarms;
+            Talents.Add(saautomatics5b);
+
+            Talent saautomatics5c = new Talent();
+            saautomatics5c.Name = "Focused Fire";
+            saautomatics5c.Type = TalentType.Maneuver;
+            saautomatics5c.Action = ActionType.Combat;
+            saautomatics5c.DescriptionFluff = "You leave yourself vulnerable to concentrate your fi repower on an important target.";
+            saautomatics5c.Description = "Weapon {Ranged +2/+2}";
+            saautomatics5c.ClarifyingText = "Make a Full-Auto attack targeting only 1 creature. Reduce the number of rounds required per Grouping by 1. This attack gains Lethal +1 and a +2 CM. You become Vulnerable to all creatures other than the target.";
+            saautomatics5c.StaminaCost = 12;
+            saautomatics5c.UpkeepCost = null;
+            saautomatics5c.Tier = 5;
+            saautomatics5c.TierBenefitDescription = "When you make a Full-Auto attack, gain 1 additional grouping without expending additional ammunition.";
+            saautomatics5c.Tree = TalentTree.Automatics;
+            saautomatics5c.TreeName = "Automatics";
+            saautomatics5c.LinkedSkill = WeaponSkill.Shortarms;
+            Talents.Add(saautomatics5c);
+            #endregion
             #endregion
             #region Brawling (Unarmed)
             #region T1
@@ -2735,7 +3109,7 @@ namespace Emergence.ViewModel
             grappling5c.Action = ActionType.Combat;
             grappling5c.DescriptionFluff = "With a hearty grunt, you hoist your opponent into the air, and then yank it back down over your bent knee.";
             grappling5c.Description = "Make an Overpower Check against a Grappled foe. If successful, the target is knocked Prone and you inflict your normal Unarmed damage, applying 3 x your Strength Attribute to your normal damage modifier. If the target is damaged by the attack, it becomes Slowed and Weakened (until Resisted). The target cannot stand from Prone until no longer Slowed or Weakened. If it chooses to suppress the Conditions, it will be able to stand, but it will fall Prone again if either condition affects it again at the start of its next turn. Using this Maneuver automatically ends the Grapple for the target (and the attacker if the target was the only one he was Wrestling) [12 Stamina].";
-            grappling5c.ClarifyingText = "Slowed = ½ Speed cannot sprint or run, -2 to Agility linked noncombat Skill Checks.  Weakened = - 2 to Strength-linked noncombat Skill Checks and -2 to attack and damage rolls. Prone = ";
+            grappling5c.ClarifyingText = "Slowed = ½ Speed cannot sprint or run, -2 to Agility linked noncombat Skill Checks.  Weakened = - 2 to Strength-linked noncombat Skill Checks and -2 to attack and damage rolls. Prone = Weakened when making Melee attacks and Ranged or Area attacks at Medium range or closer. Vulerable to all Melee attacks and Ranged attacks originating from 15’ or closer to you. Against all other attacks you gain Light Concealment.";
             grappling5c.StaminaCost = 12;
             grappling5c.UpkeepCost = 0;
             grappling5c.Tier = 5;
@@ -4476,6 +4850,7 @@ namespace Emergence.ViewModel
             Talents.Add(sniping5c);
             #endregion
             #endregion
+            //Spellcasting
             #region Creation (Conjuration)
             #region T1
             Talent creation1a = new Talent();
@@ -10278,9 +10653,7 @@ namespace Emergence.ViewModel
 
             int numberOfRandomAbilities = 0;
             int numberOfRandomQualities = 0;
-#pragma warning disable CS0219 // The variable 'numberOfRandomTalents' is assigned but its value is never used
             int numberOfRandomTalents = 0;
-#pragma warning restore CS0219 // The variable 'numberOfRandomTalents' is assigned but its value is never used
 
             switch (rc)
             {
@@ -10327,7 +10700,7 @@ namespace Emergence.ViewModel
                 AddRandomAbility(enemy);
             }
             //Add random talents
-            for (int i = 0; i < numberOfRandomAbilities; i++)
+            for (int i = 0; i < numberOfRandomTalents; i++)
             {
                 AddRandomTalent(enemy);
             }
