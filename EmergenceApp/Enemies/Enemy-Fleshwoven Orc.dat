@@ -14,6 +14,16 @@
       <StaminaRegen>6</StaminaRegen>
       <AttributeAdjustments>
         <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
           <AttributeName>MeleePhysical</AttributeName>
           <Type>Additive</Type>
           <ModifierValue>2</ModifierValue>
@@ -133,6 +143,56 @@
           <Type>Additive</Type>
           <ModifierValue>2</ModifierValue>
         </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Perception</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Initiative</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Durability</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Speed</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Perception</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Initiative</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Durability</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Speed</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
       </AttributeAdjustments>
     </Attributes>
     <Qualities>
@@ -148,7 +208,7 @@
             <Range />
             <AmmoCapacity xsi:nil="true" />
             <Cost>0</Cost>
-            <Skill>Unarmed</Skill>
+            <Skill>Dueling</Skill>
             <Properties>None</Properties>
             <Quality>Poor</Quality>
             <Mods />
@@ -301,7 +361,7 @@
           <Range />
           <AmmoCapacity xsi:nil="true" />
           <Cost>0</Cost>
-          <Skill>Unarmed</Skill>
+          <Skill>Dueling</Skill>
           <Properties>None</Properties>
           <Quality>Poor</Quality>
           <Mods />
@@ -326,7 +386,7 @@
         </ArmorMod>
       </Mods>
       <Quality>Standard</Quality>
-      <Cost>800</Cost>
+      <Cost>1800</Cost>
     </Armor>
     <Level>2</Level>
     <Size>3</Size>
