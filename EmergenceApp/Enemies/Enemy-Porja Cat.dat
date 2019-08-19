@@ -1,0 +1,546 @@
+<?xml version="1.0"?>
+<NPCQuickReferenceVM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <model>
+    <Name>Porja Cat</Name>
+    <Type>Natural</Type>
+    <Archetype>Beast</Archetype>
+    <Attributes>
+      <Level>6</Level>
+      <Size>5</Size>
+      <npcClass>Foe</npcClass>
+      <baseSpirit>0</baseSpirit>
+      <ArmorValue>0</ArmorValue>
+      <Special>+1 to all skills</Special>
+      <StaminaRegen>7</StaminaRegen>
+      <AttributeAdjustments>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>MeleeBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedPhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>PrimaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>SecondaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>CM</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>MeleePhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaPhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedPhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>MeleeResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>MeleeBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>PrimaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>SecondaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>PrimaryAttackDamage</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>SecondaryAttackDamage</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Durability</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Speed</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Perception</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Initiative</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Durability</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Speed</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Perception</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Initiative</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Durability</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Speed</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Perception</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Initiative</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Durability</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Speed</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Perception</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Initiative</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Durability</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Speed</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Perception</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Initiative</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Durability</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Speed</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+      </AttributeAdjustments>
+    </Attributes>
+    <Qualities>
+      <NpcQuality>
+        <GrantedWeapons>
+          <Weapon xsi:type="NaturalWeapon">
+            <Name>Natural Weapon (Medium)</Name>
+            <Accuracy>0</Accuracy>
+            <Damage>4</Damage>
+            <CM>3</CM>
+            <Size>4</Size>
+            <Type>Piercing</Type>
+            <Range>Melee</Range>
+            <AmmoCapacity xsi:nil="true" />
+            <Cost>0</Cost>
+            <Skill>CloseCombat</Skill>
+            <Properties>None</Properties>
+            <Quality>Poor</Quality>
+            <Mods />
+            <NWClass>Medium</NWClass>
+          </Weapon>
+        </GrantedWeapons>
+        <GrantedArmors>
+          <Armor xsi:type="NaturalArmor">
+            <Name>None</Name>
+            <ArmorValue>5</ArmorValue>
+            <ArmorPenalty>2</ArmorPenalty>
+            <SpeedPenalty>1</SpeedPenalty>
+            <Properties />
+            <Mods />
+            <Quality>Poor</Quality>
+            <Cost>0</Cost>
+            <NAClass>Medium</NAClass>
+          </Armor>
+        </GrantedArmors>
+        <Name>Animalistic (Medium/Medium)</Name>
+        <Description>Gains a Natural Weapon(Any) and Natural Armor(Any), +1 to CM of Melee attacks, and + 1 to Defense, Attack, Damage, and Durability.  Companions with the Animalistic Quality start with no UEU, Equipment, Gear, or Augmentations.</Description>
+        <Modifiers>
+          <AttributeModifier>
+            <AttributeName>CM</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>MeleePhysical</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>AreaPhysical</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>RangedPhysical</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>MeleeResolve</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>AreaResolve</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>RangedResolve</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>MeleeBody</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>AreaBody</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>RangedBody</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>PrimaryAttack</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>SecondaryAttack</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>PrimaryAttackDamage</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>SecondaryAttackDamage</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>Durability</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+        </Modifiers>
+        <xVariable>0</xVariable>
+      </NpcQuality>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Multi-Limbed (4)</Name>
+        <Description>The Multi-Limbed creature can be armed with (2) additional weapons (all of which must be either Light or Medium). When the Multi-Limbed creature uses the Two Weapon fighting Attack Augment it can make a Free Action attack with all secondary weapons that it is armed with at normal penalties. All armed weapons must be of the same base type to benefit from the matched weapon penalty reduction.</Description>
+        <Modifiers />
+        <xVariable>0</xVariable>
+      </NpcQuality>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Multi-Legged</Name>
+        <Description>Gains +2 to Speed, +4 to resist Knockback, and + 4 to Athletics checks.</Description>
+        <Modifiers>
+          <AttributeModifier>
+            <AttributeName>Speed</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>2</ModifierValue>
+          </AttributeModifier>
+        </Modifiers>
+        <xVariable>0</xVariable>
+      </NpcQuality>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Lethal (1)</Name>
+        <Description>The primary attack gains Lethal at the listed amount. (Can take this Quality more than once, applying it to a different attack each time.)</Description>
+        <Modifiers />
+        <xVariable>0</xVariable>
+      </NpcQuality>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Hardened (2)</Name>
+        <Description>The creature reduces the CM of incoming attacks by the listed amount.</Description>
+        <Modifiers />
+        <xVariable>0</xVariable>
+      </NpcQuality>
+    </Qualities>
+    <Abilities>
+      <NpcAbility>
+        <Name>Full Attack</Name>
+        <Description>(Attack Augment): The creature’s next Combat Action simultaneously uses all of its Natural Weapons. For each weapon used in this attack the creature suffers a -1 to attack and damage. If a given weapon is Light to the creature, reduce the total penalty by 1. If a given weapon is Two-Handed, increase the total penalty by 2.</Description>
+        <Tier>4</Tier>
+        <StaminaCost>6</StaminaCost>
+        <UpkeepCost xsi:nil="true" />
+      </NpcAbility>
+    </Abilities>
+    <CombatSkills />
+    <SpecializedSkills />
+    <KnowledgeSkills />
+    <Talents>
+      <Talent>
+        <Name>Lay ‘Em Flat</Name>
+        <Description>Weapon {Melee/+[size of weapon]} [8 Stamina]</Description>
+        <DescriptionFluff>You hammer your foe, smashing it to the ground.</DescriptionFluff>
+        <ClarifyingText>On a hit, in addition to damage, knock the target Prone. On a Stage 2 or higher Crit, the Prone condition persists until Resisted.</ClarifyingText>
+        <Tree>Brutality</Tree>
+        <TreeName>Brutality</TreeName>
+        <Tier>3</Tier>
+        <StaminaCost>8</StaminaCost>
+        <UpkeepCost xsi:nil="true" />
+        <FatigueCost xsi:nil="true" />
+        <IsSpell>false</IsSpell>
+        <LinkedSkill>Heavy</LinkedSkill>
+        <Action>Combat</Action>
+        <Type>Maneuver</Type>
+        <TierBenefitDescription>+1 CM of Heavy Melee weapons</TierBenefitDescription>
+      </Talent>
+    </Talents>
+    <EffectiveStrength>0</EffectiveStrength>
+    <Attacks>
+      <NpcAttack xsi:type="NpcWeaponAttack">
+        <Name>Natural Weapon (Medium)</Name>
+        <IsSpell>false</IsSpell>
+        <Weapon xsi:type="NaturalWeapon">
+          <Name>Natural Weapon (Medium)</Name>
+          <Accuracy>0</Accuracy>
+          <Damage>4</Damage>
+          <CM>3</CM>
+          <Size>4</Size>
+          <Type>Piercing</Type>
+          <Range>Melee</Range>
+          <AmmoCapacity xsi:nil="true" />
+          <Cost>0</Cost>
+          <Skill>CloseCombat</Skill>
+          <Properties>None</Properties>
+          <Quality>Poor</Quality>
+          <Mods />
+          <NWClass>Medium</NWClass>
+        </Weapon>
+      </NpcAttack>
+      <NpcAttack xsi:type="NpcWeaponAttack">
+        <Name>Hatchet</Name>
+        <IsSpell>false</IsSpell>
+        <Weapon>
+          <Name>Hatchet</Name>
+          <Accuracy>0</Accuracy>
+          <Damage>4</Damage>
+          <CM>4</CM>
+          <Size>3</Size>
+          <Type>Slashing</Type>
+          <Range>Melee</Range>
+          <AmmoCapacity xsi:nil="true" />
+          <Cost>1</Cost>
+          <Skill>CloseCombat</Skill>
+          <Properties>CritModPlus1</Properties>
+          <Quality>Poor</Quality>
+          <Mods />
+        </Weapon>
+      </NpcAttack>
+      <NpcAttack xsi:type="NpcWeaponAttack">
+        <Name>Hatchet</Name>
+        <IsSpell>false</IsSpell>
+        <Weapon>
+          <Name>Hatchet</Name>
+          <Accuracy>0</Accuracy>
+          <Damage>4</Damage>
+          <CM>4</CM>
+          <Size>3</Size>
+          <Type>Slashing</Type>
+          <Range>Melee</Range>
+          <AmmoCapacity xsi:nil="true" />
+          <Cost>1</Cost>
+          <Skill>CloseCombat</Skill>
+          <Properties>CritModPlus1</Properties>
+          <Quality>Poor</Quality>
+          <Mods />
+        </Weapon>
+      </NpcAttack>
+    </Attacks>
+    <Armor xsi:type="NaturalArmor">
+      <Name>None</Name>
+      <ArmorValue>5</ArmorValue>
+      <ArmorPenalty>2</ArmorPenalty>
+      <SpeedPenalty>1</SpeedPenalty>
+      <Properties />
+      <Mods />
+      <Quality>Poor</Quality>
+      <Cost>0</Cost>
+      <NAClass>Medium</NAClass>
+    </Armor>
+    <Level>6</Level>
+    <Size>5</Size>
+    <NpcClass>Foe</NpcClass>
+  </model>
+  <Name>Porja Cat</Name>
+  <Level>6</Level>
+  <Size>5</Size>
+  <NpcClass>Foe</NpcClass>
+  <NpcType>Natural</NpcType>
+  <Archetype>Beast</Archetype>
+  <Stamina>7</Stamina>
+  <StaminaRegen>7</StaminaRegen>
+  <Perception>11</Perception>
+  <Initiative>12</Initiative>
+  <Durability>13</Durability>
+  <Armor>5</Armor>
+  <Speed>10</Speed>
+</NPCQuickReferenceVM>

@@ -1,0 +1,360 @@
+<?xml version="1.0"?>
+<NPCQuickReferenceVM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <model>
+    <Name>Soldier [FA12]</Name>
+    <Type>Natural</Type>
+    <Archetype>Humanoid</Archetype>
+    <Attributes>
+      <Level>1</Level>
+      <Size>3</Size>
+      <npcClass>Foe</npcClass>
+      <baseSpirit>0</baseSpirit>
+      <ArmorValue>0</ArmorValue>
+      <Special>+1 to all skills</Special>
+      <StaminaRegen>4</StaminaRegen>
+      <AttributeAdjustments>
+        <AttributeModifier>
+          <AttributeName>MeleePhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaPhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedPhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>MeleeResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>PrimaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>SecondaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>HealthPoints</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>PrimaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Durability</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>PrimaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>SecondaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>MeleePhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaPhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedPhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>MeleeResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>MeleeBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Durability</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>PrimaryAttackDamage</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>SecondaryAttackDamage</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+      </AttributeAdjustments>
+    </Attributes>
+    <Qualities>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Stalwart (1)</Name>
+        <Description>Increase the creature’s Health per track by 2x the listed amount.</Description>
+        <Modifiers>
+          <AttributeModifier>
+            <AttributeName>HealthPoints</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>2</ModifierValue>
+          </AttributeModifier>
+        </Modifiers>
+        <xVariable>1</xVariable>
+      </NpcQuality>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Unerring (1)</Name>
+        <Description>Increase the creature’s primary attack’s attack bonus by the listed amount. (Can take this Quality more than once applying it to a different attack each time.)</Description>
+        <Modifiers>
+          <AttributeModifier>
+            <AttributeName>PrimaryAttack</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+        </Modifiers>
+        <xVariable>1</xVariable>
+      </NpcQuality>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Tough (1)</Name>
+        <Description>Increase the creature’s Durability by the listed amount.</Description>
+        <Modifiers>
+          <AttributeModifier>
+            <AttributeName>Durability</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+        </Modifiers>
+        <xVariable>1</xVariable>
+      </NpcQuality>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Brawny (1)</Name>
+        <Description>Reduce the creature’s attacks and defenses by the listed amount, increase its Durability and damage by double the listed amount.</Description>
+        <Modifiers>
+          <AttributeModifier>
+            <AttributeName>PrimaryAttack</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>-1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>SecondaryAttack</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>-1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>MeleePhysical</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>-1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>AreaPhysical</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>-1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>RangedPhysical</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>-1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>MeleeResolve</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>-1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>AreaResolve</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>-1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>RangedResolve</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>-1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>MeleeBody</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>-1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>AreaBody</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>-1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>RangedBody</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>-1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>Durability</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>2</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>PrimaryAttackDamage</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>2</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>SecondaryAttackDamage</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>2</ModifierValue>
+          </AttributeModifier>
+        </Modifiers>
+        <xVariable>1</xVariable>
+      </NpcQuality>
+    </Qualities>
+    <Abilities />
+    <CombatSkills />
+    <SpecializedSkills />
+    <KnowledgeSkills />
+    <Talents>
+      <Talent>
+        <Name>Spray and Pray</Name>
+        <Description>Your next Full-Auto attack can cross 5 additional feet between targets without allocating groupings to open space. [2 Stamina]</Description>
+        <DescriptionFluff>You use Full-Auto to its fullest benefft.</DescriptionFluff>
+        <ClarifyingText />
+        <Tree>Automatics</Tree>
+        <TreeName>Automatics</TreeName>
+        <Tier>1</Tier>
+        <StaminaCost>2</StaminaCost>
+        <UpkeepCost xsi:nil="true" />
+        <FatigueCost xsi:nil="true" />
+        <IsSpell>false</IsSpell>
+        <LinkedSkill>Longarms</LinkedSkill>
+        <Action>Quick</Action>
+        <Type>AttackAugment</Type>
+        <TierBenefitDescription>You may choose the number of bullets used in a Full-Auto attack up to the maximum rate of fire</TierBenefitDescription>
+      </Talent>
+    </Talents>
+    <EffectiveStrength>0</EffectiveStrength>
+    <Attacks>
+      <NpcAttack xsi:type="NpcWeaponAttack">
+        <Name>Light Rifle</Name>
+        <IsSpell>false</IsSpell>
+        <Weapon>
+          <Name>Light Rifle</Name>
+          <Accuracy>-1</Accuracy>
+          <Damage>6</Damage>
+          <CM>3</CM>
+          <Size>5</Size>
+          <Type>Ballistic</Type>
+          <Range>Rifle</Range>
+          <AmmoCapacity>10</AmmoCapacity>
+          <Cost>8750</Cost>
+          <Skill>Longarms</Skill>
+          <Properties>Consistent3 SemiAuto3 Vicious1</Properties>
+          <Quality>Master</Quality>
+          <Mods>
+            <WeaponMod>
+              <Name>Additional Fire Mode</Name>
+              <Cost>1500</Cost>
+              <Effect>Fire Mode SS -&gt; SA2, SA(x) -&gt; BF(x) or SA(x) -&gt; FA(4x).</Effect>
+              <ApplyError />
+            </WeaponMod>
+            <WeaponMod>
+              <Name>Additional Fire Mode</Name>
+              <Cost>1500</Cost>
+              <Effect>Fire Mode SS -&gt; SA2, SA(x) -&gt; BF(x) or SA(x) -&gt; FA(4x).</Effect>
+              <ApplyError />
+            </WeaponMod>
+          </Mods>
+        </Weapon>
+      </NpcAttack>
+    </Attacks>
+    <Armor>
+      <Name>Battle Suit</Name>
+      <Class>Heavy</Class>
+      <Type>Flexible</Type>
+      <ArmorValue>5</ArmorValue>
+      <ArmorPenalty>2</ArmorPenalty>
+      <SpeedPenalty>1</SpeedPenalty>
+      <Properties>Versatile</Properties>
+      <Mods>
+        <ArmorMod>
+          <Name>Light Fortification</Name>
+          <Cost>650</Cost>
+          <Effect>Increase Armor vs. one damage type by 2.</Effect>
+          <ApplyError />
+        </ArmorMod>
+      </Mods>
+      <Quality>Standard</Quality>
+      <Cost>2150</Cost>
+    </Armor>
+    <Level>1</Level>
+    <Size>3</Size>
+    <NpcClass>Foe</NpcClass>
+  </model>
+  <Name>Soldier [FA12]</Name>
+  <Level>1</Level>
+  <Size>3</Size>
+  <NpcClass>Foe</NpcClass>
+  <NpcType>Natural</NpcType>
+  <Archetype>Humanoid</Archetype>
+  <Stamina>4</Stamina>
+  <StaminaRegen>4</StaminaRegen>
+  <Perception>6</Perception>
+  <Initiative>9</Initiative>
+  <Durability>8</Durability>
+  <Armor>5</Armor>
+  <Speed>5</Speed>
+</NPCQuickReferenceVM>

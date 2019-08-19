@@ -1,0 +1,459 @@
+<?xml version="1.0"?>
+<NPCQuickReferenceVM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <model>
+    <Name>Fire Wight</Name>
+    <Type>Energy</Type>
+    <Archetype>Elemental</Archetype>
+    <Attributes>
+      <Level>6</Level>
+      <Size>4</Size>
+      <npcClass>Antagonist</npcClass>
+      <baseSpirit>0</baseSpirit>
+      <ArmorValue>0</ArmorValue>
+      <Special>All attacks gain damage type matching energy type</Special>
+      <StaminaRegen>7</StaminaRegen>
+      <AttributeAdjustments>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>MeleeResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>MeleePhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaPhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedPhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>MeleeBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>CM</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>MeleePhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaPhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedPhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>MeleeResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>MeleeBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>PrimaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>SecondaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>PrimaryAttackDamage</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>SecondaryAttackDamage</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Durability</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Perception</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Initiative</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Durability</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Speed</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+      </AttributeAdjustments>
+    </Attributes>
+    <Qualities>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Fortified (Reaction Attacks)</Name>
+        <Description>Gains a +4 to Durability against the listed damage type. (Can take this Quality more than once applying it to a different damage type each time.)</Description>
+        <Modifiers />
+        <xVariable>0</xVariable>
+      </NpcQuality>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Immune (Same Energy Type)</Name>
+        <Description>The creature is immune to the listed damage type. If an attack is of multiple damage types the final damage is divided by the total number of damage types and then multiplied by the number of damage types the creature is not immune to. The result is applied as normal health loss. (Can take this Quality more than once applying it to a different damage type each time.)</Description>
+        <Modifiers />
+        <xVariable>0</xVariable>
+      </NpcQuality>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Energy Infused (Fire)</Name>
+        <Description>Gains an Energy subtype (listed in the Energy Type).  Gains immunity to all damage of the listed type, and all Melee attacks gain the damage type of the subtype.</Description>
+        <Modifiers />
+        <xVariable>0</xVariable>
+      </NpcQuality>
+      <NpcQuality>
+        <GrantedWeapons>
+          <Weapon xsi:type="NaturalWeapon">
+            <Name>Natural Weapon (Extreme)</Name>
+            <Accuracy>-2</Accuracy>
+            <Damage>8</Damage>
+            <CM>3</CM>
+            <Size>8</Size>
+            <Type>Slashing</Type>
+            <Range>Melee</Range>
+            <AmmoCapacity xsi:nil="true" />
+            <Cost>0</Cost>
+            <Skill>Heavy</Skill>
+            <Properties>None</Properties>
+            <Quality>Poor</Quality>
+            <Mods />
+            <NWClass>Extreme</NWClass>
+          </Weapon>
+        </GrantedWeapons>
+        <GrantedArmors>
+          <Armor xsi:type="NaturalArmor">
+            <Name>None</Name>
+            <ArmorValue>3</ArmorValue>
+            <ArmorPenalty>1</ArmorPenalty>
+            <SpeedPenalty>0</SpeedPenalty>
+            <Properties />
+            <Mods />
+            <Quality>Poor</Quality>
+            <Cost>0</Cost>
+            <NAClass>Light</NAClass>
+          </Armor>
+        </GrantedArmors>
+        <Name>Animalistic (Extreme/Light)</Name>
+        <Description>Gains a Natural Weapon(Any) and Natural Armor(Any), +1 to CM of Melee attacks, and + 1 to Defense, Attack, Damage, and Durability.  Companions with the Animalistic Quality start with no UEU, Equipment, Gear, or Augmentations.</Description>
+        <Modifiers>
+          <AttributeModifier>
+            <AttributeName>CM</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>MeleePhysical</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>AreaPhysical</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>RangedPhysical</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>MeleeResolve</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>AreaResolve</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>RangedResolve</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>MeleeBody</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>AreaBody</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>RangedBody</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>PrimaryAttack</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>SecondaryAttack</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>PrimaryAttackDamage</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>SecondaryAttackDamage</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>Durability</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+        </Modifiers>
+        <xVariable>0</xVariable>
+      </NpcQuality>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Blindsight</Name>
+        <Description>The creature does not suffer penalties from Concealment.</Description>
+        <Modifiers />
+        <xVariable>0</xVariable>
+      </NpcQuality>
+    </Qualities>
+    <Abilities>
+      <NpcAbility>
+        <Name>Area Attack</Name>
+        <Description>Creature gains an Area attack that has the listed area and damage type.</Description>
+        <Tier>1</Tier>
+        <GrantedAttack xsi:type="NpcWeaponAttack">
+          <Name>Natural Area Attack Ability</Name>
+          <IsSpell>false</IsSpell>
+          <Weapon xsi:type="NaturalWeapon">
+            <Accuracy>1</Accuracy>
+            <Damage>2</Damage>
+            <CM>0</CM>
+            <Size>2</Size>
+            <Type>Untyped</Type>
+            <Range>Melee ThirtyFootCone</Range>
+            <AmmoCapacity xsi:nil="true" />
+            <Cost>0</Cost>
+            <Skill>Unarmed</Skill>
+            <Properties>None</Properties>
+            <Quality>Poor</Quality>
+            <Mods />
+            <NWClass>Light</NWClass>
+          </Weapon>
+        </GrantedAttack>
+        <StaminaCost>5</StaminaCost>
+        <UpkeepCost xsi:nil="true" />
+      </NpcAbility>
+      <NpcAbility>
+        <Name>Powerful Attack</Name>
+        <Description>(Attack Augment): Creature gains its Level to damage and ½ of its Level to attack.</Description>
+        <Tier>4</Tier>
+        <StaminaCost>6</StaminaCost>
+        <UpkeepCost xsi:nil="true" />
+      </NpcAbility>
+    </Abilities>
+    <CombatSkills />
+    <SpecializedSkills />
+    <KnowledgeSkills />
+    <Talents>
+      <Talent>
+        <Name>Residual Effects</Name>
+        <Description>The target loses HP equal to your Strength Attribute.</Description>
+        <DescriptionFluff>Despite its Resistance to your blow, you manage to pull vigor from your enemy.</DescriptionFluff>
+        <ClarifyingText> This damage cannot be reduced.</ClarifyingText>
+        <Tree>Brutality</Tree>
+        <TreeName>Brutality</TreeName>
+        <Tier>4</Tier>
+        <StaminaCost>5</StaminaCost>
+        <UpkeepCost xsi:nil="true" />
+        <FatigueCost xsi:nil="true" />
+        <IsSpell>false</IsSpell>
+        <LinkedSkill>Heavy</LinkedSkill>
+        <Action>Reaction</Action>
+        <Type>TriggeredAction</Type>
+        <TierBenefitDescription>Can use Vicious re-rolls on rolls of 2 or lower when using Heavy Melee weapons</TierBenefitDescription>
+      </Talent>
+      <Talent>
+        <Name>Brute Stance</Name>
+        <Description>You gain the Enraged condition as well as a +2 to Melee damage with weapons held in 2 hands. [6/2 Stamina]</Description>
+        <DescriptionFluff>You lose yourself in the chaos of battle.</DescriptionFluff>
+        <ClarifyingText>Enraged = +2 melee damage, +2 durability, +2 Str non-combat skill checks.</ClarifyingText>
+        <Tree>Brutality</Tree>
+        <TreeName>Brutality</TreeName>
+        <Tier>2</Tier>
+        <StaminaCost>6</StaminaCost>
+        <UpkeepCost>2</UpkeepCost>
+        <FatigueCost xsi:nil="true" />
+        <IsSpell>false</IsSpell>
+        <LinkedSkill>Heavy</LinkedSkill>
+        <Action>Quick</Action>
+        <Type>Stance</Type>
+        <TierBenefitDescription>+1 to damage of Heavy Melee weapons</TierBenefitDescription>
+      </Talent>
+    </Talents>
+    <EffectiveStrength>0</EffectiveStrength>
+    <Attacks>
+      <NpcAttack xsi:type="NpcWeaponAttack">
+        <Name>Natural Weapon (Extreme)</Name>
+        <IsSpell>false</IsSpell>
+        <Weapon xsi:type="NaturalWeapon">
+          <Name>Natural Weapon (Extreme)</Name>
+          <Accuracy>-2</Accuracy>
+          <Damage>8</Damage>
+          <CM>3</CM>
+          <Size>8</Size>
+          <Type>Slashing</Type>
+          <Range>Melee</Range>
+          <AmmoCapacity xsi:nil="true" />
+          <Cost>0</Cost>
+          <Skill>Heavy</Skill>
+          <Properties>None</Properties>
+          <Quality>Poor</Quality>
+          <Mods />
+          <NWClass>Extreme</NWClass>
+        </Weapon>
+      </NpcAttack>
+      <NpcAttack xsi:type="NpcWeaponAttack">
+        <Name>Natural Area Attack Ability</Name>
+        <IsSpell>false</IsSpell>
+        <Weapon xsi:type="NaturalWeapon">
+          <Accuracy>1</Accuracy>
+          <Damage>2</Damage>
+          <CM>0</CM>
+          <Size>2</Size>
+          <Type>Untyped</Type>
+          <Range>Melee ThirtyFootCone</Range>
+          <AmmoCapacity xsi:nil="true" />
+          <Cost>0</Cost>
+          <Skill>Unarmed</Skill>
+          <Properties>None</Properties>
+          <Quality>Poor</Quality>
+          <Mods />
+          <NWClass>Light</NWClass>
+        </Weapon>
+      </NpcAttack>
+    </Attacks>
+    <Armor xsi:type="NaturalArmor">
+      <Name>None</Name>
+      <ArmorValue>3</ArmorValue>
+      <ArmorPenalty>1</ArmorPenalty>
+      <SpeedPenalty>0</SpeedPenalty>
+      <Properties />
+      <Mods />
+      <Quality>Poor</Quality>
+      <Cost>0</Cost>
+      <NAClass>Light</NAClass>
+    </Armor>
+    <Level>6</Level>
+    <Size>4</Size>
+    <NpcClass>Antagonist</NpcClass>
+  </model>
+  <Name>Fire Wight</Name>
+  <Level>6</Level>
+  <Size>4</Size>
+  <NpcClass>Antagonist</NpcClass>
+  <NpcType>Energy</NpcType>
+  <Archetype>Elemental</Archetype>
+  <Stamina>22</Stamina>
+  <StaminaRegen>7</StaminaRegen>
+  <Perception>12</Perception>
+  <Initiative>15</Initiative>
+  <Durability>13</Durability>
+  <Armor>3</Armor>
+  <Speed>9</Speed>
+</NPCQuickReferenceVM>

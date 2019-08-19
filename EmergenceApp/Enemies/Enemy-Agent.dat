@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<NPCQuickReferenceVM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <model>
+    <Name>Agent</Name>
+    <Type>Natural</Type>
+    <Archetype>Humanoid</Archetype>
+    <Attributes>
+      <Level>1</Level>
+      <Size>3</Size>
+      <npcClass>Foe</npcClass>
+      <baseSpirit>0</baseSpirit>
+      <ArmorValue>0</ArmorValue>
+      <Special>+1 to all skills</Special>
+      <StaminaRegen>4</StaminaRegen>
+      <AttributeAdjustments>
+        <AttributeModifier>
+          <AttributeName>MeleePhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaPhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedPhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>MeleeBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>PrimaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>SecondaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Initiative</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Speed</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>PrimaryAttackDamage</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Speed</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+      </AttributeAdjustments>
+    </Attributes>
+    <Qualities>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Quick (1)</Name>
+        <Description>Increase the creature’s Initiative by 2x the listed amount.</Description>
+        <Modifiers>
+          <AttributeModifier>
+            <AttributeName>Initiative</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>2</ModifierValue>
+          </AttributeModifier>
+        </Modifiers>
+        <xVariable>1</xVariable>
+      </NpcQuality>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Speedy (1)</Name>
+        <Description>Increase the creature’s Speed by the listed amount.</Description>
+        <Modifiers>
+          <AttributeModifier>
+            <AttributeName>Speed</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+        </Modifiers>
+        <xVariable>1</xVariable>
+      </NpcQuality>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Powerful (1)</Name>
+        <Description>Increase the creature’s primary attack’s damage by 2x the listed amount. (Can take this Quality more than once applying it to a different attack each time.)</Description>
+        <Modifiers>
+          <AttributeModifier>
+            <AttributeName>PrimaryAttackDamage</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>2</ModifierValue>
+          </AttributeModifier>
+        </Modifiers>
+        <xVariable>1</xVariable>
+      </NpcQuality>
+    </Qualities>
+    <Abilities />
+    <CombatSkills />
+    <SpecializedSkills />
+    <KnowledgeSkills />
+    <Talents>
+      <Talent>
+        <Name>Shadow Strike</Name>
+        <Description>Your next Melee attack does not automatically cause you to lose the hidden state from bystanders (though it does from the target of that attack).</Description>
+        <DescriptionFluff>You strike from the shadows, and retreat back into them.</DescriptionFluff>
+        <ClarifyingText>You must make a new Stealth Check at a -2 and must have Cover or Concealment to remain hidden.All other creatures in the area get a new Perception Check against the new MCR.</ClarifyingText>
+        <Tree>Assassination</Tree>
+        <TreeName>Assassination</TreeName>
+        <Tier>1</Tier>
+        <StaminaCost>2</StaminaCost>
+        <UpkeepCost xsi:nil="true" />
+        <FatigueCost xsi:nil="true" />
+        <IsSpell>false</IsSpell>
+        <LinkedSkill>CloseCombat</LinkedSkill>
+        <Action>Quick</Action>
+        <Type>AttackAugment</Type>
+        <TierBenefitDescription>+1 damage with Close Combat Weapons</TierBenefitDescription>
+      </Talent>
+    </Talents>
+    <EffectiveStrength>0</EffectiveStrength>
+    <Attacks>
+      <NpcAttack xsi:type="NpcWeaponAttack">
+        <Name>Knife</Name>
+        <IsSpell>false</IsSpell>
+        <Weapon>
+          <Name>Knife</Name>
+          <Accuracy>1</Accuracy>
+          <Damage>1</Damage>
+          <CM>3</CM>
+          <Size>1</Size>
+          <Type>Piercing Slashing</Type>
+          <Range>Melee</Range>
+          <AmmoCapacity xsi:nil="true" />
+          <Cost>700</Cost>
+          <Skill>CloseCombat</Skill>
+          <Properties>Agile Penetrating Thrown</Properties>
+          <Quality>Standard</Quality>
+          <Mods>
+            <WeaponMod>
+              <Name>Cruel</Name>
+              <Cost>650</Cost>
+              <Effect>The weapon gains +1 to CM.</Effect>
+              <ApplyError />
+            </WeaponMod>
+          </Mods>
+        </Weapon>
+      </NpcAttack>
+    </Attacks>
+    <Armor>
+      <Name>Breastplate</Name>
+      <Class>Light</Class>
+      <Type>Rigid</Type>
+      <ArmorValue>3</ArmorValue>
+      <ArmorPenalty>1</ArmorPenalty>
+      <SpeedPenalty>1</SpeedPenalty>
+      <Properties>Sturdy</Properties>
+      <Mods>
+        <ArmorMod>
+          <Name>Enhanced Mobility</Name>
+          <Cost>500</Cost>
+          <Effect>Reduces Speed Penalty by 1.</Effect>
+          <ApplyError />
+        </ArmorMod>
+      </Mods>
+      <Quality>Standard</Quality>
+      <Cost>800</Cost>
+    </Armor>
+    <Level>1</Level>
+    <Size>3</Size>
+    <NpcClass>Foe</NpcClass>
+  </model>
+  <Name>Agent</Name>
+  <Level>1</Level>
+  <Size>3</Size>
+  <NpcClass>Foe</NpcClass>
+  <NpcType>Natural</NpcType>
+  <Archetype>Humanoid</Archetype>
+  <Stamina>4</Stamina>
+  <StaminaRegen>4</StaminaRegen>
+  <Perception>6</Perception>
+  <Initiative>11</Initiative>
+  <Durability>5</Durability>
+  <Armor>3</Armor>
+  <Speed>7</Speed>
+</NPCQuickReferenceVM>

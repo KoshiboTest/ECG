@@ -1,0 +1,314 @@
+<?xml version="1.0"?>
+<NPCQuickReferenceVM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <model>
+    <Name>Occult Initiate</Name>
+    <Type>Natural</Type>
+    <Archetype>Humanoid</Archetype>
+    <Attributes>
+      <Level>1</Level>
+      <Size>3</Size>
+      <npcClass>Grunt</npcClass>
+      <baseSpirit>0</baseSpirit>
+      <ArmorValue>0</ArmorValue>
+      <Special>+1 to all skills</Special>
+      <StaminaRegen>0</StaminaRegen>
+      <AttributeAdjustments>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>MeleeResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>MeleeBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>PrimaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>SecondaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>PrimaryAttackDamage</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>PrimaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Perception</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Initiative</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Durability</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Speed</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+      </AttributeAdjustments>
+    </Attributes>
+    <Qualities>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Powerful (1)</Name>
+        <Description>Increase the creature’s primary attack’s damage by 2x the listed amount. (Can take this Quality more than once applying it to a different attack each time.)</Description>
+        <Modifiers>
+          <AttributeModifier>
+            <AttributeName>PrimaryAttackDamage</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>2</ModifierValue>
+          </AttributeModifier>
+        </Modifiers>
+        <xVariable>1</xVariable>
+      </NpcQuality>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Unerring (1)</Name>
+        <Description>Increase the creature’s primary attack’s attack bonus by the listed amount. (Can take this Quality more than once applying it to a different attack each time.)</Description>
+        <Modifiers>
+          <AttributeModifier>
+            <AttributeName>PrimaryAttack</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+        </Modifiers>
+        <xVariable>1</xVariable>
+      </NpcQuality>
+    </Qualities>
+    <Abilities>
+      <NpcAbility>
+        <Name>Area Attack</Name>
+        <Description>Creature gains an Area attack that has the listed area and damage type.</Description>
+        <Tier>1</Tier>
+        <GrantedAttack xsi:type="NpcWeaponAttack">
+          <Name>Natural Area Attack Ability</Name>
+          <IsSpell>false</IsSpell>
+          <Weapon xsi:type="NaturalWeapon">
+            <Accuracy>1</Accuracy>
+            <Damage>2</Damage>
+            <CM>0</CM>
+            <Size>2</Size>
+            <Type>Untyped</Type>
+            <Range>Melee ThirtyFootCone</Range>
+            <AmmoCapacity xsi:nil="true" />
+            <Cost>0</Cost>
+            <Skill>Unarmed</Skill>
+            <Properties>None</Properties>
+            <Quality>Poor</Quality>
+            <Mods />
+            <NWClass>Light</NWClass>
+          </Weapon>
+        </GrantedAttack>
+        <StaminaCost>5</StaminaCost>
+        <UpkeepCost xsi:nil="true" />
+      </NpcAbility>
+      <NpcAbility>
+        <Name>Area Attack</Name>
+        <Description>Creature gains an Area attack that has the listed area and damage type.</Description>
+        <Tier>1</Tier>
+        <GrantedAttack xsi:type="NpcWeaponAttack">
+          <Name>Natural Area Attack Ability</Name>
+          <IsSpell>false</IsSpell>
+          <Weapon xsi:type="NaturalWeapon">
+            <Accuracy>1</Accuracy>
+            <Damage>2</Damage>
+            <CM>0</CM>
+            <Size>2</Size>
+            <Type>Untyped</Type>
+            <Range>Melee ThirtyFootCone</Range>
+            <AmmoCapacity xsi:nil="true" />
+            <Cost>0</Cost>
+            <Skill>Unarmed</Skill>
+            <Properties>None</Properties>
+            <Quality>Poor</Quality>
+            <Mods />
+            <NWClass>Light</NWClass>
+          </Weapon>
+        </GrantedAttack>
+        <StaminaCost>5</StaminaCost>
+        <UpkeepCost xsi:nil="true" />
+      </NpcAbility>
+      <NpcAbility>
+        <Name>Area Attack</Name>
+        <Description>Creature gains an Area attack that has the listed area and damage type.</Description>
+        <Tier>1</Tier>
+        <GrantedAttack xsi:type="NpcWeaponAttack">
+          <Name>Natural Area Attack Ability</Name>
+          <IsSpell>false</IsSpell>
+          <Weapon xsi:type="NaturalWeapon">
+            <Accuracy>1</Accuracy>
+            <Damage>2</Damage>
+            <CM>0</CM>
+            <Size>2</Size>
+            <Type>Untyped</Type>
+            <Range>Melee ThirtyFootCone</Range>
+            <AmmoCapacity xsi:nil="true" />
+            <Cost>0</Cost>
+            <Skill>Unarmed</Skill>
+            <Properties>None</Properties>
+            <Quality>Poor</Quality>
+            <Mods />
+            <NWClass>Light</NWClass>
+          </Weapon>
+        </GrantedAttack>
+        <StaminaCost>5</StaminaCost>
+        <UpkeepCost xsi:nil="true" />
+      </NpcAbility>
+      <NpcAbility>
+        <Name>Area Attack</Name>
+        <Description>Creature gains an Area attack that has the listed area and damage type.</Description>
+        <Tier>1</Tier>
+        <GrantedAttack xsi:type="NpcWeaponAttack">
+          <Name>Natural Area Attack Ability</Name>
+          <IsSpell>false</IsSpell>
+          <Weapon xsi:type="NaturalWeapon">
+            <Accuracy>1</Accuracy>
+            <Damage>2</Damage>
+            <CM>0</CM>
+            <Size>2</Size>
+            <Type>Untyped</Type>
+            <Range>Pistol TenFootRadius</Range>
+            <AmmoCapacity xsi:nil="true" />
+            <Cost>0</Cost>
+            <Skill>Unarmed</Skill>
+            <Properties>None</Properties>
+            <Quality>Poor</Quality>
+            <Mods />
+            <NWClass>Light</NWClass>
+          </Weapon>
+        </GrantedAttack>
+        <StaminaCost>5</StaminaCost>
+        <UpkeepCost xsi:nil="true" />
+      </NpcAbility>
+    </Abilities>
+    <CombatSkills />
+    <SpecializedSkills />
+    <KnowledgeSkills />
+    <Talents />
+    <EffectiveStrength>0</EffectiveStrength>
+    <Attacks>
+      <NpcAttack xsi:type="NpcWeaponAttack">
+        <Name>Natural Area Attack Ability</Name>
+        <IsSpell>false</IsSpell>
+        <Weapon xsi:type="NaturalWeapon">
+          <Accuracy>1</Accuracy>
+          <Damage>2</Damage>
+          <CM>0</CM>
+          <Size>2</Size>
+          <Type>Untyped</Type>
+          <Range>Pistol TenFootRadius</Range>
+          <AmmoCapacity xsi:nil="true" />
+          <Cost>0</Cost>
+          <Skill>Unarmed</Skill>
+          <Properties>None</Properties>
+          <Quality>Poor</Quality>
+          <Mods />
+          <NWClass>Light</NWClass>
+        </Weapon>
+      </NpcAttack>
+      <NpcAttack xsi:type="NpcAmpAttack">
+        <Name>Wand</Name>
+        <IsSpell>true</IsSpell>
+        <Amp>
+          <Name>Wand</Name>
+          <Accuracy>1</Accuracy>
+          <Damage>0</Damage>
+          <Charges>4</Charges>
+          <CM>0</CM>
+          <Size>2</Size>
+          <Type>Force</Type>
+          <Cost>150</Cost>
+          <Properties>Dueling</Properties>
+          <Quality>Poor</Quality>
+          <Mods />
+          <Range>Pistol</Range>
+        </Amp>
+      </NpcAttack>
+    </Attacks>
+    <Armor>
+      <Name>Armored Vest</Name>
+      <Class>Light</Class>
+      <Type>Flexible</Type>
+      <ArmorValue>2</ArmorValue>
+      <ArmorPenalty>1</ArmorPenalty>
+      <SpeedPenalty>0</SpeedPenalty>
+      <Properties>Innocuous</Properties>
+      <Mods>
+        <ArmorMod>
+          <Name>Power Rune</Name>
+          <Cost>1000</Cost>
+          <Effect>Required for certain other Mods. + 1 to Stamina Regen.</Effect>
+          <ApplyError />
+        </ArmorMod>
+      </Mods>
+      <Quality>Standard</Quality>
+      <Cost>1300</Cost>
+    </Armor>
+    <Level>1</Level>
+    <Size>3</Size>
+    <NpcClass>Grunt</NpcClass>
+  </model>
+  <Name>Occult Initiate</Name>
+  <Level>1</Level>
+  <Size>3</Size>
+  <NpcClass>Grunt</NpcClass>
+  <NpcType>Natural</NpcType>
+  <Archetype>Humanoid</Archetype>
+  <Stamina>0</Stamina>
+  <StaminaRegen>0</StaminaRegen>
+  <Perception>5</Perception>
+  <Initiative>7</Initiative>
+  <Durability>3</Durability>
+  <Armor>2</Armor>
+  <Speed>6</Speed>
+</NPCQuickReferenceVM>

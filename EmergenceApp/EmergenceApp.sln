@@ -9,6 +9,29 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emergence.Model", "Emergenc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emergence.ViewModel", "Emergence.ViewModel\Emergence.ViewModel.csproj", "{83C755FA-ECA4-4A79-A13E-7FF3FDCCE583}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Enemies", "Enemies", "{E279D259-47EC-4D9B-ABAC-11FD702125FD}"
+	ProjectSection(SolutionItems) = preProject
+		Enemies\Enemy-Adult Dragon.dat = Enemies\Enemy-Adult Dragon.dat
+		Enemies\Enemy-Agent.dat = Enemies\Enemy-Agent.dat
+		Enemies\Enemy-Fire Wight.dat = Enemies\Enemy-Fire Wight.dat
+		Enemies\Enemy-Fleshwoven Orc.dat = Enemies\Enemy-Fleshwoven Orc.dat
+		Enemies\Enemy-Ganger.dat = Enemies\Enemy-Ganger.dat
+		Enemies\Enemy-Giant Owl.dat = Enemies\Enemy-Giant Owl.dat
+		Enemies\Enemy-Guard Hound.dat = Enemies\Enemy-Guard Hound.dat
+		Enemies\Enemy-Hellcat Alpha.dat = Enemies\Enemy-Hellcat Alpha.dat
+		Enemies\Enemy-Imp.dat = Enemies\Enemy-Imp.dat
+		Enemies\Enemy-Nightmare Deamon.dat = Enemies\Enemy-Nightmare Deamon.dat
+		Enemies\Enemy-Novice Mage.dat = Enemies\Enemy-Novice Mage.dat
+		Enemies\Enemy-Occult Initiate.dat = Enemies\Enemy-Occult Initiate.dat
+		Enemies\Enemy-Porja Cat.dat = Enemies\Enemy-Porja Cat.dat
+		Enemies\Enemy-Soldier [FA12].dat = Enemies\Enemy-Soldier [FA12].dat
+		Enemies\Enemy-Soldier.dat = Enemies\Enemy-Soldier.dat
+		Enemies\Enemy-The ooze from hell (literally).dat = Enemies\Enemy-The ooze from hell (literally).dat
+		Enemies\Enemy-Thug.dat = Enemies\Enemy-Thug.dat
+		Enemies\Enemy-Vampire.dat = Enemies\Enemy-Vampire.dat
+		Enemies\Enemy-Zombie.dat = Enemies\Enemy-Zombie.dat
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

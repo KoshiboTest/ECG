@@ -1,0 +1,348 @@
+<?xml version="1.0"?>
+<NPCQuickReferenceVM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <model>
+    <Name>Fleshwoven Orc</Name>
+    <Type>Natural</Type>
+    <Archetype>Humanoid</Archetype>
+    <Attributes>
+      <Level>2</Level>
+      <Size>3</Size>
+      <npcClass>Foe</npcClass>
+      <baseSpirit>0</baseSpirit>
+      <ArmorValue>0</ArmorValue>
+      <Special>+1 to all skills</Special>
+      <StaminaRegen>6</StaminaRegen>
+      <AttributeAdjustments>
+        <AttributeModifier>
+          <AttributeName>MeleePhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>MeleeResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>MeleeBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>MeleeResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>PrimaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>SecondaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>CM</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>PrimaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>SecondaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>MeleePhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaPhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedPhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>MeleeResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>MeleeBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Durability</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>PrimaryAttackDamage</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>SecondaryAttackDamage</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+      </AttributeAdjustments>
+    </Attributes>
+    <Qualities>
+      <NpcQuality>
+        <GrantedWeapons>
+          <Weapon xsi:type="NaturalWeapon">
+            <Name>Natural Weapon (Heavy)</Name>
+            <Accuracy>-1</Accuracy>
+            <Damage>6</Damage>
+            <CM>3</CM>
+            <Size>6</Size>
+            <Type>Slashing</Type>
+            <Range />
+            <AmmoCapacity xsi:nil="true" />
+            <Cost>0</Cost>
+            <Skill>Unarmed</Skill>
+            <Properties>None</Properties>
+            <Quality>Poor</Quality>
+            <Mods />
+            <NWClass>Heavy</NWClass>
+          </Weapon>
+        </GrantedWeapons>
+        <GrantedArmors />
+        <Name>Natural Weapon (Heavy)</Name>
+        <Description>The creature gains Natural Weapon of the listed type.</Description>
+        <Modifiers />
+        <xVariable>0</xVariable>
+      </NpcQuality>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Feral (1)</Name>
+        <Description>Increase the creature’s Melee CM by the listed amount.</Description>
+        <Modifiers>
+          <AttributeModifier>
+            <AttributeName>CM</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>1</ModifierValue>
+          </AttributeModifier>
+        </Modifiers>
+        <xVariable>1</xVariable>
+      </NpcQuality>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Lethal (1)</Name>
+        <Description>The primary attack gains Lethal at the listed amount. (Can take this Quality more than once, applying it to a different attack each time.)</Description>
+        <Modifiers />
+        <xVariable>0</xVariable>
+      </NpcQuality>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Brawny (1)</Name>
+        <Description>Reduce the creature’s attacks and defenses by the listed amount, increase its Durability and damage by double the listed amount.</Description>
+        <Modifiers>
+          <AttributeModifier>
+            <AttributeName>PrimaryAttack</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>-1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>SecondaryAttack</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>-1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>MeleePhysical</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>-1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>AreaPhysical</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>-1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>RangedPhysical</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>-1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>MeleeResolve</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>-1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>AreaResolve</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>-1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>RangedResolve</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>-1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>MeleeBody</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>-1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>AreaBody</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>-1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>RangedBody</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>-1</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>Durability</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>2</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>PrimaryAttackDamage</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>2</ModifierValue>
+          </AttributeModifier>
+          <AttributeModifier>
+            <AttributeName>SecondaryAttackDamage</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>2</ModifierValue>
+          </AttributeModifier>
+        </Modifiers>
+        <xVariable>1</xVariable>
+      </NpcQuality>
+    </Qualities>
+    <Abilities />
+    <CombatSkills />
+    <SpecializedSkills />
+    <KnowledgeSkills />
+    <Talents>
+      <Talent>
+        <Name>Drive them Low</Name>
+        <Description>Weapon {Melee -2/+[targets size]} [6 Stamina]</Description>
+        <DescriptionFluff>You use your enemies’ size against them and drive them to the ground.</DescriptionFluff>
+        <ClarifyingText>On a hit, the target of this attack falls Prone and becomes Dazed (until Resisted).</ClarifyingText>
+        <Tree>Bulwark</Tree>
+        <TreeName>Bulwark</TreeName>
+        <Tier>2</Tier>
+        <StaminaCost>6</StaminaCost>
+        <UpkeepCost xsi:nil="true" />
+        <FatigueCost xsi:nil="true" />
+        <IsSpell>false</IsSpell>
+        <LinkedSkill>Dueling</LinkedSkill>
+        <Action>Combat</Action>
+        <Type>Maneuver</Type>
+        <TierBenefitDescription>The Defensive property of weapons you wield can be applied to one ally within 5'. All Dueling and Close Combat weapons are Defensive 1 in your hands. If already Defensive, they provide an additional + 1 bonus to your  Melee Defense.</TierBenefitDescription>
+      </Talent>
+    </Talents>
+    <EffectiveStrength>0</EffectiveStrength>
+    <Attacks>
+      <NpcAttack xsi:type="NpcWeaponAttack">
+        <Name>Natural Weapon (Heavy)</Name>
+        <IsSpell>false</IsSpell>
+        <Weapon xsi:type="NaturalWeapon">
+          <Name>Natural Weapon (Heavy)</Name>
+          <Accuracy>-1</Accuracy>
+          <Damage>6</Damage>
+          <CM>3</CM>
+          <Size>6</Size>
+          <Type>Slashing</Type>
+          <Range />
+          <AmmoCapacity xsi:nil="true" />
+          <Cost>0</Cost>
+          <Skill>Unarmed</Skill>
+          <Properties>None</Properties>
+          <Quality>Poor</Quality>
+          <Mods />
+          <NWClass>Heavy</NWClass>
+        </Weapon>
+      </NpcAttack>
+    </Attacks>
+    <Armor>
+      <Name>Breastplate</Name>
+      <Class>Light</Class>
+      <Type>Rigid</Type>
+      <ArmorValue>3</ArmorValue>
+      <ArmorPenalty>1</ArmorPenalty>
+      <SpeedPenalty>1</SpeedPenalty>
+      <Properties>Sturdy</Properties>
+      <Mods>
+        <ArmorMod>
+          <Name>Enhanced Mobility</Name>
+          <Cost>500</Cost>
+          <Effect>Reduces Speed Penalty by 1.</Effect>
+          <ApplyError />
+        </ArmorMod>
+      </Mods>
+      <Quality>Standard</Quality>
+      <Cost>800</Cost>
+    </Armor>
+    <Level>2</Level>
+    <Size>3</Size>
+    <NpcClass>Foe</NpcClass>
+  </model>
+  <Name>Fleshwoven Orc</Name>
+  <Level>2</Level>
+  <Size>3</Size>
+  <NpcClass>Foe</NpcClass>
+  <NpcType>Natural</NpcType>
+  <Archetype>Humanoid</Archetype>
+  <Stamina>6</Stamina>
+  <StaminaRegen>6</StaminaRegen>
+  <Perception>7</Perception>
+  <Initiative>10</Initiative>
+  <Durability>8</Durability>
+  <Armor>3</Armor>
+  <Speed>6</Speed>
+</NPCQuickReferenceVM>
