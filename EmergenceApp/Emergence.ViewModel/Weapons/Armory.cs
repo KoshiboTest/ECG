@@ -1069,7 +1069,7 @@ namespace Emergence.ViewModel
             CustomBalance.Effect = "Increase the accuracy of the weapon by 1.";
             weaponMods.Add(CustomBalance);
 
-            WeaponModVM Ejecting = new WeaponModVM();
+            WeaponModVM Ejecting = new MeleeWeaponModVM();
             Ejecting.Name = "Ejecting";
             Ejecting.Cost = 1000;
             Ejecting.Effect = "Weapons with this mod can be used to make a Weapon {Ranged (Pistol)/Ballistic+Weapon} attack using the normal weapon's skill.  Once used in this manner, the weapon cannot be used to make melee attacks (except improvised) until the ejected portion is rearmed (a combat action)";
