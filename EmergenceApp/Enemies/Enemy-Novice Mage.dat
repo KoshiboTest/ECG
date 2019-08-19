@@ -14,6 +14,16 @@
       <StaminaRegen>7</StaminaRegen>
       <AttributeAdjustments>
         <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>3</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>3</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
           <AttributeName>MeleeResolve</AttributeName>
           <Type>Additive</Type>
           <ModifierValue>2</ModifierValue>
@@ -77,6 +87,56 @@
           <AttributeName>CM</AttributeName>
           <Type>Additive</Type>
           <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-3</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Perception</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Initiative</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Durability</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Speed</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-3</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Perception</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Initiative</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Durability</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Speed</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
         </AttributeModifier>
       </AttributeAdjustments>
     </Attributes>
@@ -209,7 +269,7 @@
           <CM>0</CM>
           <Size>3</Size>
           <Type>Psychic</Type>
-          <Cost>250</Cost>
+          <Cost>62</Cost>
           <Properties>Destructive</Properties>
           <Quality>Poor</Quality>
           <Mods />
@@ -234,7 +294,7 @@
         </ArmorMod>
       </Mods>
       <Quality>Standard</Quality>
-      <Cost>1300</Cost>
+      <Cost>3300</Cost>
     </Armor>
     <Level>1</Level>
     <Size>3</Size>

@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<NPCQuickReferenceVM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <model>
+    <Name>Necromancer BBG3</Name>
+    <Type>Natural</Type>
+    <Archetype>Humanoid</Archetype>
+    <Attributes>
+      <Level>5</Level>
+      <Size>3</Size>
+      <npcClass>Antagonist</npcClass>
+      <baseSpirit>0</baseSpirit>
+      <ArmorValue>0</ArmorValue>
+      <Special>+1 to all skills</Special>
+      <StaminaRegen>6</StaminaRegen>
+      <AttributeAdjustments>
+        <AttributeModifier>
+          <AttributeName>MeleeResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaPhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>PrimaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>SecondaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+      </AttributeAdjustments>
+    </Attributes>
+    <Qualities>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Night Sight</Name>
+        <Description>Nightsight: The creature does not suffer penalties light or heavy Concealment from darkness.</Description>
+        <Modifiers />
+        <xVariable>0</xVariable>
+      </NpcQuality>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Camouflaged (2)</Name>
+        <Description>The creature has the listed amount of Concealment at all times. If an exception exists it is listed in the property description.</Description>
+        <Modifiers />
+        <xVariable>2</xVariable>
+      </NpcQuality>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Regeneration (2)</Name>
+        <Description>The number listed is the amount of Health that is restored in the following tracks and timeframes. Per Turn: 1st Track, Per Minute: 2nd Track, and Per Hour: 3rd Track. Regeneration restores health in the first track until full, then it restores health in the second until full, and finally it restores health in the third track until full. Regeneration cannot restore more health in a given track than the creature’s normal maximum.</Description>
+        <Modifiers />
+        <xVariable>2</xVariable>
+      </NpcQuality>
+    </Qualities>
+    <Abilities />
+    <CombatSkills />
+    <SpecializedSkills />
+    <KnowledgeSkills />
+    <Talents>
+      <Talent>
+        <Name>Mana Blast</Name>
+        <Description>Spell {Ranged (Pistol) +0/+2 Force} [4 Stamina]</Description>
+        <DescriptionFluff>You blast your foe with pure magic.</DescriptionFluff>
+        <ClarifyingText />
+        <Tree>Incantation</Tree>
+        <TreeName>Incantation</TreeName>
+        <Tier>1</Tier>
+        <StaminaCost>4</StaminaCost>
+        <UpkeepCost xsi:nil="true" />
+        <FatigueCost xsi:nil="true" />
+        <IsSpell>false</IsSpell>
+        <LinkedSkill>Alteration</LinkedSkill>
+        <Action>Combat</Action>
+        <Type>Maneuver</Type>
+        <TierBenefitDescription>You can consume Potions, Elixirs and Reagents as a Free Action</TierBenefitDescription>
+      </Talent>
+      <Talent>
+        <Name>Dark Blast</Name>
+        <Description>Spell {Ranged (Pistol) +0/+2 Unholy)} [4 Stamina]</Description>
+        <DescriptionFluff />
+        <ClarifyingText />
+        <Tree>Infernalism</Tree>
+        <TreeName>Infernalism</TreeName>
+        <Tier>1</Tier>
+        <StaminaCost>4</StaminaCost>
+        <UpkeepCost xsi:nil="true" />
+        <FatigueCost xsi:nil="true" />
+        <IsSpell>false</IsSpell>
+        <LinkedSkill>Invocation</LinkedSkill>
+        <Action>Combat</Action>
+        <Type>Maneuver</Type>
+        <TierBenefitDescription>Gain +1 to Intimidation and +1 HP per Track</TierBenefitDescription>
+      </Talent>
+    </Talents>
+    <EffectiveStrength>0</EffectiveStrength>
+    <Attacks>
+      <NpcAttack xsi:type="NpcAmpAttack">
+        <Name>Circlet</Name>
+        <IsSpell>true</IsSpell>
+        <Amp>
+          <Name>Circlet</Name>
+          <Accuracy>0</Accuracy>
+          <Damage>2</Damage>
+          <Charges>3</Charges>
+          <CM>0</CM>
+          <Size>1</Size>
+          <Type>Psychic</Type>
+          <Cost>28650</Cost>
+          <Properties>Compulsive</Properties>
+          <Quality>Master</Quality>
+          <Mods>
+            <AmpMod>
+              <Name>Bonded</Name>
+              <Cost>2500</Cost>
+              <Effect>The Amp can be called to you by a mental command as a Quick Action [2 Stamina] from up to 1,000’ away. The Amp will travel 500’ per turn to deliver itself to your hand, automatically avoiding any obstacles between itself and you. Additionally, you cannot be disarmed of this Amp and the Amp can be Armed from its Holster for 1 less MI than its Holster indicates.</Effect>
+              <ApplyError />
+            </AmpMod>
+            <AmpMod>
+              <Name>Fortuitous</Name>
+              <Cost>20000</Cost>
+              <Effect>You can treat any roll of 1, 2, or 3 as a result of 1 for the purpose of using Spirit re-rolls.</Effect>
+              <ApplyError />
+            </AmpMod>
+            <AmpMod>
+              <Name>Cruel</Name>
+              <Cost>650</Cost>
+              <Effect>+1 to CM for all Spells cast using this Amp.</Effect>
+              <ApplyError />
+            </AmpMod>
+          </Mods>
+          <Range>FifteenFootCone</Range>
+        </Amp>
+      </NpcAttack>
+      <NpcAttack xsi:type="NpcWeaponAttack">
+        <Name>Polearm</Name>
+        <IsSpell>false</IsSpell>
+        <Weapon>
+          <Name>Polearm</Name>
+          <Accuracy>-2</Accuracy>
+          <Damage>8</Damage>
+          <CM>3</CM>
+          <Size>6</Size>
+          <Type>Piercing Bludgeoning Slashing</Type>
+          <Range>Melee</Range>
+          <AmmoCapacity xsi:nil="true" />
+          <Cost>1500</Cost>
+          <Skill>Heavy</Skill>
+          <Properties>Reach VariableDamage</Properties>
+          <Quality>Standard</Quality>
+          <Mods>
+            <WeaponMod>
+              <Name>Magecell-Powered</Name>
+              <Cost>1000</Cost>
+              <Effect>No effect.</Effect>
+              <ApplyError />
+            </WeaponMod>
+          </Mods>
+        </Weapon>
+      </NpcAttack>
+    </Attacks>
+    <Armor>
+      <Name>None</Name>
+      <ArmorValue>0</ArmorValue>
+      <ArmorPenalty>0</ArmorPenalty>
+      <SpeedPenalty>0</SpeedPenalty>
+      <Properties />
+      <Mods />
+      <Quality>Poor</Quality>
+      <Cost>0</Cost>
+    </Armor>
+    <Level>5</Level>
+    <Size>3</Size>
+    <NpcClass>Antagonist</NpcClass>
+  </model>
+  <Name>Necromancer BBG3</Name>
+  <Level>5</Level>
+  <Size>3</Size>
+  <NpcClass>Antagonist</NpcClass>
+  <NpcType>Natural</NpcType>
+  <Archetype>Humanoid</Archetype>
+  <Stamina>20</Stamina>
+  <StaminaRegen>6</StaminaRegen>
+  <Perception>11</Perception>
+  <Initiative>15</Initiative>
+  <Durability>9</Durability>
+  <Armor>0</Armor>
+  <Speed>8</Speed>
+</NPCQuickReferenceVM>

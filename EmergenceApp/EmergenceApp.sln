@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmergenceApp", "EmergenceApp\EmergenceApp.csproj", "{F5363600-95E8-4C79-B1AA-2BEA48E1ACCE}"
 EndProject
@@ -20,6 +20,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Enemies", "Enemies", "{E279
 		Enemies\Enemy-Guard Hound.dat = Enemies\Enemy-Guard Hound.dat
 		Enemies\Enemy-Hellcat Alpha.dat = Enemies\Enemy-Hellcat Alpha.dat
 		Enemies\Enemy-Imp.dat = Enemies\Enemy-Imp.dat
+		Enemies\Enemy-Necromancer BBG1.dat = Enemies\Enemy-Necromancer BBG1.dat
+		Enemies\Enemy-Necromancer BBG2.dat = Enemies\Enemy-Necromancer BBG2.dat
+		Enemies\Enemy-Necromancer BBG3.dat = Enemies\Enemy-Necromancer BBG3.dat
 		Enemies\Enemy-Nightmare Deamon.dat = Enemies\Enemy-Nightmare Deamon.dat
 		Enemies\Enemy-Novice Mage.dat = Enemies\Enemy-Novice Mage.dat
 		Enemies\Enemy-Occult Initiate.dat = Enemies\Enemy-Occult Initiate.dat
@@ -53,5 +56,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {27B4BFA1-EA3B-483C-B23B-02D7C7FD45A4}
 	EndGlobalSection
 EndGlobal

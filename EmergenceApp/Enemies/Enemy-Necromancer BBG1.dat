@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+<NPCQuickReferenceVM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <model>
+    <Name>Necromancer BBG1</Name>
+    <Type>Natural</Type>
+    <Archetype>Humanoid</Archetype>
+    <Attributes>
+      <Level>5</Level>
+      <Size>3</Size>
+      <npcClass>Antagonist</npcClass>
+      <baseSpirit>0</baseSpirit>
+      <ArmorValue>0</ArmorValue>
+      <Special>+1 to all skills</Special>
+      <StaminaRegen>6</StaminaRegen>
+      <AttributeAdjustments>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>MeleeResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaPhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaResolve</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaBody</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>PrimaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>SecondaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Perception</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Initiative</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Durability</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Speed</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+      </AttributeAdjustments>
+    </Attributes>
+    <Qualities>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Regeneration (2)</Name>
+        <Description>The number listed is the amount of Health that is restored in the following tracks and timeframes. Per Turn: 1st Track, Per Minute: 2nd Track, and Per Hour: 3rd Track. Regeneration restores health in the first track until full, then it restores health in the second until full, and finally it restores health in the third track until full. Regeneration cannot restore more health in a given track than the creature’s normal maximum.</Description>
+        <Modifiers />
+        <xVariable>2</xVariable>
+      </NpcQuality>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Camouflaged (2)</Name>
+        <Description>The creature has the listed amount of Concealment at all times. If an exception exists it is listed in the property description.</Description>
+        <Modifiers />
+        <xVariable>2</xVariable>
+      </NpcQuality>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Night Sight</Name>
+        <Description>Nightsight: The creature does not suffer penalties light or heavy Concealment from darkness.</Description>
+        <Modifiers />
+        <xVariable>0</xVariable>
+      </NpcQuality>
+    </Qualities>
+    <Abilities>
+      <NpcAbility>
+        <Name>Powerful Attack</Name>
+        <Description>(Attack Augment): Creature gains its Level to damage and ½ of its Level to attack.</Description>
+        <Tier>4</Tier>
+        <StaminaCost>6</StaminaCost>
+        <UpkeepCost xsi:nil="true" />
+      </NpcAbility>
+    </Abilities>
+    <CombatSkills />
+    <SpecializedSkills />
+    <KnowledgeSkills />
+    <Talents>
+      <Talent>
+        <Name>[Element] Explosion</Name>
+        <Description>Spell {Area (10’ radius within SMG range) +0/+2 [Element]} [6 Stamina]</Description>
+        <DescriptionFluff>You hurl an explosive ball of your chosen element.</DescriptionFluff>
+        <ClarifyingText />
+        <Tree>Elementalism</Tree>
+        <TreeName>Elementalism</TreeName>
+        <Tier>2</Tier>
+        <StaminaCost>6</StaminaCost>
+        <UpkeepCost xsi:nil="true" />
+        <FatigueCost xsi:nil="true" />
+        <IsSpell>false</IsSpell>
+        <LinkedSkill>Conjuration</LinkedSkill>
+        <Action>Combat</Action>
+        <Type>Maneuver</Type>
+        <TierBenefitDescription>Gain +1 to Defense against [Element] attacks</TierBenefitDescription>
+      </Talent>
+    </Talents>
+    <EffectiveStrength>0</EffectiveStrength>
+    <Attacks>
+      <NpcAttack xsi:type="NpcAmpAttack">
+        <Name>Staff</Name>
+        <IsSpell>true</IsSpell>
+        <Amp>
+          <Name>Staff</Name>
+          <Accuracy>-2</Accuracy>
+          <Damage>6</Damage>
+          <Charges>5</Charges>
+          <CM>0</CM>
+          <Size>4</Size>
+          <Type>Force</Type>
+          <Cost>1250</Cost>
+          <Properties>Reaching</Properties>
+          <Quality>Standard</Quality>
+          <Mods>
+            <AmpMod>
+              <Name>Lucky</Name>
+              <Cost>500</Cost>
+              <Effect>You can treat results of 1 and 2 as 1s for the purpose of Spirit re-rolls when making attacks with this Amp.</Effect>
+              <ApplyError />
+            </AmpMod>
+          </Mods>
+          <Range>SMG FiveFootRadius</Range>
+        </Amp>
+      </NpcAttack>
+      <NpcAttack xsi:type="NpcWeaponAttack">
+        <Name>Hand Cannon</Name>
+        <IsSpell>false</IsSpell>
+        <Weapon>
+          <Name>Hand Cannon</Name>
+          <Accuracy>-2</Accuracy>
+          <Damage>8</Damage>
+          <CM>4</CM>
+          <Size>4</Size>
+          <Type>Ballistic</Type>
+          <Range>Pistol</Range>
+          <AmmoCapacity>5</AmmoCapacity>
+          <Cost>6500</Cost>
+          <Skill>Shortarms</Skill>
+          <Properties>CritModPlus1 Vicious2 Consistent4</Properties>
+          <Quality>High</Quality>
+          <Mods>
+            <WeaponMod>
+              <Name>Power Rune</Name>
+              <Cost>1000</Cost>
+              <Effect>Activation of attack powers used with the weapon are at -1 stamina cost.</Effect>
+              <ApplyError />
+            </WeaponMod>
+            <WeaponMod>
+              <Name>Deadly</Name>
+              <Cost>3500</Cost>
+              <Effect>Increase the damage of the weapon by 2.  Requires Power Rune.</Effect>
+              <ApplyError />
+            </WeaponMod>
+          </Mods>
+        </Weapon>
+      </NpcAttack>
+    </Attacks>
+    <Armor>
+      <Name>None</Name>
+      <ArmorValue>0</ArmorValue>
+      <ArmorPenalty>0</ArmorPenalty>
+      <SpeedPenalty>0</SpeedPenalty>
+      <Properties />
+      <Mods />
+      <Quality>Poor</Quality>
+      <Cost>0</Cost>
+    </Armor>
+    <Level>5</Level>
+    <Size>3</Size>
+    <NpcClass>Antagonist</NpcClass>
+  </model>
+  <Name>Necromancer BBG1</Name>
+  <Level>5</Level>
+  <Size>3</Size>
+  <NpcClass>Antagonist</NpcClass>
+  <NpcType>Natural</NpcType>
+  <Archetype>Humanoid</Archetype>
+  <Stamina>20</Stamina>
+  <StaminaRegen>6</StaminaRegen>
+  <Perception>11</Perception>
+  <Initiative>15</Initiative>
+  <Durability>9</Durability>
+  <Armor>0</Armor>
+  <Speed>8</Speed>
+</NPCQuickReferenceVM>

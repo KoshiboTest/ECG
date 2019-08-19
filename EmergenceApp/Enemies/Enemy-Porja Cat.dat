@@ -29,6 +29,16 @@
           <ModifierValue>0</ModifierValue>
         </AttributeModifier>
         <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
           <AttributeName>MeleeBody</AttributeName>
           <Type>Additive</Type>
           <ModifierValue>2</ModifierValue>
@@ -147,6 +157,56 @@
           <AttributeName>Speed</AttributeName>
           <Type>Additive</Type>
           <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Perception</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Initiative</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Durability</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Speed</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Perception</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Initiative</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Durability</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Speed</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
         </AttributeModifier>
         <AttributeModifier>
           <AttributeName>Perception</AttributeName>
@@ -488,7 +548,7 @@
           <Type>Slashing</Type>
           <Range>Melee</Range>
           <AmmoCapacity xsi:nil="true" />
-          <Cost>1</Cost>
+          <Cost>0</Cost>
           <Skill>CloseCombat</Skill>
           <Properties>CritModPlus1</Properties>
           <Quality>Poor</Quality>
@@ -507,7 +567,7 @@
           <Type>Slashing</Type>
           <Range>Melee</Range>
           <AmmoCapacity xsi:nil="true" />
-          <Cost>1</Cost>
+          <Cost>0</Cost>
           <Skill>CloseCombat</Skill>
           <Properties>CritModPlus1</Properties>
           <Quality>Poor</Quality>

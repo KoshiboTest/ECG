@@ -14,6 +14,16 @@
       <StaminaRegen>4</StaminaRegen>
       <AttributeAdjustments>
         <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
           <AttributeName>MeleePhysical</AttributeName>
           <Type>Additive</Type>
           <ModifierValue>2</ModifierValue>
@@ -137,6 +147,56 @@
           <AttributeName>SecondaryAttackDamage</AttributeName>
           <Type>Additive</Type>
           <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Perception</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Initiative</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Durability</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Speed</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>StaminaRegen</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Perception</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Initiative</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Durability</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>Speed</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>0</ModifierValue>
         </AttributeModifier>
       </AttributeAdjustments>
     </Attributes>
@@ -300,7 +360,7 @@
           <Type>Ballistic</Type>
           <Range>Rifle</Range>
           <AmmoCapacity>10</AmmoCapacity>
-          <Cost>8750</Cost>
+          <Cost>24750</Cost>
           <Skill>Longarms</Skill>
           <Properties>Consistent3 SemiAuto3 Vicious1</Properties>
           <Quality>Master</Quality>
@@ -338,7 +398,7 @@
         </ArmorMod>
       </Mods>
       <Quality>Standard</Quality>
-      <Cost>2150</Cost>
+      <Cost>3450</Cost>
     </Armor>
     <Level>1</Level>
     <Size>3</Size>
