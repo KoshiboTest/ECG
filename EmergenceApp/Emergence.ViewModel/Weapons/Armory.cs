@@ -1075,7 +1075,7 @@ namespace Emergence.ViewModel
             Ejecting.Effect = "Weapons with this mod can be used to make a Weapon {Ranged (Pistol)/Ballistic+Weapon} attack using the normal weapon's skill.  Once used in this manner, the weapon cannot be used to make melee attacks (except improvised) until the ejected portion is rearmed (a combat action)";
             weaponMods.Add(Ejecting);
 
-            PBSModVM HammeringOrVibro = new PBSModVM();
+            PBSModVM HammeringOrVibro = new HamVibModVM();
             HammeringOrVibro.Name = "Hammering/Vibro";
             HammeringOrVibro.Cost = 3500;
             HammeringOrVibro.Effect = "Weapon gains Lethal 1.";
