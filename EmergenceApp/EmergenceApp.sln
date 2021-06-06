@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Enemies", "Enemies", "{E279
 	ProjectSection(SolutionItems) = preProject
 		Enemies\Enemy-Adult Dragon.dat = Enemies\Enemy-Adult Dragon.dat
 		Enemies\Enemy-Agent.dat = Enemies\Enemy-Agent.dat
+		Enemies\Enemy-Civilian.dat = Enemies\Enemy-Civilian.dat
 		Enemies\Enemy-Fire Wight.dat = Enemies\Enemy-Fire Wight.dat
 		Enemies\Enemy-Fleshwoven Orc.dat = Enemies\Enemy-Fleshwoven Orc.dat
 		Enemies\Enemy-Ganger.dat = Enemies\Enemy-Ganger.dat

@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<NPCQuickReferenceVM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <model>
+    <Name>Civilian</Name>
+    <Type>Natural</Type>
+    <Archetype>Humanoid</Archetype>
+    <Attributes>
+      <Level>1</Level>
+      <Size>1</Size>
+      <npcClass>Grunt</npcClass>
+      <baseSpirit>0</baseSpirit>
+      <ArmorValue>0</ArmorValue>
+      <Special>+1 to all skills</Special>
+      <StaminaRegen>0</StaminaRegen>
+      <AttributeAdjustments>
+        <AttributeModifier>
+          <AttributeName>MeleePhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaPhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedPhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>MeleePhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>AreaPhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>RangedPhysical</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>-2</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>PrimaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>SecondaryAttack</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>1</ModifierValue>
+        </AttributeModifier>
+        <AttributeModifier>
+          <AttributeName>HealthPoints</AttributeName>
+          <Type>Additive</Type>
+          <ModifierValue>4</ModifierValue>
+        </AttributeModifier>
+      </AttributeAdjustments>
+    </Attributes>
+    <Qualities>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Skilled (4)</Name>
+        <Description>The creature adds the listed amount to all non-attack skill checks that it makes.</Description>
+        <Modifiers />
+        <xVariable>4</xVariable>
+      </NpcQuality>
+      <NpcQuality>
+        <GrantedWeapons />
+        <GrantedArmors />
+        <Name>Stalwart (2)</Name>
+        <Description>Increase the creature’s Health per track by 2x the listed amount.</Description>
+        <Modifiers>
+          <AttributeModifier>
+            <AttributeName>HealthPoints</AttributeName>
+            <Type>Additive</Type>
+            <ModifierValue>4</ModifierValue>
+          </AttributeModifier>
+        </Modifiers>
+        <xVariable>2</xVariable>
+      </NpcQuality>
+    </Qualities>
+    <Abilities>
+      <NpcAbility>
+        <Name>Gang Fighter</Name>
+        <Description>Creature gains a +1 to attack and damage when adjacent to any ally of the same Archetype.</Description>
+        <Tier>1</Tier>
+        <StaminaCost>0</StaminaCost>
+        <UpkeepCost xsi:nil="true" />
+      </NpcAbility>
+    </Abilities>
+    <CombatSkills />
+    <SpecializedSkills />
+    <KnowledgeSkills />
+    <Talents />
+    <EffectiveStrength>0</EffectiveStrength>
+    <Attacks>
+      <NpcAttack xsi:type="NpcWeaponAttack">
+        <Name>Unarmed</Name>
+        <IsSpell>false</IsSpell>
+        <Weapon>
+          <Name>Unarmed</Name>
+          <Accuracy>2</Accuracy>
+          <Damage>0</Damage>
+          <CM>3</CM>
+          <Size>0</Size>
+          <Type>Bludgeoning</Type>
+          <Range>Melee</Range>
+          <AmmoCapacity xsi:nil="true" />
+          <Cost>0</Cost>
+          <Skill>Unarmed</Skill>
+          <Properties>Attached NoMods NonLethal</Properties>
+          <Quality>Poor</Quality>
+          <Mods />
+        </Weapon>
+      </NpcAttack>
+      <NpcAttack xsi:type="NpcWeaponAttack">
+        <Name>Light Thrown</Name>
+        <IsSpell>false</IsSpell>
+        <Weapon>
+          <Name>Light Thrown</Name>
+          <Accuracy>1</Accuracy>
+          <Damage>2</Damage>
+          <CM>3</CM>
+          <Size>1</Size>
+          <Type>Piercing</Type>
+          <Range>Thrown</Range>
+          <AmmoCapacity xsi:nil="true" />
+          <Cost>15</Cost>
+          <Skill>Thrown</Skill>
+          <Properties>Agile OneHanded QuickDraw</Properties>
+          <Quality>Poor</Quality>
+          <Mods />
+        </Weapon>
+      </NpcAttack>
+    </Attacks>
+    <Armor>
+      <Name>None</Name>
+      <ArmorValue>0</ArmorValue>
+      <ArmorPenalty>0</ArmorPenalty>
+      <SpeedPenalty>0</SpeedPenalty>
+      <Properties />
+      <Mods />
+      <Quality>Poor</Quality>
+      <Cost>0</Cost>
+    </Armor>
+    <Level>1</Level>
+    <Size>1</Size>
+    <NpcClass>Grunt</NpcClass>
+  </model>
+  <Name>Civilian</Name>
+  <Level>1</Level>
+  <Size>1</Size>
+  <NpcClass>Grunt</NpcClass>
+  <NpcType>Natural</NpcType>
+  <Archetype>Humanoid</Archetype>
+  <Stamina>0</Stamina>
+  <StaminaRegen>0</StaminaRegen>
+  <Perception>5</Perception>
+  <Initiative>9</Initiative>
+  <Durability>-1</Durability>
+  <Armor>0</Armor>
+  <Speed>6</Speed>
+</NPCQuickReferenceVM>
